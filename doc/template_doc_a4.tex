@@ -1,4 +1,4 @@
-\documentclass[10pt, a4paper, titlepage, oneside, openright, final, article]{memoir}
+\documentclass[11pt, a4paper, titlepage, oneside, openright, final, article]{memoir}
 \usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in, footskip=0.4in, bindingoffset=0.7in]{geometry}
 
 \usepackage{ifxetex,ifluatex}
@@ -42,7 +42,7 @@
 \usepackage{charter}                        % {bch} *****
 % Used only to display sample text
 %\usepackage{lmodern}
-%\usepackage{times}                          % {ptm}
+\usepackage{times}                          % {ptm}
 %\usepackage{palatino}                       % {ppl}
 %\usepackage{noto}
 %\usepackage{bookman}                        % {pbk}
@@ -57,14 +57,15 @@
 % ----------------
 \usepackage[scaled=0.92]{helvet}            % {phv}
 % Used only to display sample text
-\usepackage[scaled=0.85]{berasans}          % {fvs}
+% \usepackage[scaled=0.85]{berasans}          % {fvs}
 %\usepackage{cmbright}
 %\usepackage{kurier}
 %\usepackage{sourcesanspro}
 
 % Typewriter fonts
 % ----------------
-\usepackage[scaled=0.85]{beramono}          % {fvm}
+% \usepackage[scaled=0.85]{beramono}          % {fvm}
+\usepackage[scaled=0.86]{beramono}          % {fvm}
 % Used only to display sample text
 \usepackage[varl,scaled=1.0]{zi4}           % Inconsolata typewriter font
 %\usepackage[scaled=0.95]{sourcecodepro}
@@ -78,11 +79,12 @@
 %\renewcommand*\rmdefault{pbk}               % Bookman
 %\renewcommand*\rmdefault{pnc}               % New Centurey Schoolbook
 
-\renewcommand*\sfdefault{lmss}              % Latin modern sans serif
+%\renewcommand*\sfdefault{lmss}              % Latin modern sans serif
 %\renewcommand*\sfdefault{cmss}
+\renewcommand*\sfdefault{phv}
 
-\renewcommand*\ttdefault{zi4}               % Inconsolata *****
-%\renewcommand*\ttdefault{fvm}               % Bera mono
+%\renewcommand*\ttdefault{zi4}               % Inconsolata *****
+\renewcommand*\ttdefault{fvm}               % Bera mono
 %\renewcommand*\ttdefault{cmtt}              % Computer Modern Typewriter
 %\renewcommand*\ttdefault{lmtt}              % Latin Modern Typewriter
 
@@ -101,12 +103,7 @@
 % Hyperlinks
 % ==========
 
-% Change color of hyperlinks in draft mode only
-\ifdraftdoc
-    \usepackage[final=false,colorlinks=true]{hyperref}
-\else
-    \usepackage[final=true,colorlinks=false]{hyperref}
-\fi
+\usepackage[colorlinks=true]{hyperref}
 \hypersetup{
     $if(title-meta)$
         pdftitle={$title-meta$},
@@ -167,12 +164,13 @@ $if(listings)$
     % When --listings argument is passed to pandoc, all code blocks will be
     % wrapped within the listings environment.
     \usepackage{fancyvrb}
+    \definecolor{Gray99}{RGB}{252,252,252}
     \lstset{
         fancyvrb=true,
-        aboveskip=-0.5em,
+        aboveskip=1em,
         belowskip=1em,
-        %basicstyle=\small\ttfamily,
-        basicstyle=\normalsize\ttfamily,
+        basicstyle=\small\ttfamily,
+        %basicstyle=\normalsize\ttfamily,
         fontadjust=true,
         %columns=fixed,              % compress character spaces
         %basewidth={0.5em, 0.5em},   %   by this much
@@ -181,7 +179,8 @@ $if(listings)$
         keepspaces=true,
         showstringspaces=false,
         keywordstyle=\color{NavyBlue},
-        linewidth=\textwidth
+        linewidth=\textwidth,
+        %otherkeywords={*,std,main}
     }
     \lstset{
         numberstyle=\normalsize\ttfamily,
@@ -189,7 +188,7 @@ $if(listings)$
     }
     % Frame and background
     \lstset{
-        xleftmargin=7pt,            % move listing display to the right
+        xleftmargin=8pt,            % move listing display to the right
         frame=single,
         frameround=tttt,
         framesep=2.5pt,
@@ -198,10 +197,9 @@ $if(listings)$
         framexbottommargin=2pt,
         framexleftmargin=5pt,
         framexrightmargin=5pt,
-        rulecolor=\color{LightGray},
-        rulesepcolor=\color{GhostWhite},
-        %fillcolor=\color{GhostWhite},
-        backgroundcolor=\color{GhostWhite},
+        rulecolor=\color{Gainsboro},
+        rulesepcolor=\color{Gray99},
+        backgroundcolor=\color{Gray99},
     }
     \newcommand{\passthrough}[1]{#1}
 $else$
@@ -596,16 +594,16 @@ $if(title)$
         \noindent\rule[-1ex]{\textwidth}{1pt}\\[2.8ex]
 
         {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$version$}\\[0.05in]
-        {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$date$}
+        {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$date$}\\[0.05in]
 
-        $if(client)$
-            \\[0.05in]
-            {\fontsize{14pt}{22pt}\usefont{T1}{ptm}{b}{n}$client$}
-        $endif$
+        % $if(client)$
+        %     {\fontsize{14pt}{22pt}\usefont{T1}{ptm}{b}{n}$client$}
+        % $endif$
 
-        % Add a vertical fill so the author(s) is/are pushed down.
+        % Add a vertical fill so the items below are pushed down to the
+        % bottom of the page.
         % https://latex.org/forum/viewtopic.php?t=13428
-        % Push the text down by inserting \vfill or \vspace*{\fill}:
+        % Use \vfill or \vspace*{\fill}:
         \vspace*{\fill}
 
         $for(author)$
@@ -651,23 +649,31 @@ $endif$
     $if(version)$
         \normalsize $version$\\
     $endif$
-    \vspace*{1em}
+    $if(author)$
+        % For multiple authors
+        % \normalsize by\\
+        % $for(author)$
+        %     \normalsize $author.name$\\
+        % $endfor$
 
-    \normalsize by\\
-    $for(author)$
-        $if(author.name)$
-            \normalsize $author.name$\\
-        $endif$
-    $endfor$
+        % For single author
+        \normalsize by $for(author)$$author.name$$endfor$
+        \vspace*{1em}
+    $endif$
 
     \vspace*{1.5em}
 
-    $if(copyright)$
-        \normalsize $copyright$\\[1.2em]
-    $endif$
     \includegraphics[keepaspectratio=true, width=2.5cm]{cc_by_nc_sa_40.eps}\\[1.2em]
-    \normalsize License: $license$\\[1.2em]
-    \normalsize $licensetext$\\[1.2em]
+    $if(copyright)$
+        \normalsize Copyright \textcopyright\space $copyright$\\[1.2em]
+    $endif$
+    $if(license_text)$
+        {\normalsize $license_text$}
+        $if(license_link)$
+            {\normalsize To view a copy of this license, visit: \url{$license_link$}.}
+        $endif$
+        \\[1.2em]
+    $endif$
     $if(license_attribution)$
         \normalsize {\bfseries Attribution}\textemdash $license_attribution$\\[1.2em]
     $endif$
@@ -677,17 +683,15 @@ $endif$
     $if(license_adaptations)$
         \normalsize {\bfseries Adaptationss}\textemdash $license_adaptations$\\[1.2em]
     $endif$
+    $if(source)$
+        \normalsize $source$\\[1.2em]
+    $endif$
 
     \ifxetex
-        \normalsize PDF is generated using XeTeX \the\eTeXversion\eTeXrevision-\the\XeTeXversion\XeTeXrevision\space on \today.
+        \normalsize This PDF is generated using XeTeX \the\eTeXversion\eTeXrevision-\the\XeTeXversion\XeTeXrevision\space on \today.
     \else
-        \normalsize PDF is generated using pdfTeX \the\eTeXversion\eTeXrevision-\the\pdftexversion.\pdftexrevision\space on \today.
+        \normalsize This PDF is generated using pdfTeX \the\eTeXversion\eTeXrevision-\the\pdftexversion.\pdftexrevision\space on \today.
     \fi
-
-    $if(source)$
-        \\[1em]
-        \normalsize $source$
-    $endif$
 %}
 %\%end{minipage}}
 \end{flushleft}
