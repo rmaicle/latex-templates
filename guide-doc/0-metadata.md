@@ -16,7 +16,7 @@ copyright: 2019 by Ricardo I. Maicle
 licenseimage: cc_by_nc_sa_40.eps
 license: CC BY-NC-SA 4.0
 
-license_text: "This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0). You are free to copy, reproduce, distribute, display, and make adaptations of this work for non-commercial purposes provided that you give appropriate credit."
+licensetext: This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0). You are free to copy, reproduce, distribute, display, and make adaptations of this work for non-commercial purposes provided that you give appropriate credit. To view a copy of this license, visit [http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode](http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 
 license_link: "http://creativecommons.org/licenses/by-nc-sa/4.0/"
 
