@@ -549,8 +549,6 @@ $if(title)$
         \pdfbookmark{Title Page}{$title$}
     \fi
     \newlength{\centeroffset}
-    %\setlength{\centeroffset}{-0.5\oddsidemargin}
-    %\setlength{\centeroffset}{0.60\evensidemargin}
     \thispagestyle{empty}
     \vspace*{2.0in}
     \begin{flushleft}
@@ -610,7 +608,6 @@ $endif$
 % Copyright
 %
 \thispagestyle{empty}
-%\noindent\hspace*{\centeroffset}\makebox[0pt][l]{\begin{minipage}{\textwidth}
 \begin{flushleft}
     {\bfseries $title$}
     $if(subtitle)$
@@ -675,10 +672,8 @@ $endif$
 %
 $if(toc)$
 {
-    %\setcounter{tocdepth}{$toc-depth$}
     \settocdepth{subsection}
     \cleardoublepage
-    %\tableofcontents
     \begin{KeepFromToc} % Hide the ToC page entry in the ToC
         \tableofcontents
     \end{KeepFromToc}
