@@ -493,41 +493,38 @@ $endif$
 
 % Chapter style
 % -------------
-%\makechapterstyle{negerns}{
-%    \setlength{\beforechapskip}{0pt}
-%    \renewcommand*{\chapnamefont}{\raggedleft\fontsize{16.28pt}{24pt}\usefont{T1}{ptm}{m}{sc}}
-%    \renewcommand*{\chapnumfont}{\raggedleft\fontsize{24.88pt}{25pt}\usefont{T1}{ptm}{m}{n}\,\,}
-%    \renewcommand*{\chaptitlefont}{\raggedleft\fontsize{20.74pt}{25pt}\usefont{T1}{ptm}{b}{it}}
-%    \renewcommand*{\printchapternonum}{
-%        \vphantom{\printchaptername}
-%        \vphantom{\chapnumfont 1}
-%        \afterchapternum}
-%    \renewcommand*{\printchaptertitle}[1]{
-%        \vskip -4mm
-%        \hrule\vskip\onelineskip \centering\chaptitlefont ##1\\[3.0ex]}
-%}
-%\chapterstyle{negerns}
-%\chapterstyle{}
-
-%\chapterstyle{section}
+% Ref: How do fonts work in LaTeX?
+%      https://tex.stackexchange.com/questions/338049/
 \makechapterstyle{negerns}{
     \renewcommand{\printchaptername}{}
     \renewcommand{\chapternamenum}{}
-    %\renewcommand{\chapterheadstart}{}
     \setlength{\beforechapskip}{12pt}
+    %\setlength{\afterchapskip}{12pt}
     \setlength{\afterchapskip}{12pt}
-    \renewcommand*{\printchapternum}{\chapnumfont \thechapter\space\space\space\space}
-    \renewcommand*{\chaptitlefont}{\fontsize{16pt}{1pt}}
+    \renewcommand*{\printchapternum}{%
+        \ifanappendix
+            \chapnumfont \appendixname\space\thechapter\space\space\space\space%
+        \else%
+            \chapnumfont \thechapter\space\space\space\space%
+        \fi%
+    }
+    \renewcommand*{\chapnumfont}{\fontsize{15pt}{1pt}\usefont{T1}{bch}{b}{n}}
+    \renewcommand*{\chaptitlefont}{\fontsize{15pt}{1pt}\usefont{T1}{bch}{b}{n}}
+    % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
 
+    % Note on using \nopagebreak instead of \nobreak
+    % https://tex.stackexchange.com/questions/94217
+    % Using 2pt just because the chapter title uses 2pt font size
+    % bigger than the section title
+    \renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
 }
-\chapterstyle{reparticle}
-
+\chapterstyle{negerns}
+\setsecheadstyle{\fontsize{14pt}{1pt}\usefont{T1}{bch}{b}{n}}
+\setsubsecheadstyle{\fontsize{13pt}{1pt}\usefont{T1}{bch}{b}{n}}
+\setsubsubsecheadstyle{\fontsize{12pt}{1pt}\usefont{T1}{bch}{b}{n}}
 \setsecnumdepth{subsubsection}
-%\setsecheadstyle{\fontsize{15pt}{1pt}\usefont{T1}{put}{b}{n}}
-%\setsubsecheadstyle{\fontsize{14pt}{1pt}\usefont{T1}{put}{b}{n}}
-%\setsubsubsecheadstyle{\fontsize{13pt}{1pt}\usefont{T1}{put}{b}{n}}
 
 % Epigraph
 % --------
