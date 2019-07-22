@@ -352,7 +352,12 @@ $if(dir)$
     \fi
 $endif$
 
-% Trick to make memoir class work with fancyhdr
+% Using memoir class with fancyhdr may get compilation errors because both
+% define the \footruleskip command when loading. To avoid the error, the
+% command needs to be 'undefined' before fancyhdr is loaded but after memoir
+% has been loaded.
+% Ref: fancyhdr and memoir
+%      http://tex.stackexchange.com/questions/37868/ddg#37880
 \let\footruleskip\undefined
 \usepackage{fancyhdr}
 
