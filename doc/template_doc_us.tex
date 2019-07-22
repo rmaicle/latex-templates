@@ -598,7 +598,9 @@ $if(title)$
                 {\\\fontsize{18pt}{21.6pt}\usefont{T1}{ptm}{m}{n}$subtitle$}
             $endif$
         }
-        \noindent\rule[-1ex]{\textwidth}{1pt}\\[2.8ex]
+        % The vertical space below the rule is the same height
+        % as the subtitle font size
+        \noindent\rule[-1.2pt]{\textwidth}{.1pt}
 
         {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$version$}\\[0.05in]
         {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$date$}\\[0.05in]
