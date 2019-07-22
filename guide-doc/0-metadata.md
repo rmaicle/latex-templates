@@ -9,7 +9,8 @@ author:
 version: Version 0.1.0
 date: January 2019
 distribution: |
-    | Private; distribution limited to internal use only.
+    | Internal use only.
+    | No copies or reproduction in whole or in part may be passed to any third party.
     |
 copyright: 2019 by Ricardo I. Maicle
 licenseimage: cc_by_nc_sa_40.eps
