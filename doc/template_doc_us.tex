@@ -602,8 +602,8 @@ $if(title)$
         % as the subtitle font size
         \noindent\rule[-1.2pt]{\textwidth}{.1pt}
 
-        {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$version$}\\[0.05in]
-        {\fontsize{12pt}{22pt}\usefont{T1}{ptm}{m}{n}$date$}\\[0.05in]
+        {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{m}{n}$version$}\\[0.05in]
+        {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{m}{n}$date$}\\[0.05in]
 
         % $if(client)$
         %     {\fontsize{14pt}{22pt}\usefont{T1}{ptm}{b}{n}$client$}
@@ -617,9 +617,9 @@ $if(title)$
 
         $for(author)$
             $if(author.name)$
-                {\fontsize{13pt}{15pt}\usefont{T1}{ptm}{b}{n}$author.name$}
+                {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{b}{n}$author.name$}
                 $if(author.email)$
-                    {\\[0.05in]\fontsize{12pt}{14pt}\usefont{T1}{ptm}{m}{n}$author.email$}
+                    {\\[0.05in]\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{m}{n}$author.email$}
                 $endif$
             $endif$
             \\[0.2in]
@@ -630,7 +630,7 @@ $if(title)$
         \vspace*{0.5in}
 
         $if(distribution)$
-            {\fontsize{12pt}{14pt}\usefont{T1}{ptm}{m}{n}Distribution: $distribution$}
+            {\fontsize{11pt}{13.2pt}\usefont{T1}{ptm}{m}{n}$distribution$}
         $endif$
     \end{flushleft}
 $endif$
