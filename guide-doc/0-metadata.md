@@ -1,6 +1,8 @@
 ---
 title: Markdown to PDF
-subtitle: Documentation Guide
+subtitle: |
+    | Documentation Guide
+    |
 author:
   - name: Ricardo I. Maicle
     email: rmaicle@gmail.com
