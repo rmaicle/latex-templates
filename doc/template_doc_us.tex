@@ -496,11 +496,10 @@ $endif$
 % Ref: How do fonts work in LaTeX?
 %      https://tex.stackexchange.com/questions/338049/
 \makechapterstyle{negerns}{
+    \setlength{\beforechapskip}{11pt}
+    \setlength{\afterchapskip}{11pt}
     \renewcommand{\printchaptername}{}
     \renewcommand{\chapternamenum}{}
-    \setlength{\beforechapskip}{12pt}
-    %\setlength{\afterchapskip}{12pt}
-    \setlength{\afterchapskip}{12pt}
     \renewcommand*{\printchapternum}{%
         \ifanappendix
             \chapnumfont \appendixname\space\thechapter\space\space\space\space%
