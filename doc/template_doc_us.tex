@@ -502,13 +502,13 @@ $endif$
     \renewcommand{\chapternamenum}{}
     \renewcommand*{\printchapternum}{%
         \ifanappendix
-            \chapnumfont \appendixname\space\thechapter\space\space\space\space%
+            \chapnumfont \appendixname\space\thechapter\\%
         \else%
             \chapnumfont \thechapter\space\space\space\space%
         \fi%
     }
-    \renewcommand*{\chapnumfont}{\fontsize{15pt}{1pt}\usefont{T1}{bch}{b}{n}}
-    \renewcommand*{\chaptitlefont}{\fontsize{15pt}{1pt}\usefont{T1}{bch}{b}{n}}
+    \renewcommand*{\chapnumfont}{\fontsize{15pt}{18pt}\usefont{T1}{bch}{b}{n}}
+    \renewcommand*{\chaptitlefont}{\fontsize{15pt}{18pt}\usefont{T1}{bch}{b}{n}}
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
@@ -520,9 +520,9 @@ $endif$
     \renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
 }
 \chapterstyle{negerns}
-\setsecheadstyle{\fontsize{14pt}{1pt}\usefont{T1}{bch}{b}{n}}
-\setsubsecheadstyle{\fontsize{13pt}{1pt}\usefont{T1}{bch}{b}{n}}
-\setsubsubsecheadstyle{\fontsize{12pt}{1pt}\usefont{T1}{bch}{b}{n}}
+\setsecheadstyle{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
+\setsubsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
+\setsubsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}
 \setsecnumdepth{subsubsection}
 
 
