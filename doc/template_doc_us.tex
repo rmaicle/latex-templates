@@ -166,28 +166,52 @@
 
 $if(listings)$
     \usepackage{listings}
+
+    % Shrink the code listings
+    % Can only be used if pdf engine is pdflatex.
+    % Ref: Shrinking monospace style for listings package
+    %      https://tex.stackexchange.com/questions/33020/
+    \usepackage{microtype}
+    %\newcommand\Small{\fontsize{9}{9.2}\selectfont}
+    %\newcommand\Small{\fontsize{9}{10.8}\selectfont}
+    \newcommand\Small{\fontsize{10}{12}\selectfont}
+    \newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
+
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
+
     \definecolor{Gray99}{RGB}{252,252,252}
+
     \lstset{
         fancyvrb=true,
         aboveskip=1em,
         belowskip=1em,
-        basicstyle=\small\ttfamily,
-        %basicstyle=\normalsize\ttfamily,
+        basicstyle=\LSTfont,
         fontadjust=true,
-        %columns=fixed,              % compress character spaces
-        %basewidth={0.5em, 0.5em},   %   by this much
+        columns=fixed,
         breakatwhitespace=true,
-        columns=fullflexible,
         keepspaces=true,
         showstringspaces=false,
         keywordstyle=\color{NavyBlue},
-        %otherkeywords={*,std,main}
+        stringstyle=\color{Brown},
+        commentstyle=\color{Green},
+        morekeywords={std,main}
     }
     \lstset{
-        numberstyle=\normalsize\ttfamily,
-        numbersep=10pt
+        numberstyle=\LSTfont,
+        numbersep=10pt,
+        % Memoir class \parindent length:
+        %   10pt font size 15pt length
+        %   11pt font size 17pt length
+        %   12pt font size 1.5em length based on Computer Modern font
+        % In two-column mode \parindent is always 1em based on Computer
+        % Modern font. More info at the reference link:
+        %   https://tex.stackexchange.com/questions/50138/
+        %
+        % The following value merely aligns the code listing (with line
+        % numbers) to the left with the text paragraph.
+        % xleftmargin=0.28in
+        xleftmargin=17pt
     }
     % Frame and background
     \lstset{
@@ -196,7 +220,7 @@ $if(listings)$
         frameround=tttt,
         framesep=2.5pt,
         framerule=0.1pt,
-        framextopmargin=3pt,
+        framextopmargin=3.5pt,
         framexbottommargin=2pt,
         framexleftmargin=5pt,
         framexrightmargin=5pt,
@@ -204,8 +228,20 @@ $if(listings)$
         rulesepcolor=\color{Gray99},
         backgroundcolor=\color{Gray99},
     }
+
+    % https://github.com/jgm/pandoc/issues/4716
     \newcommand{\passthrough}[1]{#1}
+
+    % Make lstinline use a differnt font size lstlistings or lstinputlisting
+    % To use a different font and font size use the following:
+    % \lst@AddToHook{TextStyle}{\let\lst@basicstyle\normalsize\fontfamily{zi4}\selectfont}
+    % Ref: https://latex.org/forum/viewtopic.php?t=2072
+    \makeatletter
+    \lst@AddToHook{TextStyle}{\let\lst@basicstyle\ttfamily\normalsize}
+    \makeatother
+
 $else$
+
     % When --listings argument is not passed to pandoc, we change all
     % code block font sizes.
     % How to set font size for all verbatims in Beamer presentation?
