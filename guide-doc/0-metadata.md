@@ -22,7 +22,7 @@ license_link: "http://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 license_attribution: "Please cite the work as follows: Markdown to PDF Guide by Ricardo Maicle is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)."
 
-license_translations: "If you create a translation of this work, please add the following disclaimer along with the attribution: This translation was not created by Codespheare. The original authors shall not be liable for any content or error in this translation."
+license_translations: "If you create a translation of this work, please add the following disclaimer along with the attribution: This translation was not created by Ricardo I. Maicle. The original authors shall not be liable for any content or error in this translation."
 
 license_adaptations: "If you create an adaptation of this work, please add the following disclaimer along with the attribution: This is an adaptation of an original work by [company]. Views and opinions expressed in the adaptation are the sole responsibility of the author or authors of the adaptation and are not endorsed by the original authors."
 
