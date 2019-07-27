@@ -373,18 +373,21 @@ Term 3
 
 ## Footnotes
 
+### Simple Text Footnotes
+
 Footnotes are generated using a caret (`^`) followed by an identifier wrapped between square brackets.
 Footnote identifiers could be a number or text but may not contain spaces, tabs, or newlines.
 Text footnote identifiers are converted to a number and is ordered automatically.
 
-The following markdown shows how to define a footnote reference and its corresponding note.
+The following markdown text shows how to define a footnote reference and its
+corresponding note.
 
 ~~~
 At the end of this text is a numbered footnote reference.[^1] Here is a
 footnote reference using text for easier reading and referencing.
 [^longnote]
 
-[^1]: Here is the note.
+[^1]: Here is the first footnote.
 [^longnote]: Long note with subsequent paragraphs. Subsequent paragraphs
              are indented following a blank line to show that they belong
              to the previous footnote.
@@ -392,14 +395,28 @@ footnote reference using text for easier reading and referencing.
     This is the second paragraph for this footnote.
 ~~~
 
+So that we can check if the body text here will be affected by the footnote
+number, we are having a longer text here before the footnote occurs.
 At the end of this text is a numbered footnote reference.[^1]
 footnote reference using text for easier reading and referencing.[^longnote]
 
-[^1]: Here is the note.
+[^1]: Here is the first footnote.
 [^longnote]: Long note with subsequent paragraphs. Subsequent paragraphs
 are indented to show that they belong to the previous footnote.
 
     This is the second paragraph for this footnote.
+
+### Inline Footnotes
+
+Footnotes can also be inlined. Here is an inline note.^[Inlined notes
+are easier to write, since you don't have to pick an identifier and move
+down to type the note.]
+
+~~~
+Footnotes can also be inlined. Here is an inline note.^[Inlined notes
+are easier to write, since you don't have to pick an identifier and move
+down to type the note.]
+~~~
 
 ### Hyperlinks as Footnotes
 
@@ -415,17 +432,16 @@ markdown/). There is no need to manually define the note as it is
 automatically generated from the hyperlink.
 ~~~
 
-### Inline Footnotes
+### Footnotes with Hyperlinks
 
-Footnotes can also be inlined. Here is an inline note.^[Inlined notes
-are easier to write, since you don't have to pick an identifier and move
-down to type the note.]
+Footnotes could also contain hyperlinks along with texts. To do this, we follow
+the rule on how to create hyperlinks in the body text[^foot-hyperlink].
 
 ~~~
-Footnotes can also be inlined. Here is an inline note.^[Inlined notes
-are easier to write, since you don't have to pick an identifier and move
-down to type the note.]
+[^foot-hyperlink]: Some Text [http://localhost/](http://localhost/).
 ~~~
+
+[^foot-hyperlink]: Some Text [http://localhost/](http://localhost/).
 
 ## Table
 

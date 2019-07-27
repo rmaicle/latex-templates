@@ -1,4 +1,29 @@
 ---
+# Final or draft version.
+# The default is draft.
+# version: final | draft
+version: draft
+
+# Whether the PDF is soft copy only or for printing.
+# The default is that the PDF is for printing.
+# pdfsoft: true | false
+pdfsoft: true
+
+# Paper size: letterpaper | a4paper
+# The default is letterpaper.
+papersize: a4paper
+
+# Font size of body text.
+# Font sizes are 10pt, 11pt, 12pt..
+# The default is 10pt.
+fontsize: 11pt
+parasectionfontsize: 11pt
+subsubsectionfontsize: 12pt
+
+# \setsecheadstyle{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
+# \setsubsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
+# \setsubsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}
+
 title: Markdown to PDF
 subtitle: |
     | Documentation Guide
