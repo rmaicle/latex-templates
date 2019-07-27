@@ -1,5 +1,16 @@
-\documentclass[11pt, letterpaper, titlepage, oneside, openright, final, article]{memoir}
-\usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in, footskip=0.4in, bindingoffset=0.7in]{geometry}
+\documentclass[
+    $if(fontsize)$$fontsize$$else$10pt$endif$,
+    $if(papersize)$$papersize$$else$letterpaper$endif$,
+    titlepage,
+    oneside,
+    openright,
+    $if(version)$$version$$else$draft$endif$,
+    article]{memoir}
+
+\usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in,
+    footskip=0.4in,
+    $if(pdfsoft)$bindingoffset=0.0in$else$bindingoffset=0.7in$endif$]
+    {geometry}
 
 \usepackage{ifxetex,ifluatex}
 % Package fixltx2e is not required with releases after 2015.
@@ -213,21 +224,23 @@ $if(listings)$
         % xleftmargin=0.28in
         xleftmargin=17pt
     }
-    % Frame and background
-    \lstset{
-        xleftmargin=7pt,            % move listing display to the right
-        frame=single,
-        frameround=tttt,
-        framesep=2.5pt,
-        framerule=0.1pt,
-        framextopmargin=3.5pt,
-        framexbottommargin=2pt,
-        framexleftmargin=5pt,
-        framexrightmargin=5pt,
-        rulecolor=\color{Gainsboro},
-        rulesepcolor=\color{Gray99},
-        backgroundcolor=\color{Gray99},
-    }
+    $if(pdfsoft)$
+        % Frame and background
+        \lstset{
+            xleftmargin=7pt,            % move listing display to the right
+            frame=single,
+            frameround=tttt,
+            framesep=2.5pt,
+            framerule=0.1pt,
+            framextopmargin=3.5pt,
+            framexbottommargin=2pt,
+            framexleftmargin=5pt,
+            framexrightmargin=5pt,
+            rulecolor=\color{Gainsboro},
+            rulesepcolor=\color{Gray99},
+            backgroundcolor=\color{Gray99},
+        }
+    $endif$
 
     % https://github.com/jgm/pandoc/issues/4716
     \newcommand{\passthrough}[1]{#1}
