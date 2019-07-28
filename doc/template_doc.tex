@@ -49,6 +49,8 @@
 % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
 \usepackage{textcomp}
 
+\usepackage[protrusion=true,expansion]{microtype}
+
 % Serif fonts
 % -----------
 \usepackage{charter}                        % {bch} *****
@@ -186,7 +188,6 @@ $if(listings)$
     % Can only be used if pdf engine is pdflatex.
     % Ref: Shrinking monospace style for listings package
     %      https://tex.stackexchange.com/questions/33020/
-    \usepackage{microtype}
     \newcommand\Small{\fontsize{10}{12}\selectfont}
     \newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
 
@@ -421,8 +422,7 @@ $endif$
 % Error: Undefined control sequence
 % \VerbatimFootnotes
 
-%\usepackage{microtype}
-%\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+
 
 % \usepackage[option]{setspace}
 % options:
