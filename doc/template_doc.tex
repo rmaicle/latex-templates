@@ -371,12 +371,13 @@ $if(lang)$
         $babel-newcommands$
     $endif$
     \else
-        % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+        % Load polyglossia as late as possible as it *could* call bidi if
+        % RTL lang (e.g. Hebrew or Arabic)
         \usepackage{polyglossia}
         \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
-    $for(polyglossia-otherlangs)$
-        \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
-    $endfor$
+        $for(polyglossia-otherlangs)$
+            \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+        $endfor$
     \fi
 $endif$
 
