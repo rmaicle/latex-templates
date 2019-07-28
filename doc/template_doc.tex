@@ -7,6 +7,7 @@
     $if(draft)$draft$else$final$endif$,
     article]{memoir}
 
+\usepackage{ifdraft}
 \usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in,
     footskip=0.4in,
     $if(softcopy)$bindingoffset=0.0in$else$bindingoffset=0.7in$endif$]
@@ -611,7 +612,14 @@ $if(title)$
         % as the subtitle font size
         \noindent\rule[-1.2pt]{\textwidth}{.1pt}
 
-        {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{m}{n}$version$}\\[0.05in]
+        $if(version)$
+            {\fontsize{12pt}{14.4pt}
+                \usefont{T1}{ptm}{m}{n}
+                % Add 'Draft' text on document version number
+                % if the document class option 'draft' is specified
+                \ifoptiondraft{Draft}{}\space $version$\\[0.05in]
+            }
+        $endif$
         {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{m}{n}$date$}\\[0.05in]
 
         % $if(client)$
@@ -663,7 +671,7 @@ $endif$
         {\\\itshape $subtitle$}
     $endif$
     $if(version)$
-        \normalsize $version$\\
+        \normalsize \ifoptiondraft{Draft}{}\space $version$
     $endif$
     $if(author)$
         % For multiple authors
