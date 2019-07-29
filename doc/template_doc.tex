@@ -458,6 +458,9 @@ $endif$
 % Prevent overfull lines
 % https://tex.stackexchange.com/questions/241343/
 \setlength{\emergencystretch}{3em}
+
+% Sentance
+% -----------------------------------------------------------------------------
 % Traditional typography requires a larger space to indicate the end of a
 % sentence. Following along the same logic, TEX puts more space after an
 % exclamation point (!), and a question mark (?). However, this tradition
@@ -465,10 +468,11 @@ $endif$
 % execute \frenchspacing just before the beginning of every document,
 % instructing TEX to treat commas and periods in the same way.
 % (Latex Manual 8.6)
-% -----------------------------------------------------------------------------
 \frenchspacing
 
-% Tight lists
+% Lists
+% -----------------------------------------------------------------------------
+% Make lists tight (less vertical space between items).
 \providecommand{\tightlist}{%
     \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
 }
@@ -479,6 +483,8 @@ $endif$
 %\renewcommand{\labelitemiii}{\ding{44}}
 %\renewcommand{\labelitemiv}{\ding{45}}
 
+% Quotes
+% -----------------------------------------------------------------------------
 % Italicize text in quote environments
 % The original code here was taken from memoir.cls in
 % /usr/share/texmf-dist/tex/latex/memoir/
@@ -488,7 +494,7 @@ $endif$
                   {\endlist}
 
 % Figure placement
-%
+% -----------------------------------------------------------------------------
 % The [htbp] controls where the table or figure is placed.
 % Tables and figures do not need to go where you put them in
 % the text. L A TEX moves them around to prevent large areas of
@@ -528,7 +534,7 @@ $endif$
 \makeatother
 
 % Table of contents
-% -----------------
+% -----------------------------------------------------------------------------
 \settocdepth{subsection}
 \renewcommand{\cftchapterfont}{\large\bfseries}
 \renewcommand{\cftsectionfont}{\large}
@@ -547,7 +553,7 @@ $endif$
 \setlength{\cftsubsectionnumwidth}{3.5em}
 
 % Chapter style
-% -------------
+% -----------------------------------------------------------------------------
 % Ref: How do fonts work in LaTeX?
 %      https://tex.stackexchange.com/questions/338049/
 \makechapterstyle{rmsimple}{
