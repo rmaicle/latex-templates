@@ -111,16 +111,6 @@
 
 
 
-% Paragraph
-% =========
-
-% No indention
-\setlength{\parindent}{0em}
-% Vertical spacing between paragraphs
-\setlength{\parskip}{1em}
-
-
-
 % Hyperlinks
 % ==========
 
@@ -457,6 +447,17 @@ $endif$
 % Settings
 % ========
 
+
+
+% Paragraph
+% -----------------------------------------------------------------------------
+% No indention
+\setlength{\parindent}{0em}
+% Vertical spacing between paragraphs
+\setlength{\parskip}{1em}
+% Prevent overfull lines
+% https://tex.stackexchange.com/questions/241343/
+\setlength{\emergencystretch}{3em}
 % Traditional typography requires a larger space to indicate the end of a
 % sentence. Following along the same logic, TEX puts more space after an
 % exclamation point (!), and a question mark (?). However, this tradition
@@ -466,9 +467,6 @@ $endif$
 % (Latex Manual 8.6)
 % -----------------------------------------------------------------------------
 \frenchspacing
-
-% Prevent overfull lines
-\setlength{\emergencystretch}{3em}
 
 % Tight lists
 \providecommand{\tightlist}{%
