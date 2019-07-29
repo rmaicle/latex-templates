@@ -632,12 +632,7 @@ $if(title)$
         %     {\fontsize{14pt}{22pt}\usefont{T1}{ptm}{b}{n}$client$}
         % $endif$
 
-        % Add a vertical fill so the items below are pushed down to the
-        % bottom of the page.
-        % https://latex.org/forum/viewtopic.php?t=13428
-        % Use \vfill or \vspace*{\fill}:
-        \vspace*{\fill}
-
+        \vspace*{2.5in}
         $for(author)$
             $if(author.name)$
                 {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{b}{n}$author.name$}
@@ -647,10 +642,10 @@ $if(title)$
             $endif$
         $endfor$
 
-        % Vertical space so the authors do not move to the bottom of the page
-        % when there is no distribution text below.
-        \vspace*{2.0in}
-
+        % Add a vertical fill to push down all items to the bottom page.
+        % https://latex.org/forum/viewtopic.php?t=13428
+        % Use \vfill or \vspace*{\fill}:
+        \vspace*{\fill}
         $if(distribution)$
             {\fontsize{11pt}{13.2pt}\usefont{T1}{ptm}{m}{n}$distribution$}
         $endif$
