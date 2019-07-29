@@ -134,8 +134,14 @@
         citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
         urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
     $else$
+        % Remove the border placed around a URL.
+        % Ref: LaTeX, Wikibooks, June 18, 2016.
         pdfborder={0 0 0},
     $endif$
+    bookmarks=true,
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdfstartview={null null 100},
     breaklinks=true
 }
 % Don't use monospace font for URLs.
