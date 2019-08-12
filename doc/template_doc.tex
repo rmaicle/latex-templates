@@ -51,7 +51,10 @@
 %
 % To be able to use other TeX fonts, make sure T1 encoding is used.
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+% Must load ucs before inputenc
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
 % Provides euro and other symbols
 % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
 \usepackage{textcomp}
