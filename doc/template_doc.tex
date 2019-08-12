@@ -7,6 +7,7 @@
     $if(draft)$draft$else$final$endif$,
     article]{memoir}
 
+\usepackage{titlesec}
 \usepackage{ifdraft}
 \usepackage{ragged2e}
 
@@ -586,11 +587,18 @@ $endif$
     % bigger than the section title
     \renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
 }
+
 \chapterstyle{rmsimple}
-\setsecheadstyle{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
-\setsubsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
-\setsubsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}
-\setsecnumdepth{subsubsection}
+\setsecheadstyle{\fontsize{15pt}{18pt}\usefont{T1}{bch}{b}{n}}
+\setsubsecheadstyle{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
+\setsubsubsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
+\titleformat{\paragraph}[block]{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[block]{\fontsize{11pt}{13.2pt}\usefont{T1}{bch}{b}{n}}{}{0em}{}
+
+\titlespacing{\paragraph}{0pt}{5pt}{5pt}
+\titlespacing{\subparagraph}{0pt}{2pt}{2pt}
+
+\setsecnumdepth{subparagraph}
 
 
 
