@@ -340,6 +340,43 @@ $endif$
 
 
 
+% Caption
+% =======
+% Formatting captions and subcaptions in LaTeX
+% http://www.peteryu.ca/tutorials/publishing/latex_captions
+
+\usepackage[
+    margin=10pt,
+    font=small,
+    labelfont=bf,
+    labelsep=endash]{caption}
+
+\DeclareCaptionLabelFormat{listing}{\textbf{\faCode}\enskip #1\space #2}
+\DeclareCaptionLabelSeparator{extraspace}{\space\space\space}
+
+$if(softcopy)$
+    %\DeclareCaptionFormat{listing}{\llap{#1#2}#3\par}
+    \DeclareCaptionFormat{listing}{\colorbox{Gainsboro}{\parbox{0.9875\textwidth}{#1#2#3}}}
+    \captionsetup[lstlisting]{
+        %labelformat=listing,
+        format=listing,
+        labelsep=extraspace,
+        margin={0pt,40pt},
+        skip=5pt}
+$else$
+    \DeclareCaptionFormat{listing}{\hspace{24pt}#1#2#3}
+    \captionsetup[lstlisting]{
+        %labelformat=listing,
+        format=listing,
+        singlelinecheck=false,
+        indention=24pt,
+        labelsep=extraspace,
+        margin=0pt,
+        skip=5pt}
+$endif$
+
+
+
 % Footnotes
 % =========
 
