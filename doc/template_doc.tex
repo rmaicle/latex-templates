@@ -59,7 +59,9 @@
 % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
 \usepackage{textcomp}
 
-\usepackage[protrusion=true,expansion]{microtype}
+\usepackage[protrusion=true,expansion=true]{microtype}
+
+\usepackage{pifont}
 
 % Serif fonts
 % -----------
@@ -89,6 +91,7 @@
 % Typewriter fonts
 % ----------------
 %\usepackage[scaled=0.85]{beramono}          % {fvm}
+\usepackage{lmodern}                        % {lmtt}
 \usepackage[scaled=0.85]{beramono}          % {fvm}
 % Used only to display sample text
 %\usepackage[varl,scaled=1.0]{zi4}           % Inconsolata typewriter font
@@ -188,6 +191,20 @@
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
+\newcommand\TenPointSize{\fontsize{10}{10}\selectfont}
+
+\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-12}\lsstyle}
+\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+
+\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
+\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+
+\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
+\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+
 $if(listings)$
     \usepackage{listings}
 
@@ -195,49 +212,84 @@ $if(listings)$
     % Can only be used if pdf engine is pdflatex.
     % Ref: Shrinking monospace style for listings package
     %      https://tex.stackexchange.com/questions/33020/
-    \newcommand\Small{\fontsize{10}{12}\selectfont}
-    \newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
+    %
+    % Bera Mono
+    % fontsize=10pt
+    % basewidth=0.6em
+    \newcommand*\BeraMonofont{\usefont{T1}{fvm}{m}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-60}\lsstyle}
+    % Latin Modern Typewriter
+    % fontsize=10pt
+    % basewidth=0.5em
+    % -----
+    % At 0.5em basewidth, it is 2-character short to fit the 80
+    % characters within the page textwidth. At 0.49em basewidth,
+    % it fits perfect though the numbers appear a bit too closer
+    % to each other.
+    %
+    % If you prefer a slashed zero, this is not it.
+    \newcommand*\LatinModernfont{\usefont{T1}{lmtt}{m}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
 
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
 
+    % Problem with hyphen being rendered too wide
+    % https://tex.stackexchange.com/questions/33185/
+
+    \lstdefinestyle{default}{
+        literate={-}{-}1,
+        basicstyle=\LatinModernfont,
+        keywordstyle=\LatinModernfont,
+        stringstyle=\LatinModernfont,
+        commentstyle=\LatinModernfont,
+        numberstyle=\LatinModernfont\footnotesize\color{gray},
+        basewidth=0.49em,
+        lineskip=0pt,
+        aboveskip=0.5em,
+        belowskip=0em
+    }
+
     \lstset{
         fancyvrb=true,
-        aboveskip=1em,
-        belowskip=1em,
-        basicstyle=\LSTfont,
+        style=default,
+        % basicstyle=\LatinModernfont,
+        % keywordstyle=\LatinModernfont,
+        % stringstyle=\LatinModernfont,
+        % commentstyle=\LatinModernfont,
+        % numberstyle=\LatinModernfont\footnotesize\color{gray},
+        % basewidth=0.49em,
+        % lineskip=0pt,
+        % aboveskip=0.5em,
+        % belowskip=0em,
         fontadjust=true,
-        columns=fixed,
+        extendedchars=false,
+        columns=[c]fixed,
         breakatwhitespace=true,
         keepspaces=true,
         showstringspaces=false,
-        keywordstyle=\color{NavyBlue},
-        stringstyle=\color{Brown},
-        commentstyle=\color{Green},
-        %morekeywords={std,main}
-    }
-    \lstset{
-        numberstyle=\LSTfont,
         numbersep=10pt,
         % Memoir class \parindent length:
         %   10pt font size 15pt length
         %   11pt font size 17pt length
         %   12pt font size 1.5em length based on Computer Modern font
-        % In two-column mode \parindent is always 1em based on Computer
-        % Modern font. More info at the reference link:
+        % In two-column mode \parindent is always 1em based on
+        % Computer Modern font. More info at the reference link:
         %   https://tex.stackexchange.com/questions/50138/
         %
-        % The following value merely aligns the code listing (with line
-        % numbers) to the left with the text paragraph.
+        % The following value merely aligns the code listing (with
+        % line numbers) to the left with the text ph body.
         % xleftmargin=0.28in
-        xleftmargin=17pt
+        xleftmargin=24pt,
+        frame=none,
+        escapechar=@
     }
+
+    % Frame and background
     $if(softcopy)$
-        % Frame and background
+        \newlength{\linenumwidth} \setlength{\linenumwidth}{5em}
         \lstset{
-            xleftmargin=7pt,            % move listing display to the right
+            xleftmargin=7pt,
             frame=single,
-            frameround=tttt,
+            frameround=fttf,
             framesep=2.5pt,
             framerule=0.1pt,
             framextopmargin=3.5pt,
@@ -246,9 +298,57 @@ $if(listings)$
             framexrightmargin=-2pt,
             rulecolor=\color{Gainsboro},
             rulesepcolor=\color{GrayBackground},
-            backgroundcolor=\color{GrayBackground},
+            backgroundcolor=\color{GrayBackground}
         }
     $endif$
+
+    \lstdefinestyle{command}{
+        style=default
+    }
+
+    \lstdefinestyle{output}{
+        style=default
+    }
+
+
+
+    \lstdefinestyle{syntax}{
+        basicstyle=\BeraMonofont,
+        keywordstyle=\BeraMonofont,
+        stringstyle=\BeraMonofont,
+        commentstyle=\BeraMonofont,
+        numberstyle=\BeraMonofont\footnotesize\color{gray},
+        basewidth=0.6em,
+        lineskip=1pt,
+        aboveskip=0.5em,
+        belowskip=0em
+    }
+
+    \lstdefinestyle{listing}{
+        basicstyle=\BeraMonofont,
+        $if(softcopy)$
+            keywordstyle=\BeraMonofont\color{NavyBlue},
+            stringstyle=\BeraMonofont\color{Brown},
+            commentstyle=\BeraMonofont\color{Green},
+        $else$
+            keywordstyle=\BeraMonofont,
+            stringstyle=\BeraMonofont,
+            commentstyle=\BeraMonofont,
+        $endif$
+        numberstyle=\BeraMonofont\footnotesize\color{gray},
+        basewidth=0.6em,
+        lineskip=1pt,
+        aboveskip=0.5em,
+        belowskip=0em
+    }
+
+    \lstdefinestyle{lines}{
+        aboveskip=0.3em,
+        belowskip=0.4em,
+        frame=lines,
+        framerule=0.1pt,
+        rulecolor=\color{gray}
+    }
 
     % https://github.com/jgm/pandoc/issues/4716
     \newcommand{\passthrough}[1]{#1}
@@ -362,7 +462,8 @@ $if(softcopy)$
         format=listing,
         labelsep=extraspace,
         margin={0pt,40pt},
-        skip=5pt}
+        skip=5pt
+    }
 $else$
     \DeclareCaptionFormat{listing}{\hspace{24pt}#1#2#3}
     \captionsetup[lstlisting]{
@@ -372,7 +473,8 @@ $else$
         indention=24pt,
         labelsep=extraspace,
         margin=0pt,
-        skip=5pt}
+        skip=5pt
+    }
 $endif$
 
 
