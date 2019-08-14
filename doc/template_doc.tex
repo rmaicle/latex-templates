@@ -482,24 +482,26 @@ $endif$
 % Footnotes
 % =========
 
-\usepackage[perpage,hang,multiple]{footmisc}
+\usepackage[perpage,multiple,hang]{footmisc}
 % Set vertical space between bottom of page text and start of footnote.
 \setfootins{8mm plus 4mm minus 2mm}{8mm plus 4mm minus 2mm}
 % Redefine footnote rule
-% length=2.0in, rule thickness is 0.03pt and a vertical space of 2em between
-% the rule and the first entry in the footnote
-\renewcommand{\footnoterule}{\noindent\rule{2.5in}{0.03pt}\vspace{1em}}
+% Set the line length to 2.5in with 0.03pt thickness. The vertical space
+% between the rule and the first footnote entry is 0.5em.
+\renewcommand{\footnoterule}{\noindent\rule{2.5in}{0.03pt}\vspace{0.5em}}
+% Vertical space between paragraphs in a single footnote
+%\renewcommand{\hangfootparskip}{0.0\baselineskip}
+\renewcommand{\hangfootparskip}{0.5em}
 % Change the vertical space between footnote items.
 % If value is equal or small than the body text font size, then it does not
 % seem to have an effect.
-\renewcommand{\footnotesep}{11pt}
+%\renewcommand{\footnotesep}{11pt}
+\renewcommand{\footnotesep}{1.25em}
 % Change the font size of the footnote number in the footnote area.
 % https://latex.org/forum/viewtopic.php?t=8095
 \renewcommand*\thefootnote{\footnotesize\arabic{footnote}}
 % Change footnote text font size other than footnotesize
 \renewcommand{\footnotesize}{\small}
-% Vertical space between paragraphs in a single footnote
-\renewcommand{\hangfootparskip}{0.0\baselineskip}
 
 
 
