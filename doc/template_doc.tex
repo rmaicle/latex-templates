@@ -24,6 +24,11 @@
 % All fixes are now in the LaTeX kernel.
 % See the latexrelease package for details.
 
+% Subscripts
+% Using \textsubscript in a section heading, hyperref will cause an
+% error. To circumvent this, use \texorpdfstring.
+% https://tex.stackexchange.com/questions/1013/
+
 % Must be loaded here. Otherwise an 'Option class for package xcolor'
 % error occurs.
 % TODO: Determine which option it clashes with.
