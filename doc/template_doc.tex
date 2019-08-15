@@ -7,9 +7,7 @@
     $if(draft)$draft$else$final$endif$,
     article]{memoir}
 
-\usepackage{titlesec}
-\usepackage{ifdraft}
-\usepackage{ragged2e}
+
 
 % Recommended margin and binding offset
 % https://tex.stackexchange.com/questions/249190/
@@ -20,6 +18,10 @@
     {geometry}
 
 \usepackage{ifxetex,ifluatex}
+\usepackage{ifpdf}
+\usepackage{ifdraft}
+\usepackage{titlesec}
+\usepackage{ragged2e}
 % Package fixltx2e is not required with releases after 2015.
 % All fixes are now in the LaTeX kernel.
 % See the latexrelease package for details.
@@ -63,7 +65,12 @@
 % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
 \usepackage{textcomp}
 
-\usepackage[protrusion=true,expansion=true]{microtype}
+\ifpdf
+\usepackage[
+    protrusion=true,
+    expansion=true,
+    kerning=false]{microtype}
+\fi
 
 \usepackage{pifont}
 
@@ -204,19 +211,33 @@
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
-\newcommand\TenPointSize{\fontsize{10}{10}\selectfont}
+\newcommand\LSTFontSize{\fontsize{9}{9}\selectfont}
 
-\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-12}\lsstyle}
-\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
-\newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+\ifpdf
+\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont\SetTracking{encoding=*}{-12}\lsstyle}
+\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\LSTFontSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
 
-\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
-\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
-\newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
+\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
 
-\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
-\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
-\newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\TenPointSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
+\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
+\else
+\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont}
+\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont}
+\newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\LSTFontSize\selectfont}
+
+\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont}
+\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont}
+\newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\LSTFontSize\selectfont}
+
+\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont}
+\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont}
+\newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\LSTFontSize\selectfont}
+\fi
 
 $if(listings)$
     \usepackage{listings}
@@ -229,7 +250,19 @@ $if(listings)$
     % Bera Mono
     % fontsize=10pt
     % basewidth=0.6em
-    \newcommand*\BeraMonofont{\usefont{T1}{fvm}{m}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-60}\lsstyle}
+    \ifpdf
+        \newcommand*\BeraMonofont{%
+            \usefont{T1}{fvm}{m}{n}%
+            \LSTFontSize%
+            \selectfont%
+            \SetTracking{encoding=*}{-60}%
+            \lsstyle}
+    \else
+        \newcommand*\BeraMonofont{%
+            \usefont{T1}{fvm}{m}{n}%
+            \LSTFontSize%
+            \selectfont}
+    \fi
     % Latin Modern Typewriter
     % fontsize=10pt
     % basewidth=0.5em
@@ -240,7 +273,19 @@ $if(listings)$
     % to each other.
     %
     % If you prefer a slashed zero, this is not it.
-    \newcommand*\LatinModernfont{\usefont{T1}{lmtt}{m}{n}\TenPointSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+    \ifpdf
+        \newcommand*\LatinModernfont{%
+            \usefont{T1}{lmtt}{m}{n}%
+            \LSTFontSize%
+            \selectfont%
+            \SetTracking{encoding=*}{-9}%
+            \lsstyle}
+    \else
+        \newcommand*\LatinModernfont{%
+            \usefont{T1}{lmtt}{m}{n}%
+            \LSTFontSize%
+            \selectfont}
+    \fi
 
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
