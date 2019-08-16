@@ -293,7 +293,7 @@ $if(listings)$
     % Problem with hyphen being rendered too wide
     % https://tex.stackexchange.com/questions/33185/
 
-    \lstdefinestyle{default}{
+    \lstdefinestyle{TerminalCommon}{
         literate={-}{-}1,
         basicstyle=\LatinModernfont,
         keywordstyle=\LatinModernfont,
@@ -308,7 +308,7 @@ $if(listings)$
 
     \lstset{
         fancyvrb=true,
-        style=default,
+        style=TerminalCommon,
         % basicstyle=\LatinModernfont,
         % keywordstyle=\LatinModernfont,
         % stringstyle=\LatinModernfont,
@@ -361,12 +361,10 @@ $if(listings)$
     $endif$
 
     \lstdefinestyle{command}{
-        style=default
+        style=TerminalCommon
     }
 
     \lstdefinestyle{output}{
-        style=default
-    }
 
 
 
