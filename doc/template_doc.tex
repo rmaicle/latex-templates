@@ -335,6 +335,7 @@ $if(listings)$
         % line numbers) to the left with the text ph body.
         % xleftmargin=0.28in
         xleftmargin=24pt,
+        xleftmargin=27pt,
         frame=none,
         escapechar=@
     }
@@ -398,9 +399,14 @@ $if(listings)$
         $endif$
         belowskip=0.4em,
         frameround=fttf,
-        % Adds to the left and right margins
-        framexleftmargin=7pt,
-        framexrightmargin=0pt,
+        $if(softcopy)$
+            % Adds to the left and right margins
+            framexleftmargin=7pt,
+            framexrightmargin=0pt,
+        $else$
+            framexleftmargin=0pt,
+            framexrightmargin=0pt,
+        $endif$
         frame=lines,
         framerule=0.1pt,
         rulecolor=\color{gray}
@@ -525,7 +531,7 @@ $else$
         singlelinecheck=false,
         indention=24pt,
         labelsep=extraspace,
-        margin=0pt,
+        margin=3pt,
         skip=5pt
     }
 $endif$
