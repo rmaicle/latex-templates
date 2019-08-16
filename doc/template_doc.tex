@@ -303,7 +303,9 @@ $if(listings)$
         basewidth=0.49em,
         lineskip=0.5pt,
         aboveskip=0.5em,
-        belowskip=0em
+        belowskip=0em,
+        %framexleftmargin=5pt,
+        %framexrightmargin=-2pt
     }
 
     \lstset{
@@ -338,7 +340,7 @@ $if(listings)$
         \lstset{
             xleftmargin=7pt,
             frame=single,
-            frameround=fttf,
+            frameround=tttt,
             framesep=2.5pt,
             framerule=0.1pt,
             framextopmargin=3.5pt,
@@ -388,6 +390,10 @@ $if(listings)$
     \lstdefinestyle{lines}{
         aboveskip=0.3em,
         belowskip=0.4em,
+        frameround=fttf,
+        % Adds to the left and right margins
+        framexleftmargin=7pt,
+        framexrightmargin=0pt,
         frame=lines,
         framerule=0.1pt,
         rulecolor=\color{gray}
