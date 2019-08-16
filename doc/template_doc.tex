@@ -36,6 +36,10 @@
 % TODO: Determine which option it clashes with.
 \usepackage[svgnames]{xcolor}
 \definecolor{GrayBackground}{RGB}{250,250,250}
+% Darker by 10%
+\definecolor{GrayBackgroundDarkerTen}{RGB}{225,225,225}
+% Darker by 20%
+\definecolor{GrayBackgroundDarkerTwenty}{RGB}{199,199,199}
 
 
 
@@ -354,6 +358,7 @@ $if(listings)$
             framexleftmargin=5pt,
             framexrightmargin=-2pt,
             rulecolor=\color{Gainsboro},
+            rulecolor=\color{GrayBackgroundDarkerTwenty},
             rulesepcolor=\color{GrayBackground},
             backgroundcolor=\color{GrayBackground}
         }
@@ -517,7 +522,7 @@ $endif$
 \DeclareCaptionLabelSeparator{extraspace}{\space\space\space}
 
 $if(softcopy)$
-    \DeclareCaptionFormat{listing}{\colorbox{Gainsboro}{\parbox{0.9875\textwidth}{#1#2#3}}}
+    \DeclareCaptionFormat{listing}{\colorbox{GrayBackgroundDarkerTen}{\parbox{0.9875\textwidth}{#1#2#3}}}
     \captionsetup[lstlisting]{
         format=listing,
         labelsep=extraspace,
