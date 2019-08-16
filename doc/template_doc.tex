@@ -365,22 +365,10 @@ $if(listings)$
     }
 
     \lstdefinestyle{output}{
-
-
-
-    \lstdefinestyle{syntax}{
-        basicstyle=\BeraMonofont,
-        keywordstyle=\BeraMonofont,
-        stringstyle=\BeraMonofont,
-        commentstyle=\BeraMonofont,
-        numberstyle=\BeraMonofont\footnotesize\color{gray},
-        basewidth=0.6em,
-        lineskip=1pt,
-        aboveskip=0.5em,
-        belowskip=0em
+        style=TerminalCommon
     }
 
-    \lstdefinestyle{listing}{
+    \lstdefinestyle{ListingCommon}{
         basicstyle=\BeraMonofont,
         $if(softcopy)$
             keywordstyle=\BeraMonofont\color{NavyBlue},
@@ -396,6 +384,14 @@ $if(listings)$
         lineskip=1pt,
         aboveskip=0.5em,
         belowskip=0em
+    }
+
+    \lstdefinestyle{syntax}{
+        style=ListingCommon
+    }
+
+    \lstdefinestyle{listing}{
+        style=ListingCommon
     }
 
     \lstdefinestyle{lines}{
