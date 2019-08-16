@@ -301,9 +301,7 @@ $if(listings)$
         commentstyle=\LatinModernfont,
         numberstyle=\LatinModernfont\footnotesize\color{gray},
         basewidth=0.49em,
-        lineskip=0.5pt,
-        aboveskip=0.5em,
-        belowskip=0em,
+        lineskip=0.5pt
         %framexleftmargin=5pt,
         %framexrightmargin=-2pt
     }
@@ -318,6 +316,13 @@ $if(listings)$
         keepspaces=true,
         showstringspaces=false,
         numbersep=10pt,
+        $if(softcopy)$
+            aboveskip=1em,
+            belowskip=0.4em,
+        $else$
+            aboveskip=0.5em,
+            belowskip=0em,
+        $endif$
         % Memoir class \parindent length:
         %   10pt font size 15pt length
         %   11pt font size 17pt length
@@ -374,9 +379,7 @@ $if(listings)$
         $endif$
         numberstyle=\BeraMonofont\footnotesize\color{gray},
         basewidth=0.6em,
-        lineskip=1pt,
-        aboveskip=0.5em,
-        belowskip=0em
+        lineskip=1pt
     }
 
     \lstdefinestyle{syntax}{
@@ -388,7 +391,11 @@ $if(listings)$
     }
 
     \lstdefinestyle{lines}{
-        aboveskip=0.3em,
+        $if(softcopy)$
+            aboveskip=0.5em,
+        $else$
+            aboveskip=0.3em,
+        $endif$
         belowskip=0.4em,
         frameround=fttf,
         % Adds to the left and right margins
