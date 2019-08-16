@@ -245,6 +245,8 @@
 
 $if(listings)$
     \usepackage{listings}
+    % Package listings require fancyvrb right now.
+    \usepackage{fancyvrb}
 
     % Shrink the code listings
     % Can only be used if pdf engine is pdflatex.
@@ -291,14 +293,14 @@ $if(listings)$
             \selectfont}
     \fi
 
-    % Package listings require fancyvrb right now.
-    \usepackage{fancyvrb}
-
     % Problem with hyphen being rendered too wide
     % https://tex.stackexchange.com/questions/33185/
+    \lstdefinestyle{Common}{
+        literate={-}{-}1
+    }
 
     \lstdefinestyle{TerminalCommon}{
-        literate={-}{-}1,
+        style=Common,
         basicstyle=\LatinModernfont,
         keywordstyle=\LatinModernfont,
         stringstyle=\LatinModernfont,
@@ -306,9 +308,62 @@ $if(listings)$
         numberstyle=\LatinModernfont\footnotesize\color{gray},
         basewidth=0.49em,
         lineskip=0.5pt
-        %framexleftmargin=5pt,
-        %framexrightmargin=-2pt
     }
+
+    \lstdefinestyle{ListingCommon}{
+        style=Common,
+        basicstyle=\BeraMonofont,
+        $if(softcopy)$
+            keywordstyle=\BeraMonofont\color{NavyBlue},
+            stringstyle=\BeraMonofont\color{Brown},
+            commentstyle=\BeraMonofont\color{Green},
+        $else$
+            keywordstyle=\BeraMonofont,
+            stringstyle=\BeraMonofont,
+            commentstyle=\BeraMonofont,
+        $endif$
+        numberstyle=\BeraMonofont\footnotesize\color{gray},
+        basewidth=0.6em,
+        lineskip=1pt
+    }
+
+    \lstdefinestyle{command}{
+        style=TerminalCommon
+    }
+
+    \lstdefinestyle{output}{
+        style=TerminalCommon
+    }
+
+    \lstdefinestyle{syntax}{
+        style=ListingCommon
+    }
+
+    \lstdefinestyle{listing}{
+        style=ListingCommon
+    }
+
+    \lstdefinestyle{lines}{
+        $if(softcopy)$
+            aboveskip=0.5em,
+        $else$
+            aboveskip=0.3em,
+        $endif$
+        belowskip=0.4em,
+        frameround=fttf,
+        $if(softcopy)$
+            % Adds to the left and right margins
+            framexleftmargin=7pt,
+            framexrightmargin=0pt,
+        $else$
+            framexleftmargin=0pt,
+            framexrightmargin=0pt,
+        $endif$
+        frame=lines,
+        framerule=0.1pt,
+        rulecolor=\color{gray}
+    }
+
 
     \lstset{
         fancyvrb=true,
@@ -363,59 +418,6 @@ $if(listings)$
             backgroundcolor=\color{GrayBackground}
         }
     $endif$
-
-    \lstdefinestyle{command}{
-        style=TerminalCommon
-    }
-
-    \lstdefinestyle{output}{
-        style=TerminalCommon
-    }
-
-    \lstdefinestyle{ListingCommon}{
-        basicstyle=\BeraMonofont,
-        $if(softcopy)$
-            keywordstyle=\BeraMonofont\color{NavyBlue},
-            stringstyle=\BeraMonofont\color{Brown},
-            commentstyle=\BeraMonofont\color{Green},
-        $else$
-            keywordstyle=\BeraMonofont,
-            stringstyle=\BeraMonofont,
-            commentstyle=\BeraMonofont,
-        $endif$
-        numberstyle=\BeraMonofont\footnotesize\color{gray},
-        basewidth=0.6em,
-        lineskip=1pt
-    }
-
-    \lstdefinestyle{syntax}{
-        style=ListingCommon
-    }
-
-    \lstdefinestyle{listing}{
-        style=ListingCommon
-    }
-
-    \lstdefinestyle{lines}{
-        $if(softcopy)$
-            aboveskip=0.5em,
-        $else$
-            aboveskip=0.3em,
-        $endif$
-        belowskip=0.4em,
-        frameround=fttf,
-        $if(softcopy)$
-            % Adds to the left and right margins
-            framexleftmargin=7pt,
-            framexrightmargin=0pt,
-        $else$
-            framexleftmargin=0pt,
-            framexrightmargin=0pt,
-        $endif$
-        frame=lines,
-        framerule=0.1pt,
-        rulecolor=\color{gray}
-    }
 
     % https://github.com/jgm/pandoc/issues/4716
     \newcommand{\passthrough}[1]{#1}
