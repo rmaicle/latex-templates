@@ -403,7 +403,6 @@ $if(listings)$
     $if(softcopy)$
         \newlength{\linenumwidth} \setlength{\linenumwidth}{5em}
         \lstset{
-            xleftmargin=7pt,
             frame=single,
             frameround=tttt,
             framesep=2.5pt,
@@ -524,21 +523,21 @@ $endif$
 \DeclareCaptionLabelSeparator{extraspace}{\space\space\space}
 
 $if(softcopy)$
-    \DeclareCaptionFormat{listing}{\colorbox{GrayBackgroundDarkerTen}{\parbox{0.9875\textwidth}{#1#2#3}}}
+    \DeclareCaptionFormat{listing}{\colorbox{GrayBackgroundDarkerTen}{\parbox{0.9448\textwidth}{#1#2#3}}}
     \captionsetup[lstlisting]{
         format=listing,
         labelsep=extraspace,
-        margin={0pt,40pt},
-        skip=4pt
+        margin=19.95pt,
+        skip=4pt,
     }
 $else$
-    \DeclareCaptionFormat{listing}{\hspace{24pt}#1#2#3}
+    \DeclareCaptionFormat{listing}{#1#2#3}
     \captionsetup[lstlisting]{
         format=listing,
         singlelinecheck=false,
         indention=24pt,
         labelsep=extraspace,
-        margin=3pt,
+        margin=27pt,
         skip=5pt
     }
 $endif$
