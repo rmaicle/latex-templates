@@ -504,10 +504,8 @@ $endif$
 \DeclareCaptionLabelSeparator{extraspace}{\space\space\space}
 
 $if(softcopy)$
-    %\DeclareCaptionFormat{listing}{\llap{#1#2}#3\par}
     \DeclareCaptionFormat{listing}{\colorbox{Gainsboro}{\parbox{0.9875\textwidth}{#1#2#3}}}
     \captionsetup[lstlisting]{
-        %labelformat=listing,
         format=listing,
         labelsep=extraspace,
         margin={0pt,40pt},
@@ -516,7 +514,6 @@ $if(softcopy)$
 $else$
     \DeclareCaptionFormat{listing}{\hspace{24pt}#1#2#3}
     \captionsetup[lstlisting]{
-        %labelformat=listing,
         format=listing,
         singlelinecheck=false,
         indention=24pt,
