@@ -105,7 +105,19 @@
 
 % Typewriter fonts
 % ----------------
+% Latin Modern Typewriter font
+% Make the light series be the default.
+% From: An exploration of the Latin Modern fonts
+%       by Will Robertson
+%       The PracTEX Journal
+%       TPJ2006No01, 2006-02-01
+%       http://dw.tug.org/pracjourn/2006-1/robertson/robertson.pdf
 \usepackage{lmodern}                        % {lmtt}
+\DeclareFontFamily{T1}{lmtt}{}
+\DeclareFontShape{T1}{lmtt}{m}{n}{<-> ec-lmtl10}{}
+\DeclareFontShape{T1}{lmtt}{m}{\itdefault}{<-> ec-lmtlo10}{}
+\DeclareFontShape{T1}{lmtt}{\bfdefault}{n}{<-> ec-lmtk10}{}
+\DeclareFontShape{T1}{lmtt}{\bfdefault}{\itdefault}{<-> ec-lmtko10}{}
 \usepackage[scaled=0.855]{beramono}          % {fvm}
 
 % Make default fonts
