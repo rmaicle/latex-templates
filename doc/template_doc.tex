@@ -210,31 +210,32 @@
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
+\newcommand\TRMFontSize{\fontsize{9}{9}\selectfont}
 \newcommand\LSTFontSize{\fontsize{9}{9}\selectfont}
 
 \ifpdf
-\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont\SetTracking{encoding=*}{-12}\lsstyle}
-\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\SetTracking{encoding=*}{-12}\lsstyle}
+\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
 \newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\LSTFontSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
 
-\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
-\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\TRMFontSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
+\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\TRMFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
 \newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
 
-\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
-\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
+\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\TRMFontSize\selectfont\SetTracking{encoding=*}{-18}\lsstyle}
+\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\TRMFontSize\selectfont\SetTracking{encoding=*}{-9}\lsstyle}
 \newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\LSTFontSize\selectfont\SetTracking{encoding=*}{-2}\lsstyle}
 \else
-\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont}
-\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\LSTFontSize\selectfont}
+\newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont}
+\newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont}
 \newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\LSTFontSize\selectfont}
 
-\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont}
-\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\LSTFontSize\selectfont}
+\newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\TRMFontSize\selectfont}
+\newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\TRMFontSize\selectfont}
 \newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\LSTFontSize\selectfont}
 
-\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont}
-\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\LSTFontSize\selectfont}
+\newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\TRMFontSize\selectfont}
+\newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\TRMFontSize\selectfont}
 \newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\LSTFontSize\selectfont}
 \fi
 
@@ -264,7 +265,7 @@ $if(listings)$
             \LSTFontSize%
             \selectfont}
     \fi
-    % Latin Modern Typewriter
+    % Latin Modern Typewriter (lmtt)
     % fontsize=10pt
     % basewidth=0.5em
     % -----
@@ -275,14 +276,14 @@ $if(listings)$
     %
     % If you prefer a slashed zero, this is not it.
     \ifpdf
-        \newcommand*\LatinModernfont{%
+        \newcommand*\Terminalfont{%
             \usefont{T1}{lmtt}{m}{n}%
             \LSTFontSize%
             \selectfont%
             \SetTracking{encoding=*}{-9}%
             \lsstyle}
     \else
-        \newcommand*\LatinModernfont{%
+        \newcommand*\Terminalfont{%
             \usefont{T1}{lmtt}{m}{n}%
             \LSTFontSize%
             \selectfont}
@@ -296,12 +297,12 @@ $if(listings)$
 
     \lstdefinestyle{TerminalCommon}{
         style=Common,
-        basicstyle=\LatinModernfont,
-        keywordstyle=\LatinModernfont,
-        stringstyle=\LatinModernfont,
-        commentstyle=\LatinModernfont,
-        numberstyle=\LatinModernfont\footnotesize\color{DimGray},
-        basewidth=0.49em,
+        basicstyle=\Terminalfont,
+        keywordstyle=\Terminalfont,
+        stringstyle=\Terminalfont,
+        commentstyle=\Terminalfont,
+        numberstyle=\Terminalfont\footnotesize\color{DimGray},
+        basewidth=0.5em,
         lineskip=0.5pt
     }
 
