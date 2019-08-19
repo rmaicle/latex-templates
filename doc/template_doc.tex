@@ -429,12 +429,15 @@ $if(listings)$
     % https://github.com/jgm/pandoc/issues/4716
     \newcommand{\passthrough}[1]{#1}
 
-    % Make lstinline use a different font size lstlistings or lstinputlisting
-    % To use a different font and font size use the following:
-    % \lst@AddToHook{TextStyle}{\let\lst@basicstyle\normalsize\fontfamily{zi4}\selectfont}
+    % Make lstinline use a different font size than in lstlistings or
+    % lstinputlisting.
+    %   \lst@AddToHook{TextStyle}{%
+    %       \let\lst@basicstyle\normalsize\%
+    %       fontfamily{zi4}\selectfont}
     % Ref: https://latex.org/forum/viewtopic.php?t=2072
     \makeatletter
-    \lst@AddToHook{TextStyle}{\let\lst@basicstyle\normalsize\fontfamily{fvm}\mdseries\selectfont}
+    \lst@AddToHook{TextStyle}{\let\lst@basicstyle%
+        \normalsize\fontfamily{fvm}\mdseries\selectfont}
     \makeatother
 
 $else$
