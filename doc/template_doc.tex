@@ -777,8 +777,8 @@ $endif$
 % Ref: How do fonts work in LaTeX?
 %      https://tex.stackexchange.com/questions/338049/
 \makechapterstyle{rmsimple}{
-    \setlength{\beforechapskip}{11pt}
-    \setlength{\afterchapskip}{11pt}
+    \setlength{\beforechapskip}{1ex}
+    \setlength{\afterchapskip}{1ex}
     \renewcommand{\printchaptername}{}
     \renewcommand{\chapternamenum}{}
     \renewcommand*{\printchapternum}{%
@@ -788,8 +788,8 @@ $endif$
             \chapnumfont \thechapter\space\space\space\space%
         \fi%
     }
-    \renewcommand*{\chapnumfont}{\fontsize{16pt}{19.2pt}\usefont{T1}{bch}{b}{n}}
-    \renewcommand*{\chaptitlefont}{\fontsize{16pt}{19.2pt}\usefont{T1}{bch}{b}{n}}
+    \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
+    \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
@@ -802,14 +802,17 @@ $endif$
 }
 
 \chapterstyle{rmsimple}
-\setsecheadstyle{\fontsize{15pt}{18pt}\usefont{T1}{bch}{b}{n}}
-\setsubsecheadstyle{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
-\setsubsubsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
-\titleformat{\paragraph}[block]{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}{\theparagraph}{1em}{}
-\titleformat{\subparagraph}[block]{\fontsize{11pt}{13.2pt}\usefont{T1}{bch}{b}{n}}{}{0em}{}
+\setsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
+\setsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}
+\setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\usefont{T1}{bch}{b}{n}}
+\titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\usefont{T1}{bch}{b}{n}}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\usefont{T1}{bch}{b}{it}}{}{0em}{}
 
-\titlespacing{\paragraph}{0pt}{5pt}{5pt}
-\titlespacing{\subparagraph}{0pt}{2pt}{2pt}
+\titlespacing{\section}{0pt}{1ex}{1ex}
+\titlespacing{\subsection}{0pt}{1ex}{1ex}
+\titlespacing{\subsubsection}{0pt}{1ex}{1ex}
+\titlespacing{\paragraph}{0pt}{1ex}{1ex}
+\titlespacing{\subparagraph}{0pt}{1ex}{1ex}
 
 \setsecnumdepth{subparagraph}
 
