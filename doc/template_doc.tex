@@ -770,11 +770,12 @@ $if(title)$
     \newlength{\centeroffset}
     \thispagestyle{empty}
     \vspace*{1.5in}
-    \begin{flushleft}
+    \begin{flushright}
         {
-            {\fontsize{20pt}{24pt}\usefont{T1}{ptm}{b}{n}$title$}
+            {\fontsize{20pt}{24pt}\usefont{T1}{bch}{b}{n}$title$\par}
+            \vspace{-0.06in}
             $if(subtitle)$
-                {\\\fontsize{18pt}{21.6pt}\usefont{T1}{ptm}{m}{n}$subtitle$}
+                {\fontsize{18pt}{21.6pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
             $endif$
         }
         % The vertical space below the rule is the same height
@@ -783,13 +784,13 @@ $if(title)$
 
         $if(version)$
             {\fontsize{12pt}{14.4pt}
-                \usefont{T1}{ptm}{m}{n}
+                \usefont{T1}{bch}{m}{n}
                 % Add 'Draft' text on document version number
                 % if the document class option 'draft' is specified
                 \ifoptiondraft{Draft}{}\space $version$\\[0.05in]
             }
         $endif$
-        {\fontsize{12pt}{14.4pt}\usefont{T1}{ptm}{m}{n}$date$}\\[0.05in]
+        {\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{m}{n}$date$}\\[0.05in]
 
         % $if(client)$
         %     {\fontsize{14pt}{22pt}\usefont{T1}{ptm}{b}{n}$client$}
@@ -811,7 +812,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace*{\fill}
         $if(distribution)$
-            {\fontsize{11pt}{13.2pt}\usefont{T1}{ptm}{m}{n}$distribution$}
+            {\fontsize{11pt}{13.2pt}\usefont{T1}{bch}{m}{n}$distribution$\par}
         $endif$
     \end{flushleft}
 $endif$
