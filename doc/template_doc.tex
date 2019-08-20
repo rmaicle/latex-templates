@@ -705,8 +705,8 @@ $endif$
 % Ref: How do fonts work in LaTeX?
 %      https://tex.stackexchange.com/questions/338049/
 \makechapterstyle{rmsimple}{
-    \setlength{\beforechapskip}{1ex}
-    \setlength{\afterchapskip}{1ex}
+    \setlength{\beforechapskip}{2.1ex plus 2.5ex minus 0ex}
+    \setlength{\afterchapskip}{2ex plus 0.5ex minus 2.5ex}
     \renewcommand{\printchaptername}{}
     \renewcommand{\chapternamenum}{}
     \renewcommand*{\printchapternum}{%
@@ -721,15 +721,15 @@ $endif$
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
-
     % Note on using \nopagebreak instead of \nobreak
     % https://tex.stackexchange.com/questions/94217
     % Using 2pt just because the chapter title uses 2pt font size
     % bigger than the section title
-    \renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
+    %\renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
 }
 
 \chapterstyle{rmsimple}
+
 \setsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
 \setsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}
 \setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\usefont{T1}{bch}{b}{n}}
