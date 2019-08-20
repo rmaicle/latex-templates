@@ -252,6 +252,10 @@
 \newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\LSTFontSize\selectfont}
 \fi
 
+\newcommand{\Note}[1]{%
+    \ding{224}\space\LSTi{#1}
+}
+
 $if(listings)$
     \usepackage{listings}
     % Package listings require fancyvrb right now.
@@ -847,7 +851,6 @@ $endif$
     \vspace*{1em}
 
     \vspace*{1.5em}
-
     $if(cc_license_image)$
         \includegraphics[keepaspectratio=true, width=2.5cm]
             {cc_by_nc_sa_40.eps}\\[1.2em]
