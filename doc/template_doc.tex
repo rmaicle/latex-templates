@@ -907,6 +907,19 @@ $if(toc)$
 }
 $endif$
 
+$if(lot)$
+    \listoftables
+$endif$
+
+$if(lof)$
+    \listoffigures
+$endif$
+
+
+
+\pagebreak
+\cleardoublepage
+
 
 
 \chapter*{Preface}
@@ -955,14 +968,6 @@ Used for program source code listings and command syntaxes.
 \cleardoublepage
 
 
-
-$if(lot)$
-    \listoftables
-$endif$
-
-$if(lof)$
-    \listoffigures
-$endif$
 
 % Longer preliminaries
 % Foreword
