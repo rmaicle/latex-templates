@@ -821,6 +821,8 @@ $if(title)$
     \end{flushright}
 $endif$
 
+
+
 \frontmatter
 % Half title page
 %\copyright
@@ -887,10 +889,13 @@ $endif$
             \the\pdftexversion.\pdftexrevision\space on \today.
     \fi
 \end{flushleft}
-\pagebreak
 
-% Start a new recto page
+
+
+\pagebreak
 \cleardoublepage
+
+
 
 %
 % Table of contents
@@ -907,9 +912,23 @@ $if(toc)$
 }
 $endif$
 
+
+
+\pagebreak
+\cleardoublepage
+
+
+
 $if(lot)$
     \listoftables
 $endif$
+
+
+
+\pagebreak
+\cleardoublepage
+
+
 
 $if(lof)$
     \listoffigures
