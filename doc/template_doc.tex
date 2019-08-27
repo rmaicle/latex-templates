@@ -874,14 +874,6 @@ $endif$
 
 
 \frontmatter
-% Half title page
-%\copyright
-% Dedication page
-% Other preliminaries
-
-%$for(include-before)$
-%$include-before$
-%$endfor$
 
 %
 % Copyright
@@ -964,35 +956,27 @@ $endif$
 
 
 
-\pagebreak
-\cleardoublepage
-
-
-
 $if(lot)$
-    \listoftables
-$endif$
-
-
-
+\listoftables
 \pagebreak
 \cleardoublepage
+$endif$
 
 
 
 $if(lof)$
-    \listoffigures
+\listoffigures
+\pagebreak
+\cleardoublepage
 $endif$
 
 
 
+$for(include-before)$
+$include-before$
 \pagebreak
 \cleardoublepage
-
-
-
-\pagebreak
-\cleardoublepage
+$endfor$
 
 
 
@@ -1021,9 +1005,13 @@ $if(biblatex)$
     \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
 
-%$for(include-after)$
-%$include-after$
-%$endfor$
+
+
+$for(include-after)$
+$include-after$
+\pagebreak
+\cleardoublepage
+$endfor$
 
 %\printindex
 
