@@ -225,20 +225,20 @@
 % description
 \usepackage{enumitem}
 
-% Make tight list
+% Make tight list (less vertical space between items)
 % -----------------------------------------------------------------------------
-% Make lists tight (less vertical space between items).
-%\providecommand{\tightlist}{%
-%    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
-%}
-%\setlist[itemize]{nosep}
-%\setlist[enumerate]{topsep=0ex}
+% Make a tight list by using nosep and set a shorter
+% indentation. The default indentation is 7pt.
+% \setlist[itemize]{nosep, left=4pt}
+\setlist[itemize]{topsep=0ex, left=4pt}
+% Make a tight list using 0 topsep and using the default
+% indentation (4pt) for all levels.
+\setlist[enumerate]{topsep=0ex, left=4pt}
 
 % Deep levels
 % -----------------------------------------------------------------------------
 % https://github.com/jgm/pandoc/issues/2922
 \setlistdepth{9}
-
 \setlist[itemize,1]{label=\textbullet}
 \setlist[itemize,2]{label=\textbullet}
 \setlist[itemize,3]{label=\textbullet}
@@ -248,10 +248,6 @@
 \setlist[itemize,7]{label=\textbullet}
 \setlist[itemize,8]{label=\textbullet}
 \setlist[itemize,9]{label=\textbullet}
-
-% Make a tight list by using nosep and set a shorter
-% indentation. The default indentation is 7pt.
-\setlist[itemize]{nosep, left=4pt}
 \renewlist{itemize}{itemize}{9}
 
 \setlist[enumerate,1]{label=\arabic*.}
@@ -262,10 +258,6 @@
 \setlist[enumerate,6]{label=\Alph*.}
 \setlist[enumerate,7]{label=\alph*.}
 \setlist[enumerate,8]{label=\roman*.}
-
-% Make a tight list using 0 topsep and using the default
-% indentation (4pt) for all levels.
-\setlist[enumerate]{topsep=0ex, left=4pt}
 \renewlist{enumerate}{enumerate}{9}
 
 % Definition List
