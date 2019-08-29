@@ -69,6 +69,8 @@
 % Provides euro and other symbols
 % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
 \usepackage{textcomp}
+% For Zapf Dingbats; see documentation (psnfss2e.pdf)
+\usepackage{pifont}
 
 \ifpdf
 \usepackage[
@@ -77,7 +79,6 @@
     kerning=false]{microtype}
 \fi
 
-\usepackage{pifont}
 
 % Serif fonts
 % -----------
@@ -702,7 +703,7 @@ $endif$
 %     t (Top)      Place the table at the top of the current page.
 %
 % The first letter inside brackets has highest priority. In the example on the
-% previous page, if L A TEX couldn’t put the table or figure "here", it tried
+% previous page, if LaTeX couldn’t put the table or figure "here", it tried
 % to put it at the top of the current page, then on the bottom of the current
 % page, then at the top of the next page.
 % ---
