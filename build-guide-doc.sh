@@ -5,6 +5,7 @@
 param_debug=""
 param_show_frame=""
 param_output_latex=""
+param_output_image_generate=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
@@ -17,6 +18,9 @@ while [ $# -gt 0 ]; do
         -showframe)     param_show_frame="-showframe"
                         shift
                         ;;
+        -imagex)        param_output_image_generate="-imagex"
+                        shift
+                        ;;
         *)              break ;;
     esac
 done
@@ -26,6 +30,7 @@ done
     `#-softcopy`                        \
     -papersize usletter                 \
     ${param_show_frame}                 \
+    ${param_output_image_generate}      \
     -i ./guide-doc/source.txt           \
     -td ../latex-templates              \
     -tf ./doc/template_doc.tex          \
