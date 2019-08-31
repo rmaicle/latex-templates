@@ -442,6 +442,7 @@ $if(listings)$
         breakatwhitespace=true,
         keepspaces=true,
         showstringspaces=false,
+        numbersep=15pt,
         numbersep=10pt,
         $if(softcopy)$
             aboveskip=1em,
@@ -463,6 +464,8 @@ $if(listings)$
         % xleftmargin=0.28in
         xleftmargin=24pt,       % 3-digit line numbers
         xleftmargin=27pt,       % 4-digit line numbers
+        xleftmargin=32pt,       % Increased the number separator
+                                % from 10pt to 15pt
         frame=none,
         escapechar=@
     }
