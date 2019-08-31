@@ -36,11 +36,11 @@
 % error occurs.
 % TODO: Determine which option it clashes with.
 \usepackage[svgnames]{xcolor}
-\definecolor{GrayBackground}{RGB}{250,250,250}
+\definecolor{Grey98}{RGB}{250,250,250}
 % Darker by 10%
-\definecolor{GrayBackgroundDarkerTen}{RGB}{225,225,225}
+\definecolor{Grey88}{RGB}{225,225,225}
 % Darker by 20%
-\definecolor{GrayBackgroundDarkerTwenty}{RGB}{199,199,199}
+\definecolor{Grey78}{RGB}{199,199,199}
 
 
 
@@ -363,10 +363,13 @@ $if(listings)$
     % Problem with hyphen being rendered too wide
     % https://tex.stackexchange.com/questions/33185/
     \lstdefinestyle{Common}{
-        literate={-}{-}1
+        literate={-}{-}1,
+        aboveskip=0.5em,
+        belowskip=0em,
+        frame=none
     }
 
-    \lstdefinestyle{TerminalCommon}{
+    \lstdefinestyle{terminal}{
         style=Common,
         basicstyle=\Terminalfont,
         keywordstyle=\Terminalfont,
@@ -391,15 +394,21 @@ $if(listings)$
         $endif$
         numberstyle=\BeraMonofont\footnotesize\color{DimGray},
         basewidth=0.6em,
-        lineskip=1pt
-    }
-
-    \lstdefinestyle{command}{
-        style=TerminalCommon
-    }
-
-    \lstdefinestyle{output}{
-        style=TerminalCommon
+        lineskip=1pt,
+        %
+        % Decorations
+        %
+        aboveskip=1em,
+        belowskip=0.4em,
+        frame=single,
+        frameround=tttt,
+        framesep=2.25pt,
+        framerule=0.1pt,
+        framextopmargin=3.5pt,
+        framexbottommargin=2.5pt,
+        framexleftmargin=5pt,
+        framexrightmargin=-2pt,
+        rulecolor=\color{Grey88}
     }
 
     \lstdefinestyle{syntax}{
@@ -407,7 +416,11 @@ $if(listings)$
     }
 
     \lstdefinestyle{listing}{
-        style=ListingCommon
+        style=ListingCommon,
+        $if(softcopy)$
+        rulesepcolor=\color{Grey98},
+        backgroundcolor=\color{Grey98}
+        $endif$
     }
 
     \lstdefinestyle{lines}{
@@ -429,13 +442,12 @@ $if(listings)$
         $endif$
         frame=lines,
         framerule=0.1pt,
-        rulecolor=\color{DimGray}
+        rulecolor=\color{Grey88}
     }
-
 
     \lstset{
         fancyvrb=true,
-        style=TerminalCommon,
+        style=ListingCommon,
         fontadjust=true,
         extendedchars=false,
         columns=[c]fixed,
@@ -443,14 +455,6 @@ $if(listings)$
         keepspaces=true,
         showstringspaces=false,
         numbersep=15pt,
-        numbersep=10pt,
-        $if(softcopy)$
-            aboveskip=1em,
-            belowskip=0.4em,
-        $else$
-            aboveskip=0.5em,
-            belowskip=0em,
-        $endif$
         % Memoir class \parindent length:
         %   10pt font size 15pt length
         %   11pt font size 17pt length
@@ -466,28 +470,8 @@ $if(listings)$
         xleftmargin=27pt,       % 4-digit line numbers
         xleftmargin=32pt,       % Increased the number separator
                                 % from 10pt to 15pt
-        frame=none,
         escapechar=@
     }
-
-    % Frame and background
-    $if(softcopy)$
-        \newlength{\linenumwidth} \setlength{\linenumwidth}{5em}
-        \lstset{
-            frame=single,
-            frameround=tttt,
-            framesep=2.5pt,
-            framerule=0.1pt,
-            framextopmargin=3.5pt,
-            framexbottommargin=2.5pt,
-            framexleftmargin=5pt,
-            framexrightmargin=-2pt,
-            rulecolor=\color{Gainsboro},
-            rulecolor=\color{GrayBackgroundDarkerTwenty},
-            rulesepcolor=\color{GrayBackground},
-            backgroundcolor=\color{GrayBackground}
-        }
-    $endif$
 
     % https://github.com/jgm/pandoc/issues/4716
     \newcommand{\passthrough}[1]{#1}
