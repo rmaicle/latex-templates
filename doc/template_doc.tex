@@ -11,9 +11,11 @@
 
 % Recommended margin and binding offset
 % https://tex.stackexchange.com/questions/249190/
+% The following recommends 2cm or 0.7874016in
+% http://gilmation.com/articles/latex-margins-for-book-binding/
 \usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in,
     footskip=0.4in,
-    $if(softcopy)$bindingoffset=0.0in$else$bindingoffset=0.5in$endif$,
+    bindingoffset=0.5in,
     showframe=$if(showframe)$$showframe$$else$false$endif$]
     {geometry}
 
