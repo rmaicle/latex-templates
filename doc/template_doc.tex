@@ -496,32 +496,34 @@ $endif$
 % http://www.peteryu.ca/tutorials/publishing/latex_captions
 
 \usepackage[
-    margin=10pt,
     font=small,
     labelfont=bf,
+    textfont=it,
     labelsep=endash]{caption}
 
-\DeclareCaptionLabelFormat{listing}{\textbf{\faCode}\enskip #1\space #2}
-\DeclareCaptionLabelSeparator{extraspace}{\space\space\space}
+%\DeclareCaptionLabelFormat{listing}{\faCode\enskip #1\space #2}
 
 $if(softcopy)$
-    \DeclareCaptionFormat{listing}{\colorbox{GrayBackgroundDarkerTen}{\parbox{0.9448\textwidth}{#1#2#3}}}
-    \captionsetup[lstlisting]{
-        format=listing,
-        labelsep=extraspace,
-        margin=19.95pt,
-        skip=4pt,
-    }
+\DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9342\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{
+    format=listing,
+    singlelinecheck=false,
+    labelsep=quad,
+    indention=0pt,
+    margin={25pt, 2pt},
+    skip=5pt
+}
 $else$
-    \DeclareCaptionFormat{listing}{#1#2#3}
-    \captionsetup[lstlisting]{
-        format=listing,
-        singlelinecheck=false,
-        indention=24pt,
-        labelsep=extraspace,
-        margin=27pt,
-        skip=5pt
-    }
+\DeclareCaptionFormat{listing}{#1#2#3}
+%\DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9125\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{
+    format=listing,
+    singlelinecheck=false,
+    labelsep=quad,
+    indention=0pt,
+    margin={32pt, 2pt},
+    skip=5pt
+}
 $endif$
 
 
