@@ -4,7 +4,7 @@
     titlepage,
     oneside,
     openright,
-    $if(draft)$draft$else$final$endif$,
+    $if(is_draft)$draft$else$final$endif$,
     article]{memoir}
 
 
@@ -414,14 +414,14 @@ $if(listings)$
 
     \lstdefinestyle{listing}{
         style=ListingCommon,
-        $if(softcopy)$
-        rulesepcolor=\color{Grey98},
-        backgroundcolor=\color{Grey98}
+        $if(is_softcopy)$
+            rulesepcolor=\color{Grey98},
+            backgroundcolor=\color{Grey98}
         $endif$
     }
 
     \lstdefinestyle{lines}{
-        $if(softcopy)$
+        $if(is_softcopy)$
             aboveskip=0.5em,
             aboveskip=0.7em,
         $else$
@@ -429,8 +429,7 @@ $if(listings)$
         $endif$
         belowskip=0.4em,
         frameround=fttf,
-        $if(softcopy)$
-            % Adds to the left and right margins
+        $if(is_softcopy)$
             framexleftmargin=7pt,
             framexrightmargin=0pt,
         $else$
@@ -500,7 +499,7 @@ $endif$
 
 %\DeclareCaptionLabelFormat{listing}{\faCode\enskip #1\space #2}
 
-$if(softcopy)$
+$if(is_softcopy)$
 \DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9342\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{
     format=listing,
