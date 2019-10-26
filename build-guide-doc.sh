@@ -27,8 +27,9 @@ done
 
 ../md-to-pdf/build.sh                   \
     ${param_debug}                      \
-    `#-softcopy`                        \
+    -softcopy                           \
     -papersize usletter                 \
+    -fontsize 10                        \
     ${param_show_frame}                 \
     ${param_output_image_generate}      \
     -i ./guide-doc/source.txt           \

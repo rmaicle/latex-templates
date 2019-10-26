@@ -1,9 +1,14 @@
-0-metadata.md
-1-introduction.md
-2-metadata.md
-3-markdown.md
-4-pandoc.md
-5-tex-latex.md
-100-appendix.md
-101-files.md
-999-license.md
+00_0_metadata.md
+
+fm_a_preface.md
+
+01_introduction.md
+02_metadata.md
+03_structure_layout.md
+04_formatting.md
+05_using_pp.md
+
+09_toolchain.md
+
+x bm_a_build_script.md
+bm_b_license.md
