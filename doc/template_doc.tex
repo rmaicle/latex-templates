@@ -64,9 +64,18 @@
 %
 % To be able to use other TeX fonts, make sure T1 encoding is used.
 \usepackage[T1]{fontenc}
+
 % Must load ucs before inputenc
-\usepackage{ucs}
-\usepackage[utf8x]{inputenc}
+%
+% I am getting the following error when using box drawings:
+%
+% ! Package ucs Error: Unknown Unicode character 9500 = U+251C,
+% (ucs)                possibly declared in uni-37.def.
+% (ucs)                Type H to see if it is available with options.
+%
+% \usepackage{ucs}
+% \usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 
 % Provides euro and other symbols
 % https://en.wikibooks.org/wiki/LaTeX/Special_Characters
