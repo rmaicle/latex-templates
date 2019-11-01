@@ -34,6 +34,4 @@ root
 
 
 
-~~~{style=listing}
-!source(../../dev/build.sh/compilers.json)
-~~~
+!source(../../../dev/build.sh/compilers.json)

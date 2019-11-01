@@ -68,7 +68,7 @@ shell. Italicized texts after \ding{224}\space symbols are meant to
 be comments, notes, or additional information for the reader.
 
 ~~~{style=terminal}
-$ echo "hello, world" >> ~/hello.txt    @\Note{Put content to file}@
+$ CMDb{echo "hello, world" >> ~/hello.txt    @\Note{Put content to file}@
 $ cat ~/hello.txt                       @\Note{Display contents of file}@
 $ hello, world
 ~~~
