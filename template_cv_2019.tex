@@ -1,0 +1,634 @@
+\documentclass[
+    7pt,
+    a4paper,
+    oneside,
+    $if(draft)$draft$else$final$endif$
+    ]{article}
+
+% Note left margin: Dependent on width of the left sidebar.
+% The left margin is equal to the width of the left sidebar plus the
+% desired actual left margin and an offset. The desired actual left
+% margin is specified when the left sidebar is created. The offset is
+% a clearing between the sidebar the sidebar text and the document text.
+\usepackage[top=0.4in, bottom=0.75in, left=3.18in, right=0.4in,
+    nohead,
+    footskip=0.4in,
+    bindingoffset=0.0in,
+    showframe=$if(showframe)$$showframe$$else$false$endif$]
+    {geometry}
+
+% For the use of \ifdraft
+% \usepackage{ifdraft}
+
+% For the use of \justify
+\usepackage{ragged2e}
+
+\usepackage{ifxetex,ifluatex}
+% Package fixltx2e is not required with releases after 2015.
+% All fixes are now in the LaTeX kernel.
+% See the latexrelease package for details.
+\usepackage{fixltx2e} % provides \textsubscript
+
+% Must be loaded here. Otherwise an 'Option class for package xcolor'
+% error occurs.
+% TODO: Determine which option it clashes with.
+\usepackage[svgnames]{xcolor}
+
+
+
+% Fonts and Encoding
+% =============================================================================
+
+% Serif fonts
+% -----------
+\usepackage{charter}                        % {bch} *****
+% Used only to display sample text
+%\usepackage{lmodern}
+\usepackage{times}                          % {ptm}
+%\usepackage{palatino}                       % {ppl}
+%\usepackage{noto}
+%\usepackage{bookman}                        % {pbk}
+%\usepackage{concrete}                       % beton.sty not found
+%\usepackage{pslatex}
+%\usepackage{newcent}                        % {pnc}
+%\usepackage{kpfonts}
+%\usepackage{utopia}                         % {put}
+%\usepackage{pandora}                        % error on roman font
+
+% Sans-serif fonts
+% ----------------
+%\usepackage[scaled=0.92]{helvet}            % {phv}
+\usepackage[scaled=1.0]{helvet}            % {phv}
+%\usepackage[scaled=0.85]{berasans}          % {fvs}
+%\usepackage{cmbright}
+%\usepackage{kurier}
+%\usepackage{sourcesanspro}
+
+% Typewriter fonts
+% ----------------
+%\usepackage[scaled=0.85]{beramono}          % {fvm}
+\usepackage[scaled=0.85]{beramono}          % {fvm}
+% Used only to display sample text
+%\usepackage[varl,scaled=1.0]{zi4}           % Inconsolata typewriter font
+%\usepackage[scaled=0.95]{sourcecodepro}
+\usepackage{ocr}
+
+\usepackage[protrusion=true,expansion]{microtype}
+
+% Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+% If you do not have a specific font encoding issue (e.g. writing English
+% only), there is no need for T1. Sticking to the default font encoding is
+% not a problem.
+%
+% To be able to use other TeX fonts, make sure T1 encoding is used.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% Provides euro and other symbols
+% https://en.wikibooks.org/wiki/LaTeX/Special_Characters
+\usepackage{textcomp}
+% If system fonts are going to be used, use fontspec.
+%\ifxetex
+    %\usepackage{fontspec}
+    %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
+    %\setromanfont{Noto Serif}
+    %\setmainfont{}
+%\fi
+
+% Make default fonts
+% ------------------
+\renewcommand*\rmdefault{bch}               % Charter - I don't like how the italic looks'
+%\renewcommand*\rmdefault{ppl}               % Palatino
+%\renewcommand*\rmdefault{put}               % Utopia - Taller and a bit wider than Bitstream Charter'
+%\renewcommand*\rmdefault{ptm}               % Times
+%\renewcommand*\rmdefault{pbk}               % Bookman
+%\renewcommand*\rmdefault{pnc}               % New Centurey Schoolbook
+
+%\renewcommand*\sfdefault{lmss}              % Latin modern sans serif
+%\renewcommand*\sfdefault{cmss}
+\renewcommand*\sfdefault{phv}
+
+%\renewcommand*\ttdefault{zi4}               % Inconsolata *****
+%\renewcommand*\ttdefault{fvm}               % Bera mono
+%\renewcommand*\ttdefault{cmtt}              % Computer Modern Typewriter
+%\renewcommand*\ttdefault{lmtt}              % Latin Modern Typewriter
+
+% Change the default font
+% https://stackoverflow.com/questions/877597/
+\renewcommand{\familydefault}{\sfdefault}
+
+
+
+% Hyperlinks
+% =============================================================================
+
+% When using hyperref with footmisc, the footmisc documentation recommends
+% turning hyperlinks from footnote marks to the corresponding footnote body.
+% Package footmisc version 5.5b dated June 6, 2011.
+\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
+\hypersetup{
+    $if(title-meta)$
+        pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+        pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+    $endif$
+    $if(colorlinks)$
+        colorlinks=true,
+        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+        % Remove the border placed around a URL.
+        % Ref: LaTeX, Wikibooks, June 18, 2016.
+        pdfborder={0 0 0},
+    $endif$
+    bookmarks=true,
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdfstartview={null null 100},
+    breaklinks=true
+}
+% Don't use monospace font for URLs.
+% Note: The hyperref package shows the URL using monospace font.
+\urlstyle{same}
+
+
+
+% Graphics
+% =============================================================================
+
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+
+% Bidirectional Typesetting
+% =============================================================================
+
+% Base direction of the document, either `rtl` (right-to-left) or `ltr`
+% (left-to-right). Pandoc: When using LaTeX for bidirectional documents, only
+% the `xelatex` engine is fully supported (use `--latex-engine=xelatex`).
+$if(dir)$
+    \ifxetex
+        % load bidi as late as possible as it modifies e.g. graphicx
+        $if(latex-dir-rtl)$
+            \usepackage[RTLdocument]{bidi}
+        $else$
+            \usepackage{bidi}
+        $endif$
+    \fi
+    \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+        \TeXXeTstate=1
+        \newcommand{\RL}[1]{\beginR #1\endR}
+        \newcommand{\LR}[1]{\beginL #1\endL}
+        \newenvironment{RTL}{\beginR}{\endR}
+        \newenvironment{LTR}{\beginL}{\endL}
+    \fi
+$endif$
+
+
+
+% Other Packages
+% =============================================================================
+
+% Using memoir class with fancyhdr may get compilation errors because both
+% define the \footruleskip command when loading. To avoid the error, the
+% command needs to be 'undefined' before fancyhdr is loaded but after memoir
+% has been loaded.
+% Ref: fancyhdr and memoir
+%      http://tex.stackexchange.com/questions/37868/ddg#37880
+\let\footruleskip\undefined
+\usepackage{fancyhdr}
+
+
+
+% \usepackage[option]{setspace}
+% options:
+%   singlespacing
+%   onehalfspacing
+%   doublespacing
+%
+% For the need of a different stretching factor, the spacing environment is
+% provided. It may be used like the following:
+%
+% \begin{spacing}{2.4}
+% This text is stretched by a factor of 2.4.
+% \end{spacing}
+\usepackage{setspace}
+% Change the \baselineskip without changing the font size.
+% Note: Does not work in article class
+%\linespread{1.1}
+
+
+\usepackage{lipsum}
+
+%\usepackage{marvosym}
+% \usepackage{ClearSans}
+% To activate ClearSans as the main font, use:
+\usepackage[sfdefault]{ClearSans}
+\usepackage{fontawesome}
+\usepackage{tikz}
+\usetikzlibrary{backgrounds}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{pgffor}
+\usepackage[
+    absolute,
+    overlay
+    $if(showframe)$,showboxes$endif$]
+    {textpos}
+
+\usepackage{nimbusmononarrow}
+\usepackage{tabu}
+% For table toprule and bottomrule
+\usepackage{booktabs}
+\usepackage{progressbar}
+\usepackage{calc}
+\usepackage{calculator}
+\usepackage[explicit]{titlesec}
+
+
+
+% % Settings
+% % =============================================================================
+
+
+
+% Chapter style
+% -----------------------------------------------------------------------------
+% Ref: How do fonts work in LaTeX?
+%      https://tex.stackexchange.com/questions/338049/
+% \renewcommand*{\printchapternum}{}
+% \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n}}
+% Note on using \nopagebreak instead of \nobreak
+% https://tex.stackexchange.com/questions/94217
+% Using 2pt just because the chapter title uses 2pt font size
+% bigger than the section title
+% \renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
+
+%\setcounter{secnumdepth}{-1}
+
+
+% \makechapterstyle{cvsimple}{
+%     \setlength{\beforechapskip}{11pt}
+%     \setlength{\afterchapskip}{11pt}
+%     \renewcommand{\printchaptername}{}
+%     \renewcommand{\chapternamenum}{}
+%     \renewcommand*{\printchapternum}{}
+%     \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n}}
+%     \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n}}
+%     % The following commands concatenate the chapter number and chapter title
+%     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
+%     \renewcommand{\afterchapternum}{}
+%
+%     % Note on using \nopagebreak instead of \nobreak
+%     % https://tex.stackexchange.com/questions/94217
+%     % Using 2pt just because the chapter title uses 2pt font size
+%     % bigger than the section title
+%     \renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
+% }
+% \chapterstyle{cvsimple}
+% \setsecheadstyle{\fontsize{14pt}{16.8pt}\usefont{T1}{bch}{b}{n}}
+% \setsubsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{bch}{b}{n}}
+% \setsubsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}}
+% \setsecnumdepth{subsubsection}
+
+% Paragraph
+% -----------------------------------------------------------------------------
+% No indention
+\setlength{\parindent}{0pt}
+% Vertical spacing between paragraphs
+\setlength{\parskip}{1em}
+% Prevent overfull lines
+% https://tex.stackexchange.com/questions/241343/
+\setlength{\emergencystretch}{3em}
+
+% Sentance
+% -----------------------------------------------------------------------------
+% Traditional typography requires a larger space to indicate the end of a
+% sentence. Following along the same logic, TEX puts more space after an
+% exclamation point (!), and a question mark (?). However, this tradition
+% is obsolete as this extra space is disturbing. So you should almost always
+% execute \frenchspacing just before the beginning of every document,
+% instructing TEX to treat commas and periods in the same way.
+% (Latex Manual 8.6)
+\frenchspacing
+
+% Lists
+% -----------------------------------------------------------------------------
+% Make lists tight (less vertical space between items).
+\providecommand{\tightlist}{%
+    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+}
+
+% Figure placement
+% -----------------------------------------------------------------------------
+% The [htbp] controls where the table or figure is placed.
+% Tables and figures do not need to go where you put them in
+% the text. L A TEX moves them around to prevent large areas of
+% white space from appearing in your paper.
+%
+% Each letter corresponds to a place where the table or figure
+% should go:
+%     b (Bottom)   Place the table at the bottom of the current page.
+%     h (Here)     Place the table at the spot where the table environment
+%                  appears in the text
+%     p (Page)     Place the table at the top of the next page.
+%     t (Top)      Place the table at the top of the current page.
+%
+% The first letter inside brackets has highest priority. In the example on the
+% previous page, if L A TEX couldn’t put the table or figure "here", it tried
+% to put it at the top of the current page, then on the bottom of the current
+% page, then at the top of the next page.
+% ---
+% Ref: Figures and Tables in a LATEX Document
+%      http://web.mit.edu/molly/Public/rsi2006/figtab.pdf
+%
+% Set default figure placement to htbp
+\makeatletter
+%
+%\def\fps@figure{htbp}
+%
+% Prevent text from creeping between figures
+%
+% In the above example, text would be written underneath the floats if one
+% uses the [!htb] float specifier. \clearpage flushes all pending % floats,
+% setting them on their own pages, before starting the new sectional content.
+% ---
+% Ref: How to prevent text from creeping in between figures and tables
+%      https://stackoverflow.com/a/23166245
+%\def\fps@figure{!hbp}
+\def\fps@figure{!h}
+\makeatother
+
+
+
+% ==============================================================================
+% Document
+% ==============================================================================
+
+
+
+\definecolor{white}{RGB}{255,255,255}
+\definecolor{gray}{HTML}{4D4D4D}
+\definecolor{color_main}{HTML}{0E5484}
+\definecolor{color_sidebar_bg}{HTML}{E0E0E7}
+%\definecolor{mainblue}{HTML}{0E5484}
+%\definecolor{maingray}{HTML}{B9B9B9}
+
+% Make lower case
+%\usepackage{textcase}
+%\newcommand\textlcsc[1]{\textsc{\MakeTextLowercase{#1}}}
+% Make small caps
+% https://tex.stackexchange.com/questions/114592/
+\newcommand\textlcsc[1]{\textsc{\MakeTextLowercase{#1}}}
+
+% Command for printing the contact information icons
+% \newcommand*\icon[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt, fill=gray,gray,text=white] (char) {#1};}}
+
+% \newcommand{\makeprofile}{
+% \begin{tikzpicture}[remember picture,overlay]
+%     \node [rectangle, fill=sidecolor, anchor=north, minimum width=9cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
+% \end{tikzpicture}
+
+%\newcommand{\profilepic}[1]{\renewcommand{\profilepic}{#1}}
+
+%\setlength{\TPHorizModule}{0.5in}   % Left margin
+%\setlength{\TPVertModule}{0.5in}    % Top margin
+
+\newlength\imagewidth
+\newlength\imagescale
+\pgfmathsetlength{\imagewidth}{2in}
+%\pgfmathsetlength{\imagescale}{\imagewidth/600}
+\pgfmathsetlength{\imagescale}{\imagewidth/1000}
+
+
+
+$if(showframe)$
+    \setlength\fboxrule{0.1pt}
+$else$
+    \setlength\fboxrule{0pt}
+$endif$
+
+% % Bar Chart
+% % -------------------
+% \newcounter{barcount}
+% % Environment to hold a new bar chart
+% % Accepts a parameter specifying the maximum bar width in centimeters.
+% \newenvironment{barchart}[1]{
+%     \newcommand{\barwidth}{0.35}
+%     \newcommand{\barsep}{0.2}
+%
+%     % Command to add a bar to the bar chart
+%     % The first argument is the bar label and the second is the
+%     % percentage the current bar should take up of the total width
+%     \newcommand{\baritem}[2]{
+%         \pgfmathparse{##2}
+%         \let\perc\pgfmathresult
+%
+%         \pgfmathparse{#1}
+%         \let\barsize\pgfmathresult
+%
+%         \pgfmathparse{\barsize*##2/100}
+%         \let\barone\pgfmathresult
+%
+%         \pgfmathparse{(\barwidth*\thebarcount)+(\barsep*\thebarcount)}
+%         \let\barx\pgfmathresult
+%
+%         \filldraw[fill=black, draw=none] (0,-\barx) rectangle (\barone,-\barx-\barwidth);
+%
+%         \node [label=180:\colorbox{black}{\textcolor{white}{##1}}] at (0,-\barx-0.175) {};
+%         \addtocounter{barcount}{1}
+%     }
+%     \begin{tikzpicture}
+%         \setcounter{barcount}{0}
+% }{
+%     \end{tikzpicture}
+% }
+
+% % Skills Progress Bar
+% % -------------------
+% % Command for printing skill progress bars
+% \newcommand\skills[1]{
+%     \renewcommand{\skills}{
+%         \begin{tikzpicture}
+%             \foreach [count=\i] \x/\y in {#1}{
+%                 \draw[fill=maingray,maingray] (0,\i) rectangle (6,\i+0.4);
+%                 \draw[fill=white,mainblue](0,\i) rectangle (\y,\i+0.4);
+%                 \node [above right] at (0,\i+0.4) {\x};
+%             }
+%         \end{tikzpicture}
+%     }
+% }
+
+
+
+% Note on <skip>:
+% https://tex.stackexchange.com/questions/41476/
+% A <skip> is a three pronged length specification
+%   <natural width> plus <stretching> minus <shrinking>
+
+% Uses titlesec package
+%
+\setlength\beforetitleunit{0pt}
+\setlength\aftertitleunit{0pt}
+%\titlespacing*{\section}
+%{0pt}{1pt plus 1pt minus 1pt}{1pt plus 1pt}
+%\titlespacing*{\subsection}
+%{0pt}{5.5ex plus 1ex minus .2ex}{4.3ex plus .2ex}
+
+%{\fontsize{13pt}{15.6pt}\usefont{T1}{put}{b}{n}$jobtitle$}
+
+\titleformat{\section}
+  %{\Large\sffamily\bfseries}
+  {\fontsize{13pt}{15.6pt}\usefont{T1}{put}{b}{n}}
+  {}
+  {0em}
+  {#1}
+  []
+\titleformat{name=\section,numberless}
+  {\Large\sffamily\bfseries}
+  {}
+  {0em}
+  {#1}
+  []
+%\titlespacing*{\section}{0pt}{1pt plus 1pt minus 1pt}{0pt}
+\titlespacing*{\section}{0pt}{0ex}{0ex}
+
+
+
+% Left Sidebar
+% ------------
+% Resize a tikzpicture
+% https://tex.stackexchange.com/questions/4338/
+\newcommand{\makesidebar}{
+    \makebox[0pt][c]{%
+    \begin{tikzpicture}[overlay]
+        \node [rectangle,
+            top color=color_main!20,
+            anchor=north east,
+            minimum width=3.0in,
+            minimum height=\paperheight] (box) at (-0.23in,0.54in){};
+    \end{tikzpicture}%
+    }%
+    % Note on \textblock and \par
+    % The Textpos package 1.9.1 documentation says:
+    %   The {textblock} environment will most often be used in vertical mode.
+    %   If it is called in horizontal (ie, paragraph) mode, however, it will
+    %   silently create a paragraph break by inserting a \par command before
+    %   the environment; it remains in vertical mode after the environment
+    %   is finished.
+    %
+    % Stop \par from ending the current paragraph.
+    % https://tex.stackexchange.com/questions/276433/
+    %\begin{textblock*}{2.45in}(0.25in,0.1in)
+    \vadjust{\begin{textblock*}{2.45in}(0.25in,0.01in)
+        \raggedleft
+        %\begin{center}
+            \vspace{1.0em}
+            \resizebox{1.25in}{!}{
+                \begin{tikzpicture}
+                    %\clip [rounded corners=0.5cm] (0,0) rectangle coordinate (centerpoint) (3.20,3.4);
+                    \clip [rounded corners=0.5cm] (0,0) rectangle coordinate (centerpoint) (3.0,3.4);
+                    \node [inner sep=0pt] at (centerpoint) {\includegraphics[width=1.25in]{2018-3.png}};
+                \end{tikzpicture}
+            }
+
+            \vspace{1.0em}
+            {\fontsize{16pt}{19.2pt}\usefont{T1}{put}{b}{n} $name$}\\[0.5em]
+            {\fontsize{13pt}{15.6pt}\usefont{T1}{put}{b}{n}$jobtitle$}
+            \begin{flushright}
+                \tabulinesep=1mm
+                \begin{tabu}{@{}rc|@{}}% \firsthline
+                    $phone$   & {\fontsize{12pt}{14.4pt}\color{color_main}\faPhone} \\
+                    $email$   & {\fontsize{9pt}{10.8pt}\color{color_main}\faEnvelope} \\
+                    $github$  & {\fontsize{11pt}{13.2pt}\color{color_main}\faGithub} \\
+                    $address_city$, $address_country$ & {\fontsize{11pt}{13.2pt}\color{color_main}\faMapMarker} \\
+                    % \lasthline
+                \end{tabu}
+            \end{flushright}
+        %\end{center}
+
+        %\vspace{0.5em}
+        %{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n} about me}\\[0.5em]
+        \section{\hfill{About Me}}
+        \lipsum[1]
+
+        \vspace{0.75em}
+        %{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n} skills}\\[0.5em]
+        \section{\hfill{Skills}}
+        Skills are rated from 0 (no knowledge) to 100 (perfect).\\
+
+        % Full width of the textblock 0.965\textwidth
+        \raggedright
+        %\begin{minipage}[t]{0.9465\textwidth}
+        \begin{minipage}[t]{0.965\textwidth}
+            % Required for vertically aligning minipages
+            % \vspace{-\baselineskip}
+            \progressbarchange{
+                width=\textwidth,
+                heighta=0.225cm,
+                roundnessa=0cm,
+                borderwidth=0.025em,
+                linecolor=white,
+                emptycolor=color_main,
+                filledcolor=color_sidebar_bg!80,
+                ticksheight=0.0cm}
+            \begin{flushright}
+                \tabulinesep=1mm
+                \begin{tabu}{@{}r|@{}}
+                    $for(primary_skillset)$
+                        $primary_skillset.name$ \\
+                        \SUBTRACT{1.0}{$primary_skillset.value$}{\opposite_val}
+                        \progressbar{\opposite_val} \\
+                    $endfor$
+                \end{tabu}
+            \end{flushright}
+        \end{minipage}
+    \end{textblock*}}
+}
+
+
+
+\begin{document}
+%    \makebox[0pt][c]{%
+%    \begin{tikzpicture}[overlay]
+%        \node [rectangle,
+%            top color=color_main!20,
+%            anchor=north east,
+%            minimum width=3.0in,
+%            minimum height=\paperheight] (box) at (-0.23in,0.54in){};
+%    \end{tikzpicture}%
+%    }%
+    \makesidebar
+    \section{Current Interests}
+    \begin{itemize} \itemsep 0mm % Reduce space between items
+        $for(current_interests)$
+            \item $current_interests$
+        $endfor$
+    \end{itemize}
+
+    \vspace{0.5em}
+    \section{Experience Highlights}
+    $for(career)$
+        {\bf $career.position$} \\
+        $career.company$ \hfill $career.start$ -- $career.end$
+        \vspace{-4.5mm}
+        \begin{itemize} \itemsep 0mm % Reduce space between items
+            $for(career.work)$
+                \item $career.work$
+            $endfor$
+        \end{itemize}
+        \vspace{-4.0mm}
+    $endfor$
+
+\end{document}
