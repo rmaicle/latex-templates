@@ -871,63 +871,65 @@ $endif$
 %
 % Copyright
 %
-\thispagestyle{empty}
-\begin{flushleft}
-    {\bfseries $title$}
-    $if(subtitle)$
-        {\\\itshape $subtitle$}
-    $endif$
-    $if(version)$
-        \normalsize \ifoptiondraft{Draft}{}\space $version$
-    $endif$
-    \hfill\newline
-    $if(author)$
-        \normalsize by
-        $for(author)$\normalsize $author.name$$sep$,\space$endfor$
-    $endif$
-    \vspace*{1em}
+$if(with_copyright)$
+    \thispagestyle{empty}
+    \begin{flushleft}
+        {\bfseries $title$}
+        $if(subtitle)$
+            {\\\itshape $subtitle$}
+        $endif$
+        $if(version)$
+            \normalsize \ifoptiondraft{Draft}{}\space $version$
+        $endif$
+        \hfill\newline
+        $if(author)$
+            \normalsize by
+            $for(author)$\normalsize $author.name$$sep$,\space$endfor$
+        $endif$
+        \vspace*{1em}
 
-    \vspace*{1.5em}
-    $if(cc_license_image)$
-        \includegraphics[keepaspectratio=true, width=2.5cm]
-            {cc_by_nc_sa_40.eps}\\[1.2em]
-    $endif$
-    \justify
-    $if(copyright)$
-        \normalsize $copyright$\\[1.2em]
-    $endif$
-    $if(license_text)$
-        \normalsize $license_text$\\[1.2em]
-    $endif$
-    $if(license_attribution)$
-        \normalsize {\bfseries Attribution}\textemdash%
-             $license_attribution$\\[1.2em]
-    $endif$
-    $if(license_translations)$
-        \normalsize {\bfseries Translations}\textemdash%
-            $license_translations$\\[1.2em]
-    $endif$
-    $if(license_adaptations)$
-        \normalsize {\bfseries Adaptations}\textemdash%
-            $license_adaptations$\\[1.2em]
-    $endif$
-    \normalsize All trademarks in this document are held by their %
-        respective owners.\\[1.2em]
-    $if(source)$
-        \normalsize $source$\\[1.2em]
-    $endif$
-    \ifxetex
-        \normalsize PDF file generated using XeTeX %
-            \the\eTeXversion\eTeXrevision-%
-            \the\XeTeXversion\XeTeXrevision\space on \today.
-    \else
-        \normalsize PDF file generated using pdfTeX %
-            \the\eTeXversion\eTeXrevision-%
-            \the\pdftexversion.\pdftexrevision\space on \today.
-    \fi
-\end{flushleft}
-\pagebreak
-\cleardoublepage
+        \vspace*{1.5em}
+        $if(cc_license_image)$
+            \includegraphics[keepaspectratio=true, width=2.5cm]
+                {cc_by_nc_sa_40.eps}\\[1.2em]
+        $endif$
+        \justify
+        $if(copyright)$
+            \normalsize $copyright$\\[1.2em]
+        $endif$
+        $if(license_text)$
+            \normalsize $license_text$\\[1.2em]
+        $endif$
+        $if(license_attribution)$
+            \normalsize {\bfseries Attribution}\textemdash%
+                 $license_attribution$\\[1.2em]
+        $endif$
+        $if(license_translations)$
+            \normalsize {\bfseries Translations}\textemdash%
+                $license_translations$\\[1.2em]
+        $endif$
+        $if(license_adaptations)$
+            \normalsize {\bfseries Adaptations}\textemdash%
+                $license_adaptations$\\[1.2em]
+        $endif$
+        \normalsize All trademarks in this document are held by their %
+            respective owners.\\[1.2em]
+        $if(source)$
+            \normalsize $source$\\[1.2em]
+        $endif$
+        \ifxetex
+            \normalsize PDF file generated using XeTeX %
+                \the\eTeXversion\eTeXrevision-%
+                \the\XeTeXversion\XeTeXrevision\space on \today.
+        \else
+            \normalsize PDF file generated using pdfTeX %
+                \the\eTeXversion\eTeXrevision-%
+                \the\pdftexversion.\pdftexrevision\space on \today.
+        \fi
+    \end{flushleft}
+    \pagebreak
+    \cleardoublepage
+$endif$
 
 
 
