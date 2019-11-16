@@ -25,15 +25,14 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-../md-to-pdf/build.sh                   \
+../../md-to-pdf/build.sh                \
     ${param_debug}                      \
     -softcopy                           \
     -papersize usletter                 \
     -fontsize 10                        \
     ${param_show_frame}                 \
     ${param_output_image_generate}      \
-    -i ./guide-doc/source.txt           \
-    -td ../latex-templates              \
+    -i ./source.txt                     \
     -tf ./doc/template_doc.tex          \
     ${param_output_latex}               \
     -od ./                              \
