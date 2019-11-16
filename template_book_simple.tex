@@ -821,15 +821,14 @@ $if(title)$
     \begin{flushright}
         {
             {\fontsize{20pt}{24pt}\usefont{T1}{bch}{b}{n}$title$\par}
-            \vspace{-0.06in}
             $if(subtitle)$
-                {\fontsize{17pt}{21.6pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
+                \vspace{0.0in}
+                {\fontsize{18pt}{21.6pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
             $endif$
         }
-        % The vertical space below the rule is the same height
-        % as the subtitle font size
-        \noindent\rule[-1.2pt]{\textwidth}{2.0pt}
+        \noindent\rule[$beforetitlerule$]{\textwidth}{1pt}
 
+        \vspace{$aftertitlerule$}
         $if(version)$
             {\fontsize{12pt}{14.4pt}
                 \usefont{T1}{bch}{m}{n}
