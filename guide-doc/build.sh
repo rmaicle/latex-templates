@@ -33,7 +33,7 @@ done
     ${param_show_frame}                 \
     ${param_output_image_generate}      \
     -i ./source.txt                     \
-    -tf ./doc/template_doc.tex          \
+    -tf ./template_doc.tex              \
     ${param_output_latex}               \
     -od ./                              \
     -of latex-template-doc-guide
