@@ -30,6 +30,8 @@ done
     -softcopy                           \
     -papersize usletter                 \
     -fontsize 10                        \
+    -titlerule -1pt                     \
+    -aftertitlerule 7.2pt               \
     ${param_show_frame}                 \
     ${param_output_image_generate}      \
     -i ./source.txt                     \

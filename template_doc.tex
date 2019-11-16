@@ -826,9 +826,9 @@ $if(title)$
                 {\fontsize{18pt}{21.6pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
             $endif$
         }
-        \noindent\rule[0pt]{\textwidth}{1pt}
+        \noindent\rule[$beforetitlerule$]{\textwidth}{1pt}
 
-        \vspace{0.06in}
+        \vspace{$aftertitlerule$}
         $if(version)$
             {\fontsize{12pt}{14.4pt}
                 \usefont{T1}{bch}{m}{n}
