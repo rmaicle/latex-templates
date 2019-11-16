@@ -38,4 +38,4 @@ done
     -tf ./template_doc.tex              \
     ${param_output_latex}               \
     -od ./                              \
-    -of latex-template-doc-guide
+    -of document-creation-guide
