@@ -1,7 +1,6 @@
 ---
 title: Document Creation Guide
 subtitle: Creating PDF Documents Using Markdown
-x: Tyhis gs a Very Long Title and Must Not Wrap Around the Next Line
 author:
   name: Ricardo I. Maicle
   email: rmaicle@gmail.com
