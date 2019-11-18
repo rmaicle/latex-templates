@@ -34,8 +34,9 @@ done
     -aftertitlerule 7.2pt               \
     ${param_show_frame}                 \
     ${param_output_image_generate}      \
+    `#-copyrightx`                      \
     -i ./source.txt                     \
-    -tf ./template_doc.tex              \
+    -tf template_doc.tex                \
     ${param_output_latex}               \
     -od ./                              \
     -of document-creation-guide
