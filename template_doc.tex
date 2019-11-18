@@ -727,7 +727,12 @@ $endif$
 
 % Table of contents
 % -----------------------------------------------------------------------------
-\settocdepth{subsection}
+$if(toc-depth)$
+    %\settocdepth{$toc-depth$}
+    \setcounter{tocdepth}{$toc-depth$}
+$else$
+    \settocdepth{chapter}
+$endif$
 \renewcommand{\cftchapterfont}{\large\bfseries}
 \renewcommand{\cftsectionfont}{\large}
 \renewcommand{\cftsubsectionfont}{\large}
