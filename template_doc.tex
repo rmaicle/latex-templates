@@ -727,11 +727,13 @@ $endif$
 
 % Table of contents
 % -----------------------------------------------------------------------------
-$if(toc-depth)$
-    %\settocdepth{$toc-depth$}
-    \setcounter{tocdepth}{$toc-depth$}
-$else$
-    \settocdepth{chapter}
+$if(toc)$
+    $if(toc-depth)$
+        %\settocdepth{$toc-depth$}
+        \setcounter{tocdepth}{$toc-depth$}
+    $else$
+        \settocdepth{chapter}
+    $endif$
 $endif$
 \renewcommand{\cftchapterfont}{\large\bfseries}
 \renewcommand{\cftsectionfont}{\large}
@@ -939,15 +941,12 @@ $endif$
 % Table of contents
 %
 $if(toc)$
-{
-    \settocdepth{subsection}
     \cleardoublepage
     \begin{KeepFromToc} % Hide the ToC page entry in the ToC
         \tableofcontents
     \end{KeepFromToc}
     \pagebreak
     \cleardoublepage
-}
 $endif$
 
 
