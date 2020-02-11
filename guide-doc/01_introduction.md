@@ -138,4 +138,5 @@ generating a PDF document. It shows the softwares involved, input
 files and where in the process they are used, and the output files
 produced by each process.
 
-![Simplified Document Processing](./tex-images/01_1_process.png)
+![Simplified Document Processing](fig_01_1_process.png)
+
