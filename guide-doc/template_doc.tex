@@ -330,6 +330,8 @@ $if(listings)$
     \usepackage{listings}
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
+    % Line wrap symbol requires amsmath
+    \usepackage{amsmath}
 
     % Shrink the code listings
     % Can only be used if pdf engine is pdflatex.
@@ -382,7 +384,19 @@ $if(listings)$
         literate={-}{-}1,
         aboveskip=0.5em,
         belowskip=0em,
-        frame=none
+        frame=none,
+        % The following lines was taken from 'lstlisting line wrapping'
+        % https://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping#116572
+        %
+        % The \hookrightarrow requires amsmath package
+        %
+        % NOTE: Use of double dollar sign instead of a single one.
+        %       This is because pandoc uses the dollar sign for
+        %       parsing its own variables.
+        columns=[c]fixed,
+        breaklines=true,
+        breakatwhitespace=true,
+        postbreak=\mbox{\textcolor{red}{$$\hookrightarrow$$}\space},
     }
 
     \lstdefinestyle{terminal}{
@@ -459,7 +473,7 @@ $if(listings)$
         style=ListingCommon,
         fontadjust=true,
         extendedchars=false,
-        columns=[c]fixed,
+        % columns=[c]fixed,
         breakatwhitespace=true,
         keepspaces=true,
         showstringspaces=false,
