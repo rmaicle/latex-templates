@@ -9,6 +9,10 @@ softwares and tools.
 
 TBD
 
+### `tllocalmgr`
+
+Manage TeXLive packages.
+
 
 
 ## Pandoc (Linux)
