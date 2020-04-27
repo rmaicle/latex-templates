@@ -422,9 +422,9 @@ This style is intended to be used with the *caption* attribute and
 combined with other styles. It draws lines at the top and bottom of
 the code block.
 
-~~~{style=listing style=lines
+~~~{style=listing style=listingcap
 caption="This is an example of a fenced code block using
-\texttt{style=lines}. Lorem ipsum dolor sit amet, consectetuer
+\texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."
 label=fenced_code_block_sample
