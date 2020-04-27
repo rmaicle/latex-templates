@@ -380,7 +380,7 @@ $if(listings)$
 
     % Problem with hyphen being rendered too wide
     % https://tex.stackexchange.com/questions/33185/
-    \lstdefinestyle{Common}{
+    \lstdefinestyle{common}{
         literate={-}{-}1,
         aboveskip=0.5em,
         belowskip=0em,
@@ -400,7 +400,7 @@ $if(listings)$
     }
 
     \lstdefinestyle{terminal}{
-        style=Common,
+        style=common,
         basicstyle=\Terminalfont,
         keywordstyle=\Terminalfont,
         stringstyle=\Terminalfont,
@@ -410,8 +410,8 @@ $if(listings)$
         lineskip=0.5pt
     }
 
-    \lstdefinestyle{ListingCommon}{
-        style=Common,
+    \lstdefinestyle{listingcommon}{
+        style=common,
         basicstyle=\BeraMonofont,
         keywordstyle=\BeraMonofont\color{NavyBlue},
         stringstyle=\BeraMonofont\color{Brown},
@@ -436,11 +436,11 @@ $if(listings)$
     }
 
     \lstdefinestyle{syntax}{
-        style=ListingCommon
+        style=listingcommon
     }
 
     \lstdefinestyle{listing}{
-        style=ListingCommon,
+        style=listingcommon,
         $if(is_softcopy)$
             backgroundcolor=\color{Grey98}
         $endif$
