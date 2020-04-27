@@ -358,7 +358,7 @@ code blocks. They are discussed in the following subsections.
 
 
 
-##### style=terminal
+##### Style `terminal`
 
 The *terminal* style is intended to be used to display text as they
 would appear in a terminal, console or operating system shell.
@@ -382,7 +382,7 @@ $ sudo pacman -Syyu         @\Note{command}@
 
 
 
-##### style=syntax
+##### Style `syntax`
 
 The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
@@ -401,7 +401,7 @@ OPTIONS
 
 
 
-##### style=listing
+##### Style `listing`
 
 The *listing* style is intended to be used to display source code
 listings.
@@ -416,7 +416,7 @@ int main() {
 
 
 
-##### style=lines
+##### Style `listingcap`
 
 This style is intended to be used with the *caption* attribute and
 combined with other styles. It draws lines at the top and bottom of
