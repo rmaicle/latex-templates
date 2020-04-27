@@ -431,6 +431,18 @@ caption="This is an example of a fenced code block using
 
 
 
+### Special Syntax
+
+#### Notes or Comments
+
+````{style=syntax escapechar=$}
+~~~{style=terminal}
+@\Note{comment/note text here}@     $\Note{This is the note syntax}$
+~~~
+````
+
+
+
 ## Block Quote
 
 A block of text may be specified as a block quote by starting each
