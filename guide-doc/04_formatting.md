@@ -1063,6 +1063,7 @@ footnote label is enclosed in square brackets (`[]`).
 
 A footnote content starts with a footnote label enclosed in square
 brackets, followed by a colon (`:`) character, a space, and the text.
+Footnote contents are placed on its own line.
 
 ~~~{style=syntax}
 First footnote.[^1]
@@ -1079,14 +1080,6 @@ Text footnote label.[^fnlabel]
 [^fnlabel]: This is a footnote.
 ~~~
 
-The Markdown above may be rendered like the following.
-
-~~~{style=syntax}
-Text footnote label.@\textsuperscript{1}@
-
-@\textsuperscript{1}@ This is a footnote.
-~~~
-
 
 
 ### Long Footnote Content
@@ -1095,36 +1088,40 @@ This is how to format a long footnote content that have two
 paragraphs.
 
 ~~~
-Long footnote.[^longnote]
+Long footnote, multiple paragraph.[^longnote_multiparagraph]
+Second footnote.[^second_footnote]
+Third footnote.[^third_footnote]
 
-[^longnote]:
+[^longnote_multiparagraph]:
     Long note with subsequent paragraphs. Subsequent paragraphs are indented
     following a blank line to show that they belong to the previous footnote.
 
-    > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit,
-    > vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida
-    > mauris. Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.
-
-    This is the second paragraph for this footnote.
+    This is the second paragraph for this footnote. Lorem ipsum dolor sit amet,
+    consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
+    adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
+    nonummy eget, consectetuer id, vulputate a, magna.
+[^second_footnote]: This is the second footnote.
+[^third_footnote]: This is the third footnote.
 ~~~
 
 The Markdown paragraph above is rendered in the following paragraph
 and the corresponding footnote is at the bottom of this page.
 
-Long footnote.[^longnote]
+Long footnote, multiple paragraph.[^longnote_multiparagraph]
+Second footnote.[^second_footnote]
+Third footnote.[^third_footnote]
 
-[^longnote]:
+[^longnote_multiparagraph]:
     Long note with subsequent paragraphs. Subsequent
     paragraphs are indented following a blank line to show that they
     belong to the previous footnote.
 
-    > Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    > Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae,
-    > felis. Curabitur dictum gravida mauris. Nam arcu libero,
-    > nonummy eget, consectetuer id, vulputate a, magna.
-
-    This is the second paragraph for this footnote.
-
+    This is the second paragraph for this footnote. Lorem ipsum dolor sit amet,
+    consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
+    adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
+    nonummy eget, consectetuer id, vulputate a, magna.
+[^second_footnote]: This is the second footnote.
+[^third_footnote]: This is the third footnote.
 
 
 ### Inline Footnotes
