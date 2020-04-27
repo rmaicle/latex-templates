@@ -527,14 +527,14 @@ $endif$
 %\DeclareCaptionLabelFormat{listing}{\faCode\enskip #1\space #2}
 
 $if(is_softcopy)$
-\DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9342\textwidth}{#1#2#3}}}
+\DeclareCaptionFormat{listing}%
+    {\colorbox{Grey88}{\parbox{0.9285\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{
     format=listing,
     singlelinecheck=false,
     labelsep=quad,
-    indention=0pt,
-    margin={25pt, 2pt},
-    skip=5pt
+    margin={25pt,0pt},
+    skip=5.6pt
 }
 $else$
 \DeclareCaptionFormat{listing}{#1#2#3}
