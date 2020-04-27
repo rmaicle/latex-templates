@@ -424,9 +424,16 @@ the code block.
 
 ~~~{style=listing style=lines
 caption="This is an example of a fenced code block using
-\texttt{style=lines}."
+\texttt{style=lines}. Lorem ipsum dolor sit amet, consectetuer
+adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
+vitae, felis. Curabitur dictum gravida mauris."
+label=fenced_code_block_sample
 }
-...
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
 ~~~
 
 
