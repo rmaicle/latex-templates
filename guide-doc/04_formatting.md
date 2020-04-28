@@ -35,6 +35,11 @@ section title text.
 
 
 
+## Links
+
+
+
+
 ## Paragraph
 
 A paragraph is a block of text surrounded by blank lines.
@@ -315,7 +320,10 @@ The following example uses text in a single line as source code
 listing to show where the lines break.
 
 ~~~{style=listing}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula condimentum euismod. Mauris mollis semper congue. Suspendisse maximus tincidunt mattis. Sed convallis vestibulum mattis. Vivamus sodales et neque ac fringilla.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+vehicula condimentum euismod. Mauris mollis semper congue. Suspendisse
+maximus tincidunt mattis. Sed convallis vestibulum mattis. Vivamus
+sodales et neque ac fringilla.
 ~~~
 
 When the listing are long and does not contain whitespace, it can be
@@ -427,8 +435,7 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."
-label=fenced_code_block_sample
-}
+label=fenced_code_block_sample}
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
