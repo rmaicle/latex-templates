@@ -38,11 +38,7 @@
 % error occurs.
 % TODO: Determine which option it clashes with.
 \usepackage[svgnames]{xcolor}
-\definecolor{Grey98}{RGB}{250,250,250}
-% Darker by 10%
-\definecolor{Grey88}{RGB}{225,225,225}
-% Darker by 20%
-\definecolor{Grey78}{RGB}{199,199,199}
+\definecolor{Grey90}{RGB}{229,229,229}
 
 
 
@@ -417,22 +413,7 @@ $if(listings)$
         stringstyle=\BeraMonofont\color{Brown},
         commentstyle=\BeraMonofont\color{Green},
         numberstyle=\BeraMonofont\footnotesize\color{DimGray},
-        basewidth=0.6em,
-        lineskip=1pt,
-        %
-        % Decorations
-        %
-        aboveskip=1em,
-        belowskip=0.4em,
-        frame=single,
-        frameround=tttt,
-        framesep=2.25pt,
-        framerule=0.1pt,
-        framextopmargin=3.5pt,
-        framexbottommargin=2.5pt,
-        framexleftmargin=5pt,
-        framexrightmargin=-2pt,
-        rulecolor=\color{Grey88}
+        basewidth=0.6em
     }
 
     \lstdefinestyle{syntax}{
@@ -440,33 +421,22 @@ $if(listings)$
     }
 
     \lstdefinestyle{listing}{
-        style=listingcommon,
-        $if(is_softcopy)$
-            backgroundcolor=\color{Grey98}
-        $endif$
+        style=listingcommon
     }
 
     \lstdefinestyle{listingcap}{
-        $if(is_softcopy)$
-            aboveskip=0.5em,
-            aboveskip=0.7em,
-        $else$
-            aboveskip=0.3em,
-        $endif$
+        style=listingcommon,
+        aboveskip=0.7em,
         belowskip=0.4em,
-        frameround=ffff,
-        $if(is_softcopy)$
-            framexleftmargin=7pt,
-            framexrightmargin=0pt,
-        $else$
-            framexleftmargin=0pt,
-            framexrightmargin=0pt,
-        $endif$
-        frame=lines,
+        frame=tblr,
+        frameround=tttt,
+        framesep=2.25pt,
         framerule=0.1pt,
-        % Caption background and rule color must be the same
-        % so it looks seamless when 'joined'.
-        rulecolor=\color{Grey88}
+        framextopmargin=3.5pt,
+        framexbottommargin=2.5pt,
+        framexleftmargin=6pt,
+        framexrightmargin=0pt,
+        rulecolor=\color{Grey90},
     }
 
     \lstset{
@@ -525,29 +495,13 @@ $endif$
     textfont=it,
     labelsep=quad]{caption}
 
-%\DeclareCaptionLabelFormat{listing}{\faCode\enskip #1\space #2}
-
-$if(is_softcopy)$
-\DeclareCaptionFormat{listing}%
-    {\colorbox{Grey88}{\parbox{0.9285\textwidth}{#1#2#3}}}
+\DeclareCaptionFormat{listing}{#1#2#3}
 \captionsetup[lstlisting]{
     format=listing,
     singlelinecheck=false,
-    margin={25pt,0pt},
+    margin={32pt,7pt},
     skip=5.6pt
 }
-$else$
-\DeclareCaptionFormat{listing}{#1#2#3}
-%\DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9125\textwidth}{#1#2#3}}}
-\captionsetup[lstlisting]{
-    format=listing,
-    singlelinecheck=false,
-    labelsep=quad,
-    indention=0pt,
-    margin={32pt, 2pt},
-    skip=5pt
-}
-$endif$
 
 
 
