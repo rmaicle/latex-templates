@@ -35,6 +35,21 @@ section title text.
 
 
 
+### Attributes
+
+Section headings can have attributes using the following syntax at the
+end of the section heading line:
+
+~~~{style=syntax}
+{.class}
+~~~
+
+Headings with the class `unnumbered` will not be numbered. Headings
+with the class `unnumbered and `unlisted` will not be displayed in the
+table of contents.
+
+
+
 ## Links
 
 
