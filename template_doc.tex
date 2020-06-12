@@ -38,11 +38,7 @@
 % error occurs.
 % TODO: Determine which option it clashes with.
 \usepackage[svgnames]{xcolor}
-\definecolor{Grey98}{RGB}{250,250,250}
-% Darker by 10%
-\definecolor{Grey88}{RGB}{225,225,225}
-% Darker by 20%
-\definecolor{Grey78}{RGB}{199,199,199}
+\definecolor{Grey90}{RGB}{229,229,229}
 
 
 
@@ -330,6 +326,8 @@ $if(listings)$
     \usepackage{listings}
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
+    % Line wrap symbol requires amsmath
+    \usepackage{amsmath}
 
     % Shrink the code listings
     % Can only be used if pdf engine is pdflatex.
@@ -378,88 +376,75 @@ $if(listings)$
 
     % Problem with hyphen being rendered too wide
     % https://tex.stackexchange.com/questions/33185/
-    \lstdefinestyle{Common}{
+    \lstdefinestyle{common}{
         literate={-}{-}1,
         aboveskip=0.5em,
         belowskip=0em,
-        frame=none
+        frame=none,
+        % The following lines was taken from 'lstlisting line wrapping'
+        % https://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping#116572
+        %
+        % The \hookrightarrow requires amsmath package
+        %
+        % NOTE: Use of double dollar sign instead of a single one.
+        %       This is because pandoc uses the dollar sign for
+        %       parsing its own variables.
+        columns=[c]fixed,
+        breaklines=true,
+        breakatwhitespace=true,
+        postbreak=\mbox{\textcolor{red}{$$\hookrightarrow$$}\space},
     }
 
     \lstdefinestyle{terminal}{
-        style=Common,
+        style=common,
         basicstyle=\Terminalfont,
         keywordstyle=\Terminalfont,
         stringstyle=\Terminalfont,
         commentstyle=\Terminalfont,
         numberstyle=\Terminalfont\footnotesize\color{DimGray},
         basewidth=0.5em,
-        lineskip=0.5pt
+        lineskip=1pt
     }
 
-    \lstdefinestyle{ListingCommon}{
-        style=Common,
+    \lstdefinestyle{listingcommon}{
+        style=common,
         basicstyle=\BeraMonofont,
         keywordstyle=\BeraMonofont\color{NavyBlue},
         stringstyle=\BeraMonofont\color{Brown},
         commentstyle=\BeraMonofont\color{Green},
         numberstyle=\BeraMonofont\footnotesize\color{DimGray},
-        basewidth=0.6em,
-        lineskip=1pt,
-        %
-        % Decorations
-        %
-        aboveskip=1em,
+        basewidth=0.6em
+    }
+
+    \lstdefinestyle{syntax}{
+        style=listingcommon
+    }
+
+    \lstdefinestyle{listing}{
+        style=listingcommon
+    }
+
+    \lstdefinestyle{listingcap}{
+        style=listingcommon,
+        aboveskip=0.7em,
         belowskip=0.4em,
-        frame=single,
+        frame=tblr,
         frameround=tttt,
         framesep=2.25pt,
         framerule=0.1pt,
         framextopmargin=3.5pt,
         framexbottommargin=2.5pt,
-        framexleftmargin=5pt,
-        framexrightmargin=-2pt,
-        rulecolor=\color{Grey88}
-    }
-
-    \lstdefinestyle{syntax}{
-        style=ListingCommon
-    }
-
-    \lstdefinestyle{listing}{
-        style=ListingCommon,
-        $if(is_softcopy)$
-            rulesepcolor=\color{Grey98},
-            backgroundcolor=\color{Grey98}
-        $endif$
-    }
-
-    \lstdefinestyle{lines}{
-        $if(is_softcopy)$
-            aboveskip=0.5em,
-            aboveskip=0.7em,
-        $else$
-            aboveskip=0.3em,
-        $endif$
-        belowskip=0.4em,
-        frameround=fttf,
-        $if(is_softcopy)$
-            framexleftmargin=7pt,
-            framexrightmargin=0pt,
-        $else$
-            framexleftmargin=0pt,
-            framexrightmargin=0pt,
-        $endif$
-        frame=lines,
-        framerule=0.1pt,
-        rulecolor=\color{Grey88}
+        framexleftmargin=6pt,
+        framexrightmargin=0pt,
+        rulecolor=\color{Grey90},
     }
 
     \lstset{
         fancyvrb=true,
-        style=ListingCommon,
+        style=terminal,
+        frame=none,
         fontadjust=true,
         extendedchars=false,
-        columns=[c]fixed,
         breakatwhitespace=true,
         keepspaces=true,
         showstringspaces=false,
@@ -508,32 +493,15 @@ $endif$
     font=small,
     labelfont=bf,
     textfont=it,
-    labelsep=endash]{caption}
+    labelsep=quad]{caption}
 
-%\DeclareCaptionLabelFormat{listing}{\faCode\enskip #1\space #2}
-
-$if(is_softcopy)$
-\DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9342\textwidth}{#1#2#3}}}
-\captionsetup[lstlisting]{
-    format=listing,
-    singlelinecheck=false,
-    labelsep=quad,
-    indention=0pt,
-    margin={25pt, 2pt},
-    skip=5pt
-}
-$else$
 \DeclareCaptionFormat{listing}{#1#2#3}
-%\DeclareCaptionFormat{listing}{\colorbox{Grey88}{\parbox{0.9125\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{
     format=listing,
     singlelinecheck=false,
-    labelsep=quad,
-    indention=0pt,
-    margin={32pt, 2pt},
-    skip=5pt
+    margin={32pt,7pt},
+    skip=5.6pt
 }
-$endif$
 
 
 
@@ -544,12 +512,12 @@ $endif$
 % Set vertical space between bottom of page text and start of footnote.
 \setfootins{8mm plus 4mm minus 2mm}{8mm plus 4mm minus 2mm}
 % Redefine footnote rule
-% Set the line length to 2.5in with 0.03pt thickness. The vertical space
+% Set the line length to 2.25in with 0.03pt thickness. The vertical space
 % between the rule and the first footnote entry is 0.5em.
-\renewcommand{\footnoterule}{\noindent\rule{2.5in}{0.03pt}\vspace{0.5em}}
+\renewcommand{\footnoterule}{\noindent\rule{2.25in}{0.03pt}\vspace{0.5em}}
 % Vertical space between paragraphs in a single footnote
 %\renewcommand{\hangfootparskip}{0.0\baselineskip}
-\renewcommand{\hangfootparskip}{0.5em}
+\renewcommand{\hangfootparskip}{0.3em}
 % Change the vertical space between footnote items.
 % If value is equal or small than the body text font size, then it does not
 % seem to have an effect.
@@ -557,7 +525,7 @@ $endif$
 \renewcommand{\footnotesep}{1.25em}
 % Change the font size of the footnote number in the footnote area.
 % https://latex.org/forum/viewtopic.php?t=8095
-\renewcommand*\thefootnote{\footnotesize\arabic{footnote}}
+\renewcommand*\thefootnote{\scriptsize\arabic{footnote}}
 % Change footnote text font size other than footnotesize
 \renewcommand{\footnotesize}{\small}
 
@@ -617,7 +585,7 @@ $endif$
 
 \usepackage[nopar]{lipsum}
 
-% Use upquote if available, for straight quotes in verbatim environments.
+% Use upquote, if available, for straight quotes in verbatim environments.
 % Must be loaded after other fonts.
 \usepackage{upquote}
 
@@ -727,13 +695,11 @@ $endif$
 
 % Table of contents
 % -----------------------------------------------------------------------------
-$if(toc)$
-    $if(toc-depth)$
-        %\settocdepth{$toc-depth$}
-        \setcounter{tocdepth}{$toc-depth$}
-    $else$
-        \settocdepth{chapter}
-    $endif$
+$if(toc-depth)$
+    %\settocdepth{$toc-depth$}
+    \setcounter{tocdepth}{$toc-depth$}
+$else$
+    \settocdepth{chapter}
 $endif$
 \renewcommand{\cftchapterfont}{\large\bfseries}
 \renewcommand{\cftsectionfont}{\large}
@@ -941,12 +907,15 @@ $endif$
 % Table of contents
 %
 $if(toc)$
+{
+    \settocdepth{subsection}
     \cleardoublepage
     \begin{KeepFromToc} % Hide the ToC page entry in the ToC
         \tableofcontents
     \end{KeepFromToc}
     \pagebreak
     \cleardoublepage
+}
 $endif$
 
 
