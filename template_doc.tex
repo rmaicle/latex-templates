@@ -381,7 +381,7 @@ $if(listings)$
         aboveskip=0.5em,
         belowskip=0em,
         frame=none,
-        % The following lines was taken from 'lstlisting line wrapping'
+        % The following lines were taken from 'lstlisting line wrapping'
         % https://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping#116572
         %
         % The \hookrightarrow requires amsmath package
@@ -391,7 +391,7 @@ $if(listings)$
         %       parsing its own variables.
         columns=[c]fixed,
         breaklines=true,
-        breakatwhitespace=true,
+        breakatwhitespace=false,
         postbreak=\mbox{\textcolor{red}{$$\hookrightarrow$$}\space},
     }
 
@@ -445,7 +445,6 @@ $if(listings)$
         frame=none,
         fontadjust=true,
         extendedchars=false,
-        breakatwhitespace=true,
         keepspaces=true,
         showstringspaces=false,
         numbersep=15pt,
