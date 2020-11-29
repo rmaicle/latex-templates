@@ -198,6 +198,27 @@ $endif$
 
 
 
+% Caption
+% =======
+% Formatting captions and subcaptions in LaTeX
+% http://www.peteryu.ca/tutorials/publishing/latex_captions
+
+\usepackage[
+    font=small,
+    labelfont=bf,
+    textfont=it,
+    labelsep=quad]{caption}
+
+\DeclareCaptionFormat{listing}{#1#2#3}
+\captionsetup[lstlisting]{
+    format=listing,
+    singlelinecheck=false,
+    margin={32pt,7pt},
+    skip=5.6pt
+}
+
+
+
 % Tables
 % ======
 
@@ -492,27 +513,6 @@ $if(listings)$
         \normalsize\fontfamily{fvm}\mdseries\selectfont}
     \makeatother
 $endif$
-
-
-
-% Caption
-% =======
-% Formatting captions and subcaptions in LaTeX
-% http://www.peteryu.ca/tutorials/publishing/latex_captions
-
-\usepackage[
-    font=small,
-    labelfont=bf,
-    textfont=it,
-    labelsep=quad]{caption}
-
-\DeclareCaptionFormat{listing}{#1#2#3}
-\captionsetup[lstlisting]{
-    format=listing,
-    singlelinecheck=false,
-    margin={32pt,7pt},
-    skip=5.6pt
-}
 
 
 
