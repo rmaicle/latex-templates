@@ -1,5 +1,6 @@
 ---
 title: Document Creation Guide
+short-title: Document Creation Guide
 subtitle: Creating PDF Documents Using Markdown
 author:
   name: Ricardo I. Maicle
