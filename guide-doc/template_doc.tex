@@ -738,6 +738,22 @@ $endif$
 \setlength{\cftsectionnumwidth}{2.5em}
 \setlength{\cftsubsectionnumwidth}{3.5em}
 
+% Page Style
+% NOTE: When the subtitle contains multiple lines, this causes an error
+% -----------------------------------------------------------------------------
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.01pt}
+
+\fancyhf{} % clear all header and footer fields
+$if(short-title)$
+    \lfoot[C]{\mdseries $short-title$}
+$else$
+    \lfoot[C]{\mdseries $title$}
+$endif$
+\rfoot[C]{\thepage\ of \pageref{LastPage}}
+
 % Chapter style
 % -----------------------------------------------------------------------------
 % Ref: How do fonts work in LaTeX?
