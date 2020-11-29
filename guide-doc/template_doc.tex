@@ -813,15 +813,24 @@ $endif$
 
 \begin{document}
 
-% Title uses titlex in YAML matter in markdown file.
+
+
+$if(short-title)$
+    \ifpdf
+        \pdfbookmark[0]{$short-title$}{title-$short-title$}
+    \fi
+$else$
+    \ifpdf
+        \pdfbookmark[0]{Title Page}
+    \fi
+$endif$
+
+% Title uses title in YAML matter in markdown file.
 %
 % The \usefont usage was from Fonts and Encoding chapter of the
 % The LaTeX companion, 2nd Ed, 2004, p. 371.
 % -----
 $if(title)$
-    \ifpdf
-        \pdfbookmark{Title Page}{$title$}
-    \fi
     \newlength{\centeroffset}
     \thispagestyle{empty}
     \vspace*{1.5in}
