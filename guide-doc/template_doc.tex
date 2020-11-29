@@ -161,7 +161,11 @@
 % When using hyperref with footmisc, the footmisc documentation recommends
 % turning hyperlinks from footnote marks to the corresponding footnote body.
 % Package footmisc version 5.5b dated June 6, 2011.
+$if(is_draft)$
 \usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
+$else$
+    \usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
+$endif$
 \hypersetup{
     $if(title-meta)$
         pdftitle={$title-meta$},
