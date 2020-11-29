@@ -210,14 +210,6 @@ $endif$
     textfont=it,
     labelsep=quad]{caption}
 
-\DeclareCaptionFormat{listing}{#1#2#3}
-\captionsetup[lstlisting]{
-    format=listing,
-    singlelinecheck=false,
-    margin={32pt,7pt},
-    skip=5.6pt
-}
-
 
 
 % Tables
@@ -513,6 +505,14 @@ $if(listings)$
     \lst@AddToHook{TextStyle}{\let\lst@basicstyle%
         \normalsize\fontfamily{fvm}\mdseries\selectfont}
     \makeatother
+
+    \DeclareCaptionFormat{listing}{#1#2#3}
+    \captionsetup[lstlisting]{
+        format=listing,
+        singlelinecheck=false,
+        margin={32pt,7pt},
+        skip=5.6pt
+    }
 $endif$
 
 
