@@ -836,15 +836,30 @@ $if(title)$
     \vspace*{1.5in}
     \begin{flushright}
         {
-            {\fontsize{20pt}{24pt}\usefont{T1}{bch}{b}{n}$title$\par}
+            {\fontsize{20pt}{26pt}\usefont{T1}{bch}{b}{n}$title$\par}
             $if(subtitle)$
-                \vspace{0.0in}
-                {\fontsize{18pt}{21.6pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
+                \vspace*{-3pt}
+                {\fontsize{18pt}{24pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
+            $endif$
+            $if(client)$
+                \iffalse
+                $if(subtitle)$
+                    \vspace*{-0.2em}
+                $else$
+                    \vspace*{-0.3em}
+                $endif$
+                \fi
+                {\fontsize{16pt}{20pt}\usefont{T1}{ptm}{m}{n}$client$\par}
             $endif$
         }
-        \noindent\rule[$beforetitlerule$]{\textwidth}{1pt}
+
+        \noindent\textcolor{Grey50}{\rule[$beforetitlerule$]{\textwidth}{1pt}}
 
         \vspace{$aftertitlerule$}
+        $if(type)$
+            \vspace*{-0.25em}
+            {\fontsize{16pt}{20pt}\usefont{T1}{bch}{m}{n}$type$\par}
+        $endif$
         $if(version)$
             {\fontsize{12pt}{14.4pt}
                 \usefont{T1}{bch}{m}{n}
@@ -853,11 +868,7 @@ $if(title)$
                 \ifoptiondraft{Draft}{}\space $version$\\[0.05in]
             }
         $endif$
-        {\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{m}{n}$date$}\\[0.05in]
-
-        % $if(client)$
-        %     {\fontsize{14pt}{22pt}\usefont{T1}{ptm}{b}{n}$client$}
-        % $endif$
+        {\fontsize{12pt}{14pt}\usefont{T1}{bch}{m}{n}$date$}\\[0.05in]
 
         \vspace{2.5in}
         $if(author)$
