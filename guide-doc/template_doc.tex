@@ -874,9 +874,9 @@ $if(title)$
         $if(author)$
             $for(author)$
                 $if(author.name)$
-                    {\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{b}{n}$author.name$}
+                    {\fontsize{12pt}{14pt}\usefont{T1}{bch}{b}{n}$author.name$}
                     $if(author.email)$
-                        {\\\fontsize{12pt}{14.4pt}\usefont{T1}{bch}{m}{n}$author.email$\\[0.2in]}
+                        {\\\fontsize{12pt}{14pt}\usefont{T1}{bch}{m}{n}$author.email$\\[0.2in]}
                     $endif$
                 $endif$
             $endfor$
@@ -886,7 +886,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace*{\fill}
         $if(distribution)$
-            {\fontsize{9pt}{13.2pt}\usefont{T1}{bch}{m}{n}$distribution$\par}
+            {\fontsize{10pt}{13pt}\usefont{T1}{bch}{m}{n}$distribution$\par}
         $endif$
     \end{flushright}
 $endif$
