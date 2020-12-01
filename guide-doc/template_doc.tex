@@ -522,20 +522,24 @@ $endif$
 % =========
 
 \usepackage[perpage,multiple,hang,multiple]{footmisc}
+
 % Set vertical space between bottom of page text and start of footnote.
 \iffalse
 \setfootins{8mm plus 4mm minus 2mm}{8mm plus 4mm minus 2mm}
 \fi
 \setfootins{3em}{3em}
+
 % Redefine footnote rule
 % Set the line length to 2.25in with 0.03pt thickness. The vertical space
 % between the rule and the first footnote entry is 0.5em.
 \iffalse
 \renewcommand{\footnoterule}{\noindent\rule{2.25in}{0.03pt}\vspace{0.5em}}
 \fi
+
 % Vertical space between paragraphs in a single footnote
 %\renewcommand{\hangfootparskip}{0.0\baselineskip}
 \renewcommand{\hangfootparskip}{0.3em}
+
 % Change the vertical space between footnote items.
 % If value is equal or small than the body text font size, then it does not
 % seem to have an effect.
@@ -543,9 +547,11 @@ $endif$
 \renewcommand{\footnotesep}{11pt}
 \fi
 \renewcommand{\footnotesep}{1.25em}
+
 % Change the font size of the footnote number in the footnote area.
 % https://latex.org/forum/viewtopic.php?t=8095
 \renewcommand*\thefootnote{\scriptsize\arabic{footnote}}
+
 % Change footnote text font size other than footnotesize
 \renewcommand{\footnotesize}{\small}
 
@@ -822,6 +828,8 @@ $if(short-title)$
 $else$
 \pdfbookmark{$title$}{title-page}
 $endif$
+
+
 
 % Title uses title in YAML matter in markdown file.
 %
