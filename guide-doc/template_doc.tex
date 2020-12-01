@@ -818,13 +818,9 @@ $endif$
 
 
 $if(short-title)$
-    \ifpdf
-        \pdfbookmark[0]{$short-title$}{title-$short-title$}
-    \fi
+\pdfbookmark{$short-title$}{title-page}
 $else$
-    \ifpdf
-        \pdfbookmark[0]{Title Page}
-    \fi
+\pdfbookmark{$title$}{title-page}
 $endif$
 
 % Title uses title in YAML matter in markdown file.
