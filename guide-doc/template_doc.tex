@@ -974,7 +974,7 @@ $if(toc)$
     \settocdepth{subsection}
     \cleardoublepage
     \begin{KeepFromToc} % Hide the ToC page entry in the ToC
-        \vspace*{-6ex}
+        \vspace*{-7ex}
         \tableofcontents
     \end{KeepFromToc}
     \pagebreak
@@ -985,6 +985,7 @@ $endif$
 
 
 $if(lot)$
+\vspace*{-7ex}
 \listoftables
 \pagebreak
 \cleardoublepage
@@ -993,6 +994,7 @@ $endif$
 
 
 $if(lof)$
+\vspace*{-7ex}
 \listoffigures
 \pagebreak
 \cleardoublepage
@@ -1001,6 +1003,7 @@ $endif$
 
 
 $for(include-before)$
+\vspace*{-7ex}
 $include-before$
 \pagebreak
 \cleardoublepage
@@ -1010,6 +1013,7 @@ $endfor$
 
 \mainmatter
 
+\vspace*{-7ex}
 $body$
 \pagebreak
 \cleardoublepage
@@ -1019,6 +1023,7 @@ $body$
 \appendix
 
 $for(include-after)$
+\vspace*{-7ex}
 $include-after$
 \pagebreak
 \cleardoublepage
