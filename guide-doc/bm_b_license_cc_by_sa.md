@@ -8,7 +8,7 @@ a. Adapted Material means material subject to Copyright and Similar Rights that 
 
 b. Adapter's License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.
 
-c. BY-NC-SA Compatible License means a license listed at https://creativecommons.org/compatiblelicenses, approved by Creative Commons as essentially the equivalent of this Public License.
+c. BY-NC-SA Compatible License means a license listed at [https://creativecommons.org/compatiblelicenses](https://creativecommons.org/compatiblelicenses), approved by Creative Commons as essentially the equivalent of this Public License.
 
 d. Copyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.
 

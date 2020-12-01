@@ -11,4 +11,4 @@ fm_a_preface.md
 09_toolchain.md
 
 x bm_a_build_script.md
-bm_b_license.md
+bm_b_license_cc_by_sa.md
