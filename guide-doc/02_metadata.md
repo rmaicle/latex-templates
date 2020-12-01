@@ -43,14 +43,37 @@ The *title* metadata key defines the document title.
 title: Document Title
 ~~~
 
-The document title may be long and could span multiple lines but it
-may be better to use a subtitle.
+The document title may be long and could span multiple lines.
+YAML provides a syntax for multiple text lines.
+
+~~~{style=syntax}
+title: |
+    Document Title \
+    Second Title Line
+~~~
+
+
+
+#### Short Title
+
+This metadata is only used for bookmarking purposes in PDF documents.
+When the _title_ have multiple lines, using that in a PDF bookmark may
+not be desirable and this option allows using a shorter alternative.
+
+The _short title_ may also be used in document page headers and footers.
+
 
 
 
 #### Subtitle
 
 Same as with the *title* metadata.
+
+
+
+#### Client
+
+Same as with *subtitle* metadata.
 
 
 
@@ -141,9 +164,9 @@ continued onto the text line.
 
 ~~~{style=syntax}
 distribution: |
-    | Internal company use.
-    | Distribution authorized to all company departments only. No copies or
-        reproduction in whole or in part may be passed to any third party.
+    Internal company use. \
+    Distribution authorized to all company departments only. No copies or
+    reproduction in whole or in part may be passed to any third party.
 ~~~
 
 The text may be formatted so that each sentence starts on a new line.

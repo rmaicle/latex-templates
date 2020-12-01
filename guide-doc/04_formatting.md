@@ -33,6 +33,14 @@ section title text.
 # Chapter Heading 2
 ~~~
 
+Section headings may be omitted from the table of contents by adding
+`{.unlisted}` at the end of the section heading text.
+
+Section headings may be displayed unnumbered in the table of contents
+by adding `{.unnumbered}` at the en dof hte section heading text.
+
+These may be combined and applied to a section heading.
+
 
 
 ### Attributes
@@ -50,8 +58,15 @@ table of contents.
 
 
 
-## Links
+### Vertical Space Before First Chapter
 
+The chapter style moves the first chapter name lower than it should.
+The first chapter should be at the top of the page.
+To do this add `\vspace*{-6ex}` before the first chapter.
+
+
+
+## Links
 
 
 
@@ -117,6 +132,102 @@ The Markdown source above is rendered as the following table.
 |:----------------:|:-------------|--------------:|
 | name 1           | 0.05         | 4.50          |
 | name 2           | 1.95         | 11.15         |
+
+
+
+### Columns With Multi-Line Text
+
+To create tables with columns having multi-line texts is possible by using
+\textit{\TeX} commands directly into the markdown source.
+
+~~~{style=syntax}
+\begin{center}
+\begin{tabular}{ l p{10cm} }
+    \toprule
+    {\textbf{User Category}} & {\textbf{Operations}}                \\
+    \midrule
+    Administrator & all ({\textit{manage users, backup/restore
+                    database, manage system chart of accounts,
+                    financial report activities, export/import
+                     working sets, export of other data}})          \\
+    FRS User      & financial report activities, export/import
+                    working sets, export of other data              \\
+    Limited User  & Input or import of account balances             \\
+    \bottomrule
+\end{tabular}
+\end{center}
+~~~
+
+The \textit{\TeX} commands will be rendered as:
+
+\begin{center}
+\begin{tabular}{ l p{10cm} }
+    \toprule
+    {\textbf{User Category}} & {\textbf{Operations}} \\
+    \midrule
+    Administrator & all ({\textit{manage users, backup/restore
+                    database, manage system chart of accounts,
+                    financial report activities, export/import
+                     working sets, export of other data}})          \\
+    FRS User      & financial report activities, export/import
+                    working sets, export of other data              \\
+    Limited User  & Input or import of account balances             \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+One can put a table caption by wrapping the block inside a _table_
+block and using `\caption{caption text here}`.
+
+~~~{style=syntax}
+\begin{table}[h]                                                @\Note{table block start}@
+\begin{center}
+\begin{tabular}{ l p{10cm} }
+    \toprule
+    {\textbf{User Category}} & {\textbf{Operations}}                \\
+    \midrule
+    Administrator & all ({\textit{manage users, backup/restore
+                    database, manage system chart of accounts,
+                    financial report activities, export/import
+                     working sets, export of other data}})          \\
+    FRS User      & financial report activities, export/import
+                    working sets, export of other data              \\
+    Limited User  & Input or import of account balances             \\
+    \bottomrule
+\end{tabular}
+\end{center}
+\caption{This is your caption text.}                            @\Note{caption}@
+\label{tab:table_id}
+\end{table}                                                     @\Note{table block end}@
+~~~
+
+The table may be referenced using `\ref{tab:table_id}` like this
+\ref{tab:table_id}.
+
+
+Or
+
+~~~{style=syntax}
+\begin{center}
+\captionof{table}{Estimated Website Development Timeline}
+\begin{tabular}{ l l p{8cm} }
+    \toprule
+    {\textbf{Category}} & {\textbf{Description}}
+        & {\textbf{Classification}} \\
+    \midrule
+    1. Information Gathering    & 1-2 weeks \\
+    2. Planning                 & 1-2 weeks \\
+    3. Design                   & 2-4 weeks \\
+    4. Content Writing          & 4-8 weeks   & may be performed parallel with Frontend Coding\\
+    5. Frontend Coding          & 4-8 weeks \\
+    6. Testing                  & 4-8 weeks   & also performed during Fronend Coding for assessment
+                                                and feedback \\
+    7. Review and Launch        & 1-2 weeks   & depending on the availability of validators and
+                                                  decision makers for verification \\
+    \bottomrule
+\end{tabular}
+\end{center}
+~~~
 
 
 
@@ -445,12 +556,29 @@ This style is intended to be used with the *caption* attribute and
 combined with other styles. It draws lines at the top and bottom of
 the code block.
 
-~~~{style=listing style=listingcap
+`````{style=listing}
+~~~{#fenced_code_block_sample
+style=listing
+style=listingcap
 caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
-vitae, felis. Curabitur dictum gravida mauris."
-label=fenced_code_block_sample}
+vitae, felis. Curabitur dictum gravida mauris."}
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+`````
+
+~~~{#fenced_code_block_sample
+style=listing
+style=listingcap
+caption="This is an example of a fenced code block using
+\texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
+adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
+vitae, felis. Curabitur dictum gravida mauris."}
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
@@ -1083,74 +1211,83 @@ nonummy eget, consectetuer id, vulputate a, magna.
 
 ## Footnote
 
-A *footnote* is defined by creating a *footnote label* and a
-corresponding *footnote content*.
+A _footnote_ is text at the bottom of the page identified with a
+_footnote mark_,
+A footnote mark is numbered sequentially.
+A new page resets the footnote mark numbering.
 
-A footnote label starts with a caret (`^`) symbol followed by a
-number or text that does not contain whitespace characters. A
-footnote label is enclosed in square brackets (`[]`).
+A _footnote_ is defined by creating a _footnote label_ and a
+corresponding _footnote content_.
 
-A footnote content starts with a footnote label enclosed in square
-brackets, followed by a colon (`:`) character, a space, and the text.
+A footnote label starts with a caret (`^`) symbol followed by a number
+or text that does not contain whitespace characters.
+Text footnote labels are converted into a number and is ordered
+automatically.
+A footnote label is enclosed in square brackets (`[]`).
+A footnote label at the end of a sentence always appears after the
+punctuation mark.
+
+A footnote content starts with a footnote label followed by a colon
+(`:`) character, a space, and the text.
 Footnote contents are placed on its own line.
+Footnote contents should contain more than just a URL.
 
 ~~~{style=syntax}
 First footnote.[^1]
-
-[^1]: This is the footnote content.
-~~~
-
-Text footnote labels are converted into a number and is ordered
-automatically.
-
-~~~{style=syntax}
 Text footnote label.[^fnlabel]
 
+[^1]: This is the footnote content.
 [^fnlabel]: This is a footnote.
 ~~~
+
+It is possible to use multiple footnotes but the footnote label
+separator is not rendered properly.
 
 
 
 ### Long Footnote Content
 
-This is how to format a long footnote content that have two
-paragraphs.
+This is how to format a long footnote content that have two paragraphs.
 
 ~~~
 Long footnote, multiple paragraph.[^longnote_multiparagraph]
-Second footnote.[^second_footnote]
-Third footnote.[^third_footnote]
+Second and third footnote.[^second_footnote][^third_footnote]
+Fourth footnote.[^fourth_footnote]
 
-[^longnote_multiparagraph]:
-    Long note with subsequent paragraphs. Subsequent paragraphs are indented
-    following a blank line to show that they belong to the previous footnote.
+[^longnote_multiparagraph]: Long note with subsequent paragraphs.
+    Subsequent paragraphs are indented following a blank line to show
+    that they belong to the previous footnote.
 
-    This is the second paragraph for this footnote. Lorem ipsum dolor sit amet,
-    consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
-    adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
-    nonummy eget, consectetuer id, vulputate a, magna.
+    This is the second paragraph for this footnote.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+    Curabitur dictum gravida mauris.
+    Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.
 [^second_footnote]: This is the second footnote.
-[^third_footnote]: This is the third footnote.
+[^third_footnote]: Showing mutiple footnotes.
+[^fourth_footnote]: This is the fourth footnote.
 ~~~
 
 The Markdown paragraph above is rendered in the following paragraph
 and the corresponding footnote is at the bottom of this page.
 
 Long footnote, multiple paragraph.[^longnote_multiparagraph]
-Second footnote.[^second_footnote]
-Third footnote.[^third_footnote]
+Second and third footnote.[^second_footnote][^third_footnote]
+Fourth footnote.[^fourth_footnote]
 
-[^longnote_multiparagraph]:
-    Long note with subsequent paragraphs. Subsequent
-    paragraphs are indented following a blank line to show that they
-    belong to the previous footnote.
+[^longnote_multiparagraph]: Long note with subsequent paragraphs.
+    Subsequent paragraphs are indented following a blank line to show
+    that they belong to the previous footnote.
 
-    This is the second paragraph for this footnote. Lorem ipsum dolor sit amet,
-    consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
-    adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
-    nonummy eget, consectetuer id, vulputate a, magna.
+    This is the second paragraph for this footnote.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+    Curabitur dictum gravida mauris.
+    Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.
 [^second_footnote]: This is the second footnote.
-[^third_footnote]: This is the third footnote.
+[^third_footnote]: Showing mutiple footnotes.
+[^fourth_footnote]: This is the fourth footnote.
+
 
 
 ### Inline Footnotes
@@ -1174,5 +1311,26 @@ adipiscing elit.]
 
 ### Subscripts and Superscripts
 
+
+
 ### Special Characters
 
+~~~{style=syntax}
+\textregistered
+\texttrademark
+\TeX
+\LaTeX
+~~~
+
+
+
+### Space
+
+A space can be added by using `\space`.
+
+
+
+### Page Break
+
+Add a page break by using `\pagebreak`.
+All contents after the `\pagebreak` will go to the next page.
