@@ -1,2 +1,6 @@
+*.log
 *.pdf
+*.png
+*.jpg
+*.jpeg
 .tex-images
