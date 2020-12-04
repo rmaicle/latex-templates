@@ -698,11 +698,9 @@ $endif$
 % Page Style
 % NOTE: When the subtitle contains multiple lines, this causes an error
 % -----------------------------------------------------------------------------
-\pagestyle{fancy}
-
+\fancypagestyle{main_pagestyle}{
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0.01pt}
-
 \fancyhf{} % clear all header and footer fields
 $if(short-title)$
     \lfoot[C]{\mdseries $short-title$}
@@ -710,6 +708,7 @@ $else$
     \lfoot[C]{\mdseries $title$}
 $endif$
 \rfoot[C]{\thepage\ of \pageref{LastPage}}
+}
 
 % Chapter style
 % -----------------------------------------------------------------------------
@@ -1008,6 +1007,7 @@ $endfor$
 
 \mainmatter
 
+\pagestyle{main_pagestyle}
 \vspace*{-7ex}
 $body$
 \pagebreak
