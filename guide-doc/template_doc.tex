@@ -19,6 +19,9 @@
     showframe=$if(showframe)$$showframe$$else$false$endif$]
     {geometry}
 
+% NOTE: Line wrap symbol in listings requires amsmath
+\usepackage{amsmath}
+
 \usepackage{ifxetex,ifluatex}
 \usepackage{ifpdf}
 
@@ -308,8 +311,6 @@ $if(listings)$
     \usepackage{listings}
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
-    % Line wrap symbol requires amsmath
-    \usepackage{amsmath}
 
     % Shrink the code listings
     % Can only be used if pdf engine is pdflatex.
