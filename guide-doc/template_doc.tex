@@ -55,7 +55,9 @@
 
 % If system fonts are going to be used, use fontspec.
 \ifxetex
+    \usepackage{xltxtra}
     \usepackage{fontspec}
+    \usepackage{xunicode}
     %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
     %\setromanfont{Noto Serif}
     %\setmainfont{}
@@ -611,6 +613,8 @@ $endif$
 
 % Strikeout a section of text with a horizontal line
 \usepackage[normalem]{ulem}
+
+\usepackage{graphbox}
 
 
 
