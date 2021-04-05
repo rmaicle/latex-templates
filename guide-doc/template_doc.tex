@@ -23,7 +23,6 @@
 \usepackage{amsmath}
 
 \usepackage{iftex}
-\usepackage{ifpdf}
 
 \usepackage{ifdraft}
 \usepackage{titlesec}
@@ -95,7 +94,7 @@
 % Graphical characters
 \usepackage{pmboxdraw}
 
-\ifpdf
+\ifpdftex
 \usepackage[
     protrusion=true,
     expansion=true,
@@ -284,38 +283,17 @@
 \newcommand\LSTFontSize{\small}
 
 % If you prefer a slashed zero, this is not it.
-\ifpdf
+\ifpdftex
     \newcommand*\TerminalFont{%
-        \usefont{T1}{lmtt}{m}{n}%
-        \TRMFontSize%
-        \selectfont%
-        \SetTracking{encoding=*}{-9}%
-        \lsstyle}
-\else
-    \newcommand*\TerminalFont{%
-        \usefont{T1}{lmtt}{m}{n}%
-        \TRMFontSize%
-        \selectfont%
-        \lsstyle}
+        \usefont{T1}{zlmtt}{m}{n}\TRMFontSize\selectfont\lsstyle}
 \fi
 
 % Shrink the code listings
 % Can only be used if pdf engine is pdflatex.
 % Ref: Shrinking monospace style for listings package
 %      https://tex.stackexchange.com/questions/33020/
-\ifpdf
-    \newcommand*\ListingFont{%
-        \ttfamily%
-        \LSTFontSize%
-        \selectfont%
-        \SetTracking{encoding=*}{-60}%
-        \lsstyle}
-\else
-    \newcommand*\ListingFont{%
-        \ttfamily%
-        \LSTFontSize%
-        \selectfont%
-        \lsstyle}
+\ifpdftex
+    \newcommand*\ListingFont{\ttfamily\LSTFontSize\selectfont\lsstyle}
 \fi
 
 \ifpdftex
