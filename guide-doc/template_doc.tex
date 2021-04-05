@@ -725,11 +725,13 @@ $endif$
 \fancypagestyle{main_pagestyle}{
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0.01pt}
+\renewcommand{\footrule}{{\color{Gainsboro}%
+\vskip-\footruleskip\vskip-\footrulewidth \hrule width\headwidth height\footrulewidth\vskip\footruleskip}}
 \fancyhf{} % clear all header and footer fields
 $if(short-title)$
-    \lfoot[C]{\mdseries $short-title$}
+    \lfoot[C]{\fontsize{9pt}{11pt}\usefont{T1}{put}{rm}{n}\selectfont $short-title$}
 $else$
-    \lfoot[C]{\mdseries $title$}
+    \lfoot[C]{\fontsize{9pt}{11pt}\usefont{T1}{put}{rm}{n}\selectfont $title$}
 $endif$
 \rfoot[C]{\thepage\ of \pageref{LastPage}}
 }
