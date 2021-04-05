@@ -37,11 +37,15 @@
 % error. To circumvent this, use \texorpdfstring.
 % https://tex.stackexchange.com/questions/1013/
 
+
+
+% Color
+% =====
 % Must be loaded here. Otherwise an 'Option class for package xcolor'
 % error occurs.
 % TODO: Determine which option it clashes with.
 \usepackage[svgnames]{xcolor}
-\definecolor{Grey90}{RGB}{229,229,229}
+\definecolor{ListingCaptionColor}{RGB}{240,240,240}
 \definecolor{Grey50}{RGB}{127,127,127}
 
 
@@ -471,14 +475,22 @@ $if(listings)$
         \normalsize\fontfamily{fvm}\mdseries\selectfont}
     \makeatother
 
-    \DeclareCaptionFormat{listing}{#1#2#3}
-    \captionsetup[lstlisting]{
-        format=listing,
-        singlelinecheck=false,
-        margin={32pt,7pt},
-        skip=5.6pt
-    }
 $endif$
+
+
+
+\DeclareCaptionFormat{listing}{\colorbox{ListingCaptionColor}{\parbox{0.9342\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{
+    % labelfont=bf,
+    labelfont={sf,bf},
+    textfont={sf,up},
+    format=listing,
+    singlelinecheck=false,
+    labelsep=colon,
+    indention=0pt,
+    margin={20pt, 2pt},
+    skip=5pt
+}
 
 
 
