@@ -776,11 +776,13 @@ $endif$
 \titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\usefont{T1}{bch}{b}{n}}{\theparagraph}{1em}{}
 \titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\usefont{T1}{bch}{b}{it}}{}{0em}{}
 
-\titlespacing{\section}{0pt}{1ex}{1ex}
-\titlespacing{\subsection}{0pt}{1ex}{1ex}
-\titlespacing{\subsubsection}{0pt}{1ex}{1ex}
-\titlespacing{\paragraph}{0pt}{1ex}{1ex}
-\titlespacing{\subparagraph}{0pt}{1ex}{1ex}
+% IMPORTANT:
+% The * in \titlespacing* unindents the following paragraph after the section
+\titlespacing*{\section}{0pt}{1ex}{1ex}
+\titlespacing*{\subsection}{0pt}{1ex}{1ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{1ex}
+\titlespacing*{\paragraph}{0pt}{1ex}{1ex}
+\titlespacing*{\subparagraph}{0pt}{1ex}{1ex}
 
 \setsecnumdepth{subparagraph}
 
