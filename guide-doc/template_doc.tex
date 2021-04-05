@@ -875,16 +875,16 @@ $if(title)$
         {
             {\fontsize{20pt}{26pt}\usefont{T1}{bch}{b}{n}$title$\par}
             $if(subtitle)$
-                \vspace*{-3pt}
+                \vspace*{0pt}
                 {\fontsize{18pt}{24pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
             $endif$
             $if(client)$
-                {\fontsize{16pt}{20pt}\usefont{T1}{ptm}{m}{n}$client$\par}
+                {\fontsize{16pt}{20pt}\usefont{T1}{bch}{m}{n}$client$\par}
             $endif$
         }
 
         \vspace*{0.4em}
-        \noindent\textcolor{Grey50}{\rule{\textwidth}{1pt}}
+        \noindent\textcolor{DimGray}{\rule{\textwidth}{1pt}}
         \vspace*{-0.3em}
 
         $if(type)$
@@ -902,15 +902,24 @@ $if(title)$
             }
             \vspace*{0.7em}
         $endif$
-        {\fontsize{12pt}{14pt}\usefont{T1}{bch}{m}{n}$date$}\\[0.05in]
+        {\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$date$}\\[0.05in]
 
-        \vspace*{2.5in}
+        \vspace*{2.0in}
         $if(author)$
+            $if(author_heading)$
+                {\fontsize{12pt}{14pt}\usefont{T1}{bch}{m}{n}$author_heading$}\\[1em]
+            $endif$
             $for(author)$
                 $if(author.name)$
                     {\fontsize{12pt}{14pt}\usefont{T1}{bch}{b}{n}$author.name$}
+                    $if(author.title)$
+                        \\{\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$author.title$}
+                    $endif$
+                    $if(author.company)$
+                        \\{\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$author.company$}
+                    $endif$
                     $if(author.email)$
-                        {\\\fontsize{12pt}{14pt}\usefont{T1}{bch}{m}{n}$author.email$\\}
+                        \\{\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$author.email$}
                         \vspace*{1.0em}
                     $endif$
                 $endif$
