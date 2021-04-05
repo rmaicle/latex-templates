@@ -16,6 +16,7 @@ distribution: |
         knowledge that the copy or reproduction they have received
         may not be the latest version of the work and may contain
         errors.
+distribution-1: This document is uncontrolled when printed.
 copyright: Copyright \textcopyright\space 2019 by Ricardo I. Maicle
 cc_license_image: true
 license: CC BY-NC-SA 4.0

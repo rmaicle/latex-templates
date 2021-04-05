@@ -1,4 +1,4 @@
-# Document Structure and Layout
+# Structure and Layout
 
 A document have three major divisions: *front matter*, *main matter*,
 and *back matter* also called *end matter*.
@@ -71,6 +71,17 @@ The following subsections might go into a _preface_.
   Include a link to the Online Help or technical library where they can
   download the files.
 
+
+### Trademark Notice
+
+* Linux is a trademark of Linus Torvalds.
+* GNU is a trademark of the Free Software Foundation.
+* Macintosh, OS X, macOS, and Mac OS X are all trademarks of the Apple Corporation.
+* PGP is a trademark of Symantec Corporation.
+* Solaris is a trademark of Oracle Corporation.
+* UNIX is a trademark of The Open Group.
+* Windows is a trademark of the Microsoft Corporation.
+* Some cryptographic algorithms mentioned in this FAQ may be trademarked.
 
 
 ## Appendix

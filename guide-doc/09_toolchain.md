@@ -13,6 +13,30 @@ TBD
 
 Manage TeXLive packages.
 
+~~~{style=terminal}
+$ tllocalmgr
+Retrieving new TeXLive database from CTAN...
+Initializing ...
+Welcome to the TeXLive Local Manager shell. Type 'help' for assistance.
+tllocalmgr> help
+               clean -- Clean local build tree
+                help -- Print helpful information
+                info -- Print info on CTAN packages
+             install -- Locally install new CTAN packages
+          installdoc -- Locally install documentation of CTAN packages
+          installsrc -- Locally install sources of CTAN packages
+           listfiles -- List all files in CTAN packages
+                quit -- Quit tllocalmgr
+              search -- Search info on CTAN packages
+         searchfiles -- Search for files in CTAN packages
+           shortinfo -- Print a one-liner description of CTAN packages
+              status -- Current status of TeXLive installation
+             texhash -- Refresh the TeX file database
+              update -- Locally update CTAN packages
+               usage -- Print more detailed help
+tllocalmgr>
+~~~
+
 
 
 ## Pandoc (Linux)

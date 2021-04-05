@@ -1,4 +1,4 @@
-# Formatting
+# Markdown
 
 This chapter describes how to format the contents of a document using
 a Markdown variant and a little \LaTeX for some specific cases.
@@ -17,11 +17,12 @@ contain other blocks, and leaf blocks, which cannot.
 ## Section Headings
 
 Section headings are structured divisions of the document main body:
-chapters, sections, subsections, etc. Except when a section headings
-appear at the start of the file, section headings must be preceeded
-and followed by one or more blank lines. It must start with one to
-six hash (`#`) characters, a space character, and followed by the
-section title text.
+chapters, sections, subsections, etc.
+Except when a section heading appear at the start of the file, section
+headings must be preceeded by and followed by one or more blank lines.
+Section headings must start with the hash (`#`) character followed by a
+space and the section title text.
+Section heading levels are specified by the number of hash characters.
 
 ~~~{style=syntax}
 # Chapter Heading 1
@@ -30,16 +31,14 @@ section title text.
 
 ### Subsection Heading
 
+#### Subsubsection Heading
+
+##### Paragraph Heading
+
+##### Subparagraph Heading
+
 # Chapter Heading 2
 ~~~
-
-Section headings may be omitted from the table of contents by adding
-`{.unlisted}` at the end of the section heading text.
-
-Section headings may be displayed unnumbered in the table of contents
-by adding `{.unnumbered}` at the en dof hte section heading text.
-
-These may be combined and applied to a section heading.
 
 
 
@@ -52,21 +51,48 @@ end of the section heading line:
 {.class}
 ~~~
 
-Headings with the class `unnumbered` will not be numbered. Headings
-with the class `unnumbered and `unlisted` will not be displayed in the
-table of contents.
+Section headings may be omitted from the table of contents by adding
+`{.unlisted}` at the end of the section heading text.
+
+Section headings may be displayed unnumbered in the table of contents
+by adding `{.unnumbered}` at the en dof hte section heading text.
+
+Section headings may also have _anchors_ so it can be referenced in the
+document from elsewhere. An anchor is specified as
+`{#unique_anchor_name}` where _unique_anchor_name_ is a unique label
+across the entire document.
+
+These may be combined and applied to a section heading.
 
 
 
-### Vertical Space Before First Chapter
+~~~{style=syntax}
+# Preface {.unnumbered}
+## About This Document {.unnumbered .unlisted #preface_about_doc}
+~~~
+
+
+### Vertical Space Before First Chapter (Deprecated)
 
 The chapter style moves the first chapter name lower than it should.
 The first chapter should be at the top of the page.
-To do this add `\vspace*{-6ex}` before the first chapter.
+To do this, the command `\vspace*{-7ex}` must be executed before the
+first chapter.
+For convenience, this command has already been added in the template
+file.
+It is used in the table of contents, list of tables, list of figures,
+other front matter pages, main matter, and appendices.
 
 
 
 ## Links
+
+Links are formatted as `[text](link)`.
+
+~~~{style=syntax}
+[TeX](https://en.wikipedia.org/wiki/TeX)
+[LaTeX](https://www.latex-project.org/)
+~~~
 
 
 
@@ -137,8 +163,8 @@ The Markdown source above is rendered as the following table.
 
 ### Columns With Multi-Line Text
 
-To create tables with columns having multi-line texts is possible by using
-\textit{\TeX} commands directly into the markdown source.
+To create tables with columns having multi-line texts is possible by
+using \textit{\TeX} commands directly into the markdown source.
 
 ~~~{style=syntax}
 \begin{center}
@@ -256,8 +282,8 @@ verbatim text here
 
 ### Fenced Code Block
 
-In addition to the original markdown indented *code block*, a
-*fenced code block* is a block of text between a pair of "fence
+In addition to the original markdown indented _code block_, a
+_fenced code block_ is a block of text between a pair of "fence
 lines". The fence lines start and end with at least three tilde
 (`~`) characters. All texts inside the fence lines are treated as
 verbatim text.
@@ -270,57 +296,69 @@ The following shows how to define a fenced code block.
 ~~~    @\Note{fence}@
 ~~~~~
 
-For consistency, *fenced code blocks* are surrounded by blank lines.
+For consistency, _fenced code blocks_ are surrounded by blank lines.
 
-It is better to use a backtick (`` ` ``) characters as fence lines
+It is better to use backtick (`` ` ``) characters as fence lines
 when wrapping a fenced code block that uses the tilde (`~`)
 characters. It may be best to show this as an example.
 
 ~~~~~{style=syntax}
-```     @\Note{fence using 3 the backtick characters}@
-~~~     @\Note{start of the fenced code block to be displayed}@
+```     @\Note{enclosing fence using 3 the backtick characters}@
+~~~     @\Note{start of the enclosed fenced code block to be displayed}@
 ...     @\Note{contents}@
-~~~     @\Note{end of the fenced code block to be displayed}@
-```     @\Note{fence}@
+~~~     @\Note{end of the enclosed fenced code block to be displayed}@
+```     @\Note{end of enclosing fence}@
 ~~~~~
 
-In fact, the markdown source of this document uses the
-backtick-wrapped fenced code blocks to display fenced code blocks
-that uses the tilde character.
+It is also possible to use the tilde (`~`) characters to wrap a fenced
+code block that uses the tilde (`~`) characters but the number of tilde
+characters must be more than the enclosed fenced code block tilde
+characters.
+
+`````{style=syntax}
+~~~~~   @\Note{enclosing fence using 5 tilde characters}@
+~~~     @\Note{start of the enclosed fenced code block to be displayed}@
+...     @\Note{contents}@
+~~~     @\Note{end of the enclosed fenced code block to be displayed}@
+~~~~~   @\Note{end of enclosing fence}@
+`````
 
 
 
 ### Fenced Code Block Attributes
 
-Using fenced code blocks allows the declaration of *attributes*. These
-attributes provide additional capabilities on how to display verbatim
-texts.
+Using fenced code blocks allows the declaration of _attributes_.
+_Attributes_ provide additional capabilities on how to display
+verbatim texts.
 
-Attributes are enclosed between curly braces right after the opening
+_Attributes_ are enclosed between curly braces right after the opening
 fence.
+Multiple _attributes_ are whitespace-separated.
 
-~~~~~{style=syntax}
-~~~{@\LSTi{attribute\textsubscript{1}} \LSTi{attribute\textsubscript{2}} \LSTi{...}@ @\LSTi{attribute\textsubscript{n}}@}
+\lstset{emph={attribute}, emphstyle=\itshape}
+`````{style=syntax}
+~~~{attribute@\textsubscript{1}@ attribute@\textsubscript{2}@ ... attribute@\textsubscript{n}@}
 ...
 ~~~
-~~~~~
+`````
 
-Attributes may be declared in multiple lines.
+_Attributes_ may be declared in multiple lines.
 
+\lstset{emph={attribute}, emphstyle=\itshape}
 `````{style=syntax}
 ~~~{
-@\LSTi{attribute\textsubscript{1}}@
-@\LSTi{attribute\textsubscript{2}}@
-@\LSTi{...}@
-@\LSTi{attribute\textsubscript{n}}@
+attribute@\textsubscript{1}@
+attribute@\textsubscript{2}@
+...
+attribute@\textsubscript{n}@
 }
 ...
 ~~~
 `````
 
-The following subsections discuss the attributes that are commonly
-used. Fenced code block attributes are discussed in detail in the
-*listings* package.
+The following subsections discuss the attributes that are commonly used.
+Fenced code block _attributes_ are discussed in detail in the _listings_
+package.
 
 
 
@@ -334,7 +372,7 @@ that is usually used for formatting and coloring *keywords*,
 The following shows how to display the code block as a
 C++ programming language text.
 
-~~~~~{style=syntax}
+`````{style=syntax}
 ~~~{.cpp}
 // This is a comment
 #include <iostream>
@@ -343,7 +381,7 @@ int main() {
     return 0;
 }
 ~~~
-~~~~~
+`````
 
 All the text in the block are treated as a C++ programming language.
 C++ keywords, comments, and strings are formatted accordingly.
@@ -431,7 +469,7 @@ use of the escape character by defining a blank.
 The at ('@') symbol.
 ~~~
 
-~~~{escapechar=}        $\Note{Declare empty}$
+~~~{escapechar=}        $\Note{Declare as blank}$
 The at ('@') symbol.
 ~~~
 ````
@@ -485,6 +523,7 @@ DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib6
 ~~~
 
 
+
 #### Style Attribute
 
 The LaTeX template used defines custom styles for displaying fenced
@@ -501,6 +540,8 @@ The following shows a command and a short command output. Commands
 are sometimes highlighted by displaying them in bold text.
 
 ~~~{style=terminal}
+$ 345678901234567890123456789012345678901234567890123456789012345678901234567890123
+$        1         2         3         4         5         6         7         8
 $ sudo pacman -Syyu         @\Note{command}@
 [sudo] password for <user>:
 :: Synchronizing package databases...
@@ -522,6 +563,8 @@ The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
 
 ~~~{style=syntax}
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5         6         7         8
 git status [<options>...] [--] [<pathspec>...]
 ...
 OPTIONS
@@ -541,6 +584,8 @@ The *listing* style is intended to be used to display source code
 listings.
 
 ~~~{style=listing}
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
@@ -552,9 +597,11 @@ int main() {
 
 ##### Style `listingcap`
 
-This style is intended to be used with the *caption* attribute and
-combined with other styles. It draws lines at the top and bottom of
-the code block.
+This style is intended to be used when a code block is inteded to be
+captioned.
+This can be achieved with the use of the _caption_ attribute.
+This style displays the caption over a grayish background and draws
+lines around the code block.
 
 `````{style=listing}
 ~~~{#fenced_code_block_sample
@@ -564,6 +611,8 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
@@ -572,6 +621,8 @@ int main() {
 ~~~
 `````
 
+The above code is rendered as:
+
 ~~~{#fenced_code_block_sample
 style=listing
 style=listingcap
@@ -579,12 +630,240 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
     return 0;
 }
 ~~~
+
+This paragraph is here only to show the amount of vertical space there
+is after a source code listing with caption.
+
+
+
+### Emphasizing Identifiers
+
+
+
+#### Underlined
+
+It is possible to _emphasize_ identifiers inside code blocks by
+underlining them.
+This is achieved by using the `\lstset` LaTeX command and passing the
+`emph` and `emphstyle` parameters.
+
+\lstset{emph={}, emphstyle=}
+~~~{style=syntax}
+\lstset{emph={main,return}, emphstyle=\underbar}
+~~~
+
+This shows how to emphasize some text in the code.
+For this, we are telling it to emphasize the texts `main` and `return`
+by underlining them.
+
+~~~~~{style=syntax}
+\lstset{emph={main,return}, emphstyle=\underbar}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+~~~~~
+
+The command above is rendered as follows:
+
+\lstset{emph={main,return}, emphstyle=\underbar}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+\lstset{emph={}, emphstyle=}
+
+Note that `return` is not underlined.
+This is because `return` is a keyword which is rendered according to the
+language setting.
+
+
+
+#### Bold Text
+
+It is possible to _emphasize_ identifiers inside code blocks by
+rendering them as bold texts.
+This is achieved by using the `\lstset` LaTeX command and passing the
+`emph` and `emphstyle` parameters.
+
+\lstset{emph={}, emphstyle=}
+~~~{style=syntax}
+\lstset{emph={main,return}, emphstyle=\bfseries}
+~~~
+
+This shows how to emphasize the `main` and `iostream` texts by rendering
+them as bold texts.
+
+~~~~~{style=syntax}
+\lstset{emph={main,iostream}, emphstyle=\bfseries}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+~~~~~
+
+The command above is rendered as follows:
+
+\lstset{emph={main,iostream}, emphstyle=\bfseries}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+\lstset{emph={}, emphstyle=}
+
+
+
+#### Multiple Styles
+
+It is possible to emphasize different keywords using different styles.
+Take note of the `%` continuation character used at the end of the first
+line of `\lstset`.
+
+\lstset{emph={}, emphstyle=}
+~~~~~{style=syntax}
+\lstset{emph={main},        emphstyle=\underbar,%
+        emph={[2]iostream}, emphstyle={[2]\color{red}}}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+~~~~~
+
+It will be rendered as:
+
+\lstset{emph={main},        emphstyle=\underbar,%
+        emph={[2]iostream}, emphstyle={[2]\color{red}}}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+\lstset{emph={}, emphstyle=, emph={[2]}, emphstyle=}
+
+
+
+#### Clearing Styles
+
+It may sometimes be necessary to manually clear the styles set using the
+`\lstset` command.
+
+~~~{style=syntax}
+\lstset{emph={}, emphstyle=}
+~~~
+
+For previously using multiple styles, each must be cleared.
+
+~~~{style=syntax}
+\lstset{emph={},    emphstyle=,%
+        emph={[2]}, emphstyle=}
+~~~
+
+
+
+### Erasing Source Code Comments
+
+It is possible to not display source code comments inside code blocks.
+This is achieved by the following command.
+
+\lstset{emph={}, emphstyle=, emph={[2]}, emphstyle=}
+~~~{style=syntax}
+\lstset{morecomment=[is]{/*}{*/}}
+~~~
+
+Here is an example code block where we specify to _erase_ the text
+between the `/*` and `*/` delimiters.
+
+\lstset{emph={}, emphstyle=}
+~~~~~{style=syntax}
+\lstset{morecomment=[is]{/*}{*/}}
+~~~{.cpp style=syntax}
+// This is a comment
+#include <iostream>     /* This comment should not be rendered */
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+~~~~~
+
+It will be rendered as:
+
+\lstset{morecomment=[is]{/*}{*/}}
+~~~{style=syntax}
+// This is a comment
+#include <iostream>     /* This comment should not be rendered */
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+\lstset{emph={}, emphstyle=}
+
+
+
+### Styling Delimited Text
+
+It is also possible to style delimited text by using the `\lstset`
+LaTeX command and the `moredelim` parameter.
+Note that this does not work with fenced code blocks with language
+argument.
+
+\lstset{emph={}, emphstyle=}
+~~~~~{style=syntax}
+\lstset{moredelim=[is][\itshape]{|}{|}}
+~~~{style=syntax}
+// This is a comment
+#include <iostream>     |This text should italicized without the delimeters|
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+~~~~~
+
+It will be rendered as:
+
+\lstset{moredelim=[is][\itshape]{|}{|}}
+~~~{style=syntax}
+// This is a comment
+#include <iostream>     |This text should italicized without the delimeters|
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+~~~
+\lstset{emph={}, emphstyle=}
 
 
 
@@ -1133,8 +1412,9 @@ adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
 nonummy eget, consectetuer id, vulputate a, magna.
 
+    \lstset{emph={git --version}, emphstyle=\bfseries}
     ~~~{.bash style=terminal}
-    $ @\CMDb{git --version}@
+    $ git --version
     git version 2.22.0
     ~~~
 
@@ -1152,8 +1432,9 @@ adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
 nonummy eget, consectetuer id, vulputate a, magna.
 
+    \lstset{emph={git --version}, emphstyle=\bfseries}
     ~~~{.bash style=terminal}
-    $ @\CMDb{git --version}@
+    $ git --version
     git version 2.22.0
     ~~~
 
@@ -1249,44 +1530,51 @@ separator is not rendered properly.
 
 This is how to format a long footnote content that have two paragraphs.
 
-~~~
-Long footnote, multiple paragraph.[^longnote_multiparagraph]
-Second and third footnote.[^second_footnote][^third_footnote]
-Fourth footnote.[^fourth_footnote]
+~~~{style=syntax}
+This is a long footnote with multiple paragraphs.[^longnote_multipar]
 
-[^longnote_multiparagraph]: Long note with subsequent paragraphs.
+[^longnote_multipar]:
+    Long note with subsequent paragraphs.
     Subsequent paragraphs are indented following a blank line to show
     that they belong to the previous footnote.
 
     This is the second paragraph for this footnote.
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
     Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
-    Curabitur dictum gravida mauris.
-    Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.
-[^second_footnote]: This is the second footnote.
-[^third_footnote]: Showing mutiple footnotes.
-[^fourth_footnote]: This is the fourth footnote.
 ~~~
 
-The Markdown paragraph above is rendered in the following paragraph
-and the corresponding footnote is at the bottom of this page.
+This is a long footnote with multiple paragraphs.[^longnote_multipar]
 
-Long footnote, multiple paragraph.[^longnote_multiparagraph]
-Second and third footnote.[^second_footnote][^third_footnote]
-Fourth footnote.[^fourth_footnote]
-
-[^longnote_multiparagraph]: Long note with subsequent paragraphs.
+[^longnote_multipar]:
+    Long note with subsequent paragraphs.
     Subsequent paragraphs are indented following a blank line to show
     that they belong to the previous footnote.
 
     This is the second paragraph for this footnote.
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
     Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
-    Curabitur dictum gravida mauris.
-    Nam arcu libero, nonummy eget, consectetuer id, vulputate a, magna.
+
+
+
+### Multiple Footnote References
+
+Multiple footnote references is possible by putting the footnote markers
+consecutively.
+
+~~~{style=syntax}
+This is for the second and third footnotes.[^second_footnote]
+[^third_footnote]               @\Note{can be continued in a new line}@
+
+
 [^second_footnote]: This is the second footnote.
 [^third_footnote]: Showing mutiple footnotes.
-[^fourth_footnote]: This is the fourth footnote.
+~~~
+
+This is for the second and third footnotes.[^second_footnote]
+[^third_footnote]
+
+[^second_footnote]: This is the second footnote.
+[^third_footnote]: Showing mutiple footnotes.
 
 
 
@@ -1301,15 +1589,109 @@ This is an inline footnote.^[Lorem ipsum dolor sit amet, consectetur
 adipiscing elit.]
 ~~~
 
+This is an inline footnote.^[Lorem ipsum dolor sit amet, consectetur
+adipiscing elit.]
+
+
+
+### Forcing a Newline
+
+Sometimes it is desirable or even necessary to format a footnote text
+by putting some text on a separate line.
+This can be achieved by using the backslash character (`\`).
+
+~~~{style=syntax}
+[^newline_footnote]:
+    This is the footnotes first line.\
+    This is the second line for this footnote.
+~~~
+
+See the result.[^newline_footnote]
+
+[^newline_footnote]:
+    This is the footnote's first line.\
+    This is the second line for this footnote.
+
 
 
 ## Text Formatting
 
-### Bold
-
 ### Italics
 
+Texts can be rendered as italics by enclosing the text between a single
+asterisk (`*`) or underscore (`_`).
+
+~~~{style=syntax}
+This text will render the word *italic* as an _italic_ text.
+~~~
+
+Output
+
+This text will render the word *italic* as an _italic_ text.
+
+
+
+### Bold
+
+Texts can be rendered as bold by enclosing the text between two
+consecutive asterisks (`**`) or underscores (`__`).
+
+~~~{style=syntax}
+This text will render the word **bold** as a __bold__ text.
+~~~
+
+Output
+
+This text will render the word **bold** as a __bold__ text.
+
+
+
 ### Subscripts and Superscripts
+
+Subscripts and superscripts are written using the caret (`^`) and the
+underscore (`_`) symbols.
+
+~~~{style=syntax}
+Text^superscript
+Text_subscript
+~~~
+
+Subscripts and superscripts are most commonly used in mathematical
+equations.
+This inline equation $a^{2} + b^{2} = c^{2}$ is written as:
+
+~~~{style=syntax}
+This inline equation $a^{2} + b^{2} = c^{2}$ is written as:
+~~~
+
+
+
+### Raw \LaTeX
+
+Raw \LaTeX can be written as the following:
+
+~~~{style=syntax}
+\begin{equation}
+$$$$ f(x) = \sum_{i=0}^{n} \frac{a_i}{1+x}
+\end{equation}
+~~~
+
+and will be rendered as
+
+\begin{equation}
+$$$$ f(x) = \sum_{i=0}^{n} \frac{a_i}{1+x}
+\end{equation}
+
+An equation can be written inline as:
+
+~~~{style=syntax}
+This is an inline equation
+$f(x) = \sum_{i=0}^{n} \frac{a_i}{1+x}$.
+~~~
+
+This is an inline equation
+$f(x) = \sum_{i=0}^{n} \frac{a_i}{1+x}$.
+
 
 
 

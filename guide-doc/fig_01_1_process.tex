@@ -31,42 +31,11 @@
     \node [file, right of=pandoc, node distance=4.5cm, yshift=0cm] (templatefile) {template};
     \node [file, below of=pandoc, node distance=2cm] (pdffile) {pdf file};
 
-    %\path (pdflatex.140)+(2.7,0) node (texfiles) [file] {tex files};
-    %\path (pdflatex.-140)+(2.7,0) node (imagefiles) [file] {image files};
-    %\path (pandoc.0)+(1.44,0) node (markdownfiles) [file] {markdown files};
-
-    %\path [line,dashed] (texfiles){tex files} -- node [color=black] {input} (pdflatex);
-
-    %\node [file, right of=pdflatex, node distance=4.5cm] (texfiles) {tex files};
-    %\node [file, right of=pandoc, node distance=4.5cm] (markdownfiles) {markdown files};
-
-
-    %\node [file, anchor=north west, node distance=4cm] at (init.east) (markdown) {markdown files};
-    %\node [file, anchor=south west, node distance=4cm] at (init.east) (images) {image files};
-
-    %\path (init.140)+(2.5,0) node (markdown) [file] {markdown files};
-    %\path (init.-140)+(2.5,0) node (images) [file] {image files};
-
-    %\node [cloud, right of=init] (system) {system};
-    %\node [block, below of=init] (identify) {identify candidate models};
-    %\node [block, below of=identify] (evaluate) {evaluate candidate models};
-    %\node [block, left of=evaluate, node distance=4.5cm] (update) {update model};
-    %\node [block, below of=decide, node distance=2.5cm] (stop) {stop};
     % Draw edges
     \path [line] (pdflatex) -- (pp);
     \path [line] (pp) -- (pandoc);
     \path [line,dashed] (pp) -- (pandoc);
-    %\path (pandoc) edge[bend left=75, ->, dotted, semithick, -latex'] node [right, color=black] {calls} (pdflatex);
 
-    %\path [line] (evaluate) -- (decide);
-    %\path [line] (decide) -| node [near start, color=black] {yes} (update);
-    %\path [line] (update) |- (identify);
-    %\path [line] (decide) -- node [, color=black] {no}(stop);
-
-    %\path [line, dashed] (texfiles) -- (pdflatex);
-    %\path [line, dashed] (pdflatex) -- (imagefiles);
-    %\path [line, dashed] (markdownfiles) -- (pp);
-    %\path [line, dashed] (pp) -- (ppfiles);
     \path (imagefiles) edge[->, dashed, semithick, -latex'] node {} (markdownfiles);
 
     \path (texfiles) edge[bend right=8, ->, dashed, semithick, -latex'] node {} (pdflatex);
@@ -78,12 +47,6 @@
 
 
     \path [line,dashed] (pandoc) -- node [color=black, right, yshift=-0.3cm] {output} (pdffile);
-    %\path [line,dashed] (imagefiles) -- (pandoc);
-    %\path (pandoc) edge[bend right=50, ->, dotted, thick, -latex'] node [right, color=black] {calls} (pdflatex);
-
-
-    %\path [line,dashed] (system) -- (init);
-    %\path [line,dashed] (system) |- (evaluate);
 
     \path (pdflatex.north)+(0.0,0.3) node (buildscript) {build script};
 
@@ -91,18 +54,10 @@
     % To draw them behind the blocks we use pgf layers. This way we
     % can use the above block coordinates to place the backgrounds
     \begin{pgfonlayer}{background}
-        % Compute a few helper coordinates
-        %\path (pdflatex.west |- texfiles.north)+(-0.3,0.1) node (a) {};
-        %\path (INS.south -| pandoc.east)+(0.1,-0.1) node (b) {};
-
         \path (pdflatex.north west)+(-0.3,0.5) node (a) {};
         \path (pandoc.south east)+(0.3,-0.3) node (b) {};
         \path[fill=yellow!20,rounded corners, draw=black!50, dashed]
             (a) rectangle (b);
-        %\path (gyros.north west)+(-0.2,0.2) node (a) {};
-        %\path (IMU.south -| gyros.east)+(+0.2,-0.2) node (b) {};
-        %\path[fill=blue!10,rounded corners, draw=black!50, dashed]
-        %    (a) rectangle (b);
     \end{pgfonlayer}
 \end{tikzpicture}
 \end{document}

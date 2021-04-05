@@ -5,10 +5,9 @@ fm_a_preface.md
 01_introduction.md
 02_metadata.md
 03_structure_layout.md
-04_formatting.md
-05_using_pp.md
-
+04_markdown.md
+x 05_using_pp.md
 09_toolchain.md
 
-x bm_a_build_script.md
-bm_b_license_cc_by_sa.md
+x bm_a_template.md
+x bm_b_license_cc_by_sa.md

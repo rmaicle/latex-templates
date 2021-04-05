@@ -7,29 +7,29 @@ directly and indirectly involved in the production process.
 
 
 
-## Background
+## Software Technologies
 
 
 
 ### \TeX
 
-\textit{\TeX} or *TeX* is a typesetting system designed and written by
+\textit{\TeX} or _TeX_ is a typesetting system designed and written by
 by Donald E. Knuth starting in 1977.
 It is popular for producing book quality text for scientific and
 technical works.
 It has been noted as one of the most sophisticated digital typographical
 systems.
-The source code of TeX has been placed into the *public domain*.
+The source code of TeX has been placed into the _public domain_.
 
 \TeX\space is the ISO basic Latin alphabet rendering of the Greek
-letters *tau*, *epsilon*, and *chi* (\textit{$\tau\epsilon\chi$}).
+letters _tau_, _epsilon_, and _chi_ (\textit{$\tau\epsilon\chi$}).
 The Greek letter *chi* ($\chi$) is pronounced as 'ch' in the Scottish
-word *loch* like in *lochness monster* or the abbreviation *tech* from
-the word *technology*.
+word _loch_ like in _lochness monster_ or the abbreviation _tech_ from
+the word _technology_.
 The typeset *epsilon* character, $\epsilon$, that appears displaced in
 \TeX\space is intentional to distinguish it as the typesetting system.
 In computer files that does not allow \TeX\space to be written with the
-displaced 'E' character, it is usually written as *TeX*.
+displaced 'E' character, it is usually written as _TeX_.
 
 Since version 3.0 of TeX, updates have been indicated by adding an extra
 digit at the end of the decimal.
@@ -42,14 +42,14 @@ The current version of TeX is 3.14159265, last updated on January 12,
 
 ### \LaTeX
 
-\textit{\LaTeX} or *LaTeX*  is a document preparation system created  by
-Leslie B. Lamport based on TeX to simplify TeX typesetting and is called
-the \LaTeX\space format (Lamport TeX).
+\textit{\LaTeX} or _LaTeX_  is a document preparation system
+created  by Leslie B. Lamport based on TeX to simplify TeX typesetting
+and is called the \LaTeX format (Lamport TeX).
 It is pronounced either as "Lah-tech" or "Lay-tech".
 
 In September 1984, Lamport released version 2.06a of the LaTeX macros.
 In August 1985, version 2.09 was released.
-LaTeX2e, also known as *The New Standard LaTeX* is the current version
+LaTeX2e, also known as _The New Standard LaTeX_ is the current version
 since it replaced version 2.09 in 1994[^latex-209].
 As of 2019, LaTeX3, which was started in the early 1990s, is a long-term
 research project to develop the next version of the LaTeX typesetting
@@ -69,7 +69,7 @@ version 2.09 for posterity.)
 
 ### Markdown
 
-*Markdown* is a plain text formatting syntax primarily intended to be
+_Markdown_ is a plain text formatting syntax primarily intended to be
 easy to write and easy to read.
 The markdown language was created by John Gruber in 2004 with the
 collaboration of Aaron Swartz on the formatting syntax.
@@ -80,23 +80,19 @@ syntax by a group of people including Jeff Atwood and John MacFarlane.
 
 
 
-### PDF
+### Portable Document Format
 
-A *PDF* file is a file format based on the PostScript language developed
-by Adobe in the 1990s.
-A PDF file encapsulates a complete description of a document which
-includes fonts, vector graphics and raster images and other information
-needed.
+Portable Document Format (PDF) refers to a file format based on the
+PostScript language that encapsulates a complete description of a
+document which includes fonts, vector graphics, raster images and other
+information.
 
-A PDF file is a file format based on the PostScript language that
-encapsulates a complete description of a document which includes fonts,
-vector graphics, raster images and other information.
-
-PDF was a proprietary format developed by Adobe until it was released
+_PDF_ was developed by Adobe as a proprietary format and later released
 as an open standard on July 1, 2008.
 It was then published by the International Organization for
 Standardization as ISO 32000-1:2008 in the same year.
-ISO 32000-1:2008 which references version 1.7 of the PDF specification
+
+ISO 32000-1:2008 references version 1.7 of the PDF specification which
 contains proprietary technologies defined only by Adobe.
 These proprietary technologies that are not standardized and whose
 specifications are published only on Adobe's website are not supported
@@ -106,13 +102,13 @@ any proprietary technologies as normative references.
 
 
 
-## Components
+## Tools and Utilities
 
 
 
 ### TeX Live
 
-*TeX Live* is a cross-platform, free software distribution for the TeX
+_TeX Live_ is a cross-platform, free software distribution for the TeX
 document production system.
 TeX Live was originally started by Sebastian Rahtz in 1996 in
 collaboration with the TeX user groups worldwide.
@@ -126,7 +122,7 @@ This document references TeX Live 2019 released on 29 April 2019.
 
 ### Pandoc
 
-*Pandoc* is a tool written by John MacFarlane since 2006 for converting
+_Pandoc_ is a tool written by John MacFarlane since 2006 for converting
 from one markup format to another.
 Pandoc understands an extended and slightly revised version of John
 Gruber's Markdown[^markdown-intro] syntax.
@@ -141,7 +137,7 @@ This document references pandoc version 2.7.3.
 
 ### PP
 
-*PP* is a an open source text preprocessor for Pandoc.
+_PP_ is a an open source text preprocessor for Pandoc.
 The preprocessor can be used to generate diagrams, execute arbitrary
 shell script and display the output in a code block or simply display
 source files in code blocks.

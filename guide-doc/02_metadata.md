@@ -143,14 +143,8 @@ Document distribution statements are a necessary part of information
 management for managing, sharing, safeguarding and disseminating
 technical documents.
 
-Distribution metadata may be a single statement.
-
-~~~{style=syntax}
-distribution: Approved for public release.
-~~~
-
-It may contain an arbitrary number of continuous sentences spanning
-multiple lines.
+Distribution metadata may be a single or multiple statements that could
+span multiple lines.
 
 ~~~{style=syntax}
 distribution: Internal company use. Distribution authorized to all company departments
@@ -177,6 +171,15 @@ distribution: |
     | Distribution authorized to all company departments only.
     | No copies or reproduction in whole or in part may be passed to any third party.
 ~~~
+
+Examples of distribution statements.
+
+* License to copy this document is granted provided it is identified as
+  “Standards for Efficient Cryptography 1 (SEC 1)”, in all material
+  mentioning or referencing it.[^sec_1]
+
+[^sec_1]: Standards for Efficient Cryptography, SEC 1: Elliptic Curve
+          Cryptography, [http://www.secg.org/sec1-v2.pdf](http://www.secg.org/sec1-v2.pdf)
 
 
 
