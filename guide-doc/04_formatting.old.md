@@ -1,4 +1,4 @@
-# Markdown
+# Formatting
 
 This chapter describes how to format the contents of a document using
 a Markdown variant and a little \LaTeX for some specific cases.
@@ -76,12 +76,7 @@ These may be combined and applied to a section heading.
 
 The chapter style moves the first chapter name lower than it should.
 The first chapter should be at the top of the page.
-To do this, the command `\vspace*{-7ex}` must be executed before the
-first chapter.
-For convenience, this command has already been added in the template
-file.
-It is used in the table of contents, list of tables, list of figures,
-other front matter pages, main matter, and appendices.
+To do this add `\vspace*{-6ex}` before the first chapter.
 
 
 
@@ -125,10 +120,10 @@ have a header row which displays the column names, a delimiter row,
 and the data rows.
 
 ~~~{style=syntax}
-|          |          |          |      @\LNote{header row}@
-|----------|----------|----------|      @\LNote{delimiter row}@
-|          |          |          |      @\LNote{data row}@
-|          |          |          |      @\LNote{data row}@
+|          |          |          |      @\Note{header row}@
+|----------|----------|----------|      @\Note{delimiter row}@
+|          |          |          |      @\Note{data row}@
+|          |          |          |      @\Note{data row}@
 ~~~
 
 
@@ -206,7 +201,7 @@ One can put a table caption by wrapping the block inside a _table_
 block and using `\caption{caption text here}`.
 
 ~~~{style=syntax}
-\begin{table}[h]                                                @\LNote{table block start}@
+\begin{table}[h]                                                @\Note{table block start}@
 \begin{center}
 \begin{tabular}{ l p{10cm} }
     \toprule
@@ -222,13 +217,14 @@ block and using `\caption{caption text here}`.
     \bottomrule
 \end{tabular}
 \end{center}
-\caption{This is your caption text.}                            @\LNote{caption}@
+\caption{This is your caption text.}                            @\Note{caption}@
 \label{tab:table_id}
-\end{table}                                                     @\LNote{table block end}@
+\end{table}                                                     @\Note{table block end}@
 ~~~
 
 The table may be referenced using `\ref{tab:table_id}` like this
 \ref{tab:table_id}.
+
 
 Or
 
@@ -264,10 +260,10 @@ spaces or one tab character. It must be preceeded and followed by one
 or more blank lines.
 
 ~~~{style=syntax}
-@\LNote{blank line}@
-____verbatim text here    @\LNote{indented 4 spaces}@
-________indented text     @\LNote{indented 8 spaces}@
-@\LNote{blank line}@
+@\Note{blank line}@
+____verbatim text here    @\Note{indented 4 spaces}@
+________indented text     @\Note{indented 8 spaces}@
+@\Note{blank line}@
 ~~~
 
 The indented code block above is rendered as
@@ -290,9 +286,9 @@ verbatim text.
 The following shows how to define a fenced code block.
 
 ~~~~~{style=syntax}
-~~~    @\LNote{fence}@
+~~~    @\Note{fence}@
 ...
-~~~    @\LNote{fence}@
+~~~    @\Note{fence}@
 ~~~~~
 
 For consistency, _fenced code blocks_ are surrounded by blank lines.
@@ -302,11 +298,11 @@ when wrapping a fenced code block that uses the tilde (`~`)
 characters. It may be best to show this as an example.
 
 ~~~~~{style=syntax}
-```     @\LNote{enclosing fence using 3 the backtick characters}@
-~~~     @\LNote{start of the enclosed fenced code block to be displayed}@
-...     @\LNote{contents}@
-~~~     @\LNote{end of the enclosed fenced code block to be displayed}@
-```     @\LNote{end of enclosing fence}@
+```     @\Note{enclosing fence using 3 the backtick characters}@
+~~~     @\Note{start of the enclosed fenced code block to be displayed}@
+...     @\Note{contents}@
+~~~     @\Note{end of the enclosed fenced code block to be displayed}@
+```     @\Note{end of enclosing fence}@
 ~~~~~
 
 It is also possible to use the tilde (`~`) characters to wrap a fenced
@@ -315,11 +311,11 @@ characters must be more than the enclosed fenced code block tilde
 characters.
 
 `````{style=syntax}
-~~~~~   @\LNote{enclosing fence using 5 tilde characters}@
-~~~     @\LNote{start of the enclosed fenced code block to be displayed}@
-...     @\LNote{contents}@
-~~~     @\LNote{end of the enclosed fenced code block to be displayed}@
-~~~~~   @\LNote{end of enclosing fence}@
+~~~~~   @\Note{enclosing fence using 5 tilde characters}@
+~~~     @\Note{start of the enclosed fenced code block to be displayed}@
+...     @\Note{contents}@
+~~~     @\Note{end of the enclosed fenced code block to be displayed}@
+~~~~~   @\Note{end of enclosing fence}@
 `````
 
 
@@ -334,22 +330,20 @@ _Attributes_ are enclosed between curly braces right after the opening
 fence.
 Multiple _attributes_ are whitespace-separated.
 
-\lstset{emph={attribute}, emphstyle=\itshape}
 `````{style=syntax}
-~~~{attribute@\textsubscript{1}@ attribute@\textsubscript{2}@ ... attribute@\textsubscript{n}@}
+~~~{@\LSTi{attribute\textsubscript{1}} \LSTi{attribute\textsubscript{2}} \LSTi{...}@ @\LSTi{attribute\textsubscript{n}}@}
 ...
 ~~~
 `````
 
 _Attributes_ may be declared in multiple lines.
 
-\lstset{emph={attribute}, emphstyle=\itshape}
 `````{style=syntax}
 ~~~{
-attribute@\textsubscript{1}@
-attribute@\textsubscript{2}@
-...
-attribute@\textsubscript{n}@
+@\LSTi{attribute\textsubscript{1}}@
+@\LSTi{attribute\textsubscript{2}}@
+@\LSTi{...}@
+@\LSTi{attribute\textsubscript{n}}@
 }
 ...
 ~~~
@@ -464,11 +458,11 @@ a code block, either define another escape character or disable the
 use of the escape character by defining a blank.
 
 ````{style=syntax escapechar=$}
-~~~{escapechar=!}       $\LNote{Replace with exclamation character}$
+~~~{escapechar=!}       $\Note{Replace with exclamation character}$
 The at ('@') symbol.
 ~~~
 
-~~~{escapechar=}        $\LNote{Declare as blank}$
+~~~{escapechar=}        $\Note{Declare as blank}$
 The at ('@') symbol.
 ~~~
 ````
@@ -522,7 +516,6 @@ DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib6
 ~~~
 
 
-
 #### Style Attribute
 
 The LaTeX template used defines custom styles for displaying fenced
@@ -539,9 +532,9 @@ The following shows a command and a short command output. Commands
 are sometimes highlighted by displaying them in bold text.
 
 ~~~{style=terminal}
-12345678901234567890123456789012345678901234567890123456789012345678901234567890123
+$ 34567890123456789012345678901234567890123456789012345678901234567890123456789012
 $        1         2         3         4         5         6         7         8
-$ sudo pacman -Syyu         @\TNote{command}@
+$ sudo pacman -Syyu         @\Note{command}@
 [sudo] password for <user>:
 :: Synchronizing package databases...
  core                      148.9 KiB   596K/s 00:00 [####################] 100%
@@ -562,7 +555,7 @@ The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
 
 ~~~{style=syntax}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
          1         2         3         4         5         6         7         8
 git status [<options>...] [--] [<pathspec>...]
 ...
@@ -583,7 +576,7 @@ The *listing* style is intended to be used to display source code
 listings.
 
 ~~~{style=listing}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -596,11 +589,9 @@ int main() {
 
 ##### Style `listingcap`
 
-This style is intended to be used when a code block is inteded to be
-captioned.
-This can be achieved with the use of the _caption_ attribute.
-This style displays the caption over a grayish background and draws
-lines around the code block.
+This style is intended to be used with the *caption* attribute and
+combined with other styles. It draws lines at the top and bottom of
+the code block.
 
 `````{style=listing}
 ~~~{#fenced_code_block_sample
@@ -610,7 +601,7 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -620,8 +611,6 @@ int main() {
 ~~~
 `````
 
-The above code is rendered as:
-
 ~~~{#fenced_code_block_sample
 style=listing
 style=listingcap
@@ -629,7 +618,7 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -637,9 +626,6 @@ int main() {
     return 0;
 }
 ~~~
-
-This paragraph is here only to show the amount of vertical space there
-is after a source code listing with caption.
 
 
 
@@ -654,14 +640,12 @@ underlining them.
 This is achieved by using the `\lstset` LaTeX command and passing the
 `emph` and `emphstyle` parameters.
 
-\lstset{emph={}, emphstyle=}
 ~~~{style=syntax}
 \lstset{emph={main,return}, emphstyle=\underbar}
 ~~~
 
-This shows how to emphasize some text in the code.
-For this, we are telling it to emphasize the texts `main` and `return`
-by underlining them.
+This shows how to emphasize the `main` and `return` keywords by
+underlining them.
 
 ~~~~~{style=syntax}
 \lstset{emph={main,return}, emphstyle=\underbar}
@@ -686,11 +670,6 @@ int main() {
     return 0;
 }
 ~~~
-\lstset{emph={}, emphstyle=}
-
-Note that `return` is not underlined.
-This is because `return` is a keyword which is rendered according to the
-language setting.
 
 
 
@@ -701,18 +680,16 @@ rendering them as bold texts.
 This is achieved by using the `\lstset` LaTeX command and passing the
 `emph` and `emphstyle` parameters.
 
-\lstset{emph={}, emphstyle=}
 ~~~{style=syntax}
 \lstset{emph={main,return}, emphstyle=\bfseries}
 ~~~
-\lstset{emph={}, emphstyle=}
 
-This shows how to emphasize the `main` and `iostream` texts by rendering
-them as bold texts.
+This shows how to emphasize the `main` and `return` keywords by
+rendering them as bold texts them.
 
 \lstset{emph={}, emphstyle=}
 ~~~~~{style=syntax}
-\lstset{emph={main,iostream}, emphstyle=\bfseries}
+\lstset{emph={main,return}, emphstyle=\bfseries}
 ~~~{.cpp style=syntax}
 // This is a comment
 #include <iostream>
@@ -722,11 +699,10 @@ int main() {
 }
 ~~~
 ~~~~~
-\lstset{emph={}, emphstyle=}
 
 The command above is rendered as follows:
 
-\lstset{emph={main,iostream}, emphstyle=\bfseries}
+\lstset{emph={main,return}, emphstyle=\bfseries}
 ~~~{.cpp style=syntax}
 // This is a comment
 #include <iostream>
@@ -735,7 +711,6 @@ int main() {
     return 0;
 }
 ~~~
-\lstset{emph={}, emphstyle=}
 
 
 
@@ -745,10 +720,9 @@ It is possible to emphasize different keywords using different styles.
 Take note of the `%` continuation character used at the end of the first
 line of `\lstset`.
 
-\lstset{emph={}, emphstyle=}
 ~~~~~{style=syntax}
 \lstset{emph={main},        emphstyle=\underbar,%
-        emph={[2]iostream}, emphstyle={[2]\color{red}}}
+        emph={[2]return},   emphstyle={[2]\color{red}}}
 ~~~{.cpp style=syntax}
 // This is a comment
 #include <iostream>
@@ -758,12 +732,11 @@ int main() {
 }
 ~~~
 ~~~~~
-\lstset{emph={}, emphstyle=}
 
 It will be rendered as:
 
 \lstset{emph={main},        emphstyle=\underbar,%
-        emph={[2]iostream}, emphstyle={[2]\color{red}}}
+        emph={[2]return},   emphstyle={[2]\color{red}}}
 ~~~{.cpp style=syntax}
 // This is a comment
 #include <iostream>
@@ -772,7 +745,6 @@ int main() {
     return 0;
 }
 ~~~
-\lstset{emph={}, emphstyle=, emph={[2]}, emphstyle=}
 
 
 
@@ -785,13 +757,6 @@ It may sometimes be necessary to manually clear the styles set using the
 \lstset{emph={}, emphstyle=}
 ~~~
 
-For previously using multiple styles, each must be cleared.
-
-~~~{style=syntax}
-\lstset{emph={},    emphstyle=,%
-        emph={[2]}, emphstyle=}
-~~~
-
 
 
 ### Erasing Source Code Comments
@@ -799,13 +764,9 @@ For previously using multiple styles, each must be cleared.
 It is possible to not display source code comments inside code blocks.
 This is achieved by the following command.
 
-\lstset{emph={}, emphstyle=, emph={[2]}, emphstyle=}
 ~~~{style=syntax}
 \lstset{morecomment=[is]{/*}{*/}}
 ~~~
-
-Here is an example code block where we specify to _erase_ the text
-between the `/*` and `*/` delimiters.
 
 \lstset{emph={}, emphstyle=}
 ~~~~~{style=syntax}
@@ -819,7 +780,6 @@ int main() {
 }
 ~~~
 ~~~~~
-\lstset{emph={}, emphstyle=}
 
 It will be rendered as:
 
@@ -832,7 +792,6 @@ int main() {
     return 0;
 }
 ~~~
-\lstset{emph={}, emphstyle=}
 
 
 
@@ -855,7 +814,6 @@ int main() {
 }
 ~~~
 ~~~~~
-\lstset{emph={}, emphstyle=}
 
 It will be rendered as:
 
@@ -868,67 +826,18 @@ int main() {
     return 0;
 }
 ~~~
-\lstset{emph={}, emphstyle=}
-
-
-### Input Listing From File
-
-Source code files can be imported and rendered as fenced code blocks
-using the `\lstinputlisting` command.
-
-~~~{style=syntax}
-\lstinputlisting[options]{file}
-~~~
-
-Options
-
-* language
-* firstline
-* lastline
-* linerange
-
-\lstinputlisting[language=C++, style=listing]{input_listing.cpp}
 
 
 
-### Notes Syntax
+### Special Syntax
 
-Add embelishment on a _note_ text to highlight something for the reader.
-This feature is affected by the `escapechar` used.
-
-
-
-#### Terminal Output Notes
-
-Terminal output notes using `@\TNote{}@` command.
-
-````{style=terminal escapechar=$}
-~~~{style=terminal}
-@\TNote{This is the note syntax on a terminal style listing}\@
-~~~
-````
-
-The code above is rendered as:
-
-~~~{style=terminal}
-@\TNote{This is the note syntax on a terminal style listing}\@
-~~~
-
-#### Syntax and Listing Notes
-
-Syntax and listing notes using `@\LNote{}@` command.
+#### Notes or Comments
 
 ````{style=syntax escapechar=$}
-~~~{style=syntax}
-@\LNote{This is the note syntax on a syntax style listing}\@
+~~~{style=terminal}
+@\Note{comment/note text here}@     $\Note{This is the note syntax}$
 ~~~
 ````
-
-The code above is rendered as:
-
-~~~{style=syntax}
-@\LNote{This is the note syntax on a syntax style listing}\@
-~~~
 
 
 
@@ -986,7 +895,8 @@ It is possible to put a fenced code block within a block quote. The
 fenced code block must align with the block quote text.
 
 ```{style=syntax}
-> This is a block quote and the following fenced code block is indented.
+> This is a block quote and the following is a code block indented
+> with five spaces.
 >
 > ~~~
 > int main() {
@@ -999,7 +909,8 @@ fenced code block must align with the block quote text.
 The fenced code block will appear indented inside the block quote as
 in the following output.
 
-> This is a block quote and the following fenced code block is indented.
+> This is a block quote and the following code block is indented with five
+> spaces.
 >
 > ~~~
 > int main() {
@@ -1289,12 +1200,12 @@ allowed to indent only the first line of the paragraph.
 ~~~{style=syntax}
 * List Item
 
-    First paragraph in a list item. Lorem ipsum         @\LNote{Indented first line}@
+    First paragraph in a list item. Lorem ipsum         @\Note{Indented first line}@
 dolor sit amet, consectetuer adipiscing elit. Ut
 purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis.
 
-    Second paragraph in a list item. Lorem ipsum        @\LNote{Indented block}@
+    Second paragraph in a list item. Lorem ipsum        @\Note{Indented block}@
     dolor sit amet, consectetuer adipiscing elit.
     Ut purus elit, vestibulum ut, placerat ac,
     adipiscing vitae, felis.
@@ -1382,12 +1293,12 @@ Each new list item using the symbol will take up where the last
 stopped. For example:
 
 ~~~{escapechar=! style=syntax}
-(@)  First example.         !\LNote{1}!
-(@)  Second example.        !\LNote{2}!
+(@)  First example.         !\Note{1}!
+(@)  Second example.        !\Note{2}!
 
-...                         !\LNote{Any number of block-level content}!
+...                         !\Note{Any number of block-level content}!
 
-(@)  Third example.         !\LNote{3}!
+(@)  Third example.         !\Note{3}!
 ~~~
 
 The following example is how the above Markdown may be applied and
@@ -1463,9 +1374,8 @@ adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
 nonummy eget, consectetuer id, vulputate a, magna.
 
-    \lstset{emph={git --version}, emphstyle=\bfseries}
     ~~~{.bash style=terminal}
-    $ git --version
+    $ @\CMDb{git --version}@
     git version 2.22.0
     ~~~
 
@@ -1483,9 +1393,8 @@ adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris. Nam arcu libero,
 nonummy eget, consectetuer id, vulputate a, magna.
 
-    \lstset{emph={git --version}, emphstyle=\bfseries}
     ~~~{.bash style=terminal}
-    $ git --version
+    $ @\CMDb{git --version}@
     git version 2.22.0
     ~~~
 
@@ -1614,7 +1523,7 @@ consecutively.
 
 ~~~{style=syntax}
 This is for the second and third footnotes.[^second_footnote]
-[^third_footnote]               @\LNote{can be continued in a new line}@
+[^third_footnote]               @\Note{can be continued in a new line}@
 
 
 [^second_footnote]: This is the second footnote.

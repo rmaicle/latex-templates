@@ -69,8 +69,8 @@ shell. Italicized texts after \ding{224}\space symbols are meant to
 be comments, notes, or additional information for the reader.
 
 ~~~{style=terminal}
-$ echo "hello, world" >> ~/hello.txt    @\Note{Put content to file}@
-$ cat ~/hello.txt                       @\Note{Display contents of file}@
+$ echo "hello, world" >> ~/hello.txt    @\TNote{Put content to file}@
+$ cat ~/hello.txt                       @\TNote{Display contents of file}@
 $ hello, world
 ~~~
 
@@ -80,7 +80,7 @@ symbols are meant to be comments, notes, or additional information
 for the reader.
 
 ~~~{style=syntax}
-@\Note{Result of executing 'pandoc ---help'}@
+@\TNote{Result of executing 'pandoc ---help'}@
 pandoc [OPTIONS] [FILES]
   -f FORMAT, -r FORMAT  --from=FORMAT, --read=FORMAT
   -t FORMAT, -w FORMAT  --to=FORMAT, --write=FORMAT

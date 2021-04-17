@@ -1,6 +1,35 @@
 ---
+classoption:
+    - titlepage
+    - oneside
+    - openright
+documentclass: memoir
+papersize: a4
+geometry:
+    - left=1.0in
+    - right=1.0in
+    - top=1.0in
+    - bottom=1.0in
+    - bindingoffset=0.5in
+hyperref:
+    - colorlinks=false
+    - hyperfootnotes=false
+    - bookmarks=true,
+    - pdftoolbar=true,
+    - pdfmenubar=true,
+    - pdfstartview={null null 100},
+    - breaklinks=true
+toc: true
+toc-depth: 3
+secnumdepth: 5
+indent: true
+# mainfont:
+# sansfont:
+# monofont:
+# mathfont:
+
 title: Document Creation Guide
-short-title: Document Creation Guide
+shorttitle: Document Creation Guide
 subtitle: Creating PDF Documents Using Markdown
 author:
   name: Ricardo I. Maicle
