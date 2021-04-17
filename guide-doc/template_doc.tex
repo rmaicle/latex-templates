@@ -31,6 +31,11 @@
 % All fixes are now in the LaTeX kernel.
 % See the latexrelease package for details.
 
+\usepackage[nopar]{lipsum}
+% Use upquote, if available, for straight quotes in verbatim environments.
+% Must be loaded after other fonts.
+\usepackage{upquote}
+
 % Subscripts
 % Using \textsubscript in a section heading, hyperref will cause an
 % error. To circumvent this, use \texorpdfstring.
@@ -634,12 +639,6 @@ $endif$
 \usepackage{fancyhdr}
 % For N of M page numbering
 \usepackage{lastpage}
-
-\usepackage[nopar]{lipsum}
-
-% Use upquote, if available, for straight quotes in verbatim environments.
-% Must be loaded after other fonts.
-\usepackage{upquote}
 
 % Allow verbatim texts in footnotes
 % Error: Undefined control sequence
