@@ -9,16 +9,16 @@ param_output_image_generate=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
-        -debug)         param_debug="-debug"
+        --debug)        param_debug="-debug"
                         shift
                         ;;
         -o)             param_output_latex="-o"
                         shift
                         ;;
-        -showframe)     param_show_frame="-showframe"
+        --showframe)    param_show_frame="-showframe"
                         shift
                         ;;
-        -imagex)        param_output_image_generate="-imagex"
+        --imagex)       param_output_image_generate="-imagex"
                         shift
                         ;;
         *)              break ;;
