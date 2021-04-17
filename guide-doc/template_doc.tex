@@ -806,11 +806,6 @@ $endif$
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
-    % Note on using \nopagebreak instead of \nobreak
-    % https://tex.stackexchange.com/questions/94217
-    % Using 2pt just because the chapter title uses 2pt font size
-    % bigger than the section title
-    %\renewcommand\afterchaptertitle{\par\nopagebreak\vspace{2pt}}
 }
 
 \chapterstyle{rmsimple}
