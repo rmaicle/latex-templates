@@ -98,6 +98,7 @@
 \usepackage[
     protrusion=true,
     expansion=true,
+    letterspace=-12,        % compress the letters in \Note in code listings
     kerning=false]{microtype}
 \fi
 
@@ -359,21 +360,14 @@
 \fi
 
 \ifpdftex
-    \newcommand{\TNote}[1]{%
-        \ding{224}\space{\usefont{T1}{zlmtt}{rm}{it}\footnotesize{#1}}}
-    \newcommand{\LNote}[1]{%
-        \ding{224}\space{\usefont{T1}{fvm}{rm}{it}\footnotesize{#1}}}
-    % Just an alias to LNote so we don't have to change the
-    % source files now.
-    \newcommand{\Note}[1]{%
-        \ding{224}\space{\usefont{T1}{fvm}{rm}{it}\footnotesize{#1}}}
+    % \newcommand{\TNote}[1]{\ding{224}\space{#1}}
+    % \newcommand{\LNote}[1]{\ding{224}\space{#1}}
+    \newcommand{\TNote}[1]{\ding{224}\space{\usefont{T1}{lmtt}{m}{n}\TRMFontSize\selectfont\lsstyle{#1}}}
+    \newcommand{\LNote}[1]{\ding{224}\space\texttt{#1}}
 \fi
 \ifxetex
     \newcommand{\TNote}[1]{\ding{224}\enskip\texttt{#1}}
     \newcommand{\LNote}[1]{\ding{224}\enskip\texttt{#1}}
-    % Just an alias to LNote so we don't have to change the
-    % source files now.
-    \newcommand{\Note}[1]{\ding{224}\enskip\texttt{#1}}
 \fi
 
 $if(listings)$
