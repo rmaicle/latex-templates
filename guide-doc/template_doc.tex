@@ -402,49 +402,49 @@ $if(listings)$
         xleftmargin=28pt    % Left-align with listings
     }
 
-\ifpdftex
-    \lstdefinestyle{terminal}{
-        style=common,
-        basicstyle=\TerminalFont,
-        numberstyle=\footnotesize\color{DimGray},
-        basewidth=0.503em,
-        % basewidth=0.58em,  % When using lmttc
-        % basewidth=0.58em,  % When using zlmtt light condensed
-        lineskip=-1pt,
-    }
+    \ifpdftex
+        \lstdefinestyle{terminal}{
+            style=common,
+            basicstyle=\TerminalFont,
+            numberstyle=\footnotesize\color{DimGray},
+            basewidth=0.503em,
+            % basewidth=0.58em,  % When using lmttc
+            % basewidth=0.58em,  % When using zlmtt light condensed
+            lineskip=-1pt,
+        }
 
-    \lstdefinestyle{listingcommon}{
-        style=common,
-        basicstyle=\ListingFont,
-        keywordstyle=\color{NavyBlue},
-        stringstyle=\color{Brown},
-        commentstyle=\color{Green},
-        numberstyle=\footnotesize\color{DimGray},
-        basewidth=0.58em,
-        lineskip=-1pt,
-    }
-\fi
-\ifxetex
-    \lstdefinestyle{terminal}{
-        style=common,
-        basicstyle=\normalsize\ttfamily,
-        numberstyle=\small\ttfamily\color{DimGray},
-        basewidth=0.54em,
-        lineskip=0pt,
-    }
+        \lstdefinestyle{listingcommon}{
+            style=common,
+            basicstyle=\ListingFont,
+            keywordstyle=\color{NavyBlue},
+            stringstyle=\color{Brown},
+            commentstyle=\color{Green},
+            numberstyle=\footnotesize\color{DimGray},
+            basewidth=0.58em,
+            lineskip=-1pt,
+        }
+    \fi
+    \ifxetex
+        \lstdefinestyle{terminal}{
+            style=common,
+            basicstyle=\normalsize\ttfamily,
+            numberstyle=\small\ttfamily\color{DimGray},
+            basewidth=0.54em,
+            lineskip=0pt,
+        }
 
-    \lstdefinestyle{listingcommon}{
-        style=common,
-        basicstyle=\normalsize\ttfamily,
-        keywordstyle=\color{NavyBlue},
-        stringstyle=\color{Brown},
-        commentstyle=\color{Green},
-        numberstyle=\small\ttfamily\color{DimGray},
-        numberstyle=\small\ttfamily\color{DimGray},
-        basewidth=0.54em,
-        lineskip=0pt,
-    }
-\fi
+        \lstdefinestyle{listingcommon}{
+            style=common,
+            basicstyle=\normalsize\ttfamily,
+            keywordstyle=\color{NavyBlue},
+            stringstyle=\color{Brown},
+            commentstyle=\color{Green},
+            numberstyle=\small\ttfamily\color{DimGray},
+            numberstyle=\small\ttfamily\color{DimGray},
+            basewidth=0.54em,
+            lineskip=0pt,
+        }
+    \fi
 
     \lstdefinestyle{syntax}{
         style=listingcommon
@@ -498,34 +498,34 @@ $if(listings)$
     % but commenting it out still produces an error.
     \newcommand{\passthrough}[1]{#1}
 
-% Make lstinline use a different font size than in lstlistings or
-% lstinputlisting which affects only texts other than in listings.
-%   \lst@AddToHook{TextStyle}{%
-%       \let\lst@basicstyle\normalsize\%
-%       fontfamily{zi4}\selectfont}
-% Ref: https://latex.org/forum/viewtopic.php?t=2072
-\ifpdftex
-    % Choices:
-    % \large\fontfamily{cmtt}\selectfont}
-    % \normalsize\fontfamily{fvm}\selectfont}
-    \makeatletter
-    \lst@AddToHook{TextStyle}{%
-        \let\lst@basicstyle%
-        \normalsize\usefont{T1}{fvm}{m}{n}\selectfont}
+    % Make lstinline use a different font size than in lstlistings or
+    % lstinputlisting which affects only texts other than in listings.
+    %   \lst@AddToHook{TextStyle}{%
+    %       \let\lst@basicstyle\normalsize\%
+    %       fontfamily{zi4}\selectfont}
+    % Ref: https://latex.org/forum/viewtopic.php?t=2072
+    \ifpdftex
+        % Choices:
+        % \large\fontfamily{cmtt}\selectfont}
+        % \normalsize\fontfamily{fvm}\selectfont}
+        \makeatletter
+        \lst@AddToHook{TextStyle}{%
+            \let\lst@basicstyle%
+            \normalsize\usefont{T1}{fvm}{m}{n}\selectfont}
 
-    \makeatother
-\fi
-\ifxetex
-    \makeatletter
-    \lst@AddToHook{TextStyle}{%
-        \let\lst@basicstyle\inlinettfont\selectfont}
-    \makeatother
+        \makeatother
+    \fi
+    \ifxetex
+        \makeatletter
+        \lst@AddToHook{TextStyle}{%
+            \let\lst@basicstyle\inlinettfont\selectfont}
+        \makeatother
 
-    % How to redefine a command
-    % https://tex.stackexchange.com/questions/36175
-    \providecommand\texttt{}
-    \renewcommand{\texttt}[1]{\inlinettfont{#1}}
-\fi
+        % How to redefine a command
+        % https://tex.stackexchange.com/questions/36175
+        \providecommand\texttt{}
+        \renewcommand{\texttt}[1]{\inlinettfont{#1}}
+    \fi
 
 $endif$
 
