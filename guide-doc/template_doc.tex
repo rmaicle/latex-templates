@@ -326,13 +326,10 @@
 \ifpdftex
     \newcommand*\TerminalFont{%
         \usefont{T1}{zlmtt}{m}{n}\TRMFontSize\selectfont\lsstyle}
-\fi
-
-% Shrink the code listings
-% Can only be used if pdf engine is pdflatex.
-% Ref: Shrinking monospace style for listings package
-%      https://tex.stackexchange.com/questions/33020/
-\ifpdftex
+    % Shrink the code listings
+    % Can only be used if pdf engine is pdflatex.
+    % Ref: Shrinking monospace style for listings package
+    %      https://tex.stackexchange.com/questions/33020/
     \newcommand*\ListingFont{\ttfamily\LSTFontSize\selectfont\lsstyle}
 \fi
 
