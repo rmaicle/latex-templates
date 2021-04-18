@@ -365,14 +365,10 @@
 \fi
 
 \ifpdftex
-    % \newcommand{\TNote}[1]{\ding{224}\space{#1}}
-    % \newcommand{\LNote}[1]{\ding{224}\space{#1}}
-    \newcommand{\TNote}[1]{\ding{224}\space{\usefont{T1}{lmtt}{m}{n}\TRMFontSize\selectfont\lsstyle{#1}}}
-    \newcommand{\LNote}[1]{\ding{224}\space\texttt{#1}}
+    \newcommand{\Note}[1]{\ding{224}\space{#1}}
 \fi
 \ifxetex
-    \newcommand{\TNote}[1]{\ding{224}\enskip\texttt{#1}}
-    \newcommand{\LNote}[1]{\ding{224}\enskip\texttt{#1}}
+    \newcommand{\Note}[1]{\ding{224}\enskip\texttt{#1}}
 \fi
 
 $if(listings)$
