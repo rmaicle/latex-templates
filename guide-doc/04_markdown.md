@@ -125,10 +125,10 @@ have a header row which displays the column names, a delimiter row,
 and the data rows.
 
 ~~~{style=syntax}
-|          |          |          |      @\LNote{header row}@
-|----------|----------|----------|      @\LNote{delimiter row}@
-|          |          |          |      @\LNote{data row}@
-|          |          |          |      @\LNote{data row}@
+|          |          |          |      @\Note{header row}@
+|----------|----------|----------|      @\Note{delimiter row}@
+|          |          |          |      @\Note{data row}@
+|          |          |          |      @\Note{data row}@
 ~~~
 
 
@@ -206,7 +206,7 @@ One can put a table caption by wrapping the block inside a _table_
 block and using `\caption{caption text here}`.
 
 ~~~{style=syntax}
-\begin{table}[h]                                                @\LNote{table block start}@
+\begin{table}[h]                                                @\Note{table block start}@
 \begin{center}
 \begin{tabular}{ l p{10cm} }
     \toprule
@@ -222,9 +222,9 @@ block and using `\caption{caption text here}`.
     \bottomrule
 \end{tabular}
 \end{center}
-\caption{This is your caption text.}                            @\LNote{caption}@
+\caption{This is your caption text.}                            @\Note{caption}@
 \label{tab:table_id}
-\end{table}                                                     @\LNote{table block end}@
+\end{table}                                                     @\Note{table block end}@
 ~~~
 
 The table may be referenced using `\ref{tab:table_id}` like this
@@ -264,10 +264,10 @@ spaces or one tab character. It must be preceeded and followed by one
 or more blank lines.
 
 ~~~{style=syntax}
-@\LNote{blank line}@
-____verbatim text here    @\LNote{indented 4 spaces}@
-________indented text     @\LNote{indented 8 spaces}@
-@\LNote{blank line}@
+@\Note{blank line}@
+____verbatim text here    @\Note{indented 4 spaces}@
+________indented text     @\Note{indented 8 spaces}@
+@\Note{blank line}@
 ~~~
 
 The indented code block above is rendered as
@@ -290,9 +290,9 @@ verbatim text.
 The following shows how to define a fenced code block.
 
 ~~~~~{style=syntax}
-~~~    @\LNote{fence}@
+~~~    @\Note{fence}@
 ...
-~~~    @\LNote{fence}@
+~~~    @\Note{fence}@
 ~~~~~
 
 For consistency, _fenced code blocks_ are surrounded by blank lines.
@@ -302,11 +302,11 @@ when wrapping a fenced code block that uses the tilde (`~`)
 characters. It may be best to show this as an example.
 
 ~~~~~{style=syntax}
-```     @\LNote{enclosing fence using 3 the backtick characters}@
-~~~     @\LNote{start of the enclosed fenced code block to be displayed}@
-...     @\LNote{contents}@
-~~~     @\LNote{end of the enclosed fenced code block to be displayed}@
-```     @\LNote{end of enclosing fence}@
+```     @\Note{enclosing fence using 3 the backtick characters}@
+~~~     @\Note{start of the enclosed fenced code block to be displayed}@
+...     @\Note{contents}@
+~~~     @\Note{end of the enclosed fenced code block to be displayed}@
+```     @\Note{end of enclosing fence}@
 ~~~~~
 
 It is also possible to use the tilde (`~`) characters to wrap a fenced
@@ -315,11 +315,11 @@ characters must be more than the enclosed fenced code block tilde
 characters.
 
 `````{style=syntax}
-~~~~~   @\LNote{enclosing fence using 5 tilde characters}@
-~~~     @\LNote{start of the enclosed fenced code block to be displayed}@
-...     @\LNote{contents}@
-~~~     @\LNote{end of the enclosed fenced code block to be displayed}@
-~~~~~   @\LNote{end of enclosing fence}@
+~~~~~   @\Note{enclosing fence using 5 tilde characters}@
+~~~     @\Note{start of the enclosed fenced code block to be displayed}@
+...     @\Note{contents}@
+~~~     @\Note{end of the enclosed fenced code block to be displayed}@
+~~~~~   @\Note{end of enclosing fence}@
 `````
 
 
@@ -464,11 +464,11 @@ a code block, either define another escape character or disable the
 use of the escape character by defining a blank.
 
 ````{style=syntax escapechar=$}
-~~~{escapechar=!}       $\LNote{Replace with exclamation character}$
+~~~{escapechar=!}       $\Note{Replace with exclamation character}$
 The at ('@') symbol.
 ~~~
 
-~~~{escapechar=}        $\LNote{Declare as blank}$
+~~~{escapechar=}        $\Note{Declare as blank}$
 The at ('@') symbol.
 ~~~
 ````
@@ -541,7 +541,7 @@ are sometimes highlighted by displaying them in bold text.
 ~~~{style=terminal}
 12345678901234567890123456789012345678901234567890123456789012345678901234567890123
 $        1         2         3         4         5         6         7         8
-$ sudo pacman -Syyu         @\TNote{command}@
+$ sudo pacman -Syyu         @\Note{command}@
 [sudo] password for <user>:
 :: Synchronizing package databases...
  core                      148.9 KiB   596K/s 00:00 [####################] 100%
@@ -894,40 +894,43 @@ Options
 ### Notes Syntax
 
 Add embelishment on a _note_ text to highlight something for the reader.
+Notes can be used in terminal output and code listings using the
+`@\Note{}@` command.
+
 This feature is affected by the `escapechar` used.
 
 
 
 #### Terminal Output Notes
 
-Terminal output notes using `@\TNote{}@` command.
+Terminal output notes using `@\Note{}@` command.
 
 ````{style=terminal escapechar=$}
 ~~~{style=terminal}
-@\TNote{This is the note syntax on a terminal style listing}\@
+@\Note{This is the note syntax on a terminal style listing}\@
 ~~~
 ````
 
 The code above is rendered as:
 
 ~~~{style=terminal}
-@\TNote{This is the note syntax on a terminal style listing}\@
+@\Note{This is the note syntax on a terminal style listing}\@
 ~~~
 
 #### Syntax and Listing Notes
 
-Syntax and listing notes using `@\LNote{}@` command.
+Syntax and listing notes using `@\Note{}@` command.
 
 ````{style=syntax escapechar=$}
 ~~~{style=syntax}
-@\LNote{This is the note syntax on a syntax style listing}\@
+@\Note{This is the note syntax on a syntax style listing}\@
 ~~~
 ````
 
 The code above is rendered as:
 
 ~~~{style=syntax}
-@\LNote{This is the note syntax on a syntax style listing}\@
+@\Note{This is the note syntax on a syntax style listing}\@
 ~~~
 
 
@@ -1289,12 +1292,12 @@ allowed to indent only the first line of the paragraph.
 ~~~{style=syntax}
 * List Item
 
-    First paragraph in a list item. Lorem ipsum         @\LNote{Indented first line}@
+    First paragraph in a list item. Lorem ipsum         @\Note{Indented first line}@
 dolor sit amet, consectetuer adipiscing elit. Ut
 purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis.
 
-    Second paragraph in a list item. Lorem ipsum        @\LNote{Indented block}@
+    Second paragraph in a list item. Lorem ipsum        @\Note{Indented block}@
     dolor sit amet, consectetuer adipiscing elit.
     Ut purus elit, vestibulum ut, placerat ac,
     adipiscing vitae, felis.
@@ -1321,7 +1324,7 @@ the block with four (4) spaces.
 
 ~~~{style=syntax}
 * List Item. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+  Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 
     ~~~{style=syntax}
     #include <iostream>
@@ -1335,7 +1338,7 @@ Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 The following is the output of the Markdown above.
 
 * List Item. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+  Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 
     ~~~{style=syntax}
     #include <iostream>
@@ -1354,7 +1357,7 @@ the block with four (4) spaces.
 
 ~~~{style=syntax}
 * List Item. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+  Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 
     > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit,
     > vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida
@@ -1364,7 +1367,7 @@ Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 The following is the output of the Markdown above.
 
 * List Item. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+  Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 
     > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit,
     > vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida
@@ -1382,12 +1385,12 @@ Each new list item using the symbol will take up where the last
 stopped. For example:
 
 ~~~{escapechar=! style=syntax}
-(@)  First example.         !\LNote{1}!
-(@)  Second example.        !\LNote{2}!
+(@)  First example.         !\Note{1}!
+(@)  Second example.        !\Note{2}!
 
-...                         !\LNote{Any number of block-level content}!
+...                         !\Note{Any number of block-level content}!
 
-(@)  Third example.         !\LNote{3}!
+(@)  Third example.         !\Note{3}!
 ~~~
 
 The following example is how the above Markdown may be applied and
@@ -1614,7 +1617,7 @@ consecutively.
 
 ~~~{style=syntax}
 This is for the second and third footnotes.[^second_footnote]
-[^third_footnote]               @\LNote{can be continued in a new line}@
+[^third_footnote]               @\Note{can be continued in a new line}@
 
 
 [^second_footnote]: This is the second footnote.

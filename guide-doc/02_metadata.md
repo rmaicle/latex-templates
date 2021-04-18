@@ -17,11 +17,11 @@ in these line markers except YAML comments. YAML comments start with
 the hash (`#`) character and ends until the end of the line.
 
 ~~~~~{style=syntax}
---- # This is a YAML comment        @\LNote{start marker with a comment}@
-    # Metadata definitions are      @\LNote{comment}@
-    #   placed here between the     @\LNote{comment}@
-    #   the '---' line markers.     @\LNote{comment}@
----                                 @\LNote{end marker}@
+--- # This is a YAML comment        @\Note{start marker with a comment}@
+    # Metadata definitions are      @\Note{comment}@
+    #   placed here between the     @\Note{comment}@
+    #   the '---' line markers.     @\Note{comment}@
+---                                 @\Note{end marker}@
 ~~~~~
 
 All YAML metadata definitions are treated as texts.
