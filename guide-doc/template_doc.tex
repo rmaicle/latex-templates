@@ -175,13 +175,13 @@
     % condensed style may be used instead but I think it is too narrow
     % and thin on screen. I am not sure yet how it looks in print.
 
-    \usepackage[scaled=1.0, proportional, lightcondensed]{zlmtt}
+    \usepackage[scaled=1.12]{zlmtt}
 
     % Make default fonts
     % ------------------
     \renewcommand*\rmdefault{put} % utopia
     \renewcommand*\sfdefault{phv}
-    \renewcommand*\ttdefault{fvm}
+    \renewcommand*\ttdefault{zlmtt}
     % Change the default font
     % https://stackoverflow.com/questions/877597/
     % \renewcommand{\familydefault}{\sfdefault}
@@ -319,18 +319,19 @@
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
-\newcommand\TRMFontSize{\small}
+\newcommand\TRMFontSize{\footnotesize}
 \newcommand\LSTFontSize{\small}
 
 % If you prefer a slashed zero, this is not it.
 \ifpdftex
     \newcommand*\TerminalFont{%
-        \usefont{T1}{zlmtt}{m}{n}\TRMFontSize\selectfont\lsstyle}
+        \usefont{T1}{zlmtt}{l}{n}\TRMFontSize\selectfont\lsstyle}
     % Shrink the code listings
     % Can only be used if pdf engine is pdflatex.
     % Ref: Shrinking monospace style for listings package
     %      https://tex.stackexchange.com/questions/33020/
-    \newcommand*\ListingFont{\ttfamily\LSTFontSize\selectfont\lsstyle}
+    \newcommand*\ListingFont{%
+        \usefont{T1}{fvm}{l}{n}\LSTFontSize\selectfont\lsstyle}
 \fi
 
 \ifpdftex
@@ -407,7 +408,7 @@ $if(listings)$
             style=common,
             basicstyle=\TerminalFont,
             numberstyle=\footnotesize\color{DimGray},
-            basewidth=0.503em,
+            basewidth=0.504em,
             % basewidth=0.58em,  % When using lmttc
             % basewidth=0.58em,  % When using zlmtt light condensed
             lineskip=-1pt,
@@ -511,7 +512,7 @@ $if(listings)$
         \makeatletter
         \lst@AddToHook{TextStyle}{%
             \let\lst@basicstyle%
-            \large\usefont{T1}{zlmtt}{l}{n}\selectfont}
+            \normalsize\usefont{T1}{zlmtt}{l}{n}\selectfont}
         \makeatother
     \fi
     \ifxetex
