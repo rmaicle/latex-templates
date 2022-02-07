@@ -2,44 +2,118 @@
 
 # Script for building the doc guide
 
+declare SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+declare DOC_BIN="mdtopdf.sh"
+if ! command -v ${DOC_BIN} &> /dev/null
+then
+    echo_error "File not found: ${DOC_BIN}"
+    exit 1
+fi
+declare DOC_OUT_DIR="./"
+declare DOC_OUT_FILE="doc-guide"
+
+
+source /usr/local/bin/dirstack.sh
+source /usr/local/bin/echo.sh
+
+# echo_error() {
+#     local color_red='\033[0;31m'
+#     local color_off='\033[0m'
+#     echo -e "${color_red}Error: ${@}${color_off}"
+# }
+
+#
+# Display script usage
+#
+function show_usage() {
+cat << EOF
+Script for creating PDF documentation using LaTeX.
+
+Usage:
+  ${0##*/} [-debug] [option...] doc-id
+
+Values for doc-id:
+$(printf '  %s\n' ${DOCUMENTS[@]})
+
+Options:
+  -h, --help            print help and exit.
+      --debug           run script in debug mode.
+      --draft           generate draft version PDF document.
+      --latex           output TeX/LaTeX file.
+      --markdown file   use input mardown content file
+      --no-image        do not generate TeX images.
+      --no-frontmatter  do not generate user-supplied frontmatter contents
+      --no-backmatter   do not generate user-supplied backmatter contents
+      --paper           paper size; default is usletter
+                          usletter
+                          a4
+      --show-frame      show page margins.
+
+NOTE: Including source files using pp !source(...) is relative to the
+      LaTeX/TeX template directory.
+EOF
+}
+
+
+
+# if [[ $# -eq 0 ]] || [[ "${1}" = "--help" ]]; then
+#     show_usage
+#     exit
+# fi
+
+declare -r INPUT_FILE="filelist.txt"
 param_debug=""
-param_show_frame=""
+param_no_backmatter=""
+param_no_frontmatter=""
+param_no_image=""
+param_markdown_file="${INPUT_FILE}"
 param_output_latex=""
-param_output_image_generate=""
-param_source="./source.txt"
-# param_source="./source_test.txt"
+param_show_frame=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
-        --debug)        param_debug="-debug"
-                        shift
-                        ;;
-        -o)             param_output_latex="-o"
-                        shift
-                        ;;
-        --showframe)    param_show_frame="-showframe"
-                        shift
-                        ;;
-        --imagex)       param_output_image_generate="-imagex"
-                        shift
-                        ;;
-        --source)       param_source="${2}"; shift 2 ;;
-        *)              break ;;
+        --debug)            param_debug="--debug" ; shift ;;
+        --latex)            param_output_latex="--latex" ; shift ;;
+        --markdown)         param_markdown_file="${2}" ; shift 2 ;;
+        --no-image)         param_no_image="--no-image" ; shift ;;
+        --no-frontmatter)   param_no_frontmatter="--no-frontmatter" ; shift ;;
+        --no-backmatter)    param_no_backmatter="--no-backmatter" ; shift ;;
+        --show-frame)       param_show_frame="--show-frame" ; shift ;;
+        *)                  break ;;
     esac
 done
 
-../../md-to-pdf/build.sh                \
-    ${param_debug}                      \
-    -softcopy                           \
-    -papersize usletter                 \
-    -fontsize 10                        \
-    `#-beforetitlerule -1pt`               \
-    `#-aftertitlerule 7.2pt`               \
-    ${param_show_frame}                 \
-    ${param_output_image_generate}      \
-    `#-copyrightx`                      \
-    -i "${param_source}"                \
-    -tf template_doc.tex                \
-    ${param_output_latex}               \
-    -od ./                              \
-    -of document-creation-guide
+# ../../md-to-pdf/build.sh                \
+#     ${param_debug}                      \
+#     -softcopy                           \
+#     -papersize usletter                 \
+#     -fontsize 10                        \
+#     `#-beforetitlerule -1pt`               \
+#     `#-aftertitlerule 7.2pt`               \
+#     ${param_show_frame}                 \
+#     ${param_output_image_generate}      \
+#     `#-copyrightx`                      \
+#     -i "${param_source}"                \
+#     -tf template_doc.tex                \
+#     ${param_output_latex}               \
+#     -od ./                              \
+#     -of document-creation-guide
+
+
+if [ ! -f "${param_markdown_file}" ]; then
+    echo "Error: Input markdown content file not found: ${param_markdown_file}"
+    exit 1
+fi
+${DOC_BIN}                                      \
+    ${param_debug}                              \
+    --paper usletter                            \
+    ${param_show_frame}                         \
+    ${param_no_image}                           \
+    ${param_no_frontmatter}                     \
+    ${param_no_backmatter}                      \
+    --markdown "${param_markdown_file}"         \
+    --template template_doc.tex                 \
+    ${param_output_latex}                       \
+    --od ${DOC_OUT_DIR}                         \
+    --of ${DOC_OUT_FILE}
