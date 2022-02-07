@@ -11,17 +11,14 @@ then
     exit 1
 fi
 declare DOC_OUT_DIR="./"
-declare DOC_OUT_FILE="doc-guide"
+declare DOC_OUT_FILE="guide-doc"
+
 
 
 source /usr/local/bin/dirstack.sh
 source /usr/local/bin/echo.sh
 
-# echo_error() {
-#     local color_red='\033[0;31m'
-#     local color_off='\033[0m'
-#     echo -e "${color_red}Error: ${@}${color_off}"
-# }
+
 
 #
 # Display script usage
@@ -57,11 +54,6 @@ EOF
 
 
 
-# if [[ $# -eq 0 ]] || [[ "${1}" = "--help" ]]; then
-#     show_usage
-#     exit
-# fi
-
 declare -r INPUT_FILE="filelist.txt"
 param_debug=""
 param_no_backmatter=""
@@ -84,21 +76,6 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-# ../../md-to-pdf/build.sh                \
-#     ${param_debug}                      \
-#     -softcopy                           \
-#     -papersize usletter                 \
-#     -fontsize 10                        \
-#     `#-beforetitlerule -1pt`               \
-#     `#-aftertitlerule 7.2pt`               \
-#     ${param_show_frame}                 \
-#     ${param_output_image_generate}      \
-#     `#-copyrightx`                      \
-#     -i "${param_source}"                \
-#     -tf template_doc.tex                \
-#     ${param_output_latex}               \
-#     -od ./                              \
-#     -of document-creation-guide
 
 
 if [ ! -f "${param_markdown_file}" ]; then
