@@ -1736,6 +1736,96 @@ See the result.[^newline_footnote]
 
 
 
+### Table Footnotes
+
+Put footnote markers inside the table and display footnote texts at the bottom of the table.
+
+~~~{style=syntax}
+\begin{center}
+\captionof{table}{Server hardware options summary}
+\begin{threeparttable}[t]
+\centering
+    \begin{tabular}{ l l p{8cm} }
+    \toprule
+    {\textbf{Category}} & {\textbf{Description}} \\
+    \midrule
+    Processor          & Intel Xeon Intel Xeon Silver 4210R \\
+    Memory             & 128GB RDIMM 2666MT/s \\
+    Storage Controller & Onboard SATA/SAS RAID Controller \\
+    Hard Disks         & 2 x 1TB 7.2K RPM SATA 6Gbps 512n 2.5in Hot-plug \\
+    Network Controller & 1Gb LOM (LAN on motherboard) \\
+    Power Supply       & Redundant Hot-Swap Power Supply\tnote{1} \\
+    Form Factor        & Tower (rack-mountable)\tnote{2} \\
+    \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+        \small
+        \item[1] Total wattage is dependent on system components.
+        \item[2] Tower servers are quieter than their rack equivalents.
+    \end{tablenotes}
+\end{threeparttable}
+\end{center}
+~~~
+
+\begin{center}
+\captionof{table}{Server hardware options summary}
+\begin{threeparttable}[t]
+\centering
+    \begin{tabular}{ l l p{8cm} }
+    \toprule
+    {\textbf{Category}} & {\textbf{Description}} \\
+    \midrule
+    Processor          & Intel Xeon Intel Xeon Silver 4210R \\
+    Memory             & 128GB RDIMM 2666MT/s \\
+    Storage Controller & Onboard SATA/SAS RAID Controller \\
+    Hard Disks         & 2 x 1TB 7.2K RPM SATA 6Gbps 512n 2.5in Hot-plug \\
+    Network Controller & 1Gb LOM (LAN on motherboard) \\
+    Power Supply       & Redundant Hot-Swap Power Supply\tnote{1} \\
+    Form Factor        & Tower (rack-mountable)\tnote{2} \\
+    \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+        \small
+        \item[1] Total wattage is dependent on system components.
+        \item[2] Tower servers are quieter than their rack equivalents.
+    \end{tablenotes}
+\end{threeparttable}
+\end{center}
+
+
+
+### LaTeX FootNote Code
+
+Sometimes formatting uses native LaTeX code wherein Markdown code is
+not possible to use.
+Here is an example of defining footnotes within a description list:
+
+~~~{style=syntax}
+\begin{description}[leftmargin=0.75in,labelindent=0.5in]
+\item[One]
+    Lorem ipsum\footnote{This is a footnote inside a description list}
+    dolor sit amet, consectetuer adipiscing elit.
+    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+\item[Two]
+    Lorem ipsum\footnote{Here is another footnote inside this description list}
+    dolor sit amet, consectetuer adipiscing elit.
+    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+\end{description}
+~~~
+
+\begin{description}[leftmargin=0.75in,labelindent=0.5in]
+\item[One]
+    Lorem ipsum\footnote{This is a footnote inside a description list}
+    dolor sit amet, consectetuer adipiscing elit.
+    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+\item[Two]
+    Lorem ipsum\footnote{Here is another footnote inside this description list}
+    dolor sit amet, consectetuer adipiscing elit.
+    Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+\end{description}
+
+
+
 ## Text Formatting
 
 ### Italics
