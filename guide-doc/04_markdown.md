@@ -1945,3 +1945,59 @@ Blocks of text may be indented using `\begin{addmargin}` and `\end{addmargin}`.
 \lipsum[2]
 \end{addmargin}
 
+
+
+### Same Line Left and Right Texts
+
+
+From _[https://tex.stackexchange.com/questions/294150/left-and-right-aligned-on-same-line](https://tex.stackexchange.com/questions/294150/left-and-right-aligned-on-same-line)_.
+
+~~~{style=syntax}
+\noindent\textbf{\underline{Student:}}
+\hfill
+\textbf{\underline{Supervisor:}} \
+Mr. Thatshisname
+\hfill
+Prof. Whatshisname
+\mbox{}\hfill{lone line}
+~~~
+
+Note that the code above uses `\noindent` since the document indents
+succeeding paragraphs of sections.
+
+\
+\noindent\textbf{\underline{Student:}}
+\hfill
+\textbf{\underline{Supervisor:}} \
+Mr. Thatshisname
+\hfill
+Prof. Whatshisname \
+\mbox{}\hfill{lone line} \
+
+The following is a variation of the code above where the texts at the
+right are left-aligned.
+
+~~~{style=syntax}
+\begin{minipage}{2in}
+\flushleft\textbf{\underline{Student:}} \\
+Mr. Thatshisname
+\end{minipage}
+\hfill
+\begin{minipage}{1.3in}
+\textbf{\underline{Supervisor:}} \\
+Prof. Whatshisname
+\end{minipage}
+~~~
+
+Note that the code uses `\flushleft` to _unindent_ the `minipage`.
+
+\
+\flushleft\begin{minipage}{2in}
+\textbf{\underline{Student:}} \\
+Mr. Thatshisname
+\end{minipage}
+\hfill
+\begin{minipage}{1.3in}
+\textbf{\underline{Supervisor:}} \\
+Prof. Whatshisname
+\end{minipage}
