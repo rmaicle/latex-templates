@@ -254,6 +254,26 @@ Or
 \end{center}
 ~~~
 
+\begin{center}
+\captionof{table}{Estimated Website Development Timeline}
+\begin{tabular}{ l l p{8cm} }
+    \toprule
+    {\textbf{Category}} & {\textbf{Description}}
+        & {\textbf{Classification}} \\
+    \midrule
+    1. Information Gathering    & 1-2 weeks \\
+    2. Planning                 & 1-2 weeks \\
+    3. Design                   & 2-4 weeks \\
+    4. Content Writing          & 4-8 weeks   & may be performed parallel with Frontend Coding\\
+    5. Frontend Coding          & 4-8 weeks \\
+    6. Testing                  & 4-8 weeks   & also performed during Fronend Coding for assessment
+                                                and feedback \\
+    7. Review and Launch        & 1-2 weeks   & depending on the availability of validators and
+                                                  decision makers for verification \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
 
 
 ## Code Block
