@@ -1928,3 +1928,20 @@ A space can be added by using `\space`.
 
 Add a page break by using `\pagebreak`.
 All contents after the `\pagebreak` will go to the next page.
+
+
+
+### Indenting Blocks of Text
+
+Blocks of text may be indented using `\begin{addmargin}` and `\end{addmargin}`.
+
+~~~{style=syntax}
+\begin{addmargin}[3em]{3em}% 3em left, 3em right
+\lipsum[2]
+\end{addmargin}
+~~~
+
+\begin{addmargin}[3em]{3em}% 3em left, 3em right
+\lipsum[2]
+\end{addmargin}
+
