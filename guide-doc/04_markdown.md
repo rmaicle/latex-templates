@@ -1564,6 +1564,54 @@ nonummy eget, consectetuer id, vulputate a, magna.
 
 
 
+#### Custom Indention
+
+It is sometimes necessary or desirable to indent the definition list.
+
+~~~{style=syntax}
+\begin{description}[leftmargin=\parindent,labelindent=\parindent]
+    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+               Ut purus elit, vestibulum ut, placerat ac, adipiscing
+               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
+               libero, nonummy eget, consectetuer id, vulputate a, magna.
+    \item[Two] second item
+    \item[Three] third item
+\end{description}
+~~~
+
+\begin{description}[leftmargin=\parindent,labelindent=\parindent]
+    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+               Ut purus elit, vestibulum ut, placerat ac, adipiscing
+               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
+               libero, nonummy eget, consectetuer id, vulputate a, magna.
+    \item[Two] second item
+    \item[Three] third item
+\end{description}
+
+Some variations:
+
+~~~{style=syntax}
+\begin{description}[leftmargin=0.75in,labelindent=0.5in]
+    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+               Ut purus elit, vestibulum ut, placerat ac, adipiscing
+               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
+               libero, nonummy eget, consectetuer id, vulputate a, magna.
+    \item[Two] second item
+    \item[Three] third item
+\end{description}
+~~~
+
+\begin{description}[leftmargin=0.75in,labelindent=0.5in]
+    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+               Ut purus elit, vestibulum ut, placerat ac, adipiscing
+               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
+               libero, nonummy eget, consectetuer id, vulputate a, magna.
+    \item[Two] second item
+    \item[Three] third item
+\end{description}
+
+
+
 ## Footnote
 
 A _footnote_ is text at the bottom of the page identified with a
