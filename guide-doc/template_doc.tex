@@ -273,12 +273,11 @@
 % description
 \usepackage{enumitem}
 
-% Make tight list
-% ---------------
-% Make lists use less vertical space between items by using 0 topsep.
-% Default indentation is 7pt.
-\setlist[itemize]{topsep=0ex, left=7pt}
-\setlist[enumerate]{topsep=0ex, left=7pt}
+% Make loose lists tighter
+% ------------------------
+% left 2.1em aligns with definition lists indented by 3em
+\setlist[itemize]{topsep=1ex, itemsep=0mm, left=2.1em}
+\setlist[enumerate]{topsep=1ex, itemsep=0mm, left=2.1em}
 
 % Deep levels
 % -----------
