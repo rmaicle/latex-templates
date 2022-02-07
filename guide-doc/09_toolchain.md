@@ -116,3 +116,11 @@ $ make install
 ~~~
 
 The `make install` command copies pp into `~/.local/bin`.
+
+
+
+## Panda
+
+Panda is a Pandoc Lua filter that works on internal Pandoc's AST.
+The source can be found at [https://github.com/CDSoft/panda](https://github.com/CDSoft/panda).
+http://christophe.delord.free.fr/panda/
