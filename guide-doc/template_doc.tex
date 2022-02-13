@@ -873,6 +873,14 @@ $endif$
 
 
 
+% Date and Time
+% =============
+% Package datetime2 replaces the datetime package which is now obsolete
+% according to the datetime2 package information.
+\usepackage[showisoZ=true]{datetime2}
+
+
+
 %\makeindex
 
 
@@ -1022,13 +1030,13 @@ $if(with_copyright)$
             \normalsize $source$\\[1.2em]
         $endif$
         \ifxetex
-            \normalsize PDF file generated using XeTeX %
+            \normalsize PDF file created using XeTeX %
                 \the\eTeXversion\eTeXrevision-%
-                \the\XeTeXversion\XeTeXrevision\space on \today.
+                \the\XeTeXversion\XeTeXrevision\space on \DTMnow.
         \else
-            \normalsize PDF file generated using pdfTeX %
+            \normalsize PDF file created using pdfTeX %
                 \the\eTeXversion\eTeXrevision-%
-                \the\pdftexversion.\pdftexrevision\space on \today.
+                \the\pdftexversion.\pdftexrevision\space on \DTMnow.
         \fi
     \end{flushleft}
     \pagebreak
