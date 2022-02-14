@@ -55,6 +55,8 @@ EOF
 
 
 declare -r INPUT_FILE="filelist.txt"
+declare -r DEFAULT_TEMPLATE_FILE="template_doc.tex"
+arg_template="${DEFAULT_TEMPLATE_FILE}"
 param_debug=""
 param_no_backmatter=""
 param_no_frontmatter=""
@@ -72,6 +74,7 @@ while [ $# -gt 0 ]; do
         --no-frontmatter)   param_no_frontmatter="--no-frontmatter" ; shift ;;
         --no-backmatter)    param_no_backmatter="--no-backmatter" ; shift ;;
         --show-frame)       param_show_frame="--show-frame" ; shift ;;
+        --template)         arg_template="${2}" ; shift 2 ;;
         *)                  break ;;
     esac
 done
@@ -90,7 +93,7 @@ ${DOC_BIN}                                      \
     ${param_no_frontmatter}                     \
     ${param_no_backmatter}                      \
     --markdown "${param_markdown_file}"         \
-    --template template_doc.tex                 \
+    --template "${arg_template}"                \
     ${param_output_latex}                       \
     --od ${DOC_OUT_DIR}                         \
     --of ${DOC_OUT_FILE}
