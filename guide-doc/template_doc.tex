@@ -798,8 +798,8 @@ $endif$
             \chapnumfont \thechapter\space\space\space\space%
         \fi%
     }
-    \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n}}
-    \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\usefont{T1}{put}{b}{n}}
+    \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\bfseries}
+    \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\bfseries}
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
@@ -807,11 +807,11 @@ $endif$
 
 \chapterstyle{rmsimple}
 
-\setsecheadstyle{\fontsize{13pt}{15.6pt}\usefont{T1}{put}{b}{n}}
-\setsubsecheadstyle{\fontsize{12pt}{14.4pt}\usefont{T1}{put}{b}{n}}
-\setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\usefont{T1}{put}{b}{n}}
-\titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\usefont{T1}{put}{b}{n}}{\theparagraph}{1em}{}
-\titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\usefont{T1}{put}{b}{it}}{}{0em}{}
+\setsecheadstyle{\fontsize{13pt}{15.6pt}\bfseries}
+\setsubsecheadstyle{\fontsize{12pt}{14.4pt}\bfseries}
+\setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\bfseries}
+\titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\bfseries\itshape}{}{0em}{}
 
 % IMPORTANT:
 % The * in \titlespacing* unindents the following paragraph after the section
