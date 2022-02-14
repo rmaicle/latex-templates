@@ -193,7 +193,17 @@
     % Font used in listings
     \setmonofont[Scale=0.88]{Iosevka Light}
     \setmonofont[Scale=0.88]{Iosevka}
-    \setmainfont[Scale=1.0, WordSpace=1.25]{IBM Plex Serif}
+    % Reference on how to use options for setmainfont
+    % https://tex.stackexchange.com/questions/306306/how-to-make-font-semibold
+    \setmainfont[
+        Scale=1.0,
+        WordSpace=1.25,
+        UprightFont=IBMPlexSerif-Regular,
+        BoldFont=IBMPlexSerif-SemiBold,
+        ItalicFont=IBMPlexSerif-Italic,
+        BoldItalicFont=IBMPlexSerif-SemiBoldItalic,
+        Extension=.otf
+    ]{IBM Plex Serif}
     % Font used in inline texts: \lstinline and \texttt
     % See fontspec package for using \newfontfamily
     \newfontfamily\inlinettfont{Iosevka Fixed Extended}[Scale=0.94]
