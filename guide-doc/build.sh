@@ -37,6 +37,7 @@ Options:
   -h, --help            print help and exit.
       --debug           run script in debug mode.
       --draft           generate draft version PDF document.
+      --engine          engine to use, pdflatex or xelatex; default is pdflatex
       --latex           output TeX/LaTeX file.
       --markdown file   use input mardown content file
       --no-image        do not generate TeX images.
@@ -56,7 +57,10 @@ EOF
 
 declare -r INPUT_FILE="filelist.txt"
 declare -r DEFAULT_TEMPLATE_FILE="template_doc.tex"
+declare -r DEFAULT_ENGINE="pdflatex"
 arg_template="${DEFAULT_TEMPLATE_FILE}"
+arg_engine="${DEFAULT_ENGINE}"
+
 param_debug=""
 param_no_backmatter=""
 param_no_frontmatter=""
@@ -68,6 +72,7 @@ param_show_frame=""
 while [ $# -gt 0 ]; do
     case "${1}" in
         --debug)            param_debug="--debug" ; shift ;;
+        --engine)           arg_engine="${2}" ; shift 2 ;;
         --latex)            param_output_latex="--latex" ; shift ;;
         --markdown)         param_markdown_file="${2}" ; shift 2 ;;
         --no-image)         param_no_image="--no-image" ; shift ;;
@@ -95,5 +100,6 @@ ${DOC_BIN}                                      \
     --markdown "${param_markdown_file}"         \
     --template "${arg_template}"                \
     ${param_output_latex}                       \
+    --engine "${arg_engine}"                    \
     --od ${DOC_OUT_DIR}                         \
     --of ${DOC_OUT_FILE}
