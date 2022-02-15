@@ -11,7 +11,7 @@ then
     exit 1
 fi
 declare DOC_OUT_DIR="./"
-declare DOC_OUT_FILE="guide-doc"
+declare DOC_OUT_FILE="doc-guide"
 
 
 
