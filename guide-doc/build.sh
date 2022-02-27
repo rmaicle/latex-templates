@@ -55,7 +55,7 @@ EOF
 
 
 
-declare -r INPUT_FILE="filelist.txt"
+declare -r INPUT_FILE="markdownlist.txt"
 declare -r DEFAULT_TEMPLATE_FILE="template_doc.tex"
 declare -r DEFAULT_ENGINE="pdflatex"
 arg_template="${DEFAULT_TEMPLATE_FILE}"
