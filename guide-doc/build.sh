@@ -25,7 +25,7 @@ source /usr/local/bin/echo.sh
 #
 function show_usage() {
 cat << EOF
-Script for creating PDF documentation using LaTeX.
+Script for creating the documentation guide PDF file using LaTeX.
 
 Usage:
   ${0##*/} [-debug] [option...] doc-id
@@ -34,19 +34,19 @@ Values for doc-id:
 $(printf '  %s\n' ${DOCUMENTS[@]})
 
 Options:
-  -h, --help            print help and exit.
-      --debug           run script in debug mode.
-      --draft           generate draft version PDF document.
+  -h, --help            print help and exit
+      --debug           run script in debug mode
+      --draft           generate draft version PDF document
       --engine          engine to use, pdflatex or xelatex; default is pdflatex
-      --latex           output TeX/LaTeX file.
+      --latex           output TeX/LaTeX file and generate PDF
       --markdown file   use input mardown content file
-      --no-image        do not generate TeX images.
+      --no-image        do not generate TeX images
       --no-frontmatter  do not generate user-supplied frontmatter contents
       --no-backmatter   do not generate user-supplied backmatter contents
       --paper           paper size; default is usletter
                           usletter
                           a4
-      --show-frame      show page margins.
+      --show-frame      show page margins
 
 NOTE: Including source files using pp !source(...) is relative to the
       LaTeX/TeX template directory.
