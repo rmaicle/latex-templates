@@ -58,16 +58,16 @@ EOF
 declare -r INPUT_FILE="markdownlist.txt"
 declare -r DEFAULT_TEMPLATE_FILE="template_doc.tex"
 declare -r DEFAULT_ENGINE="pdflatex"
-arg_template="${DEFAULT_TEMPLATE_FILE}"
-arg_engine="${DEFAULT_ENGINE}"
+declare arg_template="${DEFAULT_TEMPLATE_FILE}"
+declare arg_engine="${DEFAULT_ENGINE}"
 
-param_debug=""
-param_no_backmatter=""
-param_no_frontmatter=""
-param_no_image=""
-param_markdown_file="${INPUT_FILE}"
-param_output_latex=""
-param_show_frame=""
+declare param_debug=""
+declare param_no_backmatter=""
+declare param_no_frontmatter=""
+declare param_no_image=""
+declare param_markdown_file="${INPUT_FILE}"
+declare param_latex=""
+declare param_show_frame=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
