@@ -39,6 +39,7 @@ Options:
       --draft           generate draft version PDF document
       --engine          engine to use, pdflatex or xelatex; default is pdflatex
       --latex           output TeX/LaTeX file and generate PDF
+      --latex-only      output TeX/LaTeX file and exit
       --markdown file   use input mardown content file
       --no-image        do not generate TeX images
       --no-frontmatter  do not generate user-supplied frontmatter contents
@@ -67,13 +68,15 @@ declare param_no_frontmatter=""
 declare param_no_image=""
 declare param_markdown_file="${INPUT_FILE}"
 declare param_latex=""
+declare param_latex_only=""
 declare param_show_frame=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
         --debug)            param_debug="--debug" ; shift ;;
         --engine)           arg_engine="${2}" ; shift 2 ;;
-        --latex)            param_output_latex="--latex" ; shift ;;
+        --latex)            param_latex="--latex" ; shift ;;
+        --latex-only)       param_latex_only="--latex-only" ; shift ;;
         --markdown)         param_markdown_file="${2}" ; shift 2 ;;
         --no-image)         param_no_image="--no-image" ; shift ;;
         --no-frontmatter)   param_no_frontmatter="--no-frontmatter" ; shift ;;
@@ -99,7 +102,8 @@ ${DOC_BIN}                                      \
     ${param_no_backmatter}                      \
     --markdown "${param_markdown_file}"         \
     --template "${arg_template}"                \
-    ${param_output_latex}                       \
+    ${param_latex}                              \
+    ${param_latex_only}                         \
     --engine "${arg_engine}"                    \
     --od ${DOC_OUT_DIR}                         \
     --of ${DOC_OUT_FILE}
