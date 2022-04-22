@@ -946,13 +946,19 @@ $if(title)$
     \vspace*{1.5in}
     \begin{flushright}
         {
-            {\fontsize{20pt}{26pt}\usefont{T1}{bch}{b}{n}$title$\par}
+            \ifpdftex
+            {\fontsize{20pt}{26pt}\textbf{$title$}\par}
+            \fi
             $if(subtitle)$
                 \vspace*{0pt}
-                {\fontsize{18pt}{24pt}\usefont{T1}{bch}{m}{n}$subtitle$\par}
+                \ifpdftex
+                {\fontsize{18pt}{24pt}\textbf{$subtitle$}\par}
+                \fi
             $endif$
             $if(client)$
-                {\fontsize{16pt}{20pt}\usefont{T1}{bch}{m}{n}$client$\par}
+                \ifpdftex
+                {\fontsize{16pt}{20pt}\textrm{$client$}\par}
+                \fi
             $endif$
         }
 
@@ -962,39 +968,49 @@ $if(title)$
 
         $if(type)$
             \vspace*{-0.4em}
-            {\fontsize{16pt}{20pt}\usefont{T1}{bch}{m}{n}$type$\par}
+            \ifpdftex
+            {\fontsize{16pt}{20pt}\textrm{$type$}\par}
+            \fi
         $else$
             \vspace*{-0.0em}
         $endif$
         $if(version)$
+            \ifpdftex
             {\fontsize{12pt}{14pt}
-                \usefont{T1}{bch}{m}{n}
+                \textrm{\ifoptiondraft{Draft}{}\space $version$}\\
                 % Add 'Draft' text on document version number
                 % if the document class option 'draft' is specified
-                \ifoptiondraft{Draft}{}\space $version$\\
+                % \ifoptiondraft{Draft}{}\space $version$\\
             }
+            \fi
             \vspace*{0.7em}
         $endif$
-        {\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$date$}\\[0.05in]
+        \ifpdftex
+        {\fontsize{12pt}{14pt}\textrm{$date$}}\\[0.05in]
+        \fi
 
         \vspace*{2.0in}
         $if(author)$
             $if(author_heading)$
-                {\fontsize{12pt}{14pt}\usefont{T1}{bch}{m}{n}$author_heading$}\\[1em]
+                \ifpdftex
+                {\fontsize{12pt}{14pt}\textrm{$author_heading$}}\\[1em]
+                \fi
             $endif$
             $for(author)$
                 $if(author.name)$
-                    {\fontsize{12pt}{14pt}\usefont{T1}{bch}{b}{n}$author.name$}
+                    \ifpdftex
+                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}
                     $if(author.title)$
-                        \\{\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$author.title$}
+                        \\{\fontsize{11pt}{13pt}\textrm{$author.title$}}
                     $endif$
                     $if(author.company)$
-                        \\{\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$author.company$}
+                        \\{\fontsize{11pt}{13pt}\textrm{$author.company$}}
                     $endif$
                     $if(author.email)$
-                        \\{\fontsize{11pt}{13pt}\usefont{T1}{bch}{m}{n}$author.email$}
+                        \\{\fontsize{11pt}{13pt}\textrm{$author.email$}}\\
                         \vspace*{1.0em}
                     $endif$
+                    \fi
                 $endif$
             $endfor$
         $endif$
@@ -1003,7 +1019,9 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace{\fill}
         $if(distribution)$
-            {\fontsize{10pt}{13pt}\usefont{T1}{bch}{m}{n}$distribution$\par}
+            \ifpdftex
+            {\fontsize{10pt}{13pt}\textrm{$distribution$}\par}
+            \fi
         $endif$
     \end{flushright}
 $endif$
