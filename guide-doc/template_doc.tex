@@ -188,25 +188,45 @@
 \fi
 \ifxetex
     % \defaultfontfeatures{Scale=MatchLowercase}
-    \setromanfont[Scale=1.0]{IBM Plex Serif}
-    \setsansfont[Scale=1.0]{Public Sans}
+    % \setromanfont[Scale=1.0]{IBM Plex Serif}
+    \setromanfont{Roboto Serif 14pt}[Scale=1.0]
+    \setsansfont{Public Sans}[Scale=1.0]
     % Font used in listings
-    \setmonofont[Scale=0.88]{Iosevka Light}
-    \setmonofont[Scale=0.88]{Iosevka}
+    % \setmonofont[Scale=0.88]{Iosevka Light}
+    % \setmonofont[Scale=0.88]{Iosevka}
+    \setmonofont{JetBrainsMono-Light}[Scale=0.80]
     % Reference on how to use options for setmainfont
     % https://tex.stackexchange.com/questions/306306/how-to-make-font-semibold
-    \setmainfont[
-        Scale=1.0,
-        WordSpace=1.25,
-        UprightFont=IBMPlexSerif-Regular,
-        BoldFont=IBMPlexSerif-SemiBold,
-        ItalicFont=IBMPlexSerif-Italic,
-        BoldItalicFont=IBMPlexSerif-SemiBoldItalic,
-        Extension=.otf
-    ]{IBM Plex Serif}
+    % \setmainfont[
+    %     Scale=1.0,
+    %     WordSpace=1.25,
+    %     WordSpace=1.0,
+    %     UprightFont=IBMPlexSerif-Regular,
+    %     BoldFont=IBMPlexSerif-SemiBold,
+    %     ItalicFont=IBMPlexSerif-Italic,
+    %     BoldItalicFont=IBMPlexSerif-SemiBoldItalic,
+    %     Extension=.otf
+    % ]{IBM Plex Serif}
+    \setmainfont{Roboto Serif 14pt}[
+        Scale=0.92,
+        BoldFont=*-SemiBold,
+        ItalicFont=*-Italic,
+        BoldItalicFont={RobotoSerif14pt-SemiBoldItalic}
+    ]
+    % [
+    %     Scale=1.0,
+    %     WordSpace=1.25,
+    %     WordSpace=1.0,
+    %     UprightFont=Roboto Serif 14pt,
+    %     BoldFont=RobotoSerif14pt-SemiBold,
+    %     ItalicFont=RobotoSerif14pt-Italic,
+    %     BoldItalicFont=RobotoSerif14pt-SemiBoldItalic,
+    %     Extension=.ttf
+    % ]{Roboto Serif 14pt}
     % Font used in inline texts: \lstinline and \texttt
     % See fontspec package for using \newfontfamily
-    \newfontfamily\inlinettfont{Iosevka Fixed Extended}[Scale=0.94]
+    % \newfontfamily\inlinettfont{Iosevka Fixed Extended}[Scale=0.94]
+    \newfontfamily\inlinettfont{JetBrains Mono}[Scale=0.89]
 \fi
 \ifluatex
     % Charis is a derivative of Bitstream Charter
