@@ -677,11 +677,13 @@ int main() {
 
 #### Escape Character Attribute
 
-The default escape character used in code blocks is the *at*
-(`@`) symbol. There may come a scenario when the same symbol is used
-inside the code block. To avoid, special treatment of the *at* symbol in
-a code block, either define another escape character or disable the
-use of the escape character by defining a blank.
+The default escape character used in code blocks is the _at_ (`@`)
+symbol.
+There may come a scenario when the same symbol is used inside the code
+block.
+To avoid, special treatment of the *at* symbol in a code block, either
+define another escape character or disable the use of the escape
+character by defining a blank.
 
 ````{style=syntax escapechar=$}
 ~~~{escapechar=!}       $\Note{Replace with exclamation character}$
