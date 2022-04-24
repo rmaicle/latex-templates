@@ -74,7 +74,7 @@ declare param_show_frame=""
 while [ $# -gt 0 ]; do
     case "${1}" in
         --debug)            param_debug="--debug" ; shift ;;
-        --engine)           arg_engine="${2}" ; shift 2 ;;
+        --engine)           arg_engine="${2,,}" ; shift 2 ;;
         --latex)            param_latex="--latex" ; shift ;;
         --latex-only)       param_latex_only="--latex-only" ; shift ;;
         --markdown)         param_markdown_file="${2}" ; shift 2 ;;
