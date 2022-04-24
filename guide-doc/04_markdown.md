@@ -1674,6 +1674,13 @@ Term 2
 ~ Second definition of the second term.
 ~~~
 
+Term 1
+: First definition.
+: Second definiton.
+Term 2
+~ First definition of the second term.
+~ Second definition of the second term.
+
 
 
 #### Code Block
