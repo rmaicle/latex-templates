@@ -614,6 +614,16 @@ int main() {
 }
 ~~~
 
+Here is another _code block_ that contains _bash_ script.
+
+`````{style=syntax}
+~~~{.bash}
+# This is a comment
+declare var="This is a string."
+echo "String: ${var}"
+~~~
+`````
+
 
 
 #### Number Lines Attribute
