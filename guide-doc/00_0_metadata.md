@@ -31,6 +31,9 @@ indent: true
 title: Document Creation Guide
 shorttitle: Document Creation Guide
 subtitle: Creating PDF Documents Using Markdown
+clientx:
+typex: {uppercase}
+author_headingx:
 author:
   name: Ricardo I. Maicle
   email: rmaicle@gmail.com
@@ -43,8 +46,7 @@ distribution: |
     | Work in Progress.
     | Distribution is authorized to anyone interested with the
         knowledge that the copy or reproduction they have received
-        may not be the latest version of the work and may contain
-        errors.
+        may not be the latest version and may contain errors.
 distribution-1: This document is uncontrolled when printed.
 copyright: Copyright \textcopyright\space 2019 by Ricardo I. Maicle
 cc_license_image: true
