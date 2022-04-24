@@ -2159,19 +2159,36 @@ All contents after the `\pagebreak` will go to the next page.
 
 
 
-### Indenting Blocks of Text
+### Inline Code
+
+Inline code may be rendered using raw LaTeX code using `\texttt`.
+
+~~~{style=syntax}
+This is an example of a paragraph containing \texttt{inline code}.
+~~~
+
+This is an example of a paragraph containing \texttt{inline code}.
+
+
+
+### Indenting a Text Block
 
 Blocks of text may be indented using `\begin{addmargin}` and `\end{addmargin}`.
 
 ~~~{style=syntax}
 \begin{addmargin}[3em]{3em}% 3em left, 3em right
-\lipsum[2]
+\lipsum[][1-5]
 \end{addmargin}
 ~~~
 
 \begin{addmargin}[3em]{3em}% 3em left, 3em right
-\lipsum[2]
+\lipsum[][1-5]
 \end{addmargin}
+
+
+### Unindenting a Text Block
+
+A block of text may be unindented using `\noindent`.
 
 
 
