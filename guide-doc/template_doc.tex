@@ -223,6 +223,9 @@
     %     BoldItalicFont=RobotoSerif14pt-SemiBoldItalic,
     %     Extension=.ttf
     % ]{Roboto Serif 14pt}
+
+    \newfontfamily{\mytitlefont}{TeX Gyre Termes}
+
     % Font used in inline texts: \lstinline and \texttt
     % See fontspec package for using \newfontfamily
     % \newfontfamily\inlinettfont{Iosevka Fixed Extended}[Scale=0.94]
@@ -942,74 +945,55 @@ $endif$
 $if(title)$
     \newlength{\centeroffset}
     \thispagestyle{empty}
-    \vspace*{1.5in}
+    \vspace*{1.75in}
     \begin{flushright}
-        {
-            \ifpdftex
-            {\fontsize{20pt}{26pt}\textbf{$title$}\par}
-            \fi
+            \ifxetex \mytitlefont \fi
+            {\fontsize{22pt}{26pt}\textbf{$title$}\\[1em]}
             $if(subtitle)$
-                \vspace*{0pt}
-                \ifpdftex
-                {\fontsize{18pt}{24pt}\textbf{$subtitle$}\par}
-                \fi
+                {\fontsize{16pt}{20pt}\textbf{$subtitle$}}\\
             $endif$
             $if(client)$
-                \ifpdftex
-                {\fontsize{16pt}{20pt}\textrm{$client$}\par}
-                \fi
+                \vspace*{0.7em}
+                {\fontsize{16pt}{20pt}\textbf{$client$}}\\
             $endif$
-        }
 
-        \vspace*{0.4em}
+        \vspace*{0.3em}
         \noindent\textcolor{DimGray}{\rule{\textwidth}{1pt}}
-        \vspace*{-0.3em}
+        \vspace*{0.0em}
 
         $if(type)$
-            \vspace*{-0.4em}
-            \ifpdftex
-            {\fontsize{16pt}{20pt}\textrm{$type$}\par}
-            \fi
-        $else$
-            \vspace*{-0.0em}
+            {\fontsize{16pt}{20pt}\textrm{$type$}}\\[0.7em]
         $endif$
         $if(version)$
-            \ifpdftex
-            {\fontsize{12pt}{14pt}
-                \textrm{\ifoptiondraft{Draft}{}\space $version$}\\
-                % Add 'Draft' text on document version number
-                % if the document class option 'draft' is specified
-                % \ifoptiondraft{Draft}{}\space $version$\\
-            }
-            \fi
+            % Negative space for adjustment only.
+            % The version text seems to be a bit low under the line
+            \vspace*{-0.2em}
+            % Add 'Draft' text on document version number
+            % if the document class option 'draft' is specified
+            % \ifoptiondraft{Draft}{}\space $version$\\
+            {\fontsize{12pt}{16pt}\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\
             \vspace*{0.7em}
         $endif$
-        \ifpdftex
-        {\fontsize{12pt}{14pt}\textrm{$date$}}\\[0.05in]
-        \fi
+        {\fontsize{12pt}{16pt}\textrm{$date$}}\\[0.7em]
 
-        \vspace*{2.0in}
+        \vspace*{1.75in}
         $if(author)$
             $if(author_heading)$
-                \ifpdftex
                 {\fontsize{12pt}{14pt}\textrm{$author_heading$}}\\[1em]
-                \fi
             $endif$
             $for(author)$
                 $if(author.name)$
-                    \ifpdftex
-                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}
+                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}\\
                     $if(author.title)$
-                        \\{\fontsize{11pt}{13pt}\textrm{$author.title$}}
+                        {\fontsize{11pt}{13pt}\textrm{$author.title$}}\\
                     $endif$
                     $if(author.company)$
-                        \\{\fontsize{11pt}{13pt}\textrm{$author.company$}}
+                        {\fontsize{11pt}{13pt}\textrm{$author.company$}}\\
                     $endif$
                     $if(author.email)$
-                        \\{\fontsize{11pt}{13pt}\textrm{$author.email$}}\\
+                        {\fontsize{11pt}{13pt}\textrm{$author.email$}}\\
                         \vspace*{1.0em}
                     $endif$
-                    \fi
                 $endif$
             $endfor$
         $endif$
@@ -1018,9 +1002,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace{\fill}
         $if(distribution)$
-            \ifpdftex
-            {\fontsize{10pt}{13pt}\textrm{$distribution$}\par}
-            \fi
+            {\fontsize{10pt}{13pt}\textrm{$distribution$}}\\
         $endif$
     \end{flushright}
 $endif$
