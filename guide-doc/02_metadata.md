@@ -35,9 +35,19 @@ weird for some metadata to be left as empty or blank.
 
 
 
+#### Document ID
+
+The _docid_ metadata key defines a document identification string.
+
+~~~{style=syntax}
+docid: CS-DEV-GB-7720.11
+~~~
+
+
+
 #### Title
 
-The *title* metadata key defines the document title.
+The _title_ metadata key defines the document title.
 
 ~~~{style=syntax}
 title: Document Title
@@ -67,17 +77,25 @@ The _short title_ may also be used in document page headers and footers.
 
 #### Subtitle
 
-Same as with the *title* metadata.
+Same as with the _title_ metadata.
 
 
 
 #### Client
 
-Same as with *subtitle* metadata.
+Same as with _title_ metadata.
 
 
 
-#### Author and E-mail
+#### Type
+
+Same as with _title_ metadata.
+This metadata may be used to desribe the type of document being created:
+Project Proposal, Produce Guide, etc.
+
+
+
+#### Author Info
 
 There may be one or more authors of a document.
 
@@ -86,6 +104,8 @@ For a single author:
 ~~~{style=syntax}
 author:
   name: John Doe
+  title: Staff
+  company: XYZ Company
   email: johndoe@email.com
 ~~~
 
@@ -94,8 +114,12 @@ For multiple authors:
 ~~~{style=syntax}
 author:
   name: John Doe
+  title: Staff
+  company: XYZ Company
   email: johndoe@email.com
   name: Jane Doe
+  title: Staff
+  company: XYZ Company
   email: janedoe@email.com
 ~~~
 
@@ -172,8 +196,10 @@ distribution: |
     | No copies or reproduction in whole or in part may be passed to any third party.
 ~~~
 
-Examples of distribution statements.
+Examples of distribution statements:
 
+* Approved for public release. Distribution is unlimited.
+* This Document Is Uncontrolled When Printed.
 * License to copy this document is granted provided it is identified as
   “Standards for Efficient Cryptography 1 (SEC 1)”, in all material
   mentioning or referencing it.[^sec_1]
