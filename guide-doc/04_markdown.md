@@ -1785,48 +1785,57 @@ nonummy eget, consectetuer id, vulputate a, magna.
 
 #### Custom Indention
 
-It is sometimes necessary or desirable to indent the definition list.
+Pandoc generates *defintion list* wrapped in a *description*
+environment and rendered as `\tightlist`.
 
 ~~~{style=syntax}
-\begin{description}[leftmargin=\parindent,labelindent=\parindent]
-    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-               Ut purus elit, vestibulum ut, placerat ac, adipiscing
-               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
-               libero, nonummy eget, consectetuer id, vulputate a, magna.
-    \item[Two] second item
-    \item[Three] third item
+\begin{description}
+\tightlist
+\item[\texttt{-x}]
+\lipsum[][1-3]
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
 \end{description}
 ~~~
 
-\begin{description}[leftmargin=\parindent,labelindent=\parindent]
-    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-               Ut purus elit, vestibulum ut, placerat ac, adipiscing
-               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
-               libero, nonummy eget, consectetuer id, vulputate a, magna.
-    \item[Two] second item
-    \item[Three] third item
+\begin{description}
+\tightlist
+\item[\texttt{-x}]
+\lipsum[][1-3]
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
 \end{description}
 
-Some variations:
+
+It is sometimes necessary or desirable to indent a *definition list*
+when displaying option argument definitions like in the example above.
+For that, raw LaTeX commands must be used.
+
+The environment arguments `leftmargin` and `labelindent` are used to set
+the indentions.
+The code below uses 0.75 inches for the `leftmargin` and 0.5 inches for
+the `labelindent`.
 
 ~~~{style=syntax}
-\begin{description}[leftmargin=0.75in,labelindent=0.5in]
-    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-               Ut purus elit, vestibulum ut, placerat ac, adipiscing
-               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
-               libero, nonummy eget, consectetuer id, vulputate a, magna.
-    \item[Two] second item
-    \item[Three] third item
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
+\tightlist
+\item[\texttt{-x}]
+\lipsum[][1-3]
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
 \end{description}
 ~~~
 
-\begin{description}[leftmargin=0.75in,labelindent=0.5in]
-    \item[One] Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-               Ut purus elit, vestibulum ut, placerat ac, adipiscing
-               vitae, felis. Curabitur dictum gravida mauris. Nam arcu
-               libero, nonummy eget, consectetuer id, vulputate a, magna.
-    \item[Two] second item
-    \item[Three] third item
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
+\tightlist
+\item[\texttt{-x}]
+\lipsum[][1-3]
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
 \end{description}
 
 
