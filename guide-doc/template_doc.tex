@@ -948,17 +948,29 @@ $if(title)$
     \thispagestyle{empty}
     \vspace*{1.75in}
     \begin{flushright}
-            \ifxetex \mytitlefont \fi
-            {\fontsize{22pt}{26pt}\textbf{$title$}\\[1em]}
+        \ifxetex \mytitlefont \fi
+        {\fontsize{22pt}{26pt}\textbf{$title$}}\\
+        \ifpdftex
+            \vspace*{0.7em}
+        \fi
+        \ifxetex
+            \vspace*{1em}
+        \fi
+        $if(subtitle)$
+            {\fontsize{18pt}{20pt}\textbf{$subtitle$}}\\
+        $else$
+            % Lessen vertical space before the client text
+            % Otherwise, it will appear a little bit lower
+            \vspace*{0.0em}
+        $endif$
+        $if(client)$
             $if(subtitle)$
-                {\fontsize{16pt}{20pt}\textbf{$subtitle$}}\\
-            $endif$
-            $if(client)$
                 \vspace*{0.7em}
-                {\fontsize{16pt}{20pt}\textbf{$client$}}\\
             $endif$
+            {\fontsize{18pt}{20pt}\textbf{$client$}}\\
+        $endif$
 
-        \vspace*{0.3em}
+        \vspace*{0.7em}
         \noindent\textcolor{DimGray}{\rule{\textwidth}{1pt}}
         \vspace*{0.0em}
 
@@ -984,16 +996,16 @@ $if(title)$
             $endif$
             $for(author)$
                 $if(author.name)$
-                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}\\
+                    \vspace*{1.4em}
+                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}\\[0.2em]
                     $if(author.title)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.title$}}\\
+                        {\fontsize{11pt}{13pt}\textrm{$author.title$}}\\[0.2em]
                     $endif$
                     $if(author.company)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.company$}}\\
+                        {\fontsize{11pt}{13pt}\textrm{$author.company$}}\\[0.2em]
                     $endif$
                     $if(author.email)$
                         {\fontsize{11pt}{13pt}\textrm{$author.email$}}\\
-                        \vspace*{1.0em}
                     $endif$
                 $endif$
             $endfor$
@@ -1003,7 +1015,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace{\fill}
         $if(distribution)$
-            {\fontsize{10pt}{13pt}\textrm{$distribution$}}\\
+            {\fontsize{10pt}{13pt}\textrm{$distribution$}}
         $endif$
     \end{flushright}
 $endif$
