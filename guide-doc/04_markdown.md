@@ -2152,6 +2152,16 @@ A space can be added by using `\space`.
 
 
 
+### Double Hyphens
+
+Double hyphens are called TeX-Ligatures that are converted to _endash_.
+To break this, the hyphens need to be separated by an open and close
+parenthesis (`-{}-`)[^two_hyphens].
+
+[^two_hyphens]: https://tex.stackexchange.com/a/9814/192244
+
+
+
 ### Page Break
 
 Add a page break by using `\pagebreak`.
