@@ -13,6 +13,29 @@ fi
 declare DOC_OUT_DIR="./"
 declare DOC_OUT_FILE="doc-guide"
 
+# Engine: [pdflatex | xelatex | lualatex]
+declare -r DEFAULT_PDF_ENGINE="pdflatex"
+declare -r ALTERNATIVE_PDF_ENGINE="xelatex"
+
+declare -a PDF_ENGINES=(
+    "${DEFAULT_PDF_ENGINE}"
+    "${ALTERNATIVE_PDF_ENGINE}"
+)
+
+declare -r PAPER_A4="a4"
+declare -r PAPER_USLETTER="usletter"
+
+declare -r DEFAULT_PAPER_SIZE="${PAPER_A4}"
+
+declare -a PAPER_SIZES=(
+    ${PAPER_A4}
+    ${PAPER_USLETTER}
+)
+
+declare -r DEFAULT_TEMPLATE_FILE="template_doc.tex"
+declare -r DEFAULT_MARKDOWN_CONTENT_FILE="markdownlist.txt"
+declare -r DEFAULT_IMAGE_CONTENT_FILE="imagelist.txt"
+
 
 
 source /usr/local/bin/dirstack.sh
@@ -38,6 +61,7 @@ Options:
       --debug           run script in debug mode
       --draft           generate draft version PDF document
       --engine          engine to use, pdflatex or xelatex; default is pdflatex
+$(printf '                        %s\n' ${PDF_ENGINES[@]})
       --latex           output TeX/LaTeX file and generate PDF
       --latex-only      output TeX/LaTeX file and exit
       --markdown file   use input mardown content file
@@ -56,17 +80,15 @@ EOF
 
 
 
-declare -r INPUT_FILE="markdownlist.txt"
-declare -r DEFAULT_TEMPLATE_FILE="template_doc.tex"
-declare -r DEFAULT_ENGINE="pdflatex"
 declare arg_template="${DEFAULT_TEMPLATE_FILE}"
-declare arg_engine="${DEFAULT_ENGINE}"
+declare arg_engine="${DEFAULT_PDF_ENGINE}"
+declare arg_paper_size="${DEFAULT_PAPER_SIZE}"
 
 declare param_debug=""
 declare param_no_backmatter=""
 declare param_no_frontmatter=""
 declare param_no_image=""
-declare param_markdown_file="${INPUT_FILE}"
+declare param_markdown_file="${DEFAULT_MARKDOWN_CONTENT_FILE}"
 declare param_latex=""
 declare param_latex_only=""
 declare param_show_frame=""
@@ -95,11 +117,12 @@ if [ ! -f "${param_markdown_file}" ]; then
 fi
 ${DOC_BIN}                                      \
     ${param_debug}                              \
-    --paper usletter                            \
+    --paper ${arg_paper_size}                   \
     ${param_show_frame}                         \
     ${param_no_image}                           \
     ${param_no_frontmatter}                     \
     ${param_no_backmatter}                      \
+    --image ${DEFAULT_IMAGE_CONTENT_FILE}       \
     --markdown "${param_markdown_file}"         \
     --template "${arg_template}"                \
     ${param_latex}                              \
