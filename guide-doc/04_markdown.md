@@ -1892,7 +1892,8 @@ markdown file.
 ~~~
 
 
-Other references:
+\noindent __Other references__
+
 * [https://tex.stackexchange.com/questions/246537/side-by-side-images-in-latex](https://tex.stackexchange.com/questions/246537/side-by-side-images-in-latex)
 * [https://tex.stackexchange.com/questions/37581/latex-figures-side-by-side](https://tex.stackexchange.com/questions/37581/latex-figures-side-by-side)
 
