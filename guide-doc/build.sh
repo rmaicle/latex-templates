@@ -51,7 +51,7 @@ cat << EOF
 Script for creating the documentation guide PDF file using LaTeX.
 
 Usage:
-  ${0##*/} [-debug] [option...] doc-id
+  ${0##*/} [option, ...] doc-id
 
 Values for doc-id:
 $(printf '  %s\n' ${DOCUMENTS[@]})
