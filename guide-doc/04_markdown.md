@@ -1842,6 +1842,59 @@ This is another paragraph.
 
 
 
+## Images
+
+
+
+### Single Image
+
+Display a centered image.
+
+~~~{style=syntax}
+![](alice.jpeg)
+~~~
+
+![](alice.jpeg)
+
+Display a centered image with a caption.
+
+~~~{style=syntax}
+![This is a caption text.](alice.jpeg)
+~~~
+
+![This is a caption text.](alice.jpeg)
+
+Display a centered image setting its width to 200 pixels.
+
+~~~{style=syntax}
+![This is a caption text.](alice.jpeg){width=200px}
+~~~
+
+![This is a caption text.](alice.jpeg){width=200px}
+
+
+### Two Images
+
+Using _markdown_ to display two images side by side is not handled well
+by _Pandoc_.
+This is therefore a workaround using embedded _LaTeX_ within the
+markdown file.
+
+~~~{style=syntax}
+\begin{figure}[h]
+\includegraphics[width=2in]{alice.jpeg}
+\space
+\includegraphics[width=2in]{alice.jpeg}
+\centering
+\end{figure}
+~~~
+
+
+Other references:
+* [https://tex.stackexchange.com/questions/246537/side-by-side-images-in-latex](https://tex.stackexchange.com/questions/246537/side-by-side-images-in-latex)
+* [https://tex.stackexchange.com/questions/37581/latex-figures-side-by-side](https://tex.stackexchange.com/questions/37581/latex-figures-side-by-side)
+
+
 ## Footnote
 
 A _footnote_ is text at the bottom of the page identified with a
