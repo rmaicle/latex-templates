@@ -178,7 +178,7 @@ distribution: Internal company use. Distribution authorized to all company depar
 
 There may be a need to format the distribution text such that the
 first sentence or text is placed on its own line and the rest are
-continued onto the text line.
+continued onto the next line.
 
 ~~~{style=syntax}
 distribution: |
