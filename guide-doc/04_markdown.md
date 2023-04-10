@@ -2197,6 +2197,9 @@ Blocks of text may be indented using `\begin{addmargin}` and `\end{addmargin}`.
 \lipsum[][1-5]
 \end{addmargin}
 
+See also section [Definition List: Custom Indention][Custom Indention].
+
+
 
 ### Unindenting a Text Block
 
