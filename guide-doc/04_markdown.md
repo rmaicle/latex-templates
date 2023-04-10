@@ -1077,10 +1077,10 @@ argument.
 
 \lstset{emph={}, emphstyle=}
 ~~~~~{style=syntax}
-\lstset{moredelim=[is][\itshape]{|}{|}}
+\lstset{moredelim=[is][\itshape]{(*}{*)}}
 ~~~{style=syntax}
 // This is a comment
-#include <iostream>     |This text should italicized without the delimeters|
+#include <iostream>     (*This text should italicized without the delimeters*)
 int main() {
     std::cout << "Hello, world!";
     return 0;
@@ -1091,16 +1091,18 @@ int main() {
 
 It will be rendered as:
 
-\lstset{moredelim=[is][\itshape]{|}{|}}
+\lstset{moredelim=**[is][\itshape]{@<}{>@}}
 ~~~{style=syntax}
 // This is a comment
-#include <iostream>     |This text should italicized without the delimeters|
+#include <iostream>     @<This text should italicized without the delimeters>@
 int main() {
     std::cout << "Hello, world!";
     return 0;
 }
 ~~~
 \lstset{emph={}, emphstyle=}
+
+There has got to be some other solutions.
 
 
 ### Input Listing From File
