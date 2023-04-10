@@ -1681,6 +1681,7 @@ indented up to two (2) space characters only.
 Term 1
 : First definition.
 : Second definiton.
+
 Term 2
 ~ First definition of the second term.
 ~ Second definition of the second term.
@@ -1689,6 +1690,7 @@ Term 2
 Term 1
 : First definition.
 : Second definiton.
+
 Term 2
 ~ First definition of the second term.
 ~ Second definition of the second term.
