@@ -2,7 +2,7 @@
 
 
 
-### About This Document {.unnumbered .unlisted}
+#### About This Document {.unnumbered .unlisted}
 
 This document is a technical guide in the preparation and generation
 of PDF documents from Markdown source files. It discusses the
@@ -10,7 +10,7 @@ software and utilities and how to format source documents.
 
 
 
-### Intended Audience {.unnumbered .unlisted}
+#### Intended Audience {.unnumbered .unlisted}
 
 This document is intended for readers who have at least a basic
 knowledge on how to use a Unix-like system and its command-line
@@ -25,11 +25,11 @@ having root access to a system.
 
 
 
-### Text Conventions {.unnumbered .unlisted}
+#### Text Conventions {.unnumbered .unlisted}
 
 
 
-#### Conventions in Paragraph Texts {.unnumbered .unlisted}
+##### Conventions in Paragraph Texts {.unnumbered .unlisted}
 
 The following typographical conventions are used in paragraph texts,
 list items, and block quotes.
@@ -57,7 +57,7 @@ values determined by context.
 
 
 
-#### Conventions in Verbatim Texts {.unnumbered .unlisted}
+##### Conventions in Verbatim Texts {.unnumbered .unlisted}
 
 The following typographical conventions are used in verbatim texts
 like terminal program output texts, program source code listings,
@@ -97,7 +97,7 @@ $ sudo pacman -S --noconfirm git
 
 
 
-### Attribution {.unnumbered .unlisted}
+#### Attribution {.unnumbered .unlisted}
 
 Linux\textregistered\space is the registered trademark of Linus Torvalds in the United States and other countries.
 
@@ -108,3 +108,8 @@ UNIX is a registered trademark of The Open Group in the United States and other 
 Microsoft\textregistered\space, Windows\textregistered\space are registered trademarks of Microsoft Corporation.
 
 TrueType\texttrademark\space is a trademark and Apple\textregistered\space and Macintosh\textregistered\space are registered trademarks of Apple Computer Inc.
+
+
+
+\pagebreak
+\cleardoublepage
