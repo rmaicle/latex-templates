@@ -502,8 +502,8 @@ $if(listings)$
 
     \lstdefinestyle{listingcap}{
         style=listingcommon,
-        aboveskip=0.7em,
-        belowskip=0.4em,
+        aboveskip=0.7em,            % vertical space before the listing
+        belowskip=0.4em,            % vertical space after the listing
         % The following is the result of changing the same option values
         % for the other listing styles.
         aboveskip=0.8em,
@@ -513,6 +513,7 @@ $if(listings)$
         % clockwise.
         frameround=fttf,
         framesep=2.25pt,
+        % Frame and spacing within
         framerule=0.1pt,
         framextopmargin=3.5pt,
         framexbottommargin=2.5pt,
@@ -591,6 +592,10 @@ $endif$
     labelsep=colon,
     indention=0pt,
     margin={20pt, 2pt},
+    % Vertical position where the code listing frame will appear
+    % after the caption block.
+    % NOTE: The top left and right rounded corners is desired to be
+    %       hidden.
     skip=5pt
 }
 
