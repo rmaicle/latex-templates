@@ -411,7 +411,9 @@
 \fi
 
 $if(listings)$
-    \usepackage{listings}
+    % Handling UTF-8, try 'listingsutf8'
+    % \usepackage{listings}
+    \usepackage{listingsutf8}
     % Package listings require fancyvrb right now.
     \usepackage{fancyvrb}
 
