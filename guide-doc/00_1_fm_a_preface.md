@@ -99,15 +99,11 @@ $ sudo pacman -S --noconfirm git
 
 #### Attribution {.unnumbered .unlisted}
 
-Linux\textregistered\space is the registered trademark of Linus Torvalds in the United States and other countries.
-
-UNIX is a registered trademark of The Open Group in the United States and other countries.
-
-\TeX\texttrademark\space is a trademark of the American Mathematical Society.
-
-Microsoft\textregistered\space, Windows\textregistered\space are registered trademarks of Microsoft Corporation.
-
-TrueType\texttrademark\space is a trademark and Apple\textregistered\space and Macintosh\textregistered\space are registered trademarks of Apple Computer Inc.
+\noindent Linux\textregistered\space is the registered trademark of Linus Torvalds in the United States and other countries.  \
+\noindent UNIX is a registered trademark of The Open Group in the United States and other countries.  \
+\noindent \TeX\texttrademark\space is a trademark of the American Mathematical Society.  \
+\noindent Microsoft\textregistered\space, Windows\textregistered\space are registered trademarks of Microsoft Corporation.  \
+\noindent TrueType\texttrademark\space is a trademark and Apple\textregistered\space and Macintosh\textregistered\space are registered trademarks of Apple Computer Inc.  \
 
 
 
