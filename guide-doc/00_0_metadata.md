@@ -37,6 +37,7 @@ author_headingx:
 author:
   name: Ricardo I. Maicle
   email: rmaicle@gmail.com
+  affiliationx:
 version: Version 0.1.0
 date: January 2019
 abstract:
