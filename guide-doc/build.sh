@@ -25,7 +25,7 @@ declare -a PDF_ENGINES=(
 declare -r PAPER_A4="a4"
 declare -r PAPER_USLETTER="usletter"
 
-declare -r DEFAULT_PAPER_SIZE="${PAPER_A4}"
+declare -r DEFAULT_PAPER_SIZE=""
 
 declare -a PAPER_SIZES=(
     ${PAPER_A4}
@@ -83,7 +83,7 @@ EOF
 
 declare arg_template="${DEFAULT_TEMPLATE_FILE}"
 declare arg_engine="${DEFAULT_PDF_ENGINE}"
-declare arg_paper_size="${DEFAULT_PAPER_SIZE}"
+declare arg_paper_size=""
 
 declare param_latest=""
 declare param_debug=""
@@ -94,6 +94,7 @@ declare param_markdown_file="${DEFAULT_MARKDOWN_CONTENT_FILE}"
 declare param_latex=""
 declare param_latex_only=""
 declare param_show_frame=""
+declare param_paper_size=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
@@ -113,6 +114,9 @@ while [ $# -gt 0 ]; do
 done
 
 
+if [[ -n "${arg_paper_size}" ]]; then
+    param_paper_size="--paper ${arg_paper_size}"
+fi
 
 if [ ! -f "${param_markdown_file}" ]; then
     echo "Error: Input markdown content file not found: ${param_markdown_file}"
@@ -121,7 +125,7 @@ fi
 ${DOC_BIN}                                      \
     ${param_latest}                             \
     ${param_debug}                              \
-    --paper ${arg_paper_size}                   \
+    ${param_paper_size}                         \
     ${param_show_frame}                         \
     ${param_no_image}                           \
     ${param_no_frontmatter}                     \
