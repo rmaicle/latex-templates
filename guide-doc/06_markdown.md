@@ -816,6 +816,9 @@ This can be achieved with the use of the _caption_ attribute.
 This style displays the caption over a grayish background and draws
 lines around the code block.
 
+Note that the caption, as of \today, does not allow formatting of
+partial text or, perhaps, I am unaware of how it could be done.
+
 `````{style=listing}
 ~~~{#fenced_code_block_sample
 style=listing
@@ -862,6 +865,9 @@ Source code files can be imported and rendered as fenced code blocks
 using the `\lstinputlisting` command.
 However, as of last testing, source code files could only be included
 from the same directory as the source markdown files.
+
+The caption here may be formatted using LaTeX commands like `\texttt`
+to make it a teletype text.
 
 ~~~{style=syntax}
 \lstinputlisting[options]{file}
