@@ -72,6 +72,7 @@ $(printf '                        %s\n' ${PDF_ENGINES[@]})
                           usletter
                           a4
       --show-frame      show page margins
+      --use-latest      use latest installed Pandoc version
 
 NOTE: Including source files using pp !source(...) is relative to the
       LaTeX/TeX template directory.
@@ -84,6 +85,7 @@ declare arg_template="${DEFAULT_TEMPLATE_FILE}"
 declare arg_engine="${DEFAULT_PDF_ENGINE}"
 declare arg_paper_size="${DEFAULT_PAPER_SIZE}"
 
+declare param_latest=""
 declare param_debug=""
 declare param_no_backmatter=""
 declare param_no_frontmatter=""
@@ -97,6 +99,7 @@ while [ $# -gt 0 ]; do
     case "${1}" in
         --debug)            param_debug="--debug" ; shift ;;
         --engine)           arg_engine="${2,,}" ; shift 2 ;;
+        --use-latest)       param_latest="--use-latest" ; shift ;;
         --latex)            param_latex="--latex" ; shift ;;
         --latex-only)       param_latex_only="--latex-only" ; shift ;;
         --markdown)         param_markdown_file="${2}" ; shift 2 ;;
@@ -116,6 +119,7 @@ if [ ! -f "${param_markdown_file}" ]; then
     exit 1
 fi
 ${DOC_BIN}                                      \
+    ${param_latest}                             \
     ${param_debug}                              \
     --paper ${arg_paper_size}                   \
     ${param_show_frame}                         \
