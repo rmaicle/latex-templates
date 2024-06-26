@@ -753,7 +753,7 @@ The following shows a command and a short command output. Commands
 are sometimes highlighted by displaying them in bold text.
 
 ~~~{style=terminal}
-12345678901234567890123456789012345678901234567890123456789012345678901234567890123
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
 $        1         2         3         4         5         6         7         8
 $ sudo pacman -Syyu         @\Note{command}@
 [sudo] password for <user>:
@@ -776,7 +776,7 @@ The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
 
 ~~~{style=syntax}
-12345678901234567890123456789012345678901234567890123456789012345678901234567890123
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
          1         2         3         4         5         6         7         8
 git status [<options>...] [--] [<pathspec>...]
 ...
@@ -797,7 +797,7 @@ The *listing* style is intended to be used to display source code
 listings.
 
 ~~~{style=listing}
-12345678901234567890123456789012345678901234567890123456789012345678901234567890123
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
