@@ -735,54 +735,6 @@ The at ('@') symbol.
 
 
 
-#### Long Line Breaks
-
-Long lines are broken only at whitespace characters.
-
-The following example uses text in a single line as source code
-listing to show where the lines break.
-
-~~~{style=listing}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-vehicula condimentum euismod. Mauris mollis semper congue. Suspendisse
-maximus tincidunt mattis. Sed convallis vestibulum mattis. Vivamus
-sodales et neque ac fringilla.
-~~~
-
-When the listing are long and does not contain whitespace, it can be
-"forced" to break by introducing whitespaces where the line break is
-desired.
-Forcing a line break is possible by introducing a new line and
-immitate a line break by displaying a continuation character,
-`!{\textcolor{red}{$\hookrightarrow$}}!`. Note that the starting and
-the ending exclamation points are escape characters.
-
-````{style=syntax escapechar=^}
-~~~{style=listing escapechar=!}
-[Environment32]
-DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib32
-    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic
-
-[Environment64]
-DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib64
-    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic -fPIC
-~~~
-````
-
-The above will be displayed as:
-
-~~~{style=listing escapechar=!}
-[Environment32]
-DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib32
-    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic
-
-[Environment64]
-DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib64
-    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic -fPIC
-~~~
-
-
-
 #### Style Attribute
 
 The LaTeX template used defines custom styles for displaying fenced
@@ -929,6 +881,54 @@ Options
 ~~~
 
 \lstinputlisting[caption=This is a sample file inclusion using \texttt{style=lstinputlisting},    language=C++,style=listingcap]{input_listing.cpp}
+
+
+
+### Long Line Breaks
+
+Long lines are broken only at whitespace characters.
+
+The following example uses text in a single line as source code
+listing to show where the lines break.
+
+~~~{style=listing}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+vehicula condimentum euismod. Mauris mollis semper congue. Suspendisse
+maximus tincidunt mattis. Sed convallis vestibulum mattis. Vivamus
+sodales et neque ac fringilla.
+~~~
+
+When the listing are long and does not contain whitespace, it can be
+"forced" to break by introducing whitespaces where the line break is
+desired.
+Forcing a line break is possible by introducing a new line and
+immitate a line break by displaying a continuation character,
+`!{\textcolor{red}{$\hookrightarrow$}}!`. Note that the starting and
+the ending exclamation points are escape characters.
+
+````{style=syntax escapechar=^}
+~~~{style=listing escapechar=!}
+[Environment32]
+DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib32
+    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic
+
+[Environment64]
+DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib64
+    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic -fPIC
+~~~
+````
+
+The above will be displayed as:
+
+~~~{style=listing escapechar=!}
+[Environment32]
+DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib32
+    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic
+
+[Environment64]
+DFLAGS=-I%@P%/../../src/phobos -I%@P%/../../src/druntime/import -L-L%@P%/../lib64
+    !{\textcolor{red}{$\hookrightarrow$}}! -L--export-dynamic -fPIC
+~~~
 
 
 
