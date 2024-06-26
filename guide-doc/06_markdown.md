@@ -2343,6 +2343,9 @@ parenthesis (`-{}-`)[^two_hyphens].
 Add a page break by using `\pagebreak`.
 All contents after the `\pagebreak` will go to the next page.
 
+Sometimes `\cleardoublepage` is necessary to remove vertical space on
+the new page.
+
 
 
 ### Inline Code
