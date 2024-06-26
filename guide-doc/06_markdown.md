@@ -688,12 +688,14 @@ int main() {
 
 #### Caption Attribute
 
-Fenced code blocks may be created with captions.
+Fenced code blocks may be created with captions and it is specified
+using the `caption` attribute.
 
-The caption is specified using `caption`.
+Note that the caption, as of \today, does not allow formatting of
+partial text or, perhaps, I am unaware of how it could be done.
 
 `````{style=syntax}
-~~~{style=syntax caption="Hello"}
+~~~{style=syntax caption="*Hello*, \texttt{world} _again_!"}
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
@@ -702,7 +704,7 @@ int main() {
 ~~~
 `````
 
-~~~{style=syntax caption="Hello"}
+~~~{style=syntax caption="*Hello*, \texttt{world} _again_!"}
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
