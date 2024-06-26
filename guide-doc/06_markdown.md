@@ -1959,29 +1959,30 @@ information.
 
 ### Single Image
 
-Display a centered image.
+
+
+#### Display Centered Image
+
+To be able to display an image centered horizontally, a caption is
+required.
+This requirement is now necessary when using _Pandoc_ 3.1.11.
 
 ~~~{style=syntax}
-![](alice.jpeg)
+![Centering needs caption.](alice.jpeg){width=25%}
 ~~~
 
-![](alice.jpeg)
+![Centering needs caption.](alice.jpeg){width=25%}
 
-Display a centered image with a caption.
+
+
+#### Display Centered Image with Width Setting.
 
 ~~~{style=syntax}
-![This is a caption text.](alice.jpeg)
+![Image with width set to 175px.](alice.jpeg){width=175px}
 ~~~
 
-![This is a caption text.](alice.jpeg)
+![Image with width set to 175px.](alice.jpeg){width=175px}
 
-Display a centered image setting its width to 200 pixels.
-
-~~~{style=syntax}
-![This is a caption text.](alice.jpeg){width=200px}
-~~~
-
-![This is a caption text.](alice.jpeg){width=200px}
 
 
 ### Two Images
