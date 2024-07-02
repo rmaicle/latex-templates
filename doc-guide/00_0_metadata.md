@@ -4,7 +4,8 @@ classoption:
     - oneside
     - openright
 documentclass: memoir
-papersize: a4
+papersizex: a4
+papersize: usletter
 geometry:
     - left=1.0in
     - right=1.0in

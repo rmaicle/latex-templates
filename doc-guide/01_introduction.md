@@ -2,8 +2,8 @@
 
 This document is a guide in the preparation and generation of _PDF_
 documents from _Markdown_ source files.
-This chapter provides a brief introduction to the technologies that are
-directly or indirectly involved in the production process.
+This chapter provides a brief introduction to the technologies involved
+in the production process.
 
 
 
