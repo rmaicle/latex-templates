@@ -1967,8 +1967,8 @@ information.
 
 #### Display Centered Image
 
-To be able to display an image centered horizontally, a caption is
-required.
+To be able to display an image that is centered horizontally, it is necessary to
+provide a caption.
 This requirement is now necessary when using _Pandoc_ 3.1.11.
 
 ~~~{style=syntax}
