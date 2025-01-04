@@ -813,15 +813,19 @@ int main() {
 This style is intended to be used when a code block is inteded to be
 captioned.
 This can be achieved with the use of the _caption_ attribute.
-This style displays the caption over a grayish background and draws
-lines around the code block.
+This style displays the caption over a grayish background color and draws a
+frame around the code block.
 
-Note that the caption, as of \today, does not allow formatting of
-partial text or, perhaps, I am unaware of how it could be done.
+\begin{noteinfo}[]{}
+    The caption, as of \today, does not allow formatting of partial texts or,
+    perhaps, I am unaware of how it could be done.
+\end{noteinfo}
+
+Note that the caption, as of \today, does not support multiple paragraphs or,
+perhaps, I am unaware of how it could be done.
 
 `````{style=listing}
 ~~~{#fenced_code_block_sample
-style=listing
 style=listingcap
 caption="This is an example of a fenced code block using
 style=listingcap. Lorem ipsum dolor sit amet, consectetuer
@@ -866,8 +870,8 @@ using the `\lstinputlisting` command.
 However, as of last testing, source code files could only be included
 from the same directory as the source markdown files.
 
-The caption here may be formatted using LaTeX commands like `\texttt`
-to make it a teletype text.
+The caption partial text may be formatted using LaTeX command `\texttt{}`
+to render it as a teletype text.
 
 ~~~{style=syntax}
 \lstinputlisting[options]{file}
