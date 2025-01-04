@@ -846,7 +846,7 @@ The above code is rendered as:
 ~~~{#fenced_code_block_sample
 style=listingcap
 caption="This is an example of a fenced code block using
-style=listingcap. Lorem ipsum dolor sit amet, consectetuer
+\texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
 1234567890123456789012345678901234567890123456789012345678901234567890123456789012
@@ -1972,10 +1972,10 @@ required.
 This requirement is now necessary when using _Pandoc_ 3.1.11.
 
 ~~~{style=syntax}
-![Centering needs caption.](alice.jpeg){width=25%}
+![Centering requires a caption.](alice.jpeg){width=25%}
 ~~~
 
-![Centering needs caption.](alice.jpeg){width=25%}
+![Centering requires a caption.](alice.jpeg){width=25%}
 
 
 
