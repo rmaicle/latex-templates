@@ -786,6 +786,96 @@ $endif$
 \def\fps@figure{!htbp}
 \makeatother
 
+
+% Note-style text
+% https://tex.stackexchange.com/questions/474177/creating-a-note-section
+%
+% Examples:
+%     Correction
+%     Danger
+%     Discussion
+%     Implementation Note
+%     Information/Note
+%     Ramification
+%     Warning
+
+% \makeatletter
+% \NewDocumentCommand{\noteinfo}{+O{}+m}{%
+%   \begingroup
+%   \tcbset{%
+%     noteshift/.store in=\noteinfo@shift,
+%     noteshift=1.5cm
+%   }
+%   \begin{tcolorbox}[nobeforeafter,
+%     enhanced,
+%     sharp corners,
+%     top=1mm,
+%     bottom=1mm,
+%     toprule=1pt,
+%     bottomrule=1pt,
+%     leftrule=0pt,
+%     rightrule=0pt,
+%     colback=yellow!10,
+%     colframe=Khaki!50,
+%     #1,
+%     left skip=\noteinfo@shift,
+%     right skip=\noteinfo@shift,
+%     overlay={\node[right] (noteinfonode) at ([xshift=-\noteinfo@shift]frame.west) {\textbf{Note:}} ;},
+%     ]
+%     #2
+%   \end{tcolorbox}
+%   \endgroup
+%   }
+% \makeatother
+
+% \newtcolorbox{noteinfo}[1][]{%
+%   enhanced jigsaw,                      % better frame drawing
+%   borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
+%   sharp corners,                        % No rounded corners
+%   boxrule=0pt,                          % no real frame,
+%   fonttitle={\bfseries},
+%   coltitle={black},                     % Black colour for title
+%   title={Note:\quad \ },                     % Fixed title
+%   attach title to upper,                % Move the title into the box
+%   #1
+% }
+
+% https://tex.stackexchange.com/questions/657363/
+\newtcolorbox[auto counter,number within=section]{noteinfo}[2][]{%
+    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
+    coltitle=black,
+    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
+    title={{\bfseries Note~}\quad#2},
+    colback=black!5,
+    colframe=black!10,
+    coltext=green,
+    #1
+}
+
+\newtcolorbox[auto counter,number within=section]{notedanger}[2][]{%
+    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
+    coltitle=black,
+    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
+    title={{\bfseries Information~}\quad#2},
+    colback=black!5,
+    colframe=black!10,
+    coltext=red,
+    #1
+}
+
+\newtcolorbox[auto counter,number within=section]{notewarning}[2][]{%
+    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
+    coltitle=black,
+    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
+    title={{\bfseries Information~}\quad#2},
+    colback=black!5,
+    colframe=black!10,
+    coltext=orange,
+    #1
+}
+
+
+
 % Table of contents
 % -----------------------------------------------------------------------------
 $if(toc)$
