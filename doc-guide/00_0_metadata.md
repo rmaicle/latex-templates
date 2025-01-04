@@ -1,4 +1,36 @@
 ---
+# https://github.com/alexeygumirov/pandoc-for-pdf-how-to
+#
+# title: "How to make PDF from MarkDown with Pandoc"
+# author: "Author: Alexey Gumirov"
+# date:
+# subtitle: "Detailed manual for all"
+# geometry: "left=2.54cm,right=2.54cm,top=1.91cm,bottom=1.91cm"
+# titlepage: true
+# titlepage-color: "FFFFFF"
+# titlepage-text-color: "000000"
+# titlepage-rule-color: "CCCCCC"
+# titlepage-rule-height: 4
+# logo: "files/logo.png"
+# logo-width: 100
+# page-background:
+# page-background-opacity:
+# links-as-notes: true
+# lot: true
+# lof: true
+# listings-disable-line-numbers: true
+# listings-no-page-break: false
+# disable-header-and-footer: false
+# header-left:
+# header-center:
+# header-right:
+# footer-left: "© Alexey Gumirov"
+# footer-center: "License: WTFPL"
+# footer-right:
+# subparagraph: true
+# lang: en-US
+
+
 classoption:
     - titlepage
     - oneside
@@ -29,16 +61,16 @@ indent: true
 # monofont:
 # mathfont:
 
-title: Document Creation Guide
-shorttitle: Document Creation Guide
-subtitle: Creating PDF Documents Using Markdown
+title: Creating PDF Documents from Markdown
+shorttitle: Creating PDF from Markdown
+subtitle: Document Creation Guide
 clientx:
 typex: {uppercase}
 author_headingx:
 author:
   name: Ricardo I. Maicle
+  companyx: Company
   email: rmaicle@gmail.com
-  affiliationx:
 version: Version 0.1.0
 date: January 2019
 abstract:
