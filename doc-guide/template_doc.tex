@@ -42,16 +42,16 @@
 % error. To circumvent this, use \texorpdfstring.
 % https://tex.stackexchange.com/questions/1013/
 
-
+\usepackage[most]{tcolorbox}
 
 % Color
 % =====
 % Must be loaded here. Otherwise an 'Option class for package xcolor'
 % error occurs.
 % TODO: Determine which option it clashes with.
-\usepackage[svgnames]{xcolor}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
 \definecolor{ListingCaptionColor}{RGB}{240,240,240}
-\definecolor{Grey50}{RGB}{127,127,127}
+\definecolor{Gray50}{RGB}{69,69,69}
 
 % Fonts and Encoding
 % ------------------
@@ -451,7 +451,7 @@ $if(listings)$
         \lstdefinestyle{terminal}{
             style=common,
             basicstyle=\TerminalFont,
-            numberstyle=\footnotesize\color{DimGray},
+            numberstyle=\footnotesize\color{Gray50},
             basewidth=0.504em,
             % basewidth=0.58em,  % When using lmttc
             % basewidth=0.58em,  % When using zlmtt light condensed
@@ -464,7 +464,7 @@ $if(listings)$
             keywordstyle=\color{NavyBlue},
             stringstyle=\color{Brown},
             commentstyle=\color{Green},
-            numberstyle=\footnotesize\color{DimGray},
+            numberstyle=\footnotesize\color{Gray50},
             basewidth=0.58em,
             lineskip=-1pt,
         }
@@ -474,7 +474,6 @@ $if(listings)$
             style=common,
             basicstyle=\normalsize\ttfamily,
             numberstyle=\small\ttfamily\color{DimGray},
-            basewidth=0.54em,
             basewidth=0.58em,
             lineskip=0pt,
         }
