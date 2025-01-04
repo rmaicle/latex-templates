@@ -2139,6 +2139,17 @@ See the result.[^newline_footnote]
 
 
 
+### Inline Code
+
+Inline code within a footnote text is rendered using `\texttt{}`.`
+
+~~~{style=syntax}
+This is an inline footnote.^[Lorem ipsum dolor sit amet, \texttt{consectetur}
+adipiscing elit.]
+~~~
+
+
+
 ### Table Footnotes
 
 Put footnote markers inside the table and display footnote texts at the
