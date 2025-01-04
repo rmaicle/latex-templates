@@ -443,7 +443,8 @@ $if(listings)$
         breaklines=true,
         breakatwhitespace=true,
         postbreak=\mbox{\textcolor{red}{$$\hookrightarrow$$}\space},
-        xleftmargin=28pt    % Left-align with listings
+        % Left margin of the listing (code)
+        xleftmargin=28pt
     }
 
     \ifpdftex
@@ -512,8 +513,10 @@ $if(listings)$
         % Must be exactly four characters; starts at upper right and goes
         % clockwise.
         frameround=fttf,
+        % Margin around the caption 'frame box'.
         framesep=2.25pt,
-        % Frame and spacing within
+        % Frame and spacing within; 2pt is default.
+        rulesep=2pt,
         framerule=0.1pt,
         framextopmargin=3.5pt,
         framexbottommargin=2.5pt,
@@ -593,7 +596,9 @@ $endif$
     % by the document class
     singlelinecheck=false,
     indention=0pt,
+    % Left and right spacing outside of the caption box
     margin={20pt, 2pt},
+    % Between paragraph vertical spacing
     parskip=5pt,
     % Vertical position where the code listing frame will appear
     % after the caption block.
