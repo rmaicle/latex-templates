@@ -23,12 +23,14 @@ declare -a PDF_ENGINES=(
 )
 
 declare -r PAPER_A4="a4"
+declare -r PAPER_A5="a5"
 declare -r PAPER_USLETTER="usletter"
 
 declare -r DEFAULT_PAPER_SIZE=""
 
 declare -a PAPER_SIZES=(
     ${PAPER_A4}
+    ${PAPER_A5}
     ${PAPER_USLETTER}
 )
 
@@ -57,22 +59,24 @@ Values for doc-id:
 $(printf '  %s\n' ${DOCUMENTS[@]})
 
 Options:
-  -h, --help            print help and exit
-      --debug           run script in debug mode
-      --draft           generate draft version PDF document
-      --engine          engine to use, pdflatex or xelatex; default is pdflatex
-$(printf '                        %s\n' ${PDF_ENGINES[@]})
-      --latex           output TeX/LaTeX file and generate PDF
-      --latex-only      output TeX/LaTeX file and exit
-      --markdown file   use input mardown content file
-      --no-image        do not generate TeX images
-      --no-frontmatter  do not generate user-supplied frontmatter contents
-      --no-backmatter   do not generate user-supplied backmatter contents
-      --paper           paper size; default is usletter
-                          usletter
-                          a4
-      --show-frame      show page margins
-      --use-latest      use latest installed Pandoc version
+  -h, --help              print help and exit
+      --debug             run script in debug mode
+      --draft             generate draft version PDF document
+      --engine            engine to use, pdflatex or xelatex; default is pdflatex
+$(printf '                          %s\n' ${PDF_ENGINES[@]})
+      --latex             output TeX/LaTeX file and generate PDF
+      --latex-only        output TeX/LaTeX file and exit
+      --markdown file     use input mardown content file
+      --no-image          do not generate TeX images
+      --no-frontmatter    do not generate user-supplied frontmatter contents
+      --no-backmatter     do not generate user-supplied backmatter contents
+      --of file           output filename appended with '.pdf'; the default output
+                            filename is 'output'
+      --paper size        paper-size; default is usletter
+                            usletter
+                            a4
+      --show-frame        show page margins
+      --use-latest        use latest installed Pandoc version
 
 NOTE: Including source files using pp !source(...) is relative to the
       LaTeX/TeX template directory.
@@ -107,6 +111,7 @@ while [ $# -gt 0 ]; do
         --no-image)         param_no_image="--no-image" ; shift ;;
         --no-frontmatter)   param_no_frontmatter="--no-frontmatter" ; shift ;;
         --no-backmatter)    param_no_backmatter="--no-backmatter" ; shift ;;
+        --paper)            param_paper_size="--paper ${2}" ; shift ;;
         --show-frame)       param_show_frame="--show-frame" ; shift ;;
         --template)         arg_template="${2}" ; shift 2 ;;
         *)                  break ;;
@@ -114,9 +119,12 @@ while [ $# -gt 0 ]; do
 done
 
 
-if [[ -n "${arg_paper_size}" ]]; then
-    param_paper_size="--paper ${arg_paper_size}"
-fi
+# if [[ -n "${arg_paper_size}" ]]; then
+#     param_paper_size="--paper ${arg_paper_size}"
+# fi
+
+echo "******************************************"
+echo "${param_paper_size}"
 
 if [ ! -f "${param_markdown_file}" ]; then
     echo "Error: Input markdown content file not found: ${param_markdown_file}"
