@@ -893,7 +893,7 @@ Options
 ]{input_listing.cpp}
 ~~~
 
-\lstinputlisting[caption=This is a sample file inclusion using \texttt{style=lstinputlisting},    language=C++,style=listingcap]{input_listing.cpp}
+\lstinputlisting[caption=This is a sample file inclusion using \texttt{style=lstinputlisting}, language=C++,style=listingcap]{input_listing.cpp}
 
 
 
