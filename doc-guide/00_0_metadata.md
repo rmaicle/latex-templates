@@ -37,13 +37,18 @@ classoption:
     - openright
 documentclass: memoir
 papersizex: a4
-papersize: usletter
-geometry:
-    - left=1.0in
-    - right=1.0in
-    - top=1.0in
-    - bottom=1.0in
-    - bindingoffset=0.5in
+papersizexx: letter
+papersize: a5
+# Geometry may be set here or in the tex template document.
+# Setting the geometry in the tex template document allows for
+# different templates to be used for creating different sized
+# PDF documents.
+# geometry:
+#     - left=1.0in
+#     - right=1.0in
+#     - top=1.0in
+#     - bottom=1.0in
+#     - bindingoffset=0.5in
 hyperref:
     - colorlinks=false
     - hyperfootnotes=false
@@ -64,8 +69,9 @@ indent: true
 title: Creating PDF Documents from Markdown
 shorttitle: Creating PDF from Markdown
 subtitle: Document Creation Guide
-clientx:
-typex: {uppercase}
+client: Codespheare, Inc.
+# doctype: Project Proposal/Project Guide, etc.
+doctype: Project Guide
 author_headingx:
 author:
   name: Ricardo I. Maicle
