@@ -39,51 +39,17 @@ tllocalmgr>
 
 
 
-## Pandoc (Linux)
+## Pandoc
 
-This section discusses the installation of pandoc on a GNU/Linux
-operating system[^pandoc-install].
+Pandoc is a Haskell library for converting from one markup format to
+another, and a command-line tool that uses this library.
 
-[^pandoc-install]: [https://pandoc.org/installing.html](https://pandoc.org/installing.html)
-
-The `pandoc` version used in this guide is 2.7.3. It is available as
-a *tarball* archive (.tar) and as a Debian  package (deb) in the
-pandoc site download page[^pandoc-273-download].
-
-[^pandoc-273-download]: [https://github.com/jgm/pandoc/releases/download/2.7.3/](https://github.com/jgm/pandoc/releases/download/2.7.3/)
-
-| Package | Link                                                                            |
-|:-------:|:--------------------------------------------------------------------------------|
-|   deb   | [pandoc-2.7.3-1-amd64.deb](https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb)  |
-| tarball | [pandoc-2.7.3-linux.tar.gz](https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-linux.tar.gz) |
-
-To get the latest release, go to *https://github.com/jgm/pandoc/releases/latest*.
-
-This provides both `pandoc` and `pandoc-citeproc`. The executables
-are statically linked and have no dynamic dependencies or dependencies
-on external data files. Note that because of the static linking, the
-pandoc binary from this package cannot use *lua* filters that require
-external lua modules written in the C programming language.
+The `pandoc` version used in this guide is 3.7.0.2.
+The binary release is available at [https://github.com/jgm/pandoc/releases](https://github.com/jgm/pandoc/releases) (pandoc-3.7.0.2-linux-amd64.tar.gz).
 
 
 
-### Install Debian Package
-
-To install the *deb*:
-
-~~~{style=terminal}
-$ sudo dpkg -i $DEB
-~~~
-
-where `$DEB` is the path to the downloaded deb file. This will
-install the pandoc and pandoc-citeproc executables and man pages.
-
-If you use an RPM-based distro, you may be able to install the deb
-file using `alien`.
-
-
-
-### Install Tarball
+### Install Tarball (Linux)
 
 On any distro, the tarball may be installed into `\$DEST` by the
 following command:
@@ -95,32 +61,85 @@ $ tar xvzf $TGZ --strip-components 1 -C $DEST
 where `$TGZ` is the path to the downloaded tarball and `$DEST` is
 the destination directory, usually `/usr/local` or `~/.local`.
 
+See *Pandoc Installation*[^pandoc-install] documentation for more information.
+
+[^pandoc-install]: [https://pandoc.org/installing.html](https://pandoc.org/installing.html)
 
 
-## PP
 
-This section discusses the installation of pp on a GNU/Linux
-operating system.
+### Pandoc Default Template for LaTeX
 
-Download the `pp` package from [https://cdsoft.fr/pp/](https://cdsoft.fr/pp/)
-into some user directory. Create a directory where the source files
-will be extracted to. Extract the archive file.
+As of Pandoc version 3.2.1, a macro has been added to the default
+template for generating LaTeX output.
+When using custom LaTeX template, be sure to copy \pandocbounded macro
+from the LaTeX default template.
 
 ~~~{style=terminal}
-$ wget -c https://cdsoft.fr/pp/pp.tgz
-$ mkdir build
-$ tar xzf pp.tgz -C build
-$ cd build
-$ make
-$ make install
+$ pandoc -D latex > default-template-latex.tex
 ~~~
 
-The `make install` command copies pp into `~/.local/bin`.
+Copy the `\pandocbounded` macro to the custom LaTeX template.
+
+~~~{style=syntax escapechar=!}
+$if(graphics)$
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+$endif$
+~~~
+
+The code snippet above may be found the pandoc templates project[^pandoc-template-latex-common].
+
+[^pandoc-template-latex-common]: [https://github.com/jgm/pandoc-templates/blob/master/common.latex](https://github.com/jgm/pandoc-templates/blob/master/common.latex)
 
 
 
 ## Panda
 
-Panda is a Pandoc Lua filter that works on internal Pandoc's AST.
-The source can be found at [https://github.com/CDSoft/panda](https://github.com/CDSoft/panda).
-http://christophe.delord.free.fr/panda/
+Panda[^panda] is free and open source software that is heavily
+inspired by *abp*[^abp]
+reimplemented as *Pandoc Lua filter*[^pandoc-lua-filter] that works on
+Pandoc's abstract syntax tree (AST).
+
+It provides several interesting features:
+
+    * variable expansion (minimalistic templating)
+    * conditional blocks
+    * file inclusion (e.g. for source code examples)
+    * script execution (e.g. to include the result of a command)
+    * diagrams (Asymptote, blockdiag, ditaa, gnuplot, Graphviz, lsvg,
+      ermaid, PlantUML)
+
+[^abp]: [https://codeberg.org/cdsoft/abp](https://codeberg.org/cdsoft/abp)
+[^panda]: [https://github.com/CDSoft/panda](https://github.com/CDSoft/panda)
+[^pandoc-lua-filter]: [https://pandoc.org/lua-filters.html](https://pandoc.org/lua-filters.html)
+
+
+
+## Lua eXtended
+
+`luax`[^luax] is a Lua interpreter and REPL based on Lua 5.4, augmented with
+some useful packages.
+
+[^luax]: [https://codeberg.org/cdsoft/luax](https://codeberg.org/cdsoft/luax)
+
+
+
+## lsvg
+
+`lsvg` is a Lua interpreter specialized to generate SVG images.
+It was initially inspired by `svg-lua`.
+It is based on LuaX and uses a pure Lua library to generate SVG images.
+It optionally requires ImageMagick to make PNG, JPEG or PDF images.
