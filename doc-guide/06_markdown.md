@@ -676,8 +676,9 @@ int main() {
 
 The code block above will be rendered as:
 
-~~~{.numberLines startFrom="3" style=syntax}
+~~~{.numberLines startFrom="5" style=syntax}
 #include <iostream>
+// Main function is called here
 int main() {
     std::cout << "Hello, world!";
     return 0;
