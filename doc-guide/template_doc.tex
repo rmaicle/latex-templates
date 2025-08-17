@@ -289,6 +289,7 @@
 
 % Graphics
 % ========
+$if(graphics)$
 
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -299,6 +300,33 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+% Pandoc 3.2.1 Reminder
+% When using custom LaTeX template, be sure to copy \pandocbounded macro
+% from the LaTeX default template.
+% - Create the LaTeX default template.
+%   Run 'pandoc -D latex > default-template-latex.tex'
+% - Copy the '\pandocbounded' macro to the custom LaTeX template.
+% https://github.com/jgm/pandoc-templates/blob/6c0e7b0a4f990debcd38b5c3bd8599193ae8f5a6/default.latex
+%
+% IMPORTANT: This macro is no longer generated from the default template file for LaTeX or PDF.
+%
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+$endif$
 
 % Tikz
 % ----
