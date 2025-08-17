@@ -81,7 +81,7 @@ EOF
 
 
 
-declare arg_template="${DEFAULT_TEMPLATE_FILE}"
+declare arg_template="./${DEFAULT_TEMPLATE_FILE}"
 declare arg_engine="${DEFAULT_PDF_ENGINE}"
 declare arg_paper_size=""
 
