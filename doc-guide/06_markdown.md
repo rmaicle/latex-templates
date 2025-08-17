@@ -753,7 +753,7 @@ The following shows a command and a short command output. Commands
 are sometimes highlighted by displaying them in bold text.
 
 ~~~{style=terminal}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
 $        1         2         3         4         5         6         7         8
 $ sudo pacman -Syyu         @\Note{command}@
 [sudo] password for <user>:
@@ -776,7 +776,7 @@ The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
 
 ~~~{style=syntax}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
          1         2         3         4         5         6         7         8
 git status [<options>...] [--] [<pathspec>...]
 ...
@@ -797,7 +797,7 @@ The *listing* style is intended to be used to display source code
 listings.
 
 ~~~{style=listing}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -831,7 +831,7 @@ caption="This is an example of a fenced code block using
 style=listingcap. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -849,7 +849,7 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
