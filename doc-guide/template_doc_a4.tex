@@ -67,21 +67,6 @@
     %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
 \fi
 
-% ------------------------------------------------
-% NOTE:
-% In the TUG font catalogue pages, I always see
-% this package included after inclusion of font
-% packages and after renewcommand*.
-% ------------------------------------------------
-% TODO: Why?
-%
-% Chapter 9: Fonts, LaTeX Wikibooks, June 2016
-% If you do not have a specific font encoding issue (e.g. writing English
-% only), there is no need for T1. Sticking to the default font encoding is
-% not a problem.
-%
-% To be able to use other TeX fonts, make sure T1 encoding is used.
-\usepackage[T1]{fontenc}
 \usepackage[fontsize=$fontsize$pt]{fontsize}
 
 % Must load ucs before inputenc
@@ -109,7 +94,8 @@
     protrusion=true,
     expansion=true,
     letterspace=-12,        % compress the letters in \Note in code listings
-    kerning=false]{microtype}
+    kerning=true
+    ]{microtype}
 \fi
 
 
@@ -136,7 +122,7 @@
 
     % Typewriter fonts
     % ----------------
-    \usepackage[scaled=0.89]{beramono} % {fvm} default scaling is 0.9
+    \usepackage[scaled=0.9]{beramono} % {fvm} default scaling is 0.9
 
     % Latin Modern Typewriter font
 
@@ -180,7 +166,7 @@
     % condensed style may be used instead but I think it is too narrow
     % and thin on screen. I am not sure yet how it looks in print.
 
-    \usepackage[scaled=1.12]{zlmtt}
+    \usepackage{zlmtt}
 
     % Make default fonts
     % ------------------
@@ -191,7 +177,26 @@
     % https://stackoverflow.com/questions/877597/
     % \renewcommand{\familydefault}{\sfdefault}
 \fi
+
+
+
 \ifxetex
+    % ------------------------------------------------
+    % NOTE:
+    % In the TUG font catalogue pages, I always see
+    % this package included after inclusion of font
+    % packages and after renewcommand*.
+    % ------------------------------------------------
+    % TODO: Why?
+    %
+    % Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+    % If you do not have a specific font encoding issue (e.g. writing English
+    % only), there is no need for T1. Sticking to the default font encoding is
+    % not a problem.
+    %
+    % To be able to use other TeX fonts, make sure T1 encoding is used.
+    \usepackage[T1]{fontenc}
+
     % \defaultfontfeatures{Scale=MatchLowercase}
     \setromanfont[Scale=0.95]{IBM Plex Serif}
     % \setromanfont{Roboto Serif 14pt}[Scale=1.0]
@@ -244,6 +249,10 @@
     \usepackage{CharisSIL}
     \setromanfont{CharisSIL}
 \fi
+
+
+
+
 
 
 
@@ -391,8 +400,8 @@ $endif$
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
-\newcommand\TRMFontSize{\footnotesize}
-\newcommand\LSTFontSize{\small}
+\newcommand\TRMFontSize{\smallrr}
+\newcommand\LSTFontSize{\footnotesizerrr}
 
 % If you prefer a slashed zero, this is not it.
 \ifpdftex
@@ -407,12 +416,8 @@ $endif$
 \fi
 
 % The following are used in fenched code blocks to emphasize or
-% highlight code.
-%
-%   \begin{lstlisting}
-%   @\LSTb{\$ git --version}@
-%   git version 2.22.0
-%   \end{lstlisting}
+% highlight code. See Custom Indention section in the source mark down
+% file.
 
 \ifpdftex
     \newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\lsstyle}
@@ -497,7 +502,7 @@ $if(listings)$
             lineskip=1pt,
         }
 
-        \lstdefinestyle{listingcommon}{
+        \lstdefinestyle{listing}{
             style=common,
             basicstyle=\ListingFont,
             keywordstyle=\color{NavyBlue},
@@ -519,13 +524,12 @@ $if(listings)$
             lineskip=0pt,
         }
 
-        \lstdefinestyle{listingcommon}{
+        \lstdefinestyle{listing}{
             style=common,
             basicstyle=\normalsize\ttfamily,
             keywordstyle=\color{NavyBlue},
-            stringstyle=\color{Brown},
+            stringstyle =\color{Brown},
             commentstyle=\color{Green},
-            numberstyle=\small\ttfamily\color{DimGray},
             numberstyle=\small\ttfamily\color{DimGray},
             basewidth=0.54em,
             basewidth=0.58em,
@@ -534,15 +538,11 @@ $if(listings)$
     \fi
 
     \lstdefinestyle{syntax}{
-        style=listingcommon
-    }
-
-    \lstdefinestyle{listing}{
-        style=listingcommon
+        style=listing
     }
 
     \lstdefinestyle{listingcap}{
-        style=listingcommon,
+        style=listing,
         aboveskip=0.7em,            % vertical space before the caption+listing
         belowskip=0.4em,            % vertical space after the listing
         % The following is the result of changing the same option values
@@ -608,7 +608,7 @@ $if(listings)$
     % lstinputlisting which affects only texts other than in listings.
     %   \lst@AddToHook{TextStyle}{%
     %       \let\lst@basicstyle\normalsize\%
-    %       fontfamily{zi4}\selectfont}
+    %       fontfamily{fvm}\selectfont}
     % Ref: https://latex.org/forum/viewtopic.php?t=2072
     \ifpdftex
         % Choices:
@@ -617,7 +617,7 @@ $if(listings)$
         \makeatletter
         \lst@AddToHook{TextStyle}{%
             \let\lst@basicstyle%
-            \normalsize\usefont{T1}{zlmtt}{l}{n}\selectfont}
+            \normalsizerr\usefont{T1}{zlmtt}{l}{n}\selectfont}
         \makeatother
     \fi
     \ifxetex
