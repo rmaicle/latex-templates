@@ -11,13 +11,15 @@
 
 % Recommended margin and binding offset
 % https://tex.stackexchange.com/questions/249190/
-% The following recommends 2cm or 0.7874016in
-% http://gilmation.com/articles/latex-margins-for-book-binding/
-\usepackage[top=1.0in, bottom=1.0in, left=1.0in, right=1.0in,
-    footskip=0.5in,
-    bindingoffset=0.5in,
-    showframe=$if(showframe)$$showframe$$else$false$endif$]
-    {geometry}
+% Better margin control
+\usepackage[a4paper,
+            inner=30mm,         % main inner margin
+            outer=22mm,         % outer margin
+            top=25mm,           % top margin
+            bottom=25mm,        % bottom margin
+            bindingoffset=10mm, % extra space for binding (gutter)
+            showframe=$if(showframe)$$showframe$$else$false$endif$
+           ]{geometry}
 
 % NOTE: Line wrap symbol in listings requires amsmath
 \usepackage{amsmath}
