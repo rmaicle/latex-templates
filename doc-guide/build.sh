@@ -2,9 +2,9 @@
 
 # Script for building the doc guide
 #
-# ./build.sh
+# ./build.sh --paper-size a4 --font-size 10
 # ./build.sh --paper-size a5 --font-size 8 --template template_doc_a5.tex
-# ./build.sh --paper-size b5 --font-size 10 --template template_doc_a5.tex
+# ./build.sh --paper-size b5 --font-size 9 --template template_doc_a5.tex
 
 declare SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
