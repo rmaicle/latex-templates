@@ -1883,8 +1883,78 @@ nonummy eget, consectetuer id, vulputate a, magna.
 
 ### Custom Indention
 
-Pandoc generates *defintion list* wrapped in a *description*
+It is sometimes necessary or desirable to indent a *definition list*
+when displaying option argument definitions.
+For that, raw \LaTeX commands must be used.
+
+The environment arguments `leftmargin` and `labelindent` are used to set
+the indentions.
+The code below uses 5 em or 0.691 inches for the `leftmargin` and
+`rightmargin` and 0.380 inches for the `labelindent`.
+
+~~~{style=syntax}
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
+\item[\texttt{-x}]
+\lipsum[][1-3]
+
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
+\end{description}
+~~~
+
+The second paragraph of the first *term* precedes an empty line.
+
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
+\item[\texttt{-x}]
+\lipsum[][1-3]
+
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
+\end{description}
+
+Notice that the second *definition list* above is rendered after some vertical
+space after the *description* of the first *term*.
+This is the default behaviour.
+If the vertical space is desired to be removed between the *terms* and
+*descriptions*, the `\tightlist` command must be called after
+`begin{description}`.
+
+~~~{style=syntax}
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
+\tightlist
+\item[\texttt{-x}]
+\lipsum[][1-3]
+
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
+\end{description}
+~~~
+
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
+\tightlist
+\item[\texttt{-x}]
+\lipsum[][1-3]
+
+This is another paragraph.
+\item[\texttt{-f}]
+\lipsum[][2-7]
+\end{description}
+
+Notice that the second paragraph of the first *term* follows the first
+paragraph without any vertical space in between. The `\tightlist` also
+removes this vertical space along with the vertical spaces between
+*terms*.
+
+
+### Definition List Same Line
+
+Pandoc generates *definition list* wrapped in a *description*
 environment and rendered as `\tightlist`.
+To display the *term* and the *description* on the same line, the
+option `style` must be set to `sameline`.
 
 ````{style=syntax escapechar=!}
 \begin{description}[style=sameline]
@@ -1901,10 +1971,12 @@ item?
 This second paragraph should be indented.
 
 {code here}
-
 This is the third paragraph and should be indented too.
 \end{description}
 ````
+
+Note that the code and the third paragraph above is not separated by
+an empty line. This may be internal to \LaTeX.
 
 I do not know how to put the code that displays the terminal output
 within the code block above. The code is displayed below.
@@ -1931,44 +2003,16 @@ item?
 
 This second paragraph should be indented.
 
-    \begin{lstlisting}[escapechar=@]
-    @\OUTb{\$ git --version}@
-    git version 2.22.0
-    \end{lstlisting}
+\begin{lstlisting}[escapechar=@]
+@\OUTb{\$ git --version}@
+git version 2.22.0
+\end{lstlisting}
 This is the third paragraph and should be indented too.
 \end{description}
 
 
 
 
-It is sometimes necessary or desirable to indent a *definition list*
-when displaying option argument definitions like in the example above.
-For that, raw LaTeX commands must be used.
-
-The environment arguments `leftmargin` and `labelindent` are used to set
-the indentions.
-The code below uses 0.75 inches for the `leftmargin` and 0.5 inches for
-the `labelindent`.
-
-~~~{style=syntax}
-\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
-\tightlist
-\item[\texttt{-x}]
-\lipsum[][1-3]
-This is another paragraph.
-\item[\texttt{-f}]
-\lipsum[][2-7]
-\end{description}
-~~~
-
-\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em]
-\tightlist
-\item[\texttt{-x}]
-\lipsum[][1-3]
-This is another paragraph.
-\item[\texttt{-f}]
-\lipsum[][2-7]
-\end{description}
 
 
 
