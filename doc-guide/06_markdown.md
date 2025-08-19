@@ -754,8 +754,10 @@ The following shows a command and a short command output. Commands
 are sometimes highlighted by displaying them in bold text.
 
 ~~~{style=terminal}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
-$        1         2         3         4         5         6         7         8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+         1         2         3         4         5         6         7         8
+abcdefghijklmnopqrstuvwzyz
+ABCDEFGHIJKLMNOPQRSTUVWZYZ
 $ sudo pacman -Syyu         @\Note{command}@
 [sudo] password for <user>:
 :: Synchronizing package databases...
@@ -777,8 +779,10 @@ The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
 
 ~~~{style=syntax}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
          1         2         3         4         5         6         7         8
+abcdefghijklmnopqrstuvwzyz
+ABCDEFGHIJKLMNOPQRSTUVWZYZ
 git status [<options>...] [--] [<pathspec>...]
 ...
 OPTIONS
@@ -798,8 +802,10 @@ The *listing* style is intended to be used to display source code
 listings.
 
 ~~~{style=listing}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
          1         2         3         4         5         6         7         8
+abcdefghijklmnopqrstuvwzyz
+ABCDEFGHIJKLMNOPQRSTUVWZYZ
 #include <iostream>
 int main() {
     std::cout << "Hello, world!";
@@ -832,7 +838,7 @@ caption="This is an example of a fenced code block using
 style=listingcap. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -850,7 +856,7 @@ caption="This is an example of a fenced code block using
 \texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
 vitae, felis. Curabitur dictum gravida mauris."}
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
          1         2         3         4         5         6         7         8
 #include <iostream>
 int main() {
@@ -868,32 +874,45 @@ is after a source code listing with caption.
 
 Source code files can be imported and rendered as fenced code blocks
 using the `\lstinputlisting` command.
-However, as of last testing, source code files could only be included
-from the same directory as the source markdown files.
 
-The caption partial text may be formatted using LaTeX command `\texttt{}`
-to render it as a teletype text.
+It may be necessary to specify the relative path to the *input file*
+when the *input file* is in a sub-directory.
+It is desirable to put the input listing files into its own directory.
+
+Part of the caption text may be formatted as teletype text using the
+LaTeX command `\texttt{}`.
 
 ~~~{style=syntax}
 \lstinputlisting[options]{file}
 ~~~
 
-Options
+\noindent Options
 
-* language
-* firstline
-* lastline
-* linerange
+\begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em,style=sameline]
+\tightlist
+\item[\texttt{language}] Most general programming languages are recognized.
+A list of recognized programming languages may be found in the LaTeX
+`listing.pdf` package documentation.
+\item[\texttt{firstline}]
+Display line numbers. The `auto` option argument starts the line
+number at 1. Specifying a number like `100` starts the line number at
+100. Using `last` option argument displays the last line number of the
+source code moving up relative to a previously defined
+listing using the `firstline=n`.
+\item[\texttt{caption}]
+The caption text. Part of the text may be formatted as teletype text
+using the LaTeX command `\texttt{}`.
+\end{description}
 
 ~~~{style=syntax}
 \lstinputlisting[
     caption=This is a sample file inclusion using \texttt{style=lstinputlisting},
     language=C++,
     style=listingcap
-]{input_listing.cpp}
+]{./listing/input_listing.cpp}
 ~~~
 
-\lstinputlisting[caption=This is a sample file inclusion using \texttt{style=lstinputlisting}, language=C++,style=listingcap]{input_listing.cpp}
+\lstinputlisting[caption=This is a sample file inclusion using \texttt{style=lstinputlisting}, language=C++,style=listingcap]{./listing/input_listing.cpp}
 
 
 
@@ -1044,8 +1063,8 @@ int main() {
 #### Multiple Styles
 
 It is possible to emphasize different keywords using different styles.
-Take note of the `%` continuation character used at the end of the first
-line of `\lstset`.
+Take note of the `%` continuation character used at the end of the
+first line of `\lstset`.
 
 \lstset{emph={}, emphstyle=}
 ~~~~~{style=syntax}
@@ -1080,8 +1099,8 @@ int main() {
 
 #### Clearing Styles
 
-It may sometimes be necessary to manually clear the styles set using the
-`\lstset` command.
+It may sometimes be necessary to manually clear the styles set using
+the `\lstset` command.
 
 ~~~{style=syntax}
 \lstset{emph={}, emphstyle=}
@@ -1862,30 +1881,64 @@ nonummy eget, consectetuer id, vulputate a, magna.
 
 
 
-#### Custom Indention
+### Custom Indention
 
 Pandoc generates *defintion list* wrapped in a *description*
 environment and rendered as `\tightlist`.
 
-~~~{style=syntax}
-\begin{description}
+````{style=syntax escapechar=!}
+\begin{description}[style=sameline]
 \tightlist
 \item[\texttt{-x}]
-\lipsum[][1-3]
-This is another paragraph.
+This is a paragraph.
 \item[\texttt{-f}]
-\lipsum[][2-7]
-\end{description}
-~~~
+This is another paragraph. Let me try this longer line of sentence if
+it will wrap around as intended.
+\item[\texttt{-z}]
+This is another paragraph. What about multiple paragraphs in one line
+item?
 
-\begin{description}
+This second paragraph should be indented.
+
+{code here}
+
+This is the third paragraph and should be indented too.
+\end{description}
+````
+
+I do not know how to put the code that displays the terminal output
+within the code block above. The code is displayed below.
+
+\begin{verbatim}
+\begin{lstlisting}[escapechar=@]
+@\OUTb{$ git --version}@
+git version 2.22.0
+\end{lstlisting}
+\end{verbatim}
+
+The output of the code snippets above is shown as follows:
+
+\begin{description}[style=sameline]
 \tightlist
 \item[\texttt{-x}]
-\lipsum[][1-3]
-This is another paragraph.
+This is a paragraph.
 \item[\texttt{-f}]
-\lipsum[][2-7]
+This is another paragraph. Let me try this longer line of sentence if
+it will wrap around as intended.
+\item[\texttt{-z}]
+This is another paragraph. What about multiple paragraphs in one line
+item?
+
+This second paragraph should be indented.
+
+    \begin{lstlisting}[escapechar=@]
+    @\OUTb{\$ git --version}@
+    git version 2.22.0
+    \end{lstlisting}
+This is the third paragraph and should be indented too.
 \end{description}
+
+
 
 
 It is sometimes necessary or desirable to indent a *definition list*
@@ -2248,7 +2301,17 @@ Here is an example of defining footnotes within a description list:
 
 ## Text Formatting
 
-### Italics
+
+### Normal, Bold, and Italics in Raw \LaTeX
+
+Use `\textbf{}` and `\textit{}` for short chunks.
+
+Use `\bfseries`, `\itshape`, and `\normalfont` inside {...} groups for
+longer sections or switches.
+
+
+
+### Bold and Italics in Markdown
 
 Texts can be rendered as italics by enclosing the text between a single
 asterisk (`*`) or underscore (`_`).
@@ -2257,13 +2320,7 @@ asterisk (`*`) or underscore (`_`).
 This text will render the word *italic* as an _italic_ text.
 ~~~
 
-Output
-
 This text will render the word *italic* as an _italic_ text.
-
-
-
-### Bold
 
 Texts can be rendered as bold by enclosing the text between two
 consecutive asterisks (`**`) or underscores (`__`).
@@ -2271,8 +2328,6 @@ consecutive asterisks (`**`) or underscores (`__`).
 ~~~{style=syntax}
 This text will render the word **bold** as a __bold__ text.
 ~~~
-
-Output
 
 This text will render the word **bold** as a __bold__ text.
 
@@ -2390,6 +2445,7 @@ Blocks of text may be indented using `\begin{addmargin}` and
 \begin{addmargin}[3em]{3em}% 3em left, 3em right
 \lipsum[][1-5]
 \end{addmargin}
+
 
 See also section [Definition List: Custom Indention][Custom Indention].
 
