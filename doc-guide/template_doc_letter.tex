@@ -1,0 +1,1315 @@
+\documentclass[
+    $if(fontsize)$$fontsize$pt$else$10pt$endif$,
+    $if(papersize)$$papersize$paper$else$letter$endif$,
+    titlepage,
+    oneside,
+    openright,
+    $if(is_draft)$draft$else$final$endif$,
+    article]{memoir}
+
+
+
+% Recommended margin and binding offset
+% https://tex.stackexchange.com/questions/249190/
+% Better margin control
+% The following recommends 2cm or 0.7874016in
+% http://gilmation.com/articles/latex-margins-for-book-binding/
+\usepackage[inner=1.0in,        % main inner margin
+            outer=1.0in,        % outer margin
+            top=1.0in,          % top margin
+            bottom=1.0in,       % bottom margin
+            bindingoffset=0.5in,
+            footskip=0.4in,
+            showframe=$if(showframe)$$showframe$$else$false$endif$
+           ]{geometry}
+
+% NOTE: Line wrap symbol in listings requires amsmath
+\usepackage{amsmath}
+
+\usepackage{iftex}
+
+\usepackage{ifdraft}
+\usepackage{titlesec}
+\titlelabel{\thetitle\; }
+\usepackage{ragged2e}
+% Package fixltx2e is not required with releases after 2015.
+% All fixes are now in the LaTeX kernel.
+% See the latexrelease package for details.
+
+\usepackage[nopar]{lipsum}
+% Use upquote, if available, for straight quotes in verbatim environments.
+% Must be loaded after other fonts.
+\usepackage{upquote}
+
+% Subscripts
+% Using \textsubscript in a section heading, hyperref will cause an
+% error. To circumvent this, use \texorpdfstring.
+% https://tex.stackexchange.com/questions/1013/
+
+\usepackage[most]{tcolorbox}
+
+% Color
+% =====
+% Must be loaded here. Otherwise an 'Option class for package xcolor'
+% error occurs.
+% TODO: Determine which option it clashes with.
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+% \definecolor{ListingCaptionColor}{RGB}{240,240,240}
+\definecolor{ListingCaptionColor}{RGB}{220,220,220}
+\definecolor{Gray50}{RGB}{69,69,69}
+\definecolor{Red50}{RGB}{125,0,0}
+
+% Fonts and Encoding
+% ------------------
+
+% If system fonts are going to be used, use fontspec.
+\ifxetex
+    \usepackage{xltxtra}
+    \usepackage{fontspec}
+    \usepackage{xunicode}
+    %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
+\fi
+
+\usepackage[fontsize=$fontsize$pt]{fontsize}
+
+% Must load ucs before inputenc
+%
+% I am getting the following error when using box drawings:
+%
+% ! Package ucs Error: Unknown Unicode character 9500 = U+251C,
+% (ucs)                possibly declared in uni-37.def.
+% (ucs)                Type H to see if it is available with options.
+%
+% \usepackage{ucs}
+% \usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
+
+% Provides euro and other symbols
+% https://en.wikibooks.org/wiki/LaTeX/Special_Characters
+\usepackage{textcomp}
+% For Zapf Dingbats; see documentation (psnfss2e.pdf)
+\usepackage{pifont}
+% Graphical characters
+% \usepackage{pmboxdraw}
+
+\ifpdftex
+\usepackage[
+    protrusion=true,
+    expansion=true,
+    letterspace=-12,        % compress the letters in \Note in code listings
+    kerning=true
+    ]{microtype}
+\fi
+
+
+% Fonts
+% -----
+
+\ifpdftex
+    % Taller and a bit wider than Bitstream Charter.
+    % Inter-word spacing is a bit narrow.
+    \usepackage{utopia}         % {put}
+    % \usepackage{tgpagella}    % {qpl} looks "elegant" for technical book/report
+    % \usepackage{tgbonum}      % {qbk} wide
+    % \usepackage{tgtermes}     % {qtm} narrow
+    % \usepackage{tgschola}     % {qcs} "darker/heavier" replacement for default serif
+    %
+    % Charter Note:
+    % I don't like the italics specially when used as URL font.
+    % It appears too slanted, specially the forward slash character.
+    % \usepackage{charter} % {bch}
+
+    % Sans-serif fonts
+    % ----------------
+    \usepackage[scaled=0.92]{helvet} % {phv}
+
+    % Typewriter fonts
+    % ----------------
+    \usepackage[scaled=0.9]{beramono} % {fvm} default scaling is 0.9
+
+    % Latin Modern Typewriter font
+
+    % \usepackage{lmodern}               % {lmtt}
+
+    % Make the light series be the default.
+    % From: An exploration of the Latin Modern fonts
+    %       by Will Robertson
+    %       The PracTEX Journal
+    %       TPJ2006No01, 2006-02-01
+    %       http://dw.tug.org/pracjourn/2006-1/robertson/robertson.pdf
+
+    % \DeclareFontFamily{T1}{lmtt}{}
+    % \DeclareFontShape{T1}{lmtt}{m}{n}{<-> ec-lmtl10}{}
+    % \DeclareFontShape{T1}{lmtt}{m}{\itdefault}{<-> ec-lmtlo10}{}
+    % \DeclareFontShape{T1}{lmtt}{\bfdefault}{n}{<-> ec-lmtk10}{}
+    % \DeclareFontShape{T1}{lmtt}{\bfdefault}{\itdefault}{<-> ec-lmtko10}{}
+
+    % How to use condensed Latin Modern Typewriter font?
+    % https://tex.stackexchange.com/questions/22399
+
+    % \DeclareFontFamily{T1}{lmttc}{\hyphenchar \font-1}
+    % \DeclareFontShape{T1}{lmttc}{m}{n}{<-> ec-lmtlc10}{}
+    % \DeclareFontShape{T1}{lmttc}{m}{it}{<->sub*lmttc/m/sl}{}
+    % \DeclareFontShape{T1}{lmttc}{m}{sl}{<-> ec-lmtlco10}{}
+    % \renewcommand{\ttdefault}{lmttc}
+
+    % zlmtt
+    % -----
+    % It should be placed after all your other text font loading packages
+    % that might contain instructions to change \ttdefault, and before
+    % loading math packages so that the math packages can make a suitable
+    % deﬁnition of \mathtt.
+    % From: Using zlmtt to Access the Latin Modern Typewriter Fonts
+    % Michael Sharpe
+    % June 11, 2019
+    %
+    % When used with utopia as an inline listing font, this should be
+    % scaled to 1.14. As a listings font, scaling should be 1.0 or lower
+    % to display reasonable number of characters per line. The light
+    % condensed style may be used instead but I think it is too narrow
+    % and thin on screen. I am not sure yet how it looks in print.
+
+    \usepackage{zlmtt}
+
+    % Make default fonts
+    % ------------------
+    \renewcommand*\rmdefault{put} % utopia
+    \renewcommand*\sfdefault{phv}
+    \renewcommand*\ttdefault{zlmtt}
+    % Change the default font
+    % https://stackoverflow.com/questions/877597/
+    % \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+
+
+\ifxetex
+    % ------------------------------------------------
+    % NOTE:
+    % In the TUG font catalogue pages, I always see
+    % this package included after inclusion of font
+    % packages and after renewcommand*.
+    % ------------------------------------------------
+    % TODO: Why?
+    %
+    % Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+    % If you do not have a specific font encoding issue (e.g. writing English
+    % only), there is no need for T1. Sticking to the default font encoding is
+    % not a problem.
+    %
+    % To be able to use other TeX fonts, make sure T1 encoding is used.
+    \usepackage[T1]{fontenc}
+
+    % \defaultfontfeatures{Scale=MatchLowercase}
+    \setromanfont[Scale=0.95]{IBM Plex Serif}
+    % \setromanfont{Roboto Serif 14pt}[Scale=1.0]
+    \setsansfont{Public Sans}[Scale=1.0]
+    % Font used in listings
+    % \setmonofont[Scale=0.88]{Iosevka Light}
+    % \setmonofont[Scale=0.88]{Iosevka}
+    \setmonofont{JetBrainsMono-Light}[Scale=0.80]
+    % Reference on how to use options for setmainfont
+    % https://tex.stackexchange.com/questions/306306/how-to-make-font-semibold
+    \setmainfont[
+        Scale=0.95,
+        WordSpace=1.25,
+        % WordSpace=1.0,
+        UprightFont=IBMPlexSerif-Regular,
+        % BoldFont=IBMPlexSerif-SemiBold,
+        BoldFont=IBMPlexSerif-Bold,
+        ItalicFont=IBMPlexSerif-Italic,
+        % BoldItalicFont=IBMPlexSerif-SemiBoldItalic,
+        BoldItalicFont=IBMPlexSerif-BoldItalic,
+        Extension=.otf
+    ]{IBM Plex Serif}
+    % \setmainfont{Roboto Serif 14pt}[
+    %     Scale=0.92,
+    %     BoldFont=*-SemiBold,
+    %     ItalicFont=*-Italic,
+    %     BoldItalicFont={RobotoSerif14pt-SemiBoldItalic}
+    % ]
+    % [
+    %     Scale=1.0,
+    %     WordSpace=1.25,
+    %     WordSpace=1.0,
+    %     UprightFont=Roboto Serif 14pt,
+    %     BoldFont=RobotoSerif14pt-SemiBold,
+    %     ItalicFont=RobotoSerif14pt-Italic,
+    %     BoldItalicFont=RobotoSerif14pt-SemiBoldItalic,
+    %     Extension=.ttf
+    % ]{Roboto Serif 14pt}
+
+    \newfontfamily{\mytitlefont}{TeX Gyre Termes}
+
+    % Font used in inline texts: \lstinline and \texttt
+    % See fontspec package for using \newfontfamily
+    % \newfontfamily\inlinettfont{Iosevka Fixed Extended}[Scale=0.94]
+    \newfontfamily\inlinettfont{JetBrains Mono}[Scale=0.89]
+\fi
+\ifluatex
+    % Charis is a derivative of Bitstream Charter
+    % Visually, Charis is a bit heavier (darker?)
+    \usepackage{CharisSIL}
+    \setromanfont{CharisSIL}
+\fi
+
+\usepackage{fontawesome5} % gives us nice monochrome icons
+
+
+
+
+
+
+
+% Indenting blocks
+\usepackage{scrextend}
+
+
+
+% Caption
+% =======
+% Formatting captions and subcaptions in LaTeX
+% http://www.peteryu.ca/tutorials/publishing/latex_captions
+
+\usepackage[
+    font=small,
+    labelfont=bf,
+    textfont=it,
+    labelsep=quad]{caption}
+
+
+
+% Tables
+% ======
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% Alternatively, you can change the default font for all the tables
+% in your document by placing the following code in the preamble:
+% Ref: LaTeX Wikibooks, 2016.
+\let\oldtabular\tabular
+\renewcommand{\tabular}{\small\oldtabular}
+
+
+
+% Fancy Verbatim
+% fancyvrb is automatically loaded here after \hypersetup.
+% DO NOT load the package manually
+% ================================
+
+%$if(highlighting-macros)$
+%    $highlighting-macros$
+%$endif$
+
+
+
+% Graphics
+% ========
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+% Pandoc 3.2.1 Reminder
+% When using custom LaTeX template, be sure to copy \pandocbounded macro
+% from the LaTeX default template.
+% - Create the LaTeX default template.
+%   Run 'pandoc -D latex > default-template-latex.tex'
+% - Copy the '\pandocbounded' macro to the custom LaTeX template.
+% https://github.com/jgm/pandoc-templates/blob/6c0e7b0a4f990debcd38b5c3bd8599193ae8f5a6/default.latex
+%
+% IMPORTANT: This macro is no longer generated from the default template file for LaTeX or PDF.
+%
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+$endif$
+
+% Tikz
+% ----
+\usepackage{tikz} % for the vertical lines on the left side of paragraphs
+% \usetikzlibrary{shapes,arrows}
+
+
+
+% List
+% ====================
+
+% For customizing list environments enumerate, itemize and
+% description
+\usepackage{enumitem}
+
+% Make tight list
+% ---------------
+% Make lists use less vertical space between items by using 0 topsep.
+% Default indentation is 7pt.
+\setlist[itemize]{topsep=0ex, left=7pt}
+\setlist[enumerate]{topsep=0ex, left=7pt}
+
+% Deep levels
+% -----------
+% https://github.com/jgm/pandoc/issues/2922
+\setlistdepth{9}
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=\textbullet}
+\setlist[itemize,3]{label=\textbullet}
+\setlist[itemize,4]{label=\textbullet}
+\setlist[itemize,5]{label=\textbullet}
+\setlist[itemize,6]{label=\textbullet}
+\setlist[itemize,7]{label=\textbullet}
+\setlist[itemize,8]{label=\textbullet}
+\setlist[itemize,9]{label=\textbullet}
+\renewlist{itemize}{itemize}{9}
+
+\setlist[enumerate,1]{label=\arabic*.}
+\setlist[enumerate,2]{label*=\Alph*.}
+\setlist[enumerate,3]{label=\alph*.}
+\setlist[enumerate,4]{label=\roman*.}
+\setlist[enumerate,5]{label=\arabic*.}
+\setlist[enumerate,6]{label=\Alph*.}
+\setlist[enumerate,7]{label=\alph*.}
+\setlist[enumerate,8]{label=\roman*.}
+\setlist[enumerate,9]{label=\arabic*.}
+\renewlist{enumerate}{enumerate}{9}
+
+% Definition List
+% -----------------------------------------------------------------------------
+% Put the definitions onto the next line
+% https://tex.stackexchange.com/questions/35481/
+\setlist[description]{style=nextline}
+
+
+
+% Frame
+% Create framed, shaded, or differently highlighted regions that can
+% break across pages.
+\usepackage{framed}
+
+
+
+% Source Code Listings
+% ====================
+% When --listings argument is passed to pandoc, all code blocks will be
+% wrapped within the listings environment.
+
+\newcommand\TRMFontSize{\smallrr}
+\newcommand\LSTFontSize{\footnotesizerrr}
+
+% If you prefer a slashed zero, this is not it.
+\ifpdftex
+    \newcommand*\TerminalFont{%
+        \usefont{T1}{zlmtt}{l}{n}\TRMFontSize\selectfont\lsstyle}
+    % Shrink the code listings
+    % Can only be used if pdf engine is pdflatex.
+    % Ref: Shrinking monospace style for listings package
+    %      https://tex.stackexchange.com/questions/33020/
+    \newcommand*\ListingFont{%
+        \usefont{T1}{fvm}{l}{n}\LSTFontSize\selectfont\lsstyle}
+\fi
+
+% The following are used in fenched code blocks to emphasize or
+% highlight code. See Custom Indention section in the source mark down
+% file.
+
+\ifpdftex
+    \newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\LSTb{\usefont{T1}{fvm}{b}{n}\LSTFontSize\selectfont\lsstyle}
+
+    \newcommand*\CMDi{\usefont{T1}{lmtt}{m}{it}\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\OUTi{\usefont{T1}{lmtt}{m}{it}\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\LSTi{\usefont{T1}{fvm}{m}{it}\LSTFontSize\selectfont\lsstyle}
+
+    \newcommand*\CMDe{\usefont{T1}{lmtt}{b}{it}\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\OUTe{\usefont{T1}{lmtt}{b}{it}\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\LSTe{\usefont{T1}{fvm}{b}{it}\LSTFontSize\selectfont\lsstyle}
+
+\fi
+\ifxetex
+    \newcommand*\CMDb{\ttfamily\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\OUTb{\ttfamily\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\LSTb{\ttfamily\LSTFontSize\selectfont\lsstyle}
+
+    \newcommand*\CMDi{\ttfamily\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\OUTi{\ttfamily\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\LSTi{\ttfamily\LSTFontSize\selectfont\lsstyle}
+
+    \newcommand*\CMDe{\ttfamily\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\OUTe{\ttfamily\TRMFontSize\selectfont\lsstyle}
+    \newcommand*\LSTe{\ttfamily\LSTFontSize\selectfont\lsstyle}
+\fi
+
+\ifpdftex
+    \newcommand{\Note}[1]{\ding{224}\space{#1}}
+\fi
+\ifxetex
+    \newcommand{\Note}[1]{\ding{224}\enskip\texttt{#1}}
+\fi
+
+$if(listings)$
+    % Handling UTF-8, try 'listingsutf8'
+    % \usepackage{listings}
+    \usepackage{listingsutf8}
+    % Package listings require fancyvrb right now.
+    \usepackage{fancyvrb}
+
+
+
+    % Problem with hyphen being rendered too wide
+    % https://tex.stackexchange.com/questions/33185/
+    \lstdefinestyle{common}{
+        literate={-}{-}1,
+        % When lineskip is less than 0pt, we must increase the vertical
+        % space before the top line. This consequently requires
+        % increasing the space after the last line too for balance.
+        aboveskip=0.5em,
+        belowskip=0.5em,
+        aboveskip=0.8em,
+        belowskip=0.8em,
+        frame=none,
+        % The following lines were taken from 'lstlisting line wrapping'
+        % https://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping#116572
+        %
+        % The \hookrightarrow requires amsmath package
+        %
+        % NOTE: Use of double dollar sign instead of a single one.
+        %       This is because pandoc uses the dollar sign for
+        %       parsing its own variables.
+        columns=[c]fixed,
+        breaklines=true,
+        breakatwhitespace=true,
+        postbreak=\mbox{\textcolor{red}{$$\hookrightarrow$$}\space},
+        % Left margin of the listing (code)
+        xleftmargin=14pt
+    }
+
+    \ifpdftex
+        \lstdefinestyle{terminal}{
+            style=common,
+            basicstyle=\TerminalFont,
+            numberstyle=\footnotesize\color{Gray50},
+            % Sets the width of a single character box for fixed and flexible
+            % column mode (both to the same value or individually).
+            basewidth={0.504em,0.45em},
+            lineskip=1pt,
+        }
+
+        \lstdefinestyle{listing}{
+            style=common,
+            basicstyle=\ListingFont,
+            keywordstyle=\color{NavyBlue},
+            stringstyle=\color{Brown},
+            commentstyle=\color{Green},
+            numberstyle=\footnotesize\color{Gray50},
+            % Sets the width of a single character box for fixed and flexible
+            % column mode (both to the same value or individually).
+            basewidth={0.62em,0.45em},
+            lineskip=-1pt,
+        }
+    \fi
+    \ifxetex
+        \lstdefinestyle{terminal}{
+            style=common,
+            basicstyle=\normalsize\ttfamily,
+            numberstyle=\small\ttfamily\color{DimGray},
+            basewidth=0.58em,
+            lineskip=0pt,
+        }
+
+        \lstdefinestyle{listing}{
+            style=common,
+            basicstyle=\normalsize\ttfamily,
+            keywordstyle=\color{NavyBlue},
+            stringstyle =\color{Brown},
+            commentstyle=\color{Green},
+            numberstyle=\small\ttfamily\color{DimGray},
+            basewidth=0.54em,
+            basewidth=0.58em,
+            lineskip=0pt,
+        }
+    \fi
+
+    \lstdefinestyle{syntax}{
+        style=listing
+    }
+
+    \lstdefinestyle{listingcap}{
+        style=listing,
+        aboveskip=0.7em,            % vertical space before the caption+listing
+        belowskip=0.4em,            % vertical space after the listing
+        % The following is the result of changing the same option values
+        % for the other listing styles.
+        aboveskip=0.8em,
+        belowskip=1.1em,
+        frame=tblr,
+        % Must be exactly four characters; starts at upper right and goes
+        % clockwise.
+        frameround=fttf,
+        % Margin around the caption 'frame box'.
+        framesep=2.25pt,
+        % Frame and spacing within; 2pt is default.
+        rulesep=2pt,
+        rulesep=0pt,
+        framerule=0.1pt,
+        framextopmargin=3.5pt,
+        framexbottommargin=2.5pt,
+        framexbottommargin=2.4pt,
+        framexleftmargin=6pt, % old value
+        % The left frame is moved to the left of the source code
+        % by the margin amount.
+        framexleftmargin=12pt,
+        % Left margin of the listing (code)
+        xleftmargin=14pt,
+        % Align the right listing frame with the right caption frame.
+        framexrightmargin=-3.5pt, % old value using listing 1.8b
+        framexrightmargin=-4.5pt, % old value from a4/letter setting
+        framexrightmargin=-2.0pt,
+        rulecolor=\color{ListingCaptionColor},
+    }
+
+    \lstdefinestyle{plain}{
+        style=terminal,
+        % Overrides
+        % ---------
+        xleftmargin=0ex,       % no indent
+    }
+
+    \lstset{
+        fancyvrb=true,
+        style=terminal,
+        frame=none,
+        fontadjust=true,
+        extendedchars=false,
+        keepspaces=true,
+        showstringspaces=false,
+        numbersep=15pt, % old value
+        numbersep=6pt,
+        escapechar=@,
+        % breakatwhitespace=true,
+        % Do not add the hook arrow in inline code
+        % See \lstdefinestyle{common} reference on adding the hook arrow
+        postbreak=,
+    }
+
+    % https://github.com/jgm/pandoc/issues/4716
+    % It says in the GitHub issues that this was fixed back in 2019
+    % but commenting it out still produces an error.
+    \newcommand{\passthrough}[1]{#1}
+
+    % Make lstinline use a different font size than in lstlistings or
+    % lstinputlisting which affects only texts other than in listings.
+    %   \lst@AddToHook{TextStyle}{%
+    %       \let\lst@basicstyle\normalsize\%
+    %       fontfamily{fvm}\selectfont}
+    % Ref: https://latex.org/forum/viewtopic.php?t=2072
+    \ifpdftex
+        % Choices:
+        % \large\fontfamily{cmtt}\selectfont}
+        % \normalsize\fontfamily{fvm}\selectfont}
+        \makeatletter
+        \lst@AddToHook{TextStyle}{%
+            \let\lst@basicstyle%
+            \normalsizerr\usefont{T1}{zlmtt}{l}{n}\selectfont}
+        \makeatother
+    \fi
+    \ifxetex
+        \makeatletter
+        \lst@AddToHook{TextStyle}{%
+            \let\lst@basicstyle\inlinettfont\selectfont}
+        \makeatother
+
+        % How to redefine a command
+        % https://tex.stackexchange.com/questions/36175
+        \providecommand\texttt{}
+        \renewcommand{\texttt}[1]{\inlinettfont{#1}}
+    \fi
+
+$endif$
+
+
+
+% \DeclareCaptionFormat{listing}{\colorbox{ListingCaptionColor}{\parbox{0.9342\textwidth}{#1#2#3}}}
+\DeclareCaptionFormat{listing}{\colorbox{ListingCaptionColor}{\parbox{\textwidth-6pt}{#1#2#3}}}
+\captionsetup[lstlisting]{
+    format=listing,
+    labelfont={sf,bf,sc},
+    textfont={sf,up},
+    labelsep=quad,
+    % Do not check short single line captions so it won't be centered
+    % by the document class
+    singlelinecheck=false,
+    indention=0pt,
+    % Left and right spacing outside of the caption box
+    margin={20pt, 2pt},
+    margin={0pt, 0pt},
+    % Between paragraph vertical spacing
+    parskip=5pt,
+    % Vertical position where the code listing frame will appear
+    % after the caption block.
+    % NOTE: The top left and right rounded corners is desired to be
+    %       hidden.
+    skip=5pt
+}
+
+
+
+% Footnotes
+% =========
+
+\usepackage[perpage,multiple,hang,multiple,bottom]{footmisc}
+\usepackage{tablefootnote}
+\usepackage{threeparttable}
+
+% Set vertical space between bottom of page text and start of footnote.
+% The default is \setfootins{\bigskipamount}{\bigskipamount}.
+\setfootins{2em}{2em}
+
+% Vertical space between paragraphs in a single footnote
+%\renewcommand{\hangfootparskip}{0.0\baselineskip}
+\renewcommand{\hangfootparskip}{0.3em}
+
+% Change the vertical space between footnote items.
+% If value is equal or small than the body text font size, then it does not
+% seem to have an effect.
+\renewcommand{\footnotesep}{1em}
+
+% Change the font size of the footnote number in the footnote area.
+% https://latex.org/forum/viewtopic.php?t=8095
+\renewcommand*\thefootnote{\scriptsize\arabic{footnote}}
+
+% Change footnote text font size other than footnotesize
+% \renewcommand{\footnotesize}{\small}
+
+
+
+% Other Packages
+% ==============
+
+\usepackage{makeidx}
+
+$if(lang)$
+    \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+        \usepackage[shorthands=off,$for(babel-otherlangs)$$babel-otherlangs$,$endfor$main=$babel-lang$]{babel}
+    $if(babel-newcommands)$
+        $babel-newcommands$
+    $endif$
+    \else
+        % Load polyglossia as late as possible as it *could* call bidi if
+        % RTL lang (e.g. Hebrew or Arabic)
+        \usepackage{polyglossia}
+        \setmainlanguage[$polyglossia-lang.options$]{$polyglossia-lang.name$}
+        $for(polyglossia-otherlangs)$
+            \setotherlanguage[$polyglossia-otherlangs.options$]{$polyglossia-otherlangs.name$}
+        $endfor$
+    \fi
+$endif$
+
+% Base direction of the document, either `rtl` (right-to-left) or `ltr`
+% (left-to-right). Pandoc: When using LaTeX for bidirectional documents, only
+% the `xelatex` engine is fully supported (use `--latex-engine=xelatex`).
+$if(dir)$
+    \ifxetex
+        % load bidi as late as possible as it modifies e.g. graphicx
+        $if(latex-dir-rtl)$
+            \usepackage[RTLdocument]{bidi}
+        $else$
+            \usepackage{bidi}
+        $endif$
+    \fi
+    \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+        \TeXXeTstate=1
+        \newcommand{\RL}[1]{\beginR #1\endR}
+        \newcommand{\LR}[1]{\beginL #1\endL}
+        \newenvironment{RTL}{\beginR}{\endR}
+        \newenvironment{LTR}{\beginL}{\endL}
+    \fi
+$endif$
+
+
+
+% Spacing
+% =======
+
+% Options: singlespacing, onehalfspacing, doublespacing
+%
+% For the need of a different stretching factor, the spacing environment is
+% provided. It may be used like the following:
+%
+% \begin{spacing}{2.4}
+% This text is stretched by a factor of 2.4.
+% \end{spacing}
+\usepackage{setspace}
+% Change the \baselineskip without changing the font size.
+\linespread{1.0}
+
+% Strikeout a section of text with a horizontal line
+\usepackage[normalem]{ulem}
+
+\usepackage{graphbox}
+
+
+
+% Settings
+% ========
+
+
+
+% Paragraph
+% -----------------------------------------------------------------------------
+% Indention
+% No indention after section but indent after first paragraph
+% https://tex.stackexchange.com/questions/39227
+% \setlength{\parindent}{0em}
+
+% Vertical spacing between paragraphs
+% \setlength{\parskip}{0.0em}
+
+% Prevent overfull lines
+% https://tex.stackexchange.com/questions/241343/
+\setlength{\emergencystretch}{3em}
+
+% Sentence
+% -----------------------------------------------------------------------------
+% Traditional typography requires a larger space to indicate the end of a
+% sentence. Following along the same logic, TEX puts more space after an
+% exclamation point (!), and a question mark (?). However, this tradition
+% is obsolete as this extra space is disturbing. So you should almost always
+% execute \frenchspacing just before the beginning of every document,
+% instructing TEX to treat commas and periods in the same way.
+% (Latex Manual 8.6)
+\frenchspacing
+
+% Quotes
+% -----------------------------------------------------------------------------
+% Italicize text in quote environments
+% The original code here was taken from memoir.cls in
+% /usr/share/texmf-dist/tex/latex/memoir/
+\renewenvironment*{quote}%
+                  {\list{}{\rightmargin\leftmargin}%
+                   \itshape\item[]}%
+                  {\endlist}
+
+% Figure placement
+% -----------------------------------------------------------------------------
+% The [htbp] controls where the table or figure is placed.
+% Tables and figures do not need to go where you put them in
+% the text. LATEX moves them around to prevent large areas of
+% white space from appearing in your paper.
+%
+% Each letter corresponds to a place where the table or figure
+% should go:
+%     b (Bottom)   Place the table at the bottom of the current page.
+%     h (Here)     Place the table at the spot where the table environment
+%                  appears in the text
+%     p (Page)     Place the table at the top of the next page.
+%     t (Top)      Place the table at the top of the current page.
+%
+% The first letter inside brackets has highest priority. In the example on the
+% previous page, if LaTeX couldn’t put the table or figure "here", it tried
+% to put it at the top of the current page, then on the bottom of the current
+% page, then at the top of the next page.
+% ---
+% Ref: Figures and Tables in a LATEX Document
+%      http://web.mit.edu/molly/Public/rsi2006/figtab.pdf
+%
+% Set default figure placement to htbp
+%
+%     \def\fps@figure{htbp}
+%
+% Prevent text from creeping between figures
+%
+% In the above example, text would be written underneath the floats if one
+% uses the [!htb] float specifier. \clearpage flushes all pending % floats,
+% setting them on their own pages, before starting the new sectional content.
+% ---
+% Ref: How to prevent text from creeping in between figures and tables
+%      https://stackoverflow.com/a/23166245
+% \makeatletter
+% \def\fps@figure{!hbp}
+% \def\fps@figure{!htbp}
+% \makeatother
+
+
+% Note-style text
+% https://tex.stackexchange.com/questions/474177/creating-a-note-section
+%
+% Examples:
+%     Correction
+%     Danger
+%     Discussion
+%     Implementation Note
+%     Information/Note
+%     Ramification
+%     Warning
+
+% Using tcolorbox package
+% Define a command to make side boxes with an automatic icon
+\newcommand{\newsideboxwithicon}[4]{%
+  % #1 = env name
+  % #2 = icon command (e.g. \faInfoCircle)
+  % #3 = color for the vertical bar
+  % #4 = bar thickness
+  \newtcolorbox{#1}[1][]{enhanced,
+    breakable,
+    colback=white,
+    colback=#3!10,      % soft tint behind text
+    colframe=white,     % no border
+    boxrule=0pt,
+    left=3mm,           % space for the bar
+    borderline west={#4}{0pt}{#3},
+    fonttitle=\bfseries,
+    coltitle=black,
+    colbacktitle=#3!10, % soft tint behind title row
+    before title={\par\vspace{1.5mm}},
+    title={#2\space\space\space\ ##1}}%
+}
+
+% Define concrete environments
+\newsideboxwithicon{inote}{\faInfoCircle}{blue!70!black}{3pt}
+\newsideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
+\newsideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
+\newsideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
+\newsideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
+% \newsideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
+
+
+
+% Table of contents
+% -----------------------------------------------------------------------------
+$if(toc)$
+    $if(toc-depth)$
+        \setcounter{tocdepth}{$toc-depth$}
+    $else$
+        \settocdepth{chapter}
+    $endif$
+$endif$
+\renewcommand{\cftchapterfont}{\normalsize\bfseries}
+\renewcommand{\cftsectionfont}{\normalsize}
+\renewcommand{\cftsubsectionfont}{\normalsize}
+
+\setlength{\cftsectionindent}{2.1em}
+\setlength{\cftsubsectionindent}{5.6em}
+
+\setlength{\cftchapternumwidth}{2.0em}
+\setlength{\cftsectionnumwidth}{3.5em}
+\setlength{\cftsubsectionnumwidth}{4.9em}
+
+\setlength{\cftbeforechapterskip}{1.0em}
+\setlength{\cftbeforesectionskip}{0.1em}
+\setlength{\cftbeforesubsectionskip}{0.0em}
+% Narrower
+\setlength{\cftsubsectionindent}{4.7em}
+\setlength{\cftsectionnumwidth}{2.5em}
+\setlength{\cftsubsectionnumwidth}{3.5em}
+
+% Using memoir class with fancyhdr may get compilation errors because both
+% define the \footruleskip command when loading. To avoid the error, the
+% command needs to be 'undefined' before fancyhdr is loaded but after memoir
+% has been loaded.
+% Ref: fancyhdr and memoir
+%      http://tex.stackexchange.com/questions/37868/ddg#37880
+\let\footruleskip\undefined
+\usepackage{fancyhdr}
+% For N of M page numbering
+% \usepackage{lastpage}
+
+% Allow verbatim texts in footnotes
+% Error: Undefined control sequence
+% \VerbatimFootnotes
+
+% Page Style
+% ----------
+\fancypagestyle{simple}{%
+    \fancyhead{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+\setlength{\headheight}{15pt} % fixes \headheight warning
+
+% Chapter style
+% -----------------------------------------------------------------------------
+% Ref: How do fonts work in LaTeX?
+%      https://tex.stackexchange.com/questions/338049/
+\makechapterstyle{rmsimple}{
+    \setlength{\beforechapskip}{4ex plus 2.5ex minus 0ex}
+    \setlength{\afterchapskip}{2ex plus 0.5ex minus 0ex}
+    \renewcommand{\printchaptername}{}
+    \renewcommand{\chapternamenum}{}
+    \renewcommand*{\printchapternum}{%
+        \ifanappendix
+            \chapnumfont \appendixname\space\thechapter\\%
+        \else%
+            \chapnumfont \thechapter\quad%
+        \fi%
+    }
+    \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\bfseries}
+    \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\bfseries}
+    % The following commands concatenate the chapter number and chapter title
+    \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
+    \renewcommand{\afterchapternum}{}
+}
+
+\chapterstyle{rmsimple}
+
+\setsecheadstyle{\fontsize{13pt}{15.6pt}\bfseries}
+\setsubsecheadstyle{\fontsize{12pt}{14.4pt}\bfseries}
+\setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\bfseries}
+\titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\bfseries\itshape}{}{0em}{}
+
+% IMPORTANT:
+% The * in \titlespacing* unindents the following paragraph after the section
+\titlespacing*{\section}{0pt}{1ex}{1ex}
+\titlespacing*{\subsection}{0pt}{1ex}{1ex}
+\titlespacing*{\subsubsection}{0pt}{1ex}{1ex}
+\titlespacing*{\paragraph}{0pt}{1ex}{1ex}
+\titlespacing*{\subparagraph}{0pt}{1ex}{1ex}
+
+\setsecnumdepth{subparagraph}
+
+
+
+% Hyperlinks
+% ==========
+% Recommended to the last loaded package because it redefines many
+% LaTeX commands.
+
+% When using hyperref with footmisc, the footmisc documentation recommends
+% turning hyperlinks from footnote marks to the corresponding footnote body.
+% Package footmisc version 5.5b dated June 6, 2011.
+$if(is_draft)$
+\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
+$else$
+\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
+$endif$
+\hypersetup{
+    $if(title-meta)$
+        pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+        pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+    $endif$
+    $if(colorlinks)$
+        colorlinks=true,
+        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+        % Remove the border placed around a URL.
+        % Ref: LaTeX, Wikibooks, June 18, 2016.
+        pdfborder={0 0 0},
+    $endif$
+    bookmarks=true,
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdfstartview={null null 100},
+    breaklinks=true
+}
+\usepackage{bookmark}
+% Don't use monospace font for URLs.
+% Note: The hyperref package shows the URL using monospace font.
+\urlstyle{same}
+% Avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+
+
+% Date and Time
+% =============
+% Package datetime2 replaces the datetime package which is now obsolete
+% according to the datetime2 package information.
+\usepackage[showisoZ=true]{datetime2}
+
+
+
+%\makeindex
+
+% Look at .log file to see the package versions
+\listfiles
+
+
+
+% =============================================================================
+% Begin document
+% =============================================================================
+
+
+
+\begin{document}
+
+
+
+$if(shorttitle)$
+\pdfbookmark{$shorttitle$}{title-page}
+$else$
+\pdfbookmark{$title$}{title-page}
+$endif$
+
+
+
+% Title uses title in YAML matter in markdown file.
+%
+% The \usefont usage was from Fonts and Encoding chapter of the
+% The LaTeX companion, 2nd Ed, 2004, p. 371.
+% -----
+$if(title)$
+    \newlength{\centeroffset}
+    \thispagestyle{empty}
+    \vspace*{1.75in}
+    \begin{flushright}
+        \ifxetex \mytitlefont \fi
+        {\LARGE\textbf{$title$}}\\
+        \ifpdftex
+            \vspace*{0.7em}
+        \fi
+        \ifxetex
+            \vspace*{1em}
+        \fi
+        $if(subtitle)$
+            {\Largerrr\textbf{$subtitle$}}\\
+        $else$
+            % Lessen vertical space before the client text
+            % Otherwise, it will appear a little bit lower
+            \vspace*{0.0em}
+        $endif$
+        $if(client)$
+            $if(subtitle)$
+                \vspace*{0.9em}
+            $endif$
+            {\Largerrr\textbf{$client$}}\\
+        $endif$
+
+        \vspace*{0.7em}
+        \noindent\textcolor{DimGray}{\rule{\textwidth}{1pt}}
+        \vspace*{0.0em}
+
+        $if(doctype)$
+            {\large\textrm{$doctype$}}\\[0.2em]
+        $endif$
+        $if(version)$
+            % Negative space for adjustment only.
+            % The version text seems to be a bit low under the line
+            \vspace*{0.1em}
+            % Add 'Draft' text on document version number
+            % if the document class option 'draft' is specified
+            % \ifoptiondraft{Draft}{}\space $version$\\
+            {\large\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
+            % \vspace*{0.5em}
+        $endif$
+        {\large\textrm{$date$}}\\[0.2em]
+        \vspace*{1.75in}
+        $if(author)$
+            $if(author_heading)$
+                {\large\textrm{$author_heading$}}\\[1em]
+            $endif$
+            $for(author)$
+                $if(author.name)$
+                    \vspace*{1.4em}
+                    {\large\textbf{$author.name$}}\\[0.2em]
+                    $if(author.title)$
+                        {\normalsizerrr\textrm{$author.title$}}\\[0.2em]
+                    $endif$
+                    $if(author.company)$
+                        {\normalsizerrr\textrm{$author.company$}}\\[0.2em]
+                    $endif$
+                    $if(author.email)$
+                        {\normalsizerrr\textrm{$author.email$}}\\
+                    $endif$
+                $endif$
+            $endfor$
+        $endif$
+
+        % Add a vertical fill to push down all items to the bottom page.
+        % https://latex.org/forum/viewtopic.php?t=13428
+        \vspace{\fill}
+        $if(distribution)$
+            {\normalsize\textrm{$distribution$}}
+        $endif$
+    \end{flushright}
+$endif$
+
+
+
+\frontmatter
+
+%
+% Copyright
+%
+$if(with_copyright)$
+    \thispagestyle{empty}
+    \begin{flushleft}
+        {\bfseries $title$}
+        $if(subtitle)$
+            {\\\itshape $subtitle$}
+        $endif$
+        $if(version)$
+            {\normalsize\ifoptiondraft{Draft}{}\\$version$}
+        $endif$
+        \hfill\newline
+        $if(author)$
+            \normalsize by
+            $for(author)$\normalsize $author.name$$sep$,\space$endfor$
+        $endif$
+        \vspace*{1em}
+
+        \vspace*{1.5em}
+        $if(cc_license_image)$
+            \includegraphics[keepaspectratio=true, width=2.5cm]
+                {cc_by_nc_sa_40.eps}\\[1.2em]
+        $endif$
+        \justify
+        $if(copyright)$
+            \normalsize $copyright$\\[1.2em]
+        $endif$
+        $if(license_text)$
+            \normalsize $license_text$\\[1.2em]
+        $endif$
+        $if(license_attribution)$
+            \normalsize {\bfseries Attribution}\textemdash%
+                 $license_attribution$\\[1.2em]
+        $endif$
+        $if(license_translations)$
+            \normalsize {\bfseries Translations}\textemdash%
+                $license_translations$\\[1.2em]
+        $endif$
+        $if(license_adaptations)$
+            \normalsize {\bfseries Adaptations}\textemdash%
+                $license_adaptations$\\[1.2em]
+        $endif$
+        \normalsize All trademarks in this document are held by their %
+            respective owners.\\[1.2em]
+        $if(source)$
+            \normalsize $source$\\[1.2em]
+        $endif$
+        \ifxetex
+            \normalsize PDF file created using XeTeX %
+                \the\eTeXversion\eTeXrevision-%
+                \the\XeTeXversion\XeTeXrevision\space on \DTMnow.
+        \else
+            \normalsize PDF file created using pdfTeX %
+                \the\eTeXversion\eTeXrevision-%
+                \the\pdftexversion.\pdftexrevision\space on \DTMnow.
+        \fi
+    \end{flushleft}
+    \pagebreak
+    \cleardoublepage
+$endif$
+
+
+
+%
+% Table of contents
+%
+$if(toc)$
+{
+    \settocdepth{subsection}
+    \cleardoublepage
+    \begin{KeepFromToc} % Hide the ToC page entry in the ToC
+        \vspace*{-7ex}
+        \tableofcontents
+    \end{KeepFromToc}
+    \pagebreak
+    \cleardoublepage
+}
+$endif$
+
+
+
+$if(lot)$
+\vspace*{-7ex}
+\listoftables
+\pagebreak
+\cleardoublepage
+$endif$
+
+
+
+$if(lof)$
+\vspace*{-7ex}
+\listoffigures
+\pagebreak
+\cleardoublepage
+$endif$
+
+
+
+$for(include-before)$
+\vspace*{-7ex}
+$include-before$
+\pagebreak
+\cleardoublepage
+$endfor$
+
+
+
+\mainmatter
+
+\pagestyle{simple}
+\vspace*{-7ex}
+$body$
+\pagebreak
+\cleardoublepage
+
+
+
+\appendix
+
+$for(include-after)$
+\vspace*{-7ex}
+$include-after$
+\pagebreak
+\cleardoublepage
+$endfor$
+
+
+
+\backmatter
+
+$if(natbib)$
+    $if(bibliography)$
+        $if(biblio-title)$
+            $if(book-class)$
+                \renewcommand\bibname{$biblio-title$}
+            $else$
+                \renewcommand\refname{$biblio-title$}
+            $endif$
+        $endif$
+        \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+    $endif$
+$endif$
+
+$if(biblatex)$
+    \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+
+
+%\printindex
+
+\end{document}
+
+% =============================================================================
+% End document
+% =============================================================================
