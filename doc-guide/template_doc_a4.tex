@@ -54,6 +54,7 @@
 % \definecolor{ListingCaptionColor}{RGB}{240,240,240}
 \definecolor{ListingCaptionColor}{RGB}{220,220,220}
 \definecolor{Gray50}{RGB}{69,69,69}
+\definecolor{Red50}{RGB}{125,0,0}
 
 % Fonts and Encoding
 % ------------------
@@ -66,6 +67,21 @@
     %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
 \fi
 
+% ------------------------------------------------
+% NOTE:
+% In the TUG font catalogue pages, I always see
+% this package included after inclusion of font
+% packages and after renewcommand*.
+% ------------------------------------------------
+% TODO: Why?
+%
+% Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+% If you do not have a specific font encoding issue (e.g. writing English
+% only), there is no need for T1. Sticking to the default font encoding is
+% not a problem.
+%
+% To be able to use other TeX fonts, make sure T1 encoding is used.
+\usepackage[T1]{fontenc}
 \usepackage[fontsize=$fontsize$pt]{fontsize}
 
 % Must load ucs before inputenc
@@ -249,9 +265,7 @@
     \setromanfont{CharisSIL}
 \fi
 
-
-
-
+\usepackage{fontawesome5} % gives us nice monochrome icons
 
 
 
@@ -527,7 +541,7 @@ $if(listings)$
             style=common,
             basicstyle=\normalsize\ttfamily,
             keywordstyle=\color{NavyBlue},
-            stringstyle =\color{Brown},
+            stringstyle=\color{Brown},
             commentstyle=\color{Green},
             numberstyle=\small\ttfamily\color{DimGray},
             basewidth=0.54em,
@@ -667,8 +681,9 @@ $endif$
 \usepackage{tablefootnote}
 \usepackage{threeparttable}
 
-% Set vertical space between bottom of page text and start of footnote.
-% The default is \setfootins{\bigskipamount}{\bigskipamount}.
+% When using memoir
+    % Set vertical space between bottom of page text and start of footnote.
+    % The default is \setfootins{\bigskipamount}{\bigskipamount}.
 \setfootins{2em}{2em}
 
 % Vertical space between paragraphs in a single footnote
@@ -849,80 +864,35 @@ $endif$
 %     Ramification
 %     Warning
 
-% \makeatletter
-% \NewDocumentCommand{\noteinfo}{+O{}+m}{%
-%   \begingroup
-%   \tcbset{%
-%     noteshift/.store in=\noteinfo@shift,
-%     noteshift=1.5cm
-%   }
-%   \begin{tcolorbox}[nobeforeafter,
-%     enhanced,
-%     sharp corners,
-%     top=1mm,
-%     bottom=1mm,
-%     toprule=1pt,
-%     bottomrule=1pt,
-%     leftrule=0pt,
-%     rightrule=0pt,
-%     colback=yellow!10,
-%     colframe=Khaki!50,
-%     #1,
-%     left skip=\noteinfo@shift,
-%     right skip=\noteinfo@shift,
-%     overlay={\node[right] (noteinfonode) at ([xshift=-\noteinfo@shift]frame.west) {\textbf{Note:}} ;},
-%     ]
-%     #2
-%   \end{tcolorbox}
-%   \endgroup
-%   }
-% \makeatother
-
-% \newtcolorbox{noteinfo}[1][]{%
-%   enhanced jigsaw,                      % better frame drawing
-%   borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-%   sharp corners,                        % No rounded corners
-%   boxrule=0pt,                          % no real frame,
-%   fonttitle={\bfseries},
-%   coltitle={black},                     % Black colour for title
-%   title={Note:\quad \ },                     % Fixed title
-%   attach title to upper,                % Move the title into the box
-%   #1
-% }
-
-% https://tex.stackexchange.com/questions/657363/
-\newtcolorbox[auto counter,number within=section]{noteinfo}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
+% Using tcolorbox package
+% Define a command to make side boxes with an automatic icon
+\newcommand{\newsideboxwithicon}[4]{%
+  % #1 = env name
+  % #2 = icon command (e.g. \faInfoCircle)
+  % #3 = color for the vertical bar
+  % #4 = bar thickness
+  \newtcolorbox{#1}[1][]{enhanced,
+    breakable,
+    colback=white,
+    colback=#3!10,      % soft tint behind text
+    colframe=white,     % no border
+    boxrule=0pt,
+    left=3mm,           % space for the bar
+    borderline west={#4}{0pt}{#3},
+    fonttitle=\bfseries,
     coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Note~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=green,
-    #1
+    colbacktitle=#3!10, % soft tint behind title row
+    before title={\par\vspace{1.5mm}},
+    title={#2\space\space\space\ ##1}}%
 }
 
-\newtcolorbox[auto counter,number within=section]{notedanger}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Information~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=red,
-    #1
-}
-
-\newtcolorbox[auto counter,number within=section]{notewarning}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Information~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=orange,
-    #1
-}
+% Define concrete environments
+\newsideboxwithicon{inote}{\faInfoCircle}{blue!70!black}{3pt}
+\newsideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
+\newsideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
+\newsideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
+\newsideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
+% \newsideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
 
 
 
@@ -954,6 +924,9 @@ $endif$
 \setlength{\cftsectionnumwidth}{2.5em}
 \setlength{\cftsubsectionnumwidth}{3.5em}
 
+% Page Style
+% ----------
+
 % Using memoir class with fancyhdr may get compilation errors because both
 % define the \footruleskip command when loading. To avoid the error, the
 % command needs to be 'undefined' before fancyhdr is loaded but after memoir
@@ -976,6 +949,16 @@ $endif$
     \renewcommand{\headrulewidth}{0pt}
 }
 \setlength{\headheight}{15pt} % fixes \headheight warning
+
+% TODO: Show the page number at the bottom right side of the page.
+%
+% Set the page at the center of the footer
+% The page number is currently at the center. Tried to put it at the
+% bottom right side but the roman numeral pages is not printed at the
+% bottom right side. So, I reverted back to the default.
+% Added 20250819
+% \fancyfoot{} % clear the footer
+% \fancyfoot[C]{\thepage}
 
 % Chapter style
 % -----------------------------------------------------------------------------
@@ -1078,9 +1061,6 @@ $endif$
 
 %\makeindex
 
-% Look at .log file to see the package versions
-\listfiles
-
 
 
 % =============================================================================
@@ -1112,7 +1092,7 @@ $if(title)$
     \vspace*{1.75in}
     \begin{flushright}
         \ifxetex \mytitlefont \fi
-        {\fontsize{22pt}{26pt}\textbf{$title$}}\\
+        {\LARGE\textbf{$title$}}\\
         \ifpdftex
             \vspace*{0.7em}
         \fi
@@ -1120,7 +1100,7 @@ $if(title)$
             \vspace*{1em}
         \fi
         $if(subtitle)$
-            {\fontsize{18pt}{20pt}\textbf{$subtitle$}}\\
+            {\Largerrr\textbf{$subtitle$}}\\
         $else$
             % Lessen vertical space before the client text
             % Otherwise, it will appear a little bit lower
@@ -1128,9 +1108,9 @@ $if(title)$
         $endif$
         $if(client)$
             $if(subtitle)$
-                \vspace*{0.7em}
+                \vspace*{0.9em}
             $endif$
-            {\fontsize{18pt}{20pt}\textbf{$client$}}\\
+            {\Largerrr\textbf{$client$}}\\
         $endif$
 
         \vspace*{0.7em}
@@ -1138,37 +1118,36 @@ $if(title)$
         \vspace*{0.0em}
 
         $if(doctype)$
-            {\fontsize{16pt}{20pt}\textrm{$doctype$}}\\[0.7em]
+            {\large\textrm{$doctype$}}\\[0.2em]
         $endif$
         $if(version)$
             % Negative space for adjustment only.
             % The version text seems to be a bit low under the line
-            \vspace*{-0.2em}
+            \vspace*{0.1em}
             % Add 'Draft' text on document version number
             % if the document class option 'draft' is specified
             % \ifoptiondraft{Draft}{}\space $version$\\
-            {\fontsize{12pt}{16pt}\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\
-            \vspace*{0.7em}
+            {\large\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
+            % \vspace*{0.5em}
         $endif$
-        {\fontsize{12pt}{16pt}\textrm{$date$}}\\[0.7em]
-
+        {\large\textrm{$date$}}\\[0.2em]
         \vspace*{1.75in}
         $if(author)$
             $if(author_heading)$
-                {\fontsize{12pt}{14pt}\textrm{$author_heading$}}\\[1em]
+                {\large\textrm{$author_heading$}}\\[1em]
             $endif$
             $for(author)$
                 $if(author.name)$
                     \vspace*{1.4em}
-                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}\\[0.2em]
+                    {\large\textbf{$author.name$}}\\[0.2em]
                     $if(author.title)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.title$}}\\[0.2em]
+                        {\normalsizerrr\textrm{$author.title$}}\\[0.2em]
                     $endif$
                     $if(author.company)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.company$}}\\[0.2em]
+                        {\normalsizerrr\textrm{$author.company$}}\\[0.2em]
                     $endif$
                     $if(author.email)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.email$}}\\
+                        {\normalsizerrr\textrm{$author.email$}}\\
                     $endif$
                 $endif$
             $endfor$
@@ -1178,7 +1157,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace{\fill}
         $if(distribution)$
-            {\fontsize{10pt}{13pt}\textrm{$distribution$}}
+            {\normalsize\textrm{$distribution$}}
         $endif$
     \end{flushright}
 $endif$

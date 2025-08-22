@@ -70,6 +70,21 @@
     %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
 \fi
 
+% ------------------------------------------------
+% NOTE:
+% In the TUG font catalogue pages, I always see
+% this package included after inclusion of font
+% packages and after renewcommand*.
+% ------------------------------------------------
+% TODO: Why?
+%
+% Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+% If you do not have a specific font encoding issue (e.g. writing English
+% only), there is no need for T1. Sticking to the default font encoding is
+% not a problem.
+%
+% To be able to use other TeX fonts, make sure T1 encoding is used.
+\usepackage[T1]{fontenc}
 \usepackage[fontsize=$fontsize$pt]{fontsize}
 
 % Must load ucs before inputenc
@@ -257,10 +272,6 @@
 
 
 
-
-
-
-
 % Indenting blocks
 \usepackage{scrextend}
 
@@ -347,7 +358,7 @@ $endif$
 
 % Tikz
 % ----
-\usepackage{tikz} % for the vertical lines on the left side of paragraphs
+% \usepackage{tikz}
 % \usetikzlibrary{shapes,arrows}
 
 
@@ -397,13 +408,6 @@ $endif$
 % Put the definitions onto the next line
 % https://tex.stackexchange.com/questions/35481/
 \setlist[description]{style=nextline}
-
-
-
-% Frame
-% Create framed, shaded, or differently highlighted regions that can
-% break across pages.
-\usepackage{framed}
 
 
 
@@ -540,7 +544,7 @@ $if(listings)$
             style=common,
             basicstyle=\normalsize\ttfamily,
             keywordstyle=\color{NavyBlue},
-            stringstyle =\color{Brown},
+            stringstyle=\color{Brown},
             commentstyle=\color{Green},
             numberstyle=\small\ttfamily\color{DimGray},
             basewidth=0.54em,
@@ -680,8 +684,9 @@ $endif$
 \usepackage{tablefootnote}
 \usepackage{threeparttable}
 
-% Set vertical space between bottom of page text and start of footnote.
-% The default is \setfootins{\bigskipamount}{\bigskipamount}.
+% When using memoir
+    % Set vertical space between bottom of page text and start of footnote.
+    % The default is \setfootins{\bigskipamount}{\bigskipamount}.
 \setfootins{2em}{2em}
 
 % Vertical space between paragraphs in a single footnote
@@ -922,6 +927,9 @@ $endif$
 \setlength{\cftsectionnumwidth}{2.5em}
 \setlength{\cftsubsectionnumwidth}{3.5em}
 
+% Page Style
+% ----------
+
 % Using memoir class with fancyhdr may get compilation errors because both
 % define the \footruleskip command when loading. To avoid the error, the
 % command needs to be 'undefined' before fancyhdr is loaded but after memoir
@@ -944,6 +952,16 @@ $endif$
     \renewcommand{\headrulewidth}{0pt}
 }
 \setlength{\headheight}{15pt} % fixes \headheight warning
+
+% TODO: Show the page number at the bottom right side of the page.
+%
+% Set the page at the center of the footer
+% The page number is currently at the center. Tried to put it at the
+% bottom right side but the roman numeral pages is not printed at the
+% bottom right side. So, I reverted back to the default.
+% Added 20250819
+% \fancyfoot{} % clear the footer
+% \fancyfoot[C]{\thepage}
 
 % Chapter style
 % -----------------------------------------------------------------------------
@@ -1045,9 +1063,6 @@ $endif$
 
 
 %\makeindex
-
-% Look at .log file to see the package versions
-\listfiles
 
 
 

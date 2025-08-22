@@ -111,7 +111,8 @@
     protrusion=true,
     expansion=true,
     letterspace=-12,        % compress the letters in \Note in code listings
-    kerning=false]{microtype}
+    kerning=true
+    ]{microtype}
 \fi
 
 
@@ -134,17 +135,11 @@
 
     % Sans-serif fonts
     % ----------------
-    % Font size for a4 and us letter paper size
     \usepackage[scaled=0.92]{helvet} % {phv}
-    % Font size for a5 paper size
-    % \usepackage[scaled=0.42]{helvet} % {phv}
 
     % Typewriter fonts
     % ----------------
-    % Font size for a4 and us letter paper size
-    \usepackage[scaled=0.89]{beramono} % {fvm} default scaling is 0.9
-    % Font size for a5 paper size
-    % \usepackage[scaled=0.49]{beramono} % {fvm} default scaling is 0.9
+    \usepackage[scaled=0.9]{beramono} % {fvm} default scaling is 0.9
 
     % Latin Modern Typewriter font
 
@@ -188,10 +183,7 @@
     % condensed style may be used instead but I think it is too narrow
     % and thin on screen. I am not sure yet how it looks in print.
 
-    % Font size for a4 and us letter paper size
-    \usepackage[scaled=1.12]{zlmtt}
-    % Font size for a5 paper size
-    % \usepackage[scaled=0.42]{zlmtt}
+    \usepackage{zlmtt}
 
     % Make default fonts
     % ------------------
@@ -203,6 +195,22 @@
     % \renewcommand{\familydefault}{\sfdefault}
 \fi
 \ifxetex
+    % ------------------------------------------------
+    % NOTE:
+    % In the TUG font catalogue pages, I always see
+    % this package included after inclusion of font
+    % packages and after renewcommand*.
+    % ------------------------------------------------
+    % TODO: Why?
+    %
+    % Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+    % If you do not have a specific font encoding issue (e.g. writing English
+    % only), there is no need for T1. Sticking to the default font encoding is
+    % not a problem.
+    %
+    % To be able to use other TeX fonts, make sure T1 encoding is used.
+    \usepackage[T1]{fontenc}
+
     % \defaultfontfeatures{Scale=MatchLowercase}
     \setromanfont[Scale=0.95]{IBM Plex Serif}
     % \setromanfont{Roboto Serif 14pt}[Scale=1.0]
@@ -255,6 +263,8 @@
     \usepackage{CharisSIL}
     \setromanfont{CharisSIL}
 \fi
+
+\usepackage{fontawesome5} % gives us nice monochrome icons
 
 
 
@@ -419,6 +429,10 @@ $endif$
         \usefont{T1}{fvm}{l}{n}\LSTFontSize\selectfont\lsstyle}
 \fi
 
+% The following are used in fenched code blocks to emphasize or
+% highlight code. See Custom Indention section in the source mark down
+% file.
+
 \ifpdftex
     \newcommand*\CMDb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\lsstyle}
     \newcommand*\OUTb{\usefont{T1}{lmtt}{b}{n}\TRMFontSize\selectfont\lsstyle}
@@ -502,7 +516,7 @@ $if(listings)$
             lineskip=1pt,
         }
 
-        \lstdefinestyle{listingcommon}{
+        \lstdefinestyle{listing}{
             style=common,
             basicstyle=\ListingFont,
             keywordstyle=\color{NavyBlue},
@@ -524,13 +538,12 @@ $if(listings)$
             lineskip=0pt,
         }
 
-        \lstdefinestyle{listingcommon}{
+        \lstdefinestyle{listing}{
             style=common,
             basicstyle=\normalsize\ttfamily,
             keywordstyle=\color{NavyBlue},
             stringstyle=\color{Brown},
             commentstyle=\color{Green},
-            numberstyle=\small\ttfamily\color{DimGray},
             numberstyle=\small\ttfamily\color{DimGray},
             basewidth=0.54em,
             basewidth=0.58em,
@@ -539,15 +552,11 @@ $if(listings)$
     \fi
 
     \lstdefinestyle{syntax}{
-        style=listingcommon
-    }
-
-    \lstdefinestyle{listing}{
-        style=listingcommon
+        style=listing
     }
 
     \lstdefinestyle{listingcap}{
-        style=listingcommon,
+        style=listing,
         aboveskip=0.7em,            % vertical space before the caption+listing
         belowskip=0.4em,            % vertical space after the listing
         % The following is the result of changing the same option values
@@ -677,8 +686,6 @@ $endif$
     % Set vertical space between bottom of page text and start of footnote.
     % The default is \setfootins{\bigskipamount}{\bigskipamount}.
 \setfootins{2em}{2em}
-% else use this
-    % \setlength{\skip\footins}{2em}
 
 % Vertical space between paragraphs in a single footnote
 %\renewcommand{\hangfootparskip}{0.0\baselineskip}
@@ -858,80 +865,35 @@ $endif$
 %     Ramification
 %     Warning
 
-% \makeatletter
-% \NewDocumentCommand{\noteinfo}{+O{}+m}{%
-%   \begingroup
-%   \tcbset{%
-%     noteshift/.store in=\noteinfo@shift,
-%     noteshift=1.5cm
-%   }
-%   \begin{tcolorbox}[nobeforeafter,
-%     enhanced,
-%     sharp corners,
-%     top=1mm,
-%     bottom=1mm,
-%     toprule=1pt,
-%     bottomrule=1pt,
-%     leftrule=0pt,
-%     rightrule=0pt,
-%     colback=yellow!10,
-%     colframe=Khaki!50,
-%     #1,
-%     left skip=\noteinfo@shift,
-%     right skip=\noteinfo@shift,
-%     overlay={\node[right] (noteinfonode) at ([xshift=-\noteinfo@shift]frame.west) {\textbf{Note:}} ;},
-%     ]
-%     #2
-%   \end{tcolorbox}
-%   \endgroup
-%   }
-% \makeatother
-
-% \newtcolorbox{noteinfo}[1][]{%
-%   enhanced jigsaw,                      % better frame drawing
-%   borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-%   sharp corners,                        % No rounded corners
-%   boxrule=0pt,                          % no real frame,
-%   fonttitle={\bfseries},
-%   coltitle={black},                     % Black colour for title
-%   title={Note:\quad \ },                     % Fixed title
-%   attach title to upper,                % Move the title into the box
-%   #1
-% }
-
-% https://tex.stackexchange.com/questions/657363/
-\newtcolorbox[auto counter,number within=section]{noteinfo}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
+% Using tcolorbox package
+% Define a command to make side boxes with an automatic icon
+\newcommand{\newsideboxwithicon}[4]{%
+  % #1 = env name
+  % #2 = icon command (e.g. \faInfoCircle)
+  % #3 = color for the vertical bar
+  % #4 = bar thickness
+  \newtcolorbox{#1}[1][]{enhanced,
+    breakable,
+    colback=white,
+    colback=#3!10,      % soft tint behind text
+    colframe=white,     % no border
+    boxrule=0pt,
+    left=3mm,           % space for the bar
+    borderline west={#4}{0pt}{#3},
+    fonttitle=\bfseries,
     coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Note~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=green,
-    #1
+    colbacktitle=#3!10, % soft tint behind title row
+    before title={\par\vspace{1.5mm}},
+    title={#2\space\space\space\ ##1}}%
 }
 
-\newtcolorbox[auto counter,number within=section]{notedanger}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Information~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=red,
-    #1
-}
-
-\newtcolorbox[auto counter,number within=section]{notewarning}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Information~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=orange,
-    #1
-}
+% Define concrete environments
+\newsideboxwithicon{inote}{\faInfoCircle}{blue!70!black}{3pt}
+\newsideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
+\newsideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
+\newsideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
+\newsideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
+% \newsideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
 
 
 
@@ -981,6 +943,8 @@ $endif$
 % Error: Undefined control sequence
 % \VerbatimFootnotes
 
+% Page Style
+% ----------
 \fancypagestyle{simple}{%
     \fancyhead{}
     \renewcommand{\headrulewidth}{0pt}
@@ -999,6 +963,8 @@ $endif$
 
 % Chapter style
 % -----------------------------------------------------------------------------
+% Ref: How do fonts work in LaTeX?
+%      https://tex.stackexchange.com/questions/338049/
 \makechapterstyle{rmsimple}{
     \setlength{\beforechapskip}{4ex plus 2.5ex minus 0ex}
     \setlength{\afterchapskip}{2ex plus 0.5ex minus 0ex}
