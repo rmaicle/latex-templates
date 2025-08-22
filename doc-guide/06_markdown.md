@@ -2013,45 +2013,52 @@ This is the third paragraph and should be indented too.
 
 
 
-
-
-
 ## Alerts
 
-_Alerts_ are a Markdown extension that can be used to emphasize critical
-information.
+_Alerts_ are a *Markdown* extension that can be used to emphasize
+certain type of information.
 
 ~~~{style=syntax}
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
+\begin{inote}[NOTE]
+\lipsum[][1-3]
+\end{inote}
 
-> [!TIP]
-> Helpful advice for doing things better or more easily.
+\begin{itip}[TIP]
+\lipsum[][1-3]
+\end{itip}
 
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+\begin{iimportant}[IMPORTANT]
+\lipsum[][1-3]
+\end{iimportant}
 
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+\begin{iwarning}[WARNING]
+\lipsum[][1-3]
+\end{iwarning}
 
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+\begin{icaution}[CAUTION]
+\lipsum[][1-3]
+\end{icaution}
 ~~~
 
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
+\begin{inote}[NOTE]
+\lipsum[][1-3]
+\end{inote}
 
-> [!TIP]
-> Helpful advice for doing things better or more easily.
+\begin{itip}[TIP]
+\lipsum[][1-3]
+\end{itip}
 
-> [!IMPORTANT]
-> Key information users need to know to achieve their goal.
+\begin{iimportant}[IMPORTANT]
+\lipsum[][1-3]
+\end{iimportant}
 
-> [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
+\begin{iwarning}[WARNING]
+\lipsum[][1-3]
+\end{iwarning}
 
-> [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
+\begin{icaution}[CAUTION]
+\lipsum[][1-3]
+\end{icaution}
 
 
 
