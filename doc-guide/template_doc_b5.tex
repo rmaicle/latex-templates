@@ -987,6 +987,16 @@ $endif$
 }
 \setlength{\headheight}{15pt} % fixes \headheight warning
 
+% TODO: Show the page number at the bottom right side of the page.
+%
+% Set the page at the center of the footer
+% The page number is currently at the center. Tried to put it at the
+% bottom right side but the roman numeral pages is not printed at the
+% bottom right side. So, I reverted back to the default.
+% Added 20250819
+% \fancyfoot{} % clear the footer
+% \fancyfoot[C]{\thepage}
+
 % Chapter style
 % -----------------------------------------------------------------------------
 \makechapterstyle{rmsimple}{
