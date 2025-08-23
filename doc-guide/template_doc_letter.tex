@@ -117,6 +117,7 @@
 \fi
 
 
+
 % Fonts
 % -----
 
@@ -184,6 +185,7 @@
     % condensed style may be used instead but I think it is too narrow
     % and thin on screen. I am not sure yet how it looks in print.
 
+    % \usepackage[scaled=0.855]{zlmtt}
     \usepackage{zlmtt}
 
     % Make default fonts
@@ -268,7 +270,13 @@
     \setromanfont{CharisSIL}
 \fi
 
-\usepackage{fontawesome5} % gives us nice monochrome icons
+
+
+% For nice monochrome icons
+% Used in note-style texts using \newtcolorbox
+\usepackage{fontawesome5}
+
+\usepackage{relsize}
 
 
 
@@ -309,6 +317,8 @@
 % fancyvrb is automatically loaded here after \hypersetup.
 % DO NOT load the package manually
 % ================================
+\usepackage{verbatimbox}
+% \usepackage{fancyvrb}
 
 
 
@@ -372,6 +382,7 @@ $if(graphics)$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 
 
 % Pandoc 3.2.1 Reminder
@@ -460,7 +471,8 @@ $endif$
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
-\newcommand\TRMFontSize{\smallrr}
+% Line width at 80 characters is a little short than with listing font
+\newcommand\TRMFontSize{\smallr}
 \newcommand\LSTFontSize{\footnotesizerrr}
 
 % If you prefer a slashed zero, this is not it.
@@ -473,6 +485,8 @@ $endif$
     %      https://tex.stackexchange.com/questions/33020/
     \newcommand*\ListingFont{%
         \usefont{T1}{fvm}{l}{n}\LSTFontSize\selectfont\lsstyle}
+    \newcommand*\InlineFont{%
+        \usefont{T1}{zlmtt}{l}{n}\TRMFontSize\selectfont\lsstyle}
 \fi
 
 % The following are used in fenched code blocks to emphasize or
@@ -514,13 +528,20 @@ $endif$
     \newcommand{\Note}[1]{\ding{224}\enskip\texttt{#1}}
 \fi
 
+
+
+
+
+
+
 $if(listings)$
     % Handling UTF-8, try 'listingsutf8'
     % \usepackage{listings}
     \usepackage{listingsutf8}
-    % Package listings require fancyvrb right now.
+    % Package listings require fancyvrb
     \usepackage{fancyvrb}
-
+    % When a listing needs cannot be displayed using Markdown fenced code
+    % block syntax, this can be used:
 
 
     % Problem with hyphen being rendered too wide
@@ -554,7 +575,7 @@ $if(listings)$
     \ifpdftex
         \lstdefinestyle{terminal}{
             style=common,
-            basicstyle=\TerminalFont,
+            basicstyle=\usefont{T1}{zlmtt}{l}{n}\TRMFontSize,
             numberstyle=\footnotesize\color{Gray50},
             % Sets the width of a single character box for fixed and flexible
             % column mode (both to the same value or individually).
@@ -564,7 +585,7 @@ $if(listings)$
 
         \lstdefinestyle{listing}{
             style=common,
-            basicstyle=\ListingFont,
+            basicstyle=\usefont{T1}{fvm}{l}{n}\LSTFontSize,
             keywordstyle=\color{NavyBlue},
             stringstyle=\color{Brown},
             commentstyle=\color{Green},
@@ -574,6 +595,7 @@ $if(listings)$
             basewidth={0.62em,0.45em},
             lineskip=-1pt,
         }
+
     \fi
     \ifxetex
         \lstdefinestyle{terminal}{
@@ -643,8 +665,8 @@ $if(listings)$
     }
 
     \lstset{
+        basicstyle=\usefont{T1}{zlmtt}{l}{n}\normalsizer,
         fancyvrb=true,
-        style=terminal,
         frame=none,
         fontadjust=true,
         extendedchars=false,
@@ -676,8 +698,8 @@ $if(listings)$
         % \normalsize\fontfamily{fvm}\selectfont}
         \makeatletter
         \lst@AddToHook{TextStyle}{%
-            \let\lst@basicstyle%
-            \normalsizerr\usefont{T1}{zlmtt}{l}{n}\selectfont}
+            \let\lstinline@basicstyle%
+            \ttfamily\relscale{1.5}}
         \makeatother
     \fi
     \ifxetex
@@ -692,6 +714,14 @@ $if(listings)$
         \renewcommand{\texttt}[1]{\inlinettfont{#1}}
     \fi
 
+    % For sections and sub-sections
+    %
+    % TODO: Document this
+    \newcommand{\codesecone}[1]{{\relsize{+1.5}\texttt{#1}}}
+    \newcommand{\codesectwo}[1]{{\relsize{+1.10}\texttt{#1}}}
+    \newcommand{\codesecthree}[1]{{\relsize{+0.965}\texttt{#1}}}
+    \newcommand{\codesecfour}[1]{{\relsize{+0.85}\texttt{#1}}}
+    \newcommand{\codesecfive}[1]{{\relsize{+0.5}\texttt{#1}}}
 $endif$
 
 
