@@ -29,7 +29,7 @@ declare -a PDF_ENGINES=(
 
 declare -r PAPER_A4="a4"
 declare -r PAPER_A5="a5"
-declare -r PAPER_A5="b5"
+declare -r PAPER_B5="b5"
 declare -r PAPER_LETTER="letter"
 
 declare -r DEFAULT_PAPER_SIZE=""
