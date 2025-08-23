@@ -310,6 +310,53 @@
 % DO NOT load the package manually
 % ================================
 
+
+
+% Hyperlinks
+% ==========
+% Recommended to the last loaded package because it redefines many
+% LaTeX commands.
+
+% When using hyperref with footmisc, the footmisc documentation recommends
+% turning hyperlinks from footnote marks to the corresponding footnote body.
+% Package footmisc version 5.5b dated June 6, 2011.
+$if(is_draft)$
+\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
+$else$
+\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
+$endif$
+\hypersetup{
+    $if(title-meta)$
+        pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+        pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+    $endif$
+    $if(colorlinks)$
+        colorlinks=true,
+        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+        % Remove the border placed around a URL.
+        % Ref: LaTeX, Wikibooks, June 18, 2016.
+        pdfborder={0 0 0},
+    $endif$
+    bookmarks=true,
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdfstartview={null null 100},
+    breaklinks=true
+}
+\usepackage{bookmark}
+% Don't use monospace font for URLs.
+% Note: The hyperref package shows the URL using monospace font.
+\urlstyle{same}
+% Avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 %$if(highlighting-macros)$
 %    $highlighting-macros$
 %$endif$
@@ -1003,54 +1050,6 @@ $endif$
 \titlespacing*{\subparagraph}{0pt}{1ex}{1ex}
 
 \setsecnumdepth{subparagraph}
-
-
-
-% Hyperlinks
-% ==========
-% Recommended to the last loaded package because it redefines many
-% LaTeX commands.
-
-% When using hyperref with footmisc, the footmisc documentation recommends
-% turning hyperlinks from footnote marks to the corresponding footnote body.
-% Package footmisc version 5.5b dated June 6, 2011.
-$if(is_draft)$
-\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
-$else$
-\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
-$endif$
-\hypersetup{
-    $if(title-meta)$
-        pdftitle={$title-meta$},
-    $endif$
-    $if(author-meta)$
-        pdfauthor={$author-meta$},
-    $endif$
-    $if(keywords)$
-        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
-    $endif$
-    $if(colorlinks)$
-        colorlinks=true,
-        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
-        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
-        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
-    $else$
-        % Remove the border placed around a URL.
-        % Ref: LaTeX, Wikibooks, June 18, 2016.
-        pdfborder={0 0 0},
-    $endif$
-    bookmarks=true,
-    pdftoolbar=true,            % show Acrobat’s toolbar?
-    pdfmenubar=true,            % show Acrobat’s menu?
-    pdfstartview={null null 100},
-    breaklinks=true
-}
-\usepackage{bookmark}
-% Don't use monospace font for URLs.
-% Note: The hyperref package shows the URL using monospace font.
-\urlstyle{same}
-% Avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 
 
 
