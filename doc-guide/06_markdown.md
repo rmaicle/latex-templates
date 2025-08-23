@@ -20,8 +20,8 @@ Section headings are structured divisions of the document main body:
 chapters, sections, subsections, etc.
 Except when a section heading appear at the start of the file, section
 headings must be preceeded by and followed by one or more blank lines.
-Section headings must start with the hash (`#`) character followed by a
-space and the section title text.
+Section headings must start with the hash character (`#`) followed by
+a space and the section title text.
 Section heading levels are specified by the number of hash characters.
 
 ~~~{style=syntax}
@@ -52,15 +52,16 @@ end of the section heading line:
 ~~~
 
 Section headings may be omitted from the table of contents by adding
-`{.unlisted}` at the end of the section heading text.
+`.unlisted` at the end of the section heading text.
 
 Section headings may be displayed unnumbered in the table of contents
-by adding `{.unnumbered}` at the en dof hte section heading text.
+by adding `.unnumbered` at the en dof hte section heading
+text.
 
-Section headings may also have _anchors_ so it can be referenced in the
-document from elsewhere. An anchor is specified as
-`{#unique_anchor_name}` where _unique_anchor_name_ is a unique label
-across the entire document.
+Section headings may also have _anchors_ so it can be referenced in
+the document from elsewhere.
+An anchor is specified as `#unique_anchor_name` where
+`#unique_anchor_name` _unique_anchor_name_ is a unique label across the entire document.
 
 These may be combined and applied to a section heading.
 
@@ -76,8 +77,8 @@ These may be combined and applied to a section heading.
 
 The chapter style moves the first chapter name lower than it should.
 The first chapter should be at the top of the page.
-To do this, the command `\vspace*{-7ex}` must be executed before the
-first chapter.
+To do this, the command `\\vspace*\{-7ex\}` must be executed
+before the first chapter.
 For convenience, this command has already been added in the template
 file.
 It is used in the table of contents, list of tables, list of figures,
@@ -194,13 +195,14 @@ right aligned, respectively.
 
 ### Multi-Line Tables
 
-Enabled by passing _Pandoc markdown_ extension `multiline_tables`.
+Enabled by passing _Pandoc markdown_ extension
+`multiline_tables`.
 The following description and explanation of _multi-line tables_ is
 taken from Pandoc 2.18 documentation.
 
 Multiline tables allow header and table rows to span multiple lines of
-text (but cells that span multiple columns or rows of the table are not
-supported). Here is an example:
+text (but cells that span multiple columns or rows of the table are
+not supported). Here is an example:
 
 ~~~{style=syntax}
 -------------------------------------------------------------
@@ -345,8 +347,8 @@ The following is an example of a grid table.
 |         |       | ~~~                                             |
 +---------+-------+-------------------------------------------------+
 
-The row of `=`s separates the table header from the table body, and can
-be omitted for a headerless table.
+The row of `=`s separates the table header from the table
+body, and can be omitted for a headerless table.
 The cells of grid tables may contain arbitrary block elements (multiple
 paragraphs, code blocks, lists, etc.).
 Cells that span multiple columns or rows are not supported.
@@ -477,7 +479,7 @@ colons as above.
 
 
 
-## Code Block
+## Code \codesectwo{Block}
 
 A *code block* is a block of text treated as verbatim text. A code
 block in the original definition of markdown is indented by four
@@ -545,7 +547,7 @@ characters.
 
 
 
-### Fenced Code Block Attributes
+### Fenced Code \codesecthree{Block Attributes}
 
 Using fenced code blocks allows the declaration of _attributes_.
 _Attributes_ provide additional capabilities on how to display
@@ -687,35 +689,6 @@ int main() {
 
 
 
-#### Caption Attribute
-
-Fenced code blocks may be created with captions and it is specified
-using the `caption` attribute.
-
-Note that the caption, as of \today, does not allow formatting of
-partial text or, perhaps, I am unaware of how it could be done.
-
-`````{style=syntax}
-~~~{style=syntax caption="*Hello*, \texttt{world} _again_!"}
-#include <iostream>
-int main() {
-    std::cout << "Hello, world!";
-    return 0;
-}
-~~~
-`````
-
-~~~{style=syntax caption="*Hello*, \texttt{world} _again_!"}
-#include <iostream>
-int main() {
-    std::cout << "Hello, world!";
-    return 0;
-}
-~~~
-
-
-
-
 #### Escape Character Attribute
 
 The default escape character used in code blocks is the _at_ (`@`)
@@ -738,20 +711,39 @@ The at ('@') symbol.
 
 
 
-#### Style Attribute
+#### Style \codesecfour{Attribute}
 
 The LaTeX template used defines custom styles for displaying fenced
 code blocks. They are discussed in the following subsections.
 
 
 
-##### Style `terminal`
+##### Style \codesecfive{terminal}
 
 The *terminal* style is intended to be used to display text as they
 would appear in a terminal, console or operating system shell.
 
 The following shows a command and a short command output. Commands
 are sometimes highlighted by displaying them in bold text.
+
+````{style=listing}
+~~~{style=terminal}
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+         1         2         3         4         5         6         7         8
+abcdefghijklmnopqrstuvwzyz
+ABCDEFGHIJKLMNOPQRSTUVWZYZ
+$ sudo pacman -Syyu         @\Note{command}@
+[sudo] password for <user>:
+:: Synchronizing package databases...
+ core                      148.9 KiB   596K/s 00:00 [####################] 100%
+ extra                    1762.9 KiB  1332K/s 00:01 [####################] 100%
+ community                   5.3 MiB  1969K/s 00:03 [####################] 100%
+ multilib                  183.2 KiB  2035K/s 00:00 [####################] 100%
+ herecura                   58.8 KiB   114K/s 00:01 [####################] 100%
+:: Starting full system upgrade...
+ there is nothing to do
+~~~
+````
 
 ~~~{style=terminal}
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -768,12 +760,12 @@ $ sudo pacman -Syyu         @\Note{command}@
  herecura                   58.8 KiB   114K/s 00:01 [####################] 100%
 :: Starting full system upgrade...
  there is nothing to do
-
 ~~~
 
 
 
-##### Style `syntax`
+
+##### Style \codesecfive{syntax}
 
 The *syntax* style is intended to be used to display command syntaxes,
 command usage, and other syntactic text.
@@ -796,7 +788,7 @@ OPTIONS
 
 
 
-##### Style `listing`
+##### Style \codesecfive{listing}
 
 The *listing* style is intended to be used to display source code
 listings.
@@ -815,29 +807,21 @@ int main() {
 
 
 
-##### Style `listingcap`
+##### Style \codesecfive{listingcap}
 
 This style is intended to be used when a code block is inteded to be
 captioned.
 This can be achieved with the use of the _caption_ attribute.
-This style displays the caption over a grayish background color and draws a
-frame around the code block.
+This style displays the caption over a grayish background color and
+draws a frame around the code block.
 
-\begin{noteinfo}[]{}
-    The caption, as of \today, does not allow formatting of partial texts or,
-    perhaps, I am unaware of how it could be done.
-\end{noteinfo}
+\begin{verbnobox}[\hspace{14pt}]
+\begin{lstlisting}[style=listingcap,caption={This is an example of a fenced
+code block using \texttt{style=listingcap}. Lorem ipsum dolor sit amet,
+consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
+adipiscing vitae, felis. Curabitur dictum gravida mauris.\\
 
-Note that the caption, as of \today, does not support multiple paragraphs or,
-perhaps, I am unaware of how it could be done.
-
-`````{style=listing}
-~~~{#fenced_code_block_sample
-style=listingcap
-caption="This is an example of a fenced code block using
-style=listingcap. Lorem ipsum dolor sit amet, consectetuer
-adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
-vitae, felis. Curabitur dictum gravida mauris."}
+Second paragraph.}]
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
          1         2         3         4         5         6         7         8
 #include <iostream>
@@ -845,17 +829,19 @@ int main() {
     std::cout << "Hello, world!";
     return 0;
 }
-~~~
-`````
+\end{lstlisting}
+\end{verbnobox}
+
+
+Note that the caption text is enclosed between curly brackets.
 
 The above code is rendered as:
 
-~~~{#fenced_code_block_sample
-style=listingcap
-caption="This is an example of a fenced code block using
-\texttt{style=listingcap}. Lorem ipsum dolor sit amet, consectetuer
-adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing
-vitae, felis. Curabitur dictum gravida mauris."}
+\begin{lstlisting}[style=listingcap,caption={This is an example of a
+fenced code block using \texttt{style=listingcap}. Lorem ipsum dolor
+sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut,
+placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris.\\
+Second paragraph.}]
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
          1         2         3         4         5         6         7         8
 #include <iostream>
@@ -863,20 +849,20 @@ int main() {
     std::cout << "Hello, world!";
     return 0;
 }
-~~~
+\end{lstlisting}
 
-This paragraph is here only to show the amount of vertical space there
-is after a source code listing with caption.
+This paragraph is here only to show the amount of vertical space after
+a source code listing with caption.
 
 
 
 ### Input Listing From File
 
 Source code files can be imported and rendered as fenced code blocks
-using the `\lstinputlisting` command.
+using the `lstinputlisting` command.
 
 It may be necessary to specify the relative path to the *input file*
-when the *input file* is in a sub-directory.
+when it is in a sub-directory.
 It is desirable to put the input listing files into its own directory.
 
 Part of the caption text may be formatted as teletype text using the
@@ -890,23 +876,26 @@ LaTeX command `\texttt{}`.
 
 \begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em,style=sameline]
 \tightlist
-\item[\texttt{language}] Most general programming languages are recognized.
+\item[\texttt{language}] Most general programming languages are
+recognized.
 A list of recognized programming languages may be found in the LaTeX
 `listing.pdf` package documentation.
 \item[\texttt{firstline}]
-Display line numbers. The `auto` option argument starts the line
-number at 1. Specifying a number like `100` starts the line number at
-100. Using `last` option argument displays the last line number of the
-source code moving up relative to a previously defined
-listing using the `firstline=n`.
+Display line numbers.
+The `auto` option argument starts the line number at 1.
+Specifying a number like 100 starts the line number at 100.
+Using `last` option argument displays the last line number of
+the source code moving up relative to a previously defined listing
+using the `firstline=n`.
 \item[\texttt{caption}]
-The caption text. Part of the text may be formatted as teletype text
-using the LaTeX command `\texttt{}`.
+The caption text.
+Part of the text may be formatted as teletype text using the LaTeX
+command `texttt{}`.
 \end{description}
 
 ~~~{style=syntax}
 \lstinputlisting[
-    caption=This is a sample file inclusion using \texttt{style=lstinputlisting},
+    caption=File inclusion using \codetext{style=lstinputlisting},
     language=C++,
     style=listingcap
 ]{./listing/input_listing.cpp}
@@ -1981,12 +1970,12 @@ an empty line. This may be internal to \LaTeX.
 I do not know how to put the code that displays the terminal output
 within the code block above. The code is displayed below.
 
-\begin{verbatim}
+\begin{verbnobox}[\hspace{14pt}]
 \begin{lstlisting}[escapechar=@]
 @\OUTb{$ git --version}@
 git version 2.22.0
 \end{lstlisting}
-\end{verbatim}
+\end{verbnobox}
 
 The output of the code snippets above is shown as follows:
 
