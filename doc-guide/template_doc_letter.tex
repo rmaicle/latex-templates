@@ -1151,7 +1151,7 @@ $if(title)$
     \vspace*{1.75in}
     \begin{flushright}
         \ifxetex \mytitlefont \fi
-        {\Largerrr\textbf{$title$}}\\
+        {\Largerr\textbf{$title$}}\\
         \ifpdftex
             \vspace*{0.7em}
         \fi
@@ -1159,7 +1159,7 @@ $if(title)$
             \vspace*{1em}
         \fi
         $if(subtitle)$
-            {\Largerrr\textbf{$subtitle$}}\\
+            {\Largerr\textbf{$subtitle$}}\\
         $else$
             % Lessen vertical space before the client text
             % Otherwise, it will appear a little bit lower
@@ -1169,7 +1169,7 @@ $if(title)$
             $if(subtitle)$
                 \vspace*{0.9em}
             $endif$
-            {\Largerrr\textbf{$client$}}\\
+            {\Largerr\textbf{$client$}}\\
         $endif$
 
         \vspace*{0.7em}
@@ -1177,7 +1177,7 @@ $if(title)$
         \vspace*{0.0em}
 
         $if(doctype)$
-            {\large\textrm{$doctype$}}\\[0.2em]
+            {\normalsizerrr\textrm{$doctype$}}\\[0.2em]
         $endif$
         $if(version)$
             % Negative space for adjustment only.
@@ -1186,27 +1186,27 @@ $if(title)$
             % Add 'Draft' text on document version number
             % if the document class option 'draft' is specified
             % \ifoptiondraft{Draft}{}\space $version$\\
-            {\large\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
+            {\normalsizerrr\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
             % \vspace*{0.5em}
         $endif$
-        {\large\textrm{$date$}}\\[0.2em]
+        {\normalsizerr\textrm{$date$}}\\[0.2em]
         \vspace*{1.75in}
         $if(author)$
             $if(author_heading)$
-                {\large\textrm{$author_heading$}}\\[1em]
+                {\normalsizerr\textrm{$author_heading$}}\\[1em]
             $endif$
             $for(author)$
                 $if(author.name)$
                     \vspace*{1.4em}
-                    {\large\textbf{$author.name$}}\\[0.2em]
+                    {\normalsizerr\textbf{$author.name$}}\\[0.2em]
                     $if(author.title)$
-                        {\normalsizerrr\textrm{$author.title$}}\\[0.2em]
+                        {\normalsizerr\textrm{$author.title$}}\\[0.2em]
                     $endif$
                     $if(author.company)$
-                        {\normalsizerrr\textrm{$author.company$}}\\[0.2em]
+                        {\normalsizerr\textrm{$author.company$}}\\[0.2em]
                     $endif$
                     $if(author.email)$
-                        {\normalsizerrr\textrm{$author.email$}}\\
+                        {\normalsizerr\textrm{$author.email$}}\\
                     $endif$
                 $endif$
             $endfor$
