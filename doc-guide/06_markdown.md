@@ -2278,12 +2278,17 @@ See the result.[^newline_footnote]
 
 ### Inline Code
 
-Inline code within a footnote text is rendered using `\texttt{}`.`
+Inline code within a footnote text is rendered using `\texttt{}`.
 
 ~~~{style=syntax}
-This is an inline footnote.^[Lorem ipsum dolor sit amet, \texttt{consectetur}
+This is an inline footnote.^[Lorem ipsum dolor sit amet, `consectetur`
 adipiscing elit.]
 ~~~
+
+This is an inline footnote.^[Lorem ipsum dolor sit amet, `consectetur`
+adipiscing elit.]
+
+
 
 
 
