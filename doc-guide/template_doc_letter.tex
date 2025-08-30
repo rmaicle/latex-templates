@@ -14,14 +14,16 @@
 % Better margin control
 % The following recommends 2cm or 0.7874016in
 % http://gilmation.com/articles/latex-margins-for-book-binding/
-\usepackage[inner=1.0in,        % main inner margin
-            outer=1.0in,        % outer margin
-            top=1.0in,          % top margin
-            bottom=1.0in,       % bottom margin
-            bindingoffset=0.5in,
-            footskip=0.4in
-            % showframe
-           ]{geometry}
+\usepackage[
+        letter,
+        inner=1.0in,        % main inner margin
+        outer=1.0in,        % outer margin
+        top=1.0in,          % top margin
+        bottom=1.0in,       % bottom margin
+        bindingoffset=0.5in,
+        footskip=0.4in,
+        showframe=$if(showframe)$$showframe$$else$false$endif$
+        ]{geometry}
 
 % NOTE: Line wrap symbol in listings requires amsmath
 \usepackage{amsmath}
@@ -185,7 +187,6 @@
     % condensed style may be used instead but I think it is too narrow
     % and thin on screen. I am not sure yet how it looks in print.
 
-    % \usepackage[scaled=0.855]{zlmtt}
     \usepackage{zlmtt}
 
     % Make default fonts
@@ -318,7 +319,6 @@
 % DO NOT load the package manually
 % ================================
 \usepackage{verbatimbox}
-% \usepackage{fancyvrb}
 
 
 
@@ -530,10 +530,6 @@ $endif$
 
 
 
-
-
-
-
 $if(listings)$
     % Handling UTF-8, try 'listingsutf8'
     % \usepackage{listings}
@@ -577,8 +573,9 @@ $if(listings)$
             style=common,
             basicstyle=\usefont{T1}{zlmtt}{l}{n}\TRMFontSize,
             numberstyle=\footnotesize\color{Gray50},
-            % Sets the width of a single character box for fixed and flexible
-            % column mode (both to the same value or individually).
+            % Sets the width of a single character box for fixed and
+            % flexible column mode (both to the same value or
+            % individually).
             basewidth={0.504em,0.45em},
             lineskip=1pt,
         }
@@ -667,6 +664,7 @@ $if(listings)$
     \lstset{
         basicstyle=\usefont{T1}{zlmtt}{l}{n}\normalsizer,
         fancyvrb=true,
+        style=terminal,
         frame=none,
         fontadjust=true,
         extendedchars=false,
@@ -924,6 +922,36 @@ $endif$
 % \makeatother
 
 
+
+\usepackage{etoolbox} % for \ifstrempty
+
+% Define a command to make side boxes with color and thickness and an
+% optional title string.
+\newcommand{\sidebox}[4]{%
+    % #1 = env name
+    % #3 = color for the vertical bar
+    % #4 = bar thickness
+    \newtcolorbox{#1}[1][]{enhanced,
+        breakable,
+        colback=white,
+        colback=#2!10,
+        colframe=white,
+        boxrule=0pt,
+        left=3mm,
+        borderline west={#3}{0pt}{#2},
+        fonttitle=\bfseries,
+%        coltitle=black,
+%        % Only insert title if #2 is not empty:
+%        title={\ifstrempty{#2}{##1}{#2\space\space\ ##1}},
+%        % Avoid extra space if title is empty:
+%        before title={\ifstrempty{#2}{}{\par\vspace{1.5mm}}},
+%        colbacktitle={\ifstrempty{#2}{}{#3!10}}
+    }%
+}
+
+% Define concrete environments
+\sidebox{iside}{cyan!80!black}{3pt}
+
 % Note-style text
 % https://tex.stackexchange.com/questions/474177/creating-a-note-section
 %
@@ -938,35 +966,35 @@ $endif$
 
 % Using tcolorbox package
 % Define a command to make side boxes with an automatic icon
-\newcommand{\newsideboxwithicon}[4]{%
-  % #1 = env name
-  % #2 = icon command (e.g. \faInfoCircle)
-  % #3 = color for the vertical bar
-  % #4 = bar thickness
-  \newtcolorbox{#1}[1][]{enhanced,
-    breakable,
-    colback=white,
-    colback=#3!10,      % soft tint behind text
-    colframe=white,     % no border
-    boxrule=0pt,
-    left=3mm,           % space for the bar
-    borderline west={#4}{0pt}{#3},
-    fonttitle=\bfseries,
-    coltitle=black,
-    colbacktitle=#3!10, % soft tint behind title row
-    before title={\par\vspace{1.5mm}},
-    title={#2\space\space\space\ ##1}}%
+\newcommand{\sideboxwithicon}[4]{%
+% #1 = env name
+% #2 = icon command (e.g. \faInfoCircle)
+% #3 = color for the vertical bar
+% #4 = bar thickness
+    \newtcolorbox{#1}[1][]{enhanced,
+        breakable,
+        colback=white,
+        colback=#3!10,      % soft tint behind text
+        colframe=white,     % no border
+        boxrule=0pt,
+        left=3mm,           % space for the bar
+        borderline west={#4}{0pt}{#3},
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=#3!10, % soft tint behind title row
+        before title={\par\vspace{1.5mm}},
+        title={#2\space\space ##1}}%
 }
 
 % Define concrete environments
-%
 % TODO: Show examples of how to use here
-\newsideboxwithicon{inote}{\faInfoCircle}{blue!70!black}{3pt}
-\newsideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
-\newsideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
-\newsideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
-\newsideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
-% \newsideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
+\sideboxwithicon{itodo}{\faClipboardCheck}{cyan!80!black}{3pt}
+\sideboxwithicon{inote}{\faInfoCircle}{blue!60!black}{3pt}
+\sideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
+\sideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
+\sideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
+\sideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
+\sideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
 
 
 
@@ -1054,8 +1082,8 @@ $endif$
             \chapnumfont \thechapter\quad%
         \fi%
     }
-    \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\bfseries}
-    \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\bfseries}
+    \renewcommand*{\chapnumfont}{\Large\bfseries}
+    \renewcommand*{\chaptitlefont}{\Large\bfseries}
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
@@ -1122,7 +1150,7 @@ $if(title)$
     \vspace*{1.75in}
     \begin{flushright}
         \ifxetex \mytitlefont \fi
-        {\LARGE\textbf{$title$}}\\
+        {\Largerrr\textbf{$title$}}\\
         \ifpdftex
             \vspace*{0.7em}
         \fi

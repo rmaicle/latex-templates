@@ -8,20 +8,25 @@
     article]{memoir}
 
 
-
+% B5 paper size
+%    width: 176 mm | 6.9 in
+%    length: 250 mm | 9.8 in
+%
 % Recommended margin and binding offset
 % https://tex.stackexchange.com/questions/249190/
 % Better margin control
 % The following recommends 2cm or 0.7874016in
 % http://gilmation.com/articles/latex-margins-for-book-binding/
-\usepackage[inner=0.5in,        % main inner margin
-            outer=0.5in,        % outer margin
-            top=0.5in,          % top margin
-            bottom=0.75in,      % bottom margin
-            bindingoffset=0.5in,
-            footskip=0.4in,
-            showframe=$if(showframe)$$showframe$$else$false$endif$
-           ]{geometry}
+\usepackage[
+        b5paper,
+        inner=0.5in,        % main inner margin
+        outer=0.5in,        % outer margin
+        top=0.5in,          % top margin
+        bottom=0.75in,      % bottom margin
+        bindingoffset=0.5in,
+        footskip=0.4in,
+        showframe=$if(showframe)$$showframe$$else$false$endif$
+        ]{geometry}
 
 % NOTE: Line wrap symbol in listings requires amsmath
 \usepackage{amsmath}
@@ -57,6 +62,7 @@
 % \definecolor{ListingCaptionColor}{RGB}{240,240,240}
 \definecolor{ListingCaptionColor}{RGB}{220,220,220}
 \definecolor{Gray50}{RGB}{69,69,69}
+\definecolor{Red50}{RGB}{125,0,0}
 
 % Fonts and Encoding
 % ------------------
@@ -114,6 +120,7 @@
     kerning=true
     ]{microtype}
 \fi
+
 
 
 % Fonts
@@ -194,6 +201,9 @@
     % https://stackoverflow.com/questions/877597/
     % \renewcommand{\familydefault}{\sfdefault}
 \fi
+
+
+
 \ifxetex
     % ------------------------------------------------
     % NOTE:
@@ -264,7 +274,13 @@
     \setromanfont{CharisSIL}
 \fi
 
-\usepackage{fontawesome5} % gives us nice monochrome icons
+
+
+% For nice monochrome icons
+% Used in note-style texts using \newtcolorbox
+\usepackage{fontawesome5}
+
+\usepackage{relsize}
 
 
 
@@ -305,10 +321,55 @@
 % fancyvrb is automatically loaded here after \hypersetup.
 % DO NOT load the package manually
 % ================================
+\usepackage{verbatimbox}
 
-%$if(highlighting-macros)$
-%    $highlighting-macros$
-%$endif$
+
+
+% Hyperlinks
+% ==========
+% Recommended to the last loaded package because it redefines many
+% LaTeX commands.
+
+% When using hyperref with footmisc, the footmisc documentation recommends
+% turning hyperlinks from footnote marks to the corresponding footnote body.
+% Package footmisc version 5.5b dated June 6, 2011.
+$if(is_draft)$
+\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
+$else$
+\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
+$endif$
+\hypersetup{
+    $if(title-meta)$
+        pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+        pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+    $endif$
+    $if(colorlinks)$
+        colorlinks=true,
+        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+        % Remove the border placed around a URL.
+        % Ref: LaTeX, Wikibooks, June 18, 2016.
+        pdfborder={0 0 0},
+    $endif$
+    bookmarks=true,
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdfstartview={null null 100},
+    breaklinks=true
+}
+\usepackage{bookmark}
+% Don't use monospace font for URLs.
+% Note: The hyperref package shows the URL using monospace font.
+\urlstyle{same}
+% Avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 
 
 
@@ -324,6 +385,7 @@ $if(graphics)$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 
 
 % Pandoc 3.2.1 Reminder
@@ -412,8 +474,7 @@ $endif$
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
-% \newcommand\TRMFontSize{\footnotesize}
-% Use the fontsize package constants to resize the terminal font
+% Line width at 80 characters is a little short than with listing font
 \newcommand\TRMFontSize{\footnotesizer}
 \newcommand\LSTFontSize{\small}
 
@@ -427,6 +488,8 @@ $endif$
     %      https://tex.stackexchange.com/questions/33020/
     \newcommand*\ListingFont{%
         \usefont{T1}{fvm}{l}{n}\LSTFontSize\selectfont\lsstyle}
+    \newcommand*\InlineFont{%
+        \usefont{T1}{zlmtt}{l}{n}\TRMFontSize\selectfont\lsstyle}
 \fi
 
 % The following are used in fenched code blocks to emphasize or
@@ -468,13 +531,16 @@ $endif$
     \newcommand{\Note}[1]{\ding{224}\enskip\texttt{#1}}
 \fi
 
+
+
 $if(listings)$
     % Handling UTF-8, try 'listingsutf8'
     % \usepackage{listings}
     \usepackage{listingsutf8}
-    % Package listings require fancyvrb right now.
+    % Package listings require fancyvrb
     \usepackage{fancyvrb}
-
+    % When a listing needs cannot be displayed using Markdown fenced code
+    % block syntax, this can be used:
 
 
     % Problem with hyphen being rendered too wide
@@ -508,17 +574,18 @@ $if(listings)$
     \ifpdftex
         \lstdefinestyle{terminal}{
             style=common,
-            basicstyle=\TerminalFont,
+            basicstyle=\usefont{T1}{zlmtt}{l}{n}\TRMFontSize,
             numberstyle=\footnotesize\color{Gray50},
-            % Sets the width of a single character box for fixed and flexible
-            % column mode (both to the same value or individually).
+            % Sets the width of a single character box for fixed and
+            % flexible column mode (both to the same value or
+            % individually).
             basewidth={0.504em,0.45em},
             lineskip=1pt,
         }
 
         \lstdefinestyle{listing}{
             style=common,
-            basicstyle=\ListingFont,
+            basicstyle=\usefont{T1}{fvm}{l}{n}\LSTFontSize,
             keywordstyle=\color{NavyBlue},
             stringstyle=\color{Brown},
             commentstyle=\color{Green},
@@ -528,6 +595,7 @@ $if(listings)$
             basewidth={0.62em,0.45em},
             lineskip=-1pt,
         }
+
     \fi
     \ifxetex
         \lstdefinestyle{terminal}{
@@ -597,6 +665,7 @@ $if(listings)$
     }
 
     \lstset{
+        basicstyle=\usefont{T1}{zlmtt}{l}{n}\normalsizer,
         fancyvrb=true,
         style=terminal,
         frame=none,
@@ -622,7 +691,7 @@ $if(listings)$
     % lstinputlisting which affects only texts other than in listings.
     %   \lst@AddToHook{TextStyle}{%
     %       \let\lst@basicstyle\normalsize\%
-    %       fontfamily{zi4}\selectfont}
+    %       fontfamily{fvm}\selectfont}
     % Ref: https://latex.org/forum/viewtopic.php?t=2072
     \ifpdftex
         % Choices:
@@ -630,8 +699,8 @@ $if(listings)$
         % \normalsize\fontfamily{fvm}\selectfont}
         \makeatletter
         \lst@AddToHook{TextStyle}{%
-            \let\lst@basicstyle%
-            \normalsize\usefont{T1}{zlmtt}{l}{n}\selectfont}
+            \let\lstinline@basicstyle%
+            \ttfamily\relscale{1.5}}
         \makeatother
     \fi
     \ifxetex
@@ -646,6 +715,14 @@ $if(listings)$
         \renewcommand{\texttt}[1]{\inlinettfont{#1}}
     \fi
 
+    % For sections and sub-sections
+    %
+    % TODO: Document this
+    \newcommand{\codesecone}[1]{{\relsize{+1.5}\texttt{#1}}}
+    \newcommand{\codesectwo}[1]{{\relsize{+1.10}\texttt{#1}}}
+    \newcommand{\codesecthree}[1]{{\relsize{+0.965}\texttt{#1}}}
+    \newcommand{\codesecfour}[1]{{\relsize{+0.85}\texttt{#1}}}
+    \newcommand{\codesecfive}[1]{{\relsize{+0.5}\texttt{#1}}}
 $endif$
 
 
@@ -772,11 +849,6 @@ $endif$
 
 
 
-% Settings
-% ========
-
-
-
 % Paragraph
 % -----------------------------------------------------------------------------
 % Indention
@@ -853,6 +925,36 @@ $endif$
 % \makeatother
 
 
+
+\usepackage{etoolbox} % for \ifstrempty
+
+% Define a command to make side boxes with color and thickness and an
+% optional title string.
+\newcommand{\sidebox}[4]{%
+    % #1 = env name
+    % #3 = color for the vertical bar
+    % #4 = bar thickness
+    \newtcolorbox{#1}[1][]{enhanced,
+        breakable,
+        colback=white,
+        colback=#2!10,
+        colframe=white,
+        boxrule=0pt,
+        left=3mm,
+        borderline west={#3}{0pt}{#2},
+        fonttitle=\bfseries,
+%        coltitle=black,
+%        % Only insert title if #2 is not empty:
+%        title={\ifstrempty{#2}{##1}{#2\space\space\ ##1}},
+%        % Avoid extra space if title is empty:
+%        before title={\ifstrempty{#2}{}{\par\vspace{1.5mm}}},
+%        colbacktitle={\ifstrempty{#2}{}{#3!10}}
+    }%
+}
+
+% Define concrete environments
+\sidebox{iside}{cyan!80!black}{3pt}
+
 % Note-style text
 % https://tex.stackexchange.com/questions/474177/creating-a-note-section
 %
@@ -867,33 +969,35 @@ $endif$
 
 % Using tcolorbox package
 % Define a command to make side boxes with an automatic icon
-\newcommand{\newsideboxwithicon}[4]{%
-  % #1 = env name
-  % #2 = icon command (e.g. \faInfoCircle)
-  % #3 = color for the vertical bar
-  % #4 = bar thickness
-  \newtcolorbox{#1}[1][]{enhanced,
-    breakable,
-    colback=white,
-    colback=#3!10,      % soft tint behind text
-    colframe=white,     % no border
-    boxrule=0pt,
-    left=3mm,           % space for the bar
-    borderline west={#4}{0pt}{#3},
-    fonttitle=\bfseries,
-    coltitle=black,
-    colbacktitle=#3!10, % soft tint behind title row
-    before title={\par\vspace{1.5mm}},
-    title={#2\space\space\space\ ##1}}%
+\newcommand{\sideboxwithicon}[4]{%
+% #1 = env name
+% #2 = icon command (e.g. \faInfoCircle)
+% #3 = color for the vertical bar
+% #4 = bar thickness
+    \newtcolorbox{#1}[1][]{enhanced,
+        breakable,
+        colback=white,
+        colback=#3!10,      % soft tint behind text
+        colframe=white,     % no border
+        boxrule=0pt,
+        left=3mm,           % space for the bar
+        borderline west={#4}{0pt}{#3},
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=#3!10, % soft tint behind title row
+        before title={\par\vspace{1.5mm}},
+        title={#2\space\space ##1}}%
 }
 
 % Define concrete environments
-\newsideboxwithicon{inote}{\faInfoCircle}{blue!70!black}{3pt}
-\newsideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
-\newsideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
-\newsideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
-\newsideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
-% \newsideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
+% TODO: Show examples of how to use here
+\sideboxwithicon{itodo}{\faClipboardCheck}{cyan!80!black}{3pt}
+\sideboxwithicon{inote}{\faInfoCircle}{blue!60!black}{3pt}
+\sideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
+\sideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
+\sideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
+\sideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
+\sideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
 
 
 
@@ -924,6 +1028,8 @@ $endif$
 \setlength{\cftsubsectionindent}{4.7em}
 \setlength{\cftsectionnumwidth}{2.5em}
 \setlength{\cftsubsectionnumwidth}{3.5em}
+
+
 
 % Page Style
 % ----------
@@ -961,6 +1067,8 @@ $endif$
 % \fancyfoot{} % clear the footer
 % \fancyfoot[C]{\thepage}
 
+
+
 % Chapter style
 % -----------------------------------------------------------------------------
 % Ref: How do fonts work in LaTeX?
@@ -986,18 +1094,11 @@ $endif$
 
 \chapterstyle{rmsimple}
 
-% Font size for a4 and us letter paper size
-% \setsecheadstyle{\fontsize{13pt}{15.6pt}\bfseries}
-% \setsubsecheadstyle{\fontsize{12pt}{14.4pt}\bfseries}
-% \setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\bfseries}
-% \titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\bfseries}{\theparagraph}{1em}{}
-% \titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\bfseries\itshape}{}{0em}{}
-
-\setsecheadstyle{\fontsize{11pt}{15.6pt}\bfseries}
-\setsubsecheadstyle{\fontsize{10pt}{14.4pt}\bfseries}
-\setsubsubsecheadstyle{\fontsize{9pt}{13.2pt}\bfseries}
-\titleformat{\paragraph}[block]{\fontsize{9pt}{12pt}\bfseries}{\theparagraph}{1em}{}
-\titleformat{\subparagraph}[block]{\fontsize{9pt}{12pt}\bfseries\itshape}{}{0em}{}
+\setsecheadstyle{\fontsize{13pt}{15.6pt}\bfseries}
+\setsubsecheadstyle{\fontsize{12pt}{14.4pt}\bfseries}
+\setsubsubsecheadstyle{\fontsize{11pt}{13.2pt}\bfseries}
+\titleformat{\paragraph}[block]{\fontsize{10pt}{12pt}\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[block]{\fontsize{10pt}{12pt}\bfseries\itshape}{}{0em}{}
 
 % IMPORTANT:
 % The * in \titlespacing* unindents the following paragraph after the section
@@ -1008,54 +1109,6 @@ $endif$
 \titlespacing*{\subparagraph}{0pt}{1ex}{1ex}
 
 \setsecnumdepth{subparagraph}
-
-
-
-% Hyperlinks
-% ==========
-% Recommended to the last loaded package because it redefines many
-% LaTeX commands.
-
-% When using hyperref with footmisc, the footmisc documentation recommends
-% turning hyperlinks from footnote marks to the corresponding footnote body.
-% Package footmisc version 5.5b dated June 6, 2011.
-$if(is_draft)$
-\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
-$else$
-\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
-$endif$
-\hypersetup{
-    $if(title-meta)$
-        pdftitle={$title-meta$},
-    $endif$
-    $if(author-meta)$
-        pdfauthor={$author-meta$},
-    $endif$
-    $if(keywords)$
-        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
-    $endif$
-    $if(colorlinks)$
-        colorlinks=true,
-        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
-        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
-        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
-    $else$
-        % Remove the border placed around a URL.
-        % Ref: LaTeX, Wikibooks, June 18, 2016.
-        pdfborder={0 0 0},
-    $endif$
-    bookmarks=true,
-    pdftoolbar=true,            % show Acrobat’s toolbar?
-    pdfmenubar=true,            % show Acrobat’s menu?
-    pdfstartview={null null 100},
-    breaklinks=true
-}
-\usepackage{bookmark}
-% Don't use monospace font for URLs.
-% Note: The hyperref package shows the URL using monospace font.
-\urlstyle{same}
-% Avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 
 
 
@@ -1100,7 +1153,7 @@ $if(title)$
     \vspace*{1.75in}
     \begin{flushright}
         \ifxetex \mytitlefont \fi
-        {\LARGE\textbf{$title$}}\\
+        {\Largerrr\textbf{$title$}}\\
         \ifpdftex
             \vspace*{0.7em}
         \fi

@@ -12,14 +12,18 @@
 % Recommended margin and binding offset
 % https://tex.stackexchange.com/questions/249190/
 % Better margin control
-\usepackage[a4paper,
-            inner=30mm,         % main inner margin
-            outer=22mm,         % outer margin
-            top=25mm,           % top margin
-            bottom=25mm,        % bottom margin
-            bindingoffset=10mm, % extra space for binding (gutter)
-            showframe=$if(showframe)$$showframe$$else$false$endif$
-           ]{geometry}
+% The following recommends 2cm or 0.7874016in
+% http://gilmation.com/articles/latex-margins-for-book-binding/
+\usepackage[
+        a4paper,
+        inner=30mm,         % main inner margin
+        outer=22mm,         % outer margin
+        top=25mm,           % top margin
+        bottom=25mm,        % bottom margin
+        bindingoffset=10mm, % extra space for binding (gutter)
+        footskip=0.4in,
+        showframe=$if(showframe)$$showframe$$else$false$endif$
+        ]{geometry}
 
 % NOTE: Line wrap symbol in listings requires amsmath
 \usepackage{amsmath}
@@ -55,6 +59,7 @@
 % \definecolor{ListingCaptionColor}{RGB}{240,240,240}
 \definecolor{ListingCaptionColor}{RGB}{220,220,220}
 \definecolor{Gray50}{RGB}{69,69,69}
+\definecolor{Red50}{RGB}{125,0,0}
 
 % Fonts and Encoding
 % ------------------
@@ -67,6 +72,21 @@
     %\defaultfontfeatures{Ligatures=TeX} % To support LaTeX quoting style
 \fi
 
+% ------------------------------------------------
+% NOTE:
+% In the TUG font catalogue pages, I always see
+% this package included after inclusion of font
+% packages and after renewcommand*.
+% ------------------------------------------------
+% TODO: Why?
+%
+% Chapter 9: Fonts, LaTeX Wikibooks, June 2016
+% If you do not have a specific font encoding issue (e.g. writing English
+% only), there is no need for T1. Sticking to the default font encoding is
+% not a problem.
+%
+% To be able to use other TeX fonts, make sure T1 encoding is used.
+\usepackage[T1]{fontenc}
 \usepackage[fontsize=$fontsize$pt]{fontsize}
 
 % Must load ucs before inputenc
@@ -97,6 +117,7 @@
     kerning=true
     ]{microtype}
 \fi
+
 
 
 % Fonts
@@ -252,7 +273,11 @@
 
 
 
+% For nice monochrome icons
+% Used in note-style texts using \newtcolorbox
+\usepackage{fontawesome5}
 
+\usepackage{relsize}
 
 
 
@@ -293,10 +318,55 @@
 % fancyvrb is automatically loaded here after \hypersetup.
 % DO NOT load the package manually
 % ================================
+\usepackage{verbatimbox}
 
-%$if(highlighting-macros)$
-%    $highlighting-macros$
-%$endif$
+
+
+% Hyperlinks
+% ==========
+% Recommended to the last loaded package because it redefines many
+% LaTeX commands.
+
+% When using hyperref with footmisc, the footmisc documentation recommends
+% turning hyperlinks from footnote marks to the corresponding footnote body.
+% Package footmisc version 5.5b dated June 6, 2011.
+$if(is_draft)$
+\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
+$else$
+\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
+$endif$
+\hypersetup{
+    $if(title-meta)$
+        pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+        pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+    $endif$
+    $if(colorlinks)$
+        colorlinks=true,
+        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+        % Remove the border placed around a URL.
+        % Ref: LaTeX, Wikibooks, June 18, 2016.
+        pdfborder={0 0 0},
+    $endif$
+    bookmarks=true,
+    pdftoolbar=true,            % show Acrobat’s toolbar?
+    pdfmenubar=true,            % show Acrobat’s menu?
+    pdfstartview={null null 100},
+    breaklinks=true
+}
+\usepackage{bookmark}
+% Don't use monospace font for URLs.
+% Note: The hyperref package shows the URL using monospace font.
+\urlstyle{same}
+% Avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 
 
 
@@ -312,6 +382,7 @@ $if(graphics)$
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 
 
 % Pandoc 3.2.1 Reminder
@@ -400,6 +471,7 @@ $endif$
 % When --listings argument is passed to pandoc, all code blocks will be
 % wrapped within the listings environment.
 
+% Line width at 80 characters is a little short than with listing font
 \newcommand\TRMFontSize{\smallrr}
 \newcommand\LSTFontSize{\footnotesizerrr}
 
@@ -413,6 +485,8 @@ $endif$
     %      https://tex.stackexchange.com/questions/33020/
     \newcommand*\ListingFont{%
         \usefont{T1}{fvm}{l}{n}\LSTFontSize\selectfont\lsstyle}
+    \newcommand*\InlineFont{%
+        \usefont{T1}{zlmtt}{l}{n}\TRMFontSize\selectfont\lsstyle}
 \fi
 
 % The following are used in fenched code blocks to emphasize or
@@ -454,13 +528,16 @@ $endif$
     \newcommand{\Note}[1]{\ding{224}\enskip\texttt{#1}}
 \fi
 
+
+
 $if(listings)$
     % Handling UTF-8, try 'listingsutf8'
     % \usepackage{listings}
     \usepackage{listingsutf8}
-    % Package listings require fancyvrb right now.
+    % Package listings require fancyvrb
     \usepackage{fancyvrb}
-
+    % When a listing needs cannot be displayed using Markdown fenced code
+    % block syntax, this can be used:
 
 
     % Problem with hyphen being rendered too wide
@@ -494,17 +571,18 @@ $if(listings)$
     \ifpdftex
         \lstdefinestyle{terminal}{
             style=common,
-            basicstyle=\TerminalFont,
+            basicstyle=\usefont{T1}{zlmtt}{l}{n}\TRMFontSize,
             numberstyle=\footnotesize\color{Gray50},
-            % Sets the width of a single character box for fixed and flexible
-            % column mode (both to the same value or individually).
+            % Sets the width of a single character box for fixed and
+            % flexible column mode (both to the same value or
+            % individually).
             basewidth={0.504em,0.45em},
             lineskip=1pt,
         }
 
         \lstdefinestyle{listing}{
             style=common,
-            basicstyle=\ListingFont,
+            basicstyle=\usefont{T1}{fvm}{l}{n}\LSTFontSize,
             keywordstyle=\color{NavyBlue},
             stringstyle=\color{Brown},
             commentstyle=\color{Green},
@@ -514,6 +592,7 @@ $if(listings)$
             basewidth={0.62em,0.45em},
             lineskip=-1pt,
         }
+
     \fi
     \ifxetex
         \lstdefinestyle{terminal}{
@@ -528,7 +607,7 @@ $if(listings)$
             style=common,
             basicstyle=\normalsize\ttfamily,
             keywordstyle=\color{NavyBlue},
-            stringstyle =\color{Brown},
+            stringstyle=\color{Brown},
             commentstyle=\color{Green},
             numberstyle=\small\ttfamily\color{DimGray},
             basewidth=0.54em,
@@ -583,6 +662,7 @@ $if(listings)$
     }
 
     \lstset{
+        basicstyle=\usefont{T1}{zlmtt}{l}{n}\normalsizer,
         fancyvrb=true,
         style=terminal,
         frame=none,
@@ -616,7 +696,7 @@ $if(listings)$
         % \normalsize\fontfamily{fvm}\selectfont}
         \makeatletter
         \lst@AddToHook{TextStyle}{%
-            \let\lst@basicstyle%
+            \let\lstinline@basicstyle%
             \normalsizerr\usefont{T1}{zlmtt}{l}{n}\selectfont}
         \makeatother
     \fi
@@ -632,6 +712,14 @@ $if(listings)$
         \renewcommand{\texttt}[1]{\inlinettfont{#1}}
     \fi
 
+    % For sections and sub-sections
+    %
+    % TODO: Document this
+    \newcommand{\codesecone}[1]{{\relsize{+1.5}\texttt{#1}}}
+    \newcommand{\codesectwo}[1]{{\relsize{+1.10}\texttt{#1}}}
+    \newcommand{\codesecthree}[1]{{\relsize{+0.965}\texttt{#1}}}
+    \newcommand{\codesecfour}[1]{{\relsize{+0.85}\texttt{#1}}}
+    \newcommand{\codesecfive}[1]{{\relsize{+0.5}\texttt{#1}}}
 $endif$
 
 
@@ -668,8 +756,9 @@ $endif$
 \usepackage{tablefootnote}
 \usepackage{threeparttable}
 
-% Set vertical space between bottom of page text and start of footnote.
-% The default is \setfootins{\bigskipamount}{\bigskipamount}.
+% When using memoir
+    % Set vertical space between bottom of page text and start of footnote.
+    % The default is \setfootins{\bigskipamount}{\bigskipamount}.
 \setfootins{2em}{2em}
 
 % Vertical space between paragraphs in a single footnote
@@ -757,11 +846,6 @@ $endif$
 
 
 
-% Settings
-% ========
-
-
-
 % Paragraph
 % -----------------------------------------------------------------------------
 % Indention
@@ -838,6 +922,36 @@ $endif$
 % \makeatother
 
 
+
+\usepackage{etoolbox} % for \ifstrempty
+
+% Define a command to make side boxes with color and thickness and an
+% optional title string.
+\newcommand{\sidebox}[4]{%
+    % #1 = env name
+    % #3 = color for the vertical bar
+    % #4 = bar thickness
+    \newtcolorbox{#1}[1][]{enhanced,
+        breakable,
+        colback=white,
+        colback=#2!10,
+        colframe=white,
+        boxrule=0pt,
+        left=3mm,
+        borderline west={#3}{0pt}{#2},
+        fonttitle=\bfseries,
+%        coltitle=black,
+%        % Only insert title if #2 is not empty:
+%        title={\ifstrempty{#2}{##1}{#2\space\space\ ##1}},
+%        % Avoid extra space if title is empty:
+%        before title={\ifstrempty{#2}{}{\par\vspace{1.5mm}}},
+%        colbacktitle={\ifstrempty{#2}{}{#3!10}}
+    }%
+}
+
+% Define concrete environments
+\sidebox{iside}{cyan!80!black}{3pt}
+
 % Note-style text
 % https://tex.stackexchange.com/questions/474177/creating-a-note-section
 %
@@ -850,80 +964,37 @@ $endif$
 %     Ramification
 %     Warning
 
-% \makeatletter
-% \NewDocumentCommand{\noteinfo}{+O{}+m}{%
-%   \begingroup
-%   \tcbset{%
-%     noteshift/.store in=\noteinfo@shift,
-%     noteshift=1.5cm
-%   }
-%   \begin{tcolorbox}[nobeforeafter,
-%     enhanced,
-%     sharp corners,
-%     top=1mm,
-%     bottom=1mm,
-%     toprule=1pt,
-%     bottomrule=1pt,
-%     leftrule=0pt,
-%     rightrule=0pt,
-%     colback=yellow!10,
-%     colframe=Khaki!50,
-%     #1,
-%     left skip=\noteinfo@shift,
-%     right skip=\noteinfo@shift,
-%     overlay={\node[right] (noteinfonode) at ([xshift=-\noteinfo@shift]frame.west) {\textbf{Note:}} ;},
-%     ]
-%     #2
-%   \end{tcolorbox}
-%   \endgroup
-%   }
-% \makeatother
-
-% \newtcolorbox{noteinfo}[1][]{%
-%   enhanced jigsaw,                      % better frame drawing
-%   borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-%   sharp corners,                        % No rounded corners
-%   boxrule=0pt,                          % no real frame,
-%   fonttitle={\bfseries},
-%   coltitle={black},                     % Black colour for title
-%   title={Note:\quad \ },                     % Fixed title
-%   attach title to upper,                % Move the title into the box
-%   #1
-% }
-
-% https://tex.stackexchange.com/questions/657363/
-\newtcolorbox[auto counter,number within=section]{noteinfo}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Note~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=green,
-    #1
+% Using tcolorbox package
+% Define a command to make side boxes with an automatic icon
+\newcommand{\sideboxwithicon}[4]{%
+% #1 = env name
+% #2 = icon command (e.g. \faInfoCircle)
+% #3 = color for the vertical bar
+% #4 = bar thickness
+    \newtcolorbox{#1}[1][]{enhanced,
+        breakable,
+        colback=white,
+        colback=#3!10,      % soft tint behind text
+        colframe=white,     % no border
+        boxrule=0pt,
+        left=3mm,           % space for the bar
+        borderline west={#4}{0pt}{#3},
+        fonttitle=\bfseries,
+        coltitle=black,
+        colbacktitle=#3!10, % soft tint behind title row
+        before title={\par\vspace{1.5mm}},
+        title={#2\space\space ##1}}%
 }
 
-\newtcolorbox[auto counter,number within=section]{notedanger}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Information~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=red,
-    #1
-}
-
-\newtcolorbox[auto counter,number within=section]{notewarning}[2][]{%
-    borderline west={3pt}{0pt}{red},      % straight vertical line at the left edge
-    coltitle=black,
-    % title={{\bfseries Example~\thetcbcounter.}\quad#2},
-    title={{\bfseries Information~}\quad#2},
-    colback=black!5,
-    colframe=black!10,
-    coltext=orange,
-    #1
-}
+% Define concrete environments
+% TODO: Show examples of how to use here
+\sideboxwithicon{itodo}{\faClipboardCheck}{cyan!80!black}{3pt}
+\sideboxwithicon{inote}{\faInfoCircle}{blue!60!black}{3pt}
+\sideboxwithicon{itip}{\faLightbulb}{yellow!90!black}{3pt}
+\sideboxwithicon{iimportant}{\faExclamationCircle}{green!60!black}{3pt}
+\sideboxwithicon{iwarning}{\faExclamationTriangle}{orange!90!black}{3pt}
+\sideboxwithicon{icaution}{\faSkullCrossbones}{red!70!black}{3pt}
+\sideboxwithicon{ipitfall}{\faTimesCircle}{red!80!black}{3pt}
 
 
 
@@ -955,6 +1026,11 @@ $endif$
 \setlength{\cftsectionnumwidth}{2.5em}
 \setlength{\cftsubsectionnumwidth}{3.5em}
 
+
+
+% Page Style
+% ----------
+
 % Using memoir class with fancyhdr may get compilation errors because both
 % define the \footruleskip command when loading. To avoid the error, the
 % command needs to be 'undefined' before fancyhdr is loaded but after memoir
@@ -978,6 +1054,18 @@ $endif$
 }
 \setlength{\headheight}{15pt} % fixes \headheight warning
 
+% TODO: Show the page number at the bottom right side of the page.
+%
+% Set the page at the center of the footer
+% The page number is currently at the center. Tried to put it at the
+% bottom right side but the roman numeral pages is not printed at the
+% bottom right side. So, I reverted back to the default.
+% Added 20250819
+% \fancyfoot{} % clear the footer
+% \fancyfoot[C]{\thepage}
+
+
+
 % Chapter style
 % -----------------------------------------------------------------------------
 % Ref: How do fonts work in LaTeX?
@@ -994,8 +1082,8 @@ $endif$
             \chapnumfont \thechapter\quad%
         \fi%
     }
-    \renewcommand*{\chapnumfont}{\fontsize{14pt}{16.8pt}\bfseries}
-    \renewcommand*{\chaptitlefont}{\fontsize{14pt}{16.8pt}\bfseries}
+    \renewcommand*{\chapnumfont}{\Large\bfseries}
+    \renewcommand*{\chaptitlefont}{\Large\bfseries}
     % The following commands concatenate the chapter number and chapter title
     \renewcommand*{\printchaptertitle}[1]{\chaptitlefont ##1}
     \renewcommand{\afterchapternum}{}
@@ -1021,54 +1109,6 @@ $endif$
 
 
 
-% Hyperlinks
-% ==========
-% Recommended to the last loaded package because it redefines many
-% LaTeX commands.
-
-% When using hyperref with footmisc, the footmisc documentation recommends
-% turning hyperlinks from footnote marks to the corresponding footnote body.
-% Package footmisc version 5.5b dated June 6, 2011.
-$if(is_draft)$
-\usepackage[colorlinks=true,hyperfootnotes=false]{hyperref}
-$else$
-\usepackage[colorlinks=false,hyperfootnotes=false]{hyperref}
-$endif$
-\hypersetup{
-    $if(title-meta)$
-        pdftitle={$title-meta$},
-    $endif$
-    $if(author-meta)$
-        pdfauthor={$author-meta$},
-    $endif$
-    $if(keywords)$
-        pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
-    $endif$
-    $if(colorlinks)$
-        colorlinks=true,
-        linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
-        citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
-        urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
-    $else$
-        % Remove the border placed around a URL.
-        % Ref: LaTeX, Wikibooks, June 18, 2016.
-        pdfborder={0 0 0},
-    $endif$
-    bookmarks=true,
-    pdftoolbar=true,            % show Acrobat’s toolbar?
-    pdfmenubar=true,            % show Acrobat’s menu?
-    pdfstartview={null null 100},
-    breaklinks=true
-}
-\usepackage{bookmark}
-% Don't use monospace font for URLs.
-% Note: The hyperref package shows the URL using monospace font.
-\urlstyle{same}
-% Avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-
-
-
 % Date and Time
 % =============
 % Package datetime2 replaces the datetime package which is now obsolete
@@ -1078,9 +1118,6 @@ $endif$
 
 
 %\makeindex
-
-% Look at .log file to see the package versions
-\listfiles
 
 
 
@@ -1113,7 +1150,7 @@ $if(title)$
     \vspace*{1.75in}
     \begin{flushright}
         \ifxetex \mytitlefont \fi
-        {\fontsize{22pt}{26pt}\textbf{$title$}}\\
+        {\Largerrr\textbf{$title$}}\\
         \ifpdftex
             \vspace*{0.7em}
         \fi
@@ -1121,7 +1158,7 @@ $if(title)$
             \vspace*{1em}
         \fi
         $if(subtitle)$
-            {\fontsize{18pt}{20pt}\textbf{$subtitle$}}\\
+            {\Largerrr\textbf{$subtitle$}}\\
         $else$
             % Lessen vertical space before the client text
             % Otherwise, it will appear a little bit lower
@@ -1129,9 +1166,9 @@ $if(title)$
         $endif$
         $if(client)$
             $if(subtitle)$
-                \vspace*{0.7em}
+                \vspace*{0.9em}
             $endif$
-            {\fontsize{18pt}{20pt}\textbf{$client$}}\\
+            {\Largerrr\textbf{$client$}}\\
         $endif$
 
         \vspace*{0.7em}
@@ -1139,37 +1176,36 @@ $if(title)$
         \vspace*{0.0em}
 
         $if(doctype)$
-            {\fontsize{16pt}{20pt}\textrm{$doctype$}}\\[0.7em]
+            {\large\textrm{$doctype$}}\\[0.2em]
         $endif$
         $if(version)$
             % Negative space for adjustment only.
             % The version text seems to be a bit low under the line
-            \vspace*{-0.2em}
+            \vspace*{0.1em}
             % Add 'Draft' text on document version number
             % if the document class option 'draft' is specified
             % \ifoptiondraft{Draft}{}\space $version$\\
-            {\fontsize{12pt}{16pt}\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\
-            \vspace*{0.7em}
+            {\large\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
+            % \vspace*{0.5em}
         $endif$
-        {\fontsize{12pt}{16pt}\textrm{$date$}}\\[0.7em]
-
+        {\large\textrm{$date$}}\\[0.2em]
         \vspace*{1.75in}
         $if(author)$
             $if(author_heading)$
-                {\fontsize{12pt}{14pt}\textrm{$author_heading$}}\\[1em]
+                {\large\textrm{$author_heading$}}\\[1em]
             $endif$
             $for(author)$
                 $if(author.name)$
                     \vspace*{1.4em}
-                    {\fontsize{12pt}{14pt}\textbf{$author.name$}}\\[0.2em]
+                    {\large\textbf{$author.name$}}\\[0.2em]
                     $if(author.title)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.title$}}\\[0.2em]
+                        {\normalsizerrr\textrm{$author.title$}}\\[0.2em]
                     $endif$
                     $if(author.company)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.company$}}\\[0.2em]
+                        {\normalsizerrr\textrm{$author.company$}}\\[0.2em]
                     $endif$
                     $if(author.email)$
-                        {\fontsize{11pt}{13pt}\textrm{$author.email$}}\\
+                        {\normalsizerrr\textrm{$author.email$}}\\
                     $endif$
                 $endif$
             $endfor$
@@ -1179,7 +1215,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace{\fill}
         $if(distribution)$
-            {\fontsize{10pt}{13pt}\textrm{$distribution$}}
+            {\normalsize\textrm{$distribution$}}
         $endif$
     \end{flushright}
 $endif$
