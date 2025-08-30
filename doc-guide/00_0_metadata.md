@@ -35,7 +35,7 @@ classoption:
     - titlepage
     - oneside
     - openright
-documentclass: memoir
+# documentclass:
 papersizex: a4
 papersizexx: letter
 papersize: a5
