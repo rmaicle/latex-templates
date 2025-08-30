@@ -1997,7 +1997,6 @@ This is another paragraph. What about multiple paragraphs in one line
 item?
 
 This second paragraph should be indented.
-
 \begin{lstlisting}[escapechar=@]
 @\OUTb{\$ git --version}@
 git version 2.22.0
@@ -2007,34 +2006,35 @@ This is the third paragraph and should be indented too.
 
 
 
+## Boxed Text
 
-## Alerts
-
-_Alerts_ are a *Markdown* extension that can be used to emphasize
-certain type of information.
+*Boxed Text* is an extension that displays text with a colored
+background.
+It can be used to emphasize certain types of information.
 
 ~~~{style=syntax}
-\begin{inote}[NOTE]
+\begin{iside}
 \lipsum[][1-3]
-\end{inote}
-
-\begin{itip}[TIP]
-\lipsum[][1-3]
-\end{itip}
-
-\begin{iimportant}[IMPORTANT]
-\lipsum[][1-3]
-\end{iimportant}
-
-\begin{iwarning}[WARNING]
-\lipsum[][1-3]
-\end{iwarning}
-
-\begin{icaution}[CAUTION]
-\lipsum[][1-3]
-\end{icaution}
+\end{iside}
 ~~~
 
+\begin{iside}
+\lipsum[][1-3]
+\end{iside}
+
+
+
+## Titled Boxed Text
+
+*Titled Boxed Text* is an extension that displays a titled text with a
+colored background.
+It can be used to emphasize certain types of information.
+
+~~~{style=syntax}
+\begin{itodo}[TODO]
+\lipsum[][1-3]
+\end{itodo}
+
 \begin{inote}[NOTE]
 \lipsum[][1-3]
 \end{inote}
@@ -2054,6 +2054,39 @@ certain type of information.
 \begin{icaution}[CAUTION]
 \lipsum[][1-3]
 \end{icaution}
+
+\begin{ipitfall}[PITFALL]
+\lipsum[][1-3]
+\end{ipitfall}
+~~~
+
+\begin{itodo}[TODO]
+\lipsum[][1-3]
+\end{itodo}
+
+\begin{inote}[NOTE]
+\lipsum[][1-3]
+\end{inote}
+
+\begin{itip}[TIP]
+\lipsum[][1-3]
+\end{itip}
+
+\begin{iimportant}[IMPORTANT]
+\lipsum[][1-3]
+\end{iimportant}
+
+\begin{iwarning}[WARNING]
+\lipsum[][1-3]
+\end{iwarning}
+
+\begin{icaution}[CAUTION]
+\lipsum[][1-3]
+\end{icaution}
+
+\begin{ipitfall}[PITFALL]
+\lipsum[][1-3]
+\end{ipitfall}
 
 
 
