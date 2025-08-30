@@ -895,13 +895,19 @@ command `texttt{}`.
 
 ~~~{style=syntax}
 \lstinputlisting[
-    caption=File inclusion using \codetext{style=lstinputlisting},
+    caption=This is a sample file inclusion using
+    \codetext{style=lstinputlisting},
     language=C++,
     style=listingcap
 ]{./listing/input_listing.cpp}
 ~~~
 
-\lstinputlisting[caption=This is a sample file inclusion using \texttt{style=lstinputlisting}, language=C++,style=listingcap]{./listing/input_listing.cpp}
+\lstinputlisting[
+    caption=This is a sample file inclusion using
+    \texttt{style=lstinputlisting},
+    language=C++,
+    style=listingcap
+]{./listing/input_listing.cpp}
 
 
 
