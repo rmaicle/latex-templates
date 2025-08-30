@@ -15,14 +15,15 @@
 % The following recommends 2cm or 0.7874016in
 % http://gilmation.com/articles/latex-margins-for-book-binding/
 \usepackage[
-        letter,
+        letterpaper,
         inner=1.0in,        % main inner margin
         outer=1.0in,        % outer margin
         top=1.0in,          % top margin
         bottom=1.0in,       % bottom margin
         bindingoffset=0.5in,
         footskip=0.4in,
-        showframe=$if(showframe)$$showframe$$else$false$endif$
+        % showframe=$if(showframe)$$showframe$$else$false$endif$
+        showframe=false
         ]{geometry}
 
 % NOTE: Line wrap symbol in listings requires amsmath
