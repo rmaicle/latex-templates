@@ -1047,17 +1047,7 @@ $endif$
 % For N of M page numbering
 % \usepackage{lastpage}
 
-% Allow verbatim texts in footnotes
-% Error: Undefined control sequence
-% \VerbatimFootnotes
 
-% Page Style
-% ----------
-\fancypagestyle{simple}{%
-    \fancyhead{}
-    \renewcommand{\headrulewidth}{0pt}
-}
-\setlength{\headheight}{15pt} % fixes \headheight warning
 
 % TODO: Show the page number at the bottom right side of the page.
 %
@@ -1341,7 +1331,30 @@ $endfor$
 
 \mainmatter
 
-\pagestyle{simple}
+
+
+% Page Style
+% ----------
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{$title$}
+\fancyhead[C]{}
+\fancyhead[R]{\thepage}
+% Add vertical spacing for the header text and header rule
+\makeatletter
+\renewcommand{\headrule}{%
+  \vspace{4pt} % extra space before the rule
+  \hrule height 0.4pt % thickness of the rule
+  % \vspace{-2pt} % adjust spacing after the rule if needed
+}
+\makeatother
+% Header and body text vertical space
+\setlength{\headsep}{20pt} % default ~12pt
+\fancyfoot{} % clear all footer fields
+\setlength{\headheight}{15pt} % fixes \headheight warning
+
+
+
 \vspace*{-7ex}
 $body$
 \pagebreak
