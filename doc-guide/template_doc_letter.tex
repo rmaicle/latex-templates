@@ -667,9 +667,9 @@ $if(listings)$
     }
 
     \lstset{
-        basicstyle=\usefont{T1}{zlmtt}{l}{n}\normalsizer,
-        fancyvrb=true,
         style=terminal,
+        basicstyle=\usefont{T1}{zlmtt}{l}{n}\normalsizerr,
+        fancyvrb=true,
         frame=none,
         fontadjust=true,
         extendedchars=false,
@@ -695,20 +695,20 @@ $if(listings)$
     %       \let\lst@basicstyle\normalsize\%
     %       fontfamily{fvm}\selectfont}
     % Ref: https://latex.org/forum/viewtopic.php?t=2072
+    % Choices:
+    % \large\fontfamily{cmtt}\selectfont}
+    % \normalsize\fontfamily{fvm}\selectfont}
     \ifpdftex
-        % Choices:
-        % \large\fontfamily{cmtt}\selectfont}
-        % \normalsize\fontfamily{fvm}\selectfont}
         \makeatletter
         \lst@AddToHook{TextStyle}{%
-            \let\lstinline@basicstyle%
-            \ttfamily\relscale{1.5}}
+            \let\lstinline@basicstyle
+            \ttfamily\relscale{2.0}}
         \makeatother
     \fi
     \ifxetex
         \makeatletter
         \lst@AddToHook{TextStyle}{%
-            \let\lst@basicstyle\inlinettfont\selectfont}
+            \let\lstinline@basicstyle\inlinettfont\selectfont}
         \makeatother
 
         % How to redefine a command
@@ -721,10 +721,10 @@ $if(listings)$
     %
     % TODO: Document this
     \newcommand{\codesecone}[1]{{\relsize{+1.5}\texttt{#1}}}
-    \newcommand{\codesectwo}[1]{{\relsize{+1.10}\texttt{#1}}}
-    \newcommand{\codesecthree}[1]{{\relsize{+0.965}\texttt{#1}}}
-    \newcommand{\codesecfour}[1]{{\relsize{+0.85}\texttt{#1}}}
-    \newcommand{\codesecfive}[1]{{\relsize{+0.5}\texttt{#1}}}
+    \newcommand{\codesectwo}[1]{{\relsize{+0.99}\texttt{#1}}}
+    \newcommand{\codesecthree}[1]{{\relsize{+0.96}\texttt{#1}}}
+    \newcommand{\codesecfour}[1]{{\relsize{+0.91}\texttt{#1}}}
+    \newcommand{\codesecfive}[1]{{\relsize{+0.84}\texttt{#1}}}
 $endif$
 
 
