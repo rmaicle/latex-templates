@@ -3,8 +3,13 @@
     $if(papersize)$$papersize$paper$else$letter$endif$,
     titlepage,
     oneside,
-    openright,
-    $if(is_draft)$draft$else$final$endif$,
+    $if(is_ms)$
+        ms
+    $elseif(is_draft)$
+        draft
+    $else$
+        final
+    $endif$,
     article]{memoir}
 
 
