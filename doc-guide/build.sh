@@ -87,6 +87,7 @@ $(printf '                          %s point\n' ${FONT_SIZES[@]})
       --latex             output TeX/LaTeX file and generate PDF
       --latex-only        output TeX/LaTeX file and exit
       --markdown file     use input mardown content file
+      --ms                generate ms version PDF document
       --no-image          do not generate TeX images
       --no-frontmatter    do not generate user-supplied frontmatter contents
       --no-backmatter     do not generate user-supplied backmatter contents
@@ -121,15 +122,18 @@ declare param_latex=""
 declare param_latex_only=""
 declare param_show_frame=""
 declare param_paper_size=""
+declare param_version=""
 
 while [ $# -gt 0 ]; do
     case "${1}" in
         --debug)            param_debug="--debug" ; shift ;;
+        --draft)            param_version="--draft" ; shift ;;
         --font-size)        param_font_size="--font-size ${2}" ; shift 2 ;;
         --engine)           arg_engine="${2,,}" ; shift 2 ;;
         --latex)            param_latex="--latex" ; shift ;;
         --latex-only)       param_latex_only="--latex-only" ; shift ;;
         --markdown)         param_markdown_file="${2}" ; shift 2 ;;
+        --ms)               param_version="--ms" ; shift ;;
         --no-image)         param_no_image="--no-image" ; shift ;;
         --no-frontmatter)   param_no_frontmatter="--no-frontmatter" ; shift ;;
         --no-backmatter)    param_no_backmatter="--no-backmatter" ; shift ;;
@@ -150,6 +154,7 @@ fi
 ${DOC_BIN}                                      \
     ${param_latest}                             \
     ${param_debug}                              \
+    ${param_version}                            \
     ${param_font_size}                          \
     ${param_paper_size}                         \
     ${param_show_frame}                         \
