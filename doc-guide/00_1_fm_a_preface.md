@@ -107,5 +107,4 @@ $ sudo pacman -S --noconfirm git
 
 
 
-\pagebreak
 \cleardoublepage
