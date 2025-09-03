@@ -422,6 +422,21 @@ $endif$
 % \usetikzlibrary{shapes,arrows}
 
 
+% Draw vertical lines as guidelines
+$if(showframe)$
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \AtPageLowerLeft{%
+    \color{gray!50}%
+    % Example: Draw two vertical lines (left/right margins)
+    % \rule{4.0pt}{\paperheight} % at left edge
+    \hspace{1.70in}\rule{0.4pt}{\paperheight} % at 210pt from left
+    % \hspace{210pt}\rule{0.4pt}{\paperheight} % another guide
+  }%
+}
+$endif$
+
+
 
 % List
 % ====================
