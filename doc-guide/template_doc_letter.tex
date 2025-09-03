@@ -35,6 +35,7 @@
 
 \usepackage{iftex}
 
+% TODO 20250831: What does this do?
 \usepackage{ifdraft}
 \usepackage{titlesec}
 \titlelabel{\thetitle\; }
@@ -797,6 +798,10 @@ $endif$
 % Change footnote text font size other than footnotesize
 % \renewcommand{\footnotesize}{\small}
 
+% Allow verbatim texts in footnotes
+% Error: Undefined control sequence
+% \VerbatimFootnotes
+
 
 
 % Other Packages
@@ -1378,6 +1383,8 @@ $body$
 
 \appendix
 
+
+
 $for(include-after)$
 \vspace*{-7ex}
 $include-after$
@@ -1388,6 +1395,8 @@ $endfor$
 
 
 \backmatter
+
+
 
 $if(natbib)$
     $if(bibliography)$
