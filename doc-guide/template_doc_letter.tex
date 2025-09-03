@@ -1306,43 +1306,39 @@ $endif$
 % Table of contents
 %
 $if(toc)$
-{
-    \settocdepth{subsection}
     \cleardoublepage
+    \thispagestyle{simple}
     \begin{KeepFromToc} % Hide the ToC page entry in the ToC
-        \vspace*{-7ex}
-        \tableofcontents
+       \vspace*{-7ex}
+       \tableofcontents
     \end{KeepFromToc}
-    \pagebreak
-    \cleardoublepage
-}
 $endif$
 
 
 
 $if(lot)$
+\cleardoublepage
+\thispagestyle{empty}
 \vspace*{-7ex}
 \listoftables
-\pagebreak
-\cleardoublepage
 $endif$
 
 
 
 $if(lof)$
+\cleardoublepage
+\thispagestyle{empty}
 \vspace*{-7ex}
 \listoffigures
-\pagebreak
-\cleardoublepage
 $endif$
 
 
 
 $for(include-before)$
+\cleardoublepage
+\thispagestyle{plain}
 \vspace*{-7ex}
 $include-before$
-\pagebreak
-\cleardoublepage
 $endfor$
 
 
