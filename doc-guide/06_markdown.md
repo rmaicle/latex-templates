@@ -47,9 +47,9 @@ Section heading levels are specified by the number of hash characters.
 Section headings can have attributes using the following syntax at the
 end of the section heading line:
 
-~~~{style=syntax}
+~~~~~{style=syntax}
 {.class}
-~~~
+~~~~~
 
 Section headings may be omitted from the table of contents by adding
 `.unlisted` at the end of the section heading text.
@@ -67,10 +67,10 @@ These may be combined and applied to a section heading.
 
 
 
-~~~{style=syntax}
+~~~~~{style=syntax}
 # Preface {.unnumbered}
 ## About This Document {.unnumbered .unlisted #preface_about_doc}
-~~~
+~~~~~
 
 
 ### Vertical Space Before First Chapter (Deprecated)
@@ -90,10 +90,10 @@ other front matter pages, main matter, and appendices.
 
 Links are formatted as `[text](link)`.
 
-~~~{style=syntax}
+~~~~~{style=syntax}
 [TeX](https://en.wikipedia.org/wiki/TeX)
 [LaTeX](https://www.latex-project.org/)
-~~~
+~~~~~
 
 
 
@@ -104,7 +104,7 @@ A paragraph is a block of text surrounded by blank lines.
 The following example shows how to write a couple of paragraphs after
 the chapter heading.
 
-~~~{style=syntax}
+~~~~~{style=syntax}
 # Chapter Heading
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In diam arcu,
@@ -116,7 +116,21 @@ Phasellus condimentum odio sapien, non scelerisque lorem sagittis at.
 In pellentesque velit in elementum malesuada. Praesent semper quam nibh,
 in tincidunt mi sollicitudin vel. Phasellus ligula felis, tempor eu
 metus sit amet, mollis efficitur diam.
-~~~
+~~~~~
+
+In *memoir* class documentation section *2.4.1 A note on the width of
+the typeblock*, it says:
+
+> Experiments have shown that the number of characters in a line of
+> single column text on a page should be in the range 60 to 70 for
+> ease of reading. The range may be as much as 45 to 75 characters but
+> 66 characters is often considered to be the ideal number.
+
+Here is a made-up character counter for single-column text on this
+page spanning 90 characters.
+
+\noindent12345678901234567890123456789012345678901234567890123456789012345678901234567890
+
 
 
 
@@ -310,12 +324,7 @@ The following is an example of a grid table.
 |         |       | eleifend tincidunt id sed diam. Etiam           |
 |         |       | scelerisque condimentum mauris.                 |
 +---------+-------+-------------------------------------------------+
-| Code    | $0.02 | ~~~                                             |
-|         |       | int main () {                                   |
-|         |       |   printf("Hello, world!\n");                    |
-|         |       |   return 0;                                     |
-|         |       | }                                               |
-|         |       | ~~~                                             |
+| Code    | $0.02 | A sample `code` inside a cell.                  |
 +---------+-------+-------------------------------------------------+
 ~~~
 
@@ -339,12 +348,7 @@ The following is an example of a grid table.
 |         |       | eleifend tincidunt id sed diam. Etiam           |
 |         |       | scelerisque condimentum mauris.                 |
 +---------+-------+-------------------------------------------------+
-| Code    | $0.02 | ~~~                                             |
-|         |       | int main () {                                   |
-|         |       |   printf("Hello, world!\n");                    |
-|         |       |   return 0;                                     |
-|         |       | }                                               |
-|         |       | ~~~                                             |
+| Code    | $0.02 | A sample `code` inside a cell.                  |
 +---------+-------+-------------------------------------------------+
 
 The row of `=`s separates the table header from the table
@@ -376,12 +380,12 @@ For headerless tables, the colons go on the top line instead:
 
 ~~~{style=syntax}
 +--------------:+:--------------+:------------------:+
-| Right         | Left          | Centered           |
+| Bananas       | $1.34         | built-in wrapper   |
 +---------------+---------------+--------------------+
 ~~~
 
 +--------------:+:--------------+:------------------:+
-| Right         | Left          | Centered           |
+| Bananas       | $1.34         | built-in wrapper   |
 +---------------+---------------+--------------------+
 
 
@@ -479,7 +483,7 @@ colons as above.
 
 
 
-## Code \codesectwo{Block}
+## Code Block
 
 A *code block* is a block of text treated as verbatim text. A code
 block in the original definition of markdown is indented by four
@@ -547,7 +551,7 @@ characters.
 
 
 
-### Fenced Code \codesecthree{Block Attributes}
+### Fenced Code Block Attributes
 
 Using fenced code blocks allows the declaration of _attributes_.
 _Attributes_ provide additional capabilities on how to display
@@ -711,7 +715,7 @@ The at ('@') symbol.
 
 
 
-#### Style \codesecfour{Attribute}
+#### \codesecfour{Style} Attribute
 
 The LaTeX template used defines custom styles for displaying fenced
 code blocks. They are discussed in the following subsections.
@@ -876,10 +880,10 @@ LaTeX command `\texttt{}`.
 
 \begin{description}[leftmargin=5em,rightmargin=5em,labelindent=2.75em,style=sameline]
 \tightlist
-\item[\texttt{language}] Most general programming languages are
-recognized.
-A list of recognized programming languages may be found in the LaTeX
-`listing.pdf` package documentation.
+\item[\texttt{caption}]
+The caption text.
+Part of the text may be formatted as teletype text using the LaTeX
+command `texttt{}`.
 \item[\texttt{firstline}]
 Display line numbers.
 The `auto` option argument starts the line number at 1.
@@ -887,10 +891,13 @@ Specifying a number like 100 starts the line number at 100.
 Using `last` option argument displays the last line number of
 the source code moving up relative to a previously defined listing
 using the `firstline=n`.
-\item[\texttt{caption}]
-The caption text.
-Part of the text may be formatted as teletype text using the LaTeX
-command `texttt{}`.
+\item[\texttt{language}] Most general programming languages are
+recognized.
+A list of recognized programming languages may be found in the LaTeX
+`listing.pdf` package documentation.
+\item[\texttt{style}]
+Sets how the code listing is displayed.
+The \texttt {style} is designed to use the \texttt{listingcap} style.
 \end{description}
 
 ~~~{style=syntax}
@@ -898,6 +905,7 @@ command `texttt{}`.
     caption=This is a sample file inclusion using
     \codetext{style=lstinputlisting},
     language=C++,
+    firstline=3,
     style=listingcap
 ]{./listing/input_listing.cpp}
 ~~~
@@ -906,9 +914,18 @@ command `texttt{}`.
     caption=This is a sample file inclusion using
     \texttt{style=lstinputlisting},
     language=C++,
+    firstline=3,
     style=listingcap
 ]{./listing/input_listing.cpp}
 
+The contents of the file `input_listing.cpp` is shown below.
+Note that the first two lines are not displayed since `firstline` is
+set to the value `3`.
+
+\lstinputlisting[
+    language=C++,
+    style=listing
+]{./listing/input_listing.cpp}
 
 
 ### Long Line Breaks
@@ -1342,6 +1359,12 @@ bullet list marker.
 * List item three
 ~~~
 
+The markdown code above is rendered as:
+
+* List item one
+* List item two
+* List item three
+
 
 
 ### Ordered List
@@ -1367,6 +1390,11 @@ ordered list marker.
 3. List item three
 ~~~
 
+The markdown code above is rendered as:
+
+1. List item one
+2. List item two
+3. List item three
 
 
 ### Nesting An Unordered List
@@ -1615,28 +1643,28 @@ A paragraph or more may be defined inside a list item.
 ~~~{style=syntax}
 * List Item
 
-    First paragraph in a list item. Lorem ipsum         @\Note{First paragraph}@
-    dolor sit amet, consectetuer adipiscing elit.
-    Ut purus elit, vestibulum ut, placerat ac,
-    adipiscing vitae, felis.
+  First paragraph in a list item. Lorem ipsum         @\Note{First paragraph}@
+  dolor sit amet, consectetuer adipiscing elit.
+  Ut purus elit, vestibulum ut, placerat ac,
+  adipiscing vitae, felis.
 
-    Second paragraph in a list item. Lorem ipsum        @\Note{Second paragraph}@
-    dolor sit amet, consectetuer adipiscing elit.
-    Ut purus elit, vestibulum ut, placerat ac,
-    adipiscing vitae, felis.
+  Second paragraph in a list item. Lorem ipsum        @\Note{Second paragraph}@
+  dolor sit amet, consectetuer adipiscing elit.
+  Ut purus elit, vestibulum ut, placerat ac,
+  adipiscing vitae, felis.
 ~~~
 
 The following is the output of the Markdown above.
 
 * List Item
 
-    First paragraph in a list item. Lorem ipsum dolor sit amet,
-    consectetuer adipiscing elit. Ut purus elit, vestibulum ut,
-    placerat ac, adipiscing vitae, felis.
+  First paragraph in a list item. Lorem ipsum dolor sit amet,
+  consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat
+  ac, adipiscing vitae, felis.
 
-    Second paragraph in a list item. Lorem ipsum dolor sit amet,
-    consectetuer adipiscing elit. Ut purus elit, vestibulum ut,
-    placerat ac, adipiscing vitae, felis.
+  Second paragraph in a list item. Lorem ipsum dolor sit amet,
+  consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat
+  ac, adipiscing vitae, felis.
 
 
 
@@ -1682,8 +1710,8 @@ the block with four (4) spaces.
 * List Item. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
   Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 
-    > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus
-    > elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+    > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut
+    > purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
     > Curabitur dictum gravida mauris.
 ~~~
 
@@ -1692,8 +1720,8 @@ The following is the output of the Markdown above.
 * List Item. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
   Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
 
-    > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus
-    > elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
+    > Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut
+    > purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.
     > Curabitur dictum gravida mauris.
 
 
