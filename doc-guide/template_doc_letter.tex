@@ -1186,7 +1186,7 @@ $if(title)$
         \vspace*{0.0em}
 
         $if(doctype)$
-            {\normalsizerrr\textrm{$doctype$}}\\[0.2em]
+            {\normalsizerrr\textnormal{$doctype$}}\\[0.2em]
         $endif$
         $if(version)$
             % Negative space for adjustment only.
@@ -1195,27 +1195,27 @@ $if(title)$
             % Add 'Draft' text on document version number
             % if the document class option 'draft' is specified
             % \ifoptiondraft{Draft}{}\space $version$\\
-            {\normalsizerrr\textrm{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
+            {\normalsizerrr\textnormal{\ifoptiondraft{Draft}{}\space $version$}}\\[0.2em]
             % \vspace*{0.5em}
         $endif$
-        {\normalsizerr\textrm{$date$}}\\[0.2em]
+        {\normalsizerr\textnormal{$date$}}\\[0.2em]
         \vspace*{1.75in}
         $if(author)$
             $if(author_heading)$
-                {\normalsizerr\textrm{$author_heading$}}\\[1em]
+                {\normalsizerr\textnormal{$author_heading$}}\\[1em]
             $endif$
             $for(author)$
                 $if(author.name)$
                     \vspace*{1.4em}
                     {\normalsizerr\textbf{$author.name$}}\\[0.2em]
                     $if(author.title)$
-                        {\normalsizerr\textrm{$author.title$}}\\[0.2em]
+                        {\normalsizerr\textnormal{$author.title$}}\\[0.2em]
                     $endif$
                     $if(author.company)$
-                        {\normalsizerr\textrm{$author.company$}}\\[0.2em]
+                        {\normalsizerr\textnormal{$author.company$}}\\[0.2em]
                     $endif$
                     $if(author.email)$
-                        {\normalsizerr\textrm{$author.email$}}\\
+                        {\normalsizerr\textnormal{$author.email$}}\\
                     $endif$
                 $endif$
             $endfor$
@@ -1225,7 +1225,7 @@ $if(title)$
         % https://latex.org/forum/viewtopic.php?t=13428
         \vspace{\fill}
         $if(distribution)$
-            {\normalsize\textrm{$distribution$}}
+            {\normalsize\textnormal{$distribution$}}
         $endif$
     \end{flushright}
 $endif$
@@ -1233,6 +1233,8 @@ $endif$
 
 
 \frontmatter
+
+
 
 %
 % Copyright
@@ -1244,8 +1246,9 @@ $if(with_copyright)$
         $if(subtitle)$
             {\\\itshape $subtitle$}
         $endif$
+        \hfill\newline
         $if(version)$
-            {\normalsize\ifoptiondraft{Draft}{}\\$version$}
+            {\normalsize\textnormal{\ifoptiondraft{Draft}{}\space $version$}}
         $endif$
         \hfill\newline
         $if(author)$
