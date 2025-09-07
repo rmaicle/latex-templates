@@ -86,17 +86,6 @@ other front matter pages, main matter, and appendices.
 
 
 
-## Links
-
-Links are formatted as `[text](link)`.
-
-~~~~~{style=syntax}
-[TeX](https://en.wikipedia.org/wiki/TeX)
-[LaTeX](https://www.latex-project.org/)
-~~~~~
-
-
-
 ## Paragraph
 
 A paragraph is a block of text surrounded by blank lines.
@@ -131,6 +120,17 @@ page spanning 90 characters.
 
 \noindent12345678901234567890123456789012345678901234567890123456789012345678901234567890
 
+
+
+
+## Links
+
+Links are formatted as `[text](link)`.
+
+~~~~~{style=syntax}
+[TeX](https://en.wikipedia.org/wiki/TeX)
+[LaTeX](https://www.latex-project.org/)
+~~~~~
 
 
 
