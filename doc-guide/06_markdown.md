@@ -1309,6 +1309,7 @@ fenced code block must align with the block quote text.
 > This is a block quote and the following fenced code block is indented.
 >
 > ~~~
+> #include <iostream>
 > int main() {
 >     std::cout << "Hello, world!";
 >     return 0;
@@ -1322,6 +1323,7 @@ in the following output.
 > This is a block quote and the following fenced code block is indented.
 >
 > ~~~
+> #include <iostream>
 > int main() {
 >     std::cout << "Hello, world!";
 >     return 0;
@@ -2048,11 +2050,18 @@ It can be used to emphasize certain types of information.
 
 \begin{iside}
 \lipsum[][1-3]
+\begin{lstlisting}[style=listing]
+#include <iostream>
+int main() {
+    std::cout << "Hello, world!";
+    return 0;
+}
+\end{lstlisting}
 \end{iside}
 
 
 
-## Titled Boxed Text
+## Boxed Text with Title
 
 *Titled Boxed Text* is an extension that displays a titled text with a
 colored background.
